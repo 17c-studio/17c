@@ -28,7 +28,7 @@
     window.removeEventListener('keydown', preventScrollKeys, true);
   };
   // Never leave a visitor behind a curtain after a failed request or script.
-  const failsafe = setTimeout(finish, 18000);
+  const failsafe = setTimeout(finish, 13000);
   window.addEventListener('pagehide', finish, { once: true });
   window.studioProspectReveal = {
     cancel: finish,
@@ -95,7 +95,7 @@
         if (event.target === curtain) finish();
       });
       clearTimeout(failsafe);
-      setTimeout(finish, reducedMotion ? 350 : 14750);
+      setTimeout(finish, reducedMotion ? 350 : 9750);
     }
   };
 })();
