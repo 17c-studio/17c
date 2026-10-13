@@ -70,6 +70,69 @@ window.addEventListener('pageshow', event => {
 
 const servicesSection = document.querySelector('#services');
 const serviceTrack = servicesSection?.querySelector('.service-track');
+// Mobile cards expose their copy through real buttons rather than hover states.
+const mobileServiceCards = window.matchMedia('(max-width: 767px)');
+let restoreServiceCards = () => {};
+const syncServiceCards = () => {
+  restoreServiceCards();
+  restoreServiceCards = () => {};
+  if (!mobileServiceCards.matches) return;
+  const cleanups = [];
+  document.querySelectorAll('.service-grid article').forEach((card, index) => {
+    const heading = card.querySelector('h3');
+    if (!heading) return;
+    const originalHeading = [...heading.childNodes];
+    const originalTabIndex = card.getAttribute('tabindex');
+    const originalCopy = card.querySelector('p');
+    const copy = originalCopy || document.createElement('p');
+    if (!originalCopy) copy.textContent = 'Explore the full range of ways I can help your business grow.';
+    const panel = document.createElement('div');
+    panel.className = 'service-card-copy';
+    panel.id = `service-card-copy-${index + 1}`;
+    panel.hidden = true;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'service-card-toggle';
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-controls', panel.id);
+    const label = document.createElement('span');
+    label.textContent = heading.textContent.trim();
+    const indicator = document.createElement('span');
+    indicator.className = 'service-card-indicator';
+    indicator.setAttribute('aria-hidden', 'true');
+    indicator.textContent = '+';
+    button.append(label, indicator);
+    heading.replaceChildren(button);
+    card.removeAttribute('tabindex');
+    heading.after(panel);
+    panel.append(copy);
+    const link = card.querySelector('.service-card-link');
+    const originalLinkContent = link ? [...link.childNodes] : [];
+    if (link) {
+      link.textContent = 'View all services →';
+      panel.append(link);
+    }
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') !== 'true';
+      button.setAttribute('aria-expanded', String(expanded));
+      indicator.textContent = expanded ? '−' : '+';
+      panel.hidden = !expanded;
+    });
+    cleanups.push(() => {
+      heading.replaceChildren(...originalHeading);
+      if (originalTabIndex !== null) card.setAttribute('tabindex', originalTabIndex);
+      if (originalCopy) heading.after(originalCopy);
+      if (link) {
+        link.replaceChildren(...originalLinkContent);
+        heading.before(link);
+      }
+      panel.remove();
+    });
+  });
+  restoreServiceCards = () => cleanups.forEach(cleanup => cleanup());
+};
+syncServiceCards();
+mobileServiceCards.addEventListener('change', syncServiceCards);
 const SERVICE_SCROLLER_KEY = '__17cServiceScrollerCleanup';
 
 // Apply the final responsive layout before the browser restores a saved scroll

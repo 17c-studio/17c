@@ -186,7 +186,7 @@
  .wishlist-inquiry h2 { font-size: clamp(44px, 8vw, 60px); }
  .wishlist-send { flex-direction: column; align-items: flex-start; gap: 12px; }
  #wishlist-floating { bottom: max(16px, env(safe-area-inset-bottom)); right: 16px; padding: 12px 18px; }
- .services-page .footer { padding-bottom: 90px; }
+ .services-page:has(#wishlist-floating:not([hidden])) .footer { padding-bottom: 90px; }
  .wishlist-fields input, .wishlist-fields textarea { font-size: 16px; }
  .services-page .service-explanation p, .services-page .service-deliverables li { font-size: 16px; }
  #wishlist-panel { padding: 20px; }

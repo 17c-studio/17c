@@ -3523,3 +3523,174 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 @keyframes prospect-curtain-fade {
   to { opacity: 0; }
 }
+
+/* Mobile heroes and tap-to-open service cards. */
+@media (max-width: 767px) {
+  .cover .prospect-brand, .services-hero .prospect-brand { display: none; }
+  .home-page .cover, .services-page .services-hero { min-height: max(680px, 100svh); }
+  .home-page .service-grid article { min-height: 240px; padding: 72px 24px 32px; }
+  .home-page .service-grid article > h3 {
+    position: static;
+    width: 100%;
+    margin: 0;
+    transform: none !important;
+  }
+  .service-card-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 48px;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+  }
+  .service-card-indicator { flex: 0 0 24px; font-family: var(--sans); font-size: 24px; text-align: center; }
+  .service-card-copy { width: 100%; margin-top: 16px; text-align: left; }
+  .service-card-copy[hidden] { display: none; }
+  .home-page .service-card-copy p { max-width: none; margin: 0; font-size: 16px; }
+  .home-page .service-card-copy .service-card-link {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 16px;
+    border-bottom: 1px solid currentColor;
+    font-size: 14px;
+  }
+  /* Loose, edge-cropped project composition around the central invitation. */
+  .home-page .possibilities {
+    position: relative;
+    isolation: isolate;
+    min-height: clamp(1000px, 260vw, 1200px);
+    padding: 0;
+    overflow: hidden;
+  }
+  .home-page .possibilities-heading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    width: calc(100% - 48px);
+    max-width: 430px;
+    margin: 0;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .home-page .possibilities-heading h2 { text-shadow: 0 2px 18px rgb(0 0 0 / 45%); }
+  .home-page .possibility-title-line { transform: none !important; }
+  .home-page .possibilities .concept-grid {
+    position: absolute;
+    inset: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    margin: 0;
+    transform: none;
+    pointer-events: none;
+  }
+  .home-page .possibilities .project-preview-card {
+    position: absolute;
+    z-index: 1;
+    margin: 0;
+    border-top: 0;
+  }
+  .home-page .possibilities .project-preview {
+    aspect-ratio: 16 / 10;
+    box-shadow: 0 12px 30px rgb(0 0 0 / 25%);
+  }
+  .home-page .possibilities .project-preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgb(0 0 0 / 62%);
+    pointer-events: none;
+  }
+  .home-page .possibilities .project-screenshot { height: 100%; object-fit: cover; object-position: top; }
+  .home-page .possibilities .project-preview-card:nth-child(1) { top: 5%; left: -18%; width: 68%; }
+  .home-page .possibilities .project-preview-card:nth-child(2) { top: 14%; right: -5%; width: 55%; }
+  .home-page .possibilities .project-preview-card:nth-child(3) { top: 29%; right: 11%; width: 34%; }
+  .home-page .possibilities .project-preview-card:nth-child(3) .project-preview { aspect-ratio: 4 / 3; }
+  .home-page .possibilities .project-preview-card:nth-child(4) { top: 39%; left: -18%; width: 74%; }
+  .home-page .possibilities .project-preview-card:nth-child(4) .project-preview { aspect-ratio: 5 / 4; }
+  .home-page .possibilities .project-preview-card:nth-child(4) .project-preview::after { background: rgb(0 0 0 / 65%); }
+  .home-page .possibilities .project-preview-card:nth-child(5) { top: 68%; left: -9%; width: 56%; }
+  .home-page .possibilities .project-preview-card:nth-child(6) { top: 77%; right: -10%; width: 66%; }
+  .home-page .possibilities .project-preview-card:nth-child(7) { top: 49%; right: -23%; width: 38%; }
+  .home-page .possibilities .project-preview-card:nth-child(7) .project-preview { aspect-ratio: 3 / 4; }
+  .home-page .possibilities .concept-grid a { pointer-events: auto; }
+  .home-page .possibilities-actions { flex-direction: row; flex-wrap: nowrap; gap: 8px; }
+  .home-page .possibilities-actions a {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    min-height: 48px;
+    padding: 10px;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .home-page .possibilities-actions .possibility-secondary { flex: 1.2; }
+  :is(.home-page, .services-page) .footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px 24px;
+    padding: 24px 24px max(24px, env(safe-area-inset-bottom));
+    border-top: 1px solid rgb(246 245 241 / 18%);
+  }
+  :is(.home-page, .services-page) .footer .wordmark { grid-column: 1; grid-row: 1; justify-self: start; }
+  :is(.home-page, .services-page) .footer .wordmark img { width: 40px; height: 50px; }
+  :is(.home-page, .services-page) .footer small {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+  :is(.home-page, .services-page) .footer > a:last-child {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .home-page .intro-strip { gap: 20px; }
+  .home-page .business-names {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 32px;
+    overflow-x: auto;
+    padding: 12px 0 16px;
+    scroll-snap-type: x proximity;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #77716a transparent;
+  }
+  .home-page .business-names > * {
+    flex: 0 0 150px;
+    width: 150px;
+    max-width: none;
+    height: 50px;
+    scroll-snap-align: start;
+    object-fit: contain;
+  }
+  .home-page .business-names > .business-name { align-items: center; justify-content: center; }
+  .home-page .business-names:focus-visible { outline: 2px solid var(--focus-color); outline-offset: 4px; }
+}
