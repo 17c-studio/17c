@@ -3693,4 +3693,17 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   }
   .home-page .business-names > .business-name { align-items: center; justify-content: center; }
   .home-page .business-names:focus-visible { outline: 2px solid var(--focus-color); outline-offset: 4px; }
+  .home-page .business-names.is-rotating { scroll-snap-type: none; scrollbar-width: none; }
+  .home-page .business-names.is-rotating::-webkit-scrollbar { display: none; }
+  .logo-carousel-control {
+    margin: -12px 0 0 auto;
+    padding: 8px 0 8px 16px;
+    min-height: 44px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 11px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
 }

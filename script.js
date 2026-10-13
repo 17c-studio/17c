@@ -502,6 +502,95 @@ if (form && status) {
   });
 }
 
+// A slow, seamless mobile logo loop; native scrolling remains available.
+const logoRow = document.querySelector('.business-names');
+if (logoRow) {
+  const mobileLogos = window.matchMedia('(max-width: 767px)');
+  let disposeLogoCarousel = () => {};
+  const syncLogoCarousel = () => {
+    disposeLogoCarousel();
+    disposeLogoCarousel = () => {};
+    if (!mobileLogos.matches || scrollMotionPreference.matches || logoRow.scrollWidth <= logoRow.clientWidth) return;
+    const originals = [...logoRow.children];
+    const clones = originals.map(original => {
+      const clone = original.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      logoRow.append(clone);
+      return clone;
+    });
+    const period = clones[0].offsetLeft - originals[0].offsetLeft;
+    const control = document.createElement('button');
+    control.type = 'button';
+    control.className = 'logo-carousel-control';
+    control.textContent = 'Pause logos';
+    control.setAttribute('aria-label', 'Pause client logo carousel');
+    logoRow.after(control);
+    logoRow.classList.add('is-rotating');
+    let frame, previousTime, resumeTimer;
+    let position = logoRow.scrollLeft;
+    let paused = false, hovered = false, touching = false, visible = false;
+    let disposed = false;
+    const canRun = () => !disposed && !paused && !hovered && !touching && visible && !document.hidden && document.activeElement !== logoRow;
+    const tick = time => {
+      frame = undefined;
+      if (!canRun()) return;
+      if (previousTime !== undefined) position = (position + Math.min(time - previousTime, 64) * 0.018) % period;
+      previousTime = time;
+      logoRow.scrollLeft = position;
+      frame = requestAnimationFrame(tick);
+    };
+    const sync = () => {
+      cancelAnimationFrame(frame);
+      frame = undefined;
+      previousTime = undefined;
+      position = logoRow.scrollLeft % period;
+      if (canRun()) frame = requestAnimationFrame(tick);
+    };
+    const listeners = [];
+    const listen = (target, name, callback) => {
+      target.addEventListener(name, callback);
+      listeners.push(() => target.removeEventListener(name, callback));
+    };
+    listen(control, 'click', () => {
+      paused = !paused;
+      control.textContent = paused ? 'Play logos' : 'Pause logos';
+      control.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} client logo carousel`);
+      sync();
+    });
+    listen(logoRow, 'pointerenter', event => { if (event.pointerType === 'mouse') { hovered = true; sync(); } });
+    listen(logoRow, 'pointerleave', () => { hovered = false; sync(); });
+    listen(logoRow, 'focusin', sync);
+    listen(logoRow, 'focusout', sync);
+    listen(logoRow, 'pointerdown', () => { clearTimeout(resumeTimer); touching = true; sync(); });
+    const release = () => {
+      if (!touching) return;
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { touching = false; sync(); }, 3000);
+    };
+    listen(window, 'pointerup', release);
+    listen(window, 'pointercancel', release);
+    listen(document, 'visibilitychange', sync);
+    const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); });
+    observer.observe(logoRow);
+    disposeLogoCarousel = () => {
+      disposed = true;
+      cancelAnimationFrame(frame);
+      clearTimeout(resumeTimer);
+      observer.disconnect();
+      listeners.forEach(remove => remove());
+      logoRow.classList.remove('is-rotating');
+      logoRow.scrollLeft %= period;
+      clones.forEach(clone => clone.remove());
+      control.remove();
+    };
+  };
+  syncLogoCarousel();
+  mobileLogos.addEventListener('change', syncLogoCarousel);
+  scrollMotionPreference.addEventListener('change', syncLogoCarousel);
+  window.addEventListener('pagehide', () => disposeLogoCarousel());
+  window.addEventListener('pageshow', event => { if (event.persisted) syncLogoCarousel(); });
+}
+
 // Decorative video follows the motion preference and only runs while visible.
 const decorativeVideo = document.querySelector('.service-more-video');
 if (decorativeVideo) {
