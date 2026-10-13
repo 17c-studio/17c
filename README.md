@@ -31,7 +31,7 @@ Sky Floor example: http://localhost:8000/?for=the-sky-floor
 Wishlist: http://localhost:8000/services.html?for=the-sky-floor
 
 Personalized pages show an ivory curtain once per business per browser session.
-The logo entrance, hold, and curtain take about 5 seconds once assets are ready.
+The logo entrance, hold, and curtain take about 15 seconds once assets are ready.
 The browser remembers it in session storage; a fresh browser session previews it again. Reduced-motion visitors see a short fade instead.
 Include `prospect-reveal.js` when uploading the site.
 Include `contact-navigation.js` too; it handles the personalized contact links
