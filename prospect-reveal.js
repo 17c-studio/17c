@@ -28,7 +28,7 @@
     window.removeEventListener('keydown', preventScrollKeys, true);
   };
   // Never leave a visitor behind a curtain after a failed request or script.
-  const failsafe = setTimeout(finish, 4000);
+  const failsafe = setTimeout(finish, 8000);
   window.addEventListener('pagehide', finish, { once: true });
   window.studioProspectReveal = {
     cancel: finish,
@@ -84,7 +84,7 @@
         reducedMotion
           ? [{ opacity: 0 }, { opacity: 1 }]
           : [{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }],
-        { duration: reducedMotion ? 150 : 250, easing: 'ease-out', fill: 'both' }
+        { duration: reducedMotion ? 150 : 450, easing: 'ease-out', fill: 'both' }
       );
       await Promise.all([entrance.finished.catch(() => {}), Promise.race([heroReady, heroDeadline])]);
       if (finished) return;
@@ -95,7 +95,7 @@
         if (event.target === curtain) finish();
       });
       clearTimeout(failsafe);
-      setTimeout(finish, reducedMotion ? 350 : 900);
+      setTimeout(finish, reducedMotion ? 350 : 4750);
     }
   };
 })();

@@ -3510,7 +3510,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   line-height: 1.4;
   letter-spacing: 0;
 }
-.prospect-curtain.is-ready { animation: prospect-curtain-lift 700ms cubic-bezier(0.76, 0, 0.24, 1) both; }
+.prospect-curtain.is-ready { animation: prospect-curtain-lift 850ms cubic-bezier(0.76, 0, 0.24, 1) 3700ms both; }
 .prospect-reveal-shown :is(.cover-title-line, .services-hero h1) { animation: none; opacity: 1; transform: none; }
 @keyframes prospect-curtain-lift {
   from { transform: translateY(0); }
