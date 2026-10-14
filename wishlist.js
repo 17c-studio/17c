@@ -1,15 +1,18 @@
 (() => {
+  const form = document.querySelector('#wishlist-form');
+  if (!form) return;
+  form.noValidate = true;
   const key = '17c-project-wishlist-v1';
   const boxes = [...document.querySelectorAll('.wishlist-checkbox')];
-  const catalog = new Map(boxes.map(box => [box.value, {
+  const catalog = new Map((window.studioWishlistCatalog || []).map(item => [item.id, item]));
+  boxes.forEach(box => catalog.set(box.value, {
     id: box.value, service: box.dataset.service,
     serviceName: box.closest('.service-chapter').querySelector('.service-name').textContent,
     text: box.closest('label').querySelector('span').textContent
-  }]));
+  }));
   const selected = new Set();
   const panel = document.querySelector('#wishlist-panel');
   const floating = document.querySelector('#wishlist-floating');
-  const form = document.querySelector('#wishlist-form');
   const status = document.querySelector('#wishlist-form-status');
   const includeWishlist = document.querySelector('#wishlist-include');
   const review = document.querySelector('#wishlist-review');
@@ -18,7 +21,7 @@
   const storageNote = document.querySelector('#wishlist-storage-note');
   const toggle = document.querySelector('#wishlist-toggle');
   const submitLabel = document.querySelector('#wishlist-submit-label');
-  const idleSubmitLabel = form.dataset.endpoint.trim() ? 'Send my wishlist' : 'Open email draft';
+  const idleSubmitLabel = 'Send inquiry';
   submitLabel.textContent = idleSubmitLabel;
   let sending = false;
   let returnFocus;
@@ -93,7 +96,7 @@
     includeWishlist.disabled = sending;
     optionNote.textContent = selected.size
       ? `${selected.size} ${selected.size === 1 ? 'item' : 'items'} selected. ${includeWishlist.checked ? 'Your wishlist will be included with your inquiry.' : 'Your wishlist is saved and won’t be included with this inquiry.'}`
-      : 'Your wishlist is empty. Browse the services above to choose what interests you.';
+      : 'You can send an inquiry without a wishlist, or explore services to choose what interests you.';
     scheduleOverlap();
   };
   const changed = () => { save(); render(); if (!sending) { status.textContent = ''; } };
@@ -105,7 +108,7 @@
     if (box.checked) selected.add(box.value); else selected.delete(box.value);
     changed();
   }));
-  toggle.addEventListener('click', () => {
+  toggle?.addEventListener('click', () => {
     const expanded = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded', String(expanded));
     document.querySelector('#wishlist-explanation').hidden = !expanded;
@@ -116,7 +119,7 @@
   });
   panel.addEventListener('close', () => {
     syncFloatingOverlap();
-    const target = returnFocus && !returnFocus.hidden && getComputedStyle(returnFocus).visibility !== 'hidden' ? returnFocus : toggle;
+    const target = returnFocus && !returnFocus.hidden && getComputedStyle(returnFocus).visibility !== 'hidden' ? returnFocus : (toggle || form.elements.name);
     target.focus();
     returnFocus = undefined;
   });
@@ -144,7 +147,7 @@
     const index = buttons.indexOf(button);
     selected.delete(button.dataset.remove); changed();
     const remaining = [...container.querySelectorAll('button[data-remove]')];
-    (remaining[Math.min(index, remaining.length - 1)] || (panel.open ? document.querySelector('#wishlist-close') : toggle)).focus();
+    (remaining[Math.min(index, remaining.length - 1)] || (panel.open ? document.querySelector('#wishlist-close') : (toggle || form.elements.name))).focus();
   }));
   for (const name of ['name', 'email', 'project']) form.elements[name].addEventListener('input', () => {
     form.elements[name].removeAttribute('aria-invalid');
@@ -169,20 +172,15 @@
     const wishlistMessage = groups(snapshot).map(group => `${group.service}\n${group.items.map(item => `• ${item.text}`).join('\n')}`).join('\n\n');
     const payload = {
       name: form.elements.name.value.trim(), email: form.elements.email.value.trim(),
-      business: form.elements.business.value.trim(), subject: '17C — Project wishlist',
+      business: form.elements.business.value.trim(), subject: '17C — Project inquiry',
       project: form.elements.project.value.trim(),
-      wishlist: groups(snapshot).map(group => ({service: group.service, items: group.items.map(item => item.text)})),
+      wishlist: wishlistMessage || 'No wishlist included',
       message: [form.elements.project.value.trim(), wishlistMessage].filter(Boolean).join('\n\n')
     };
-    const endpoint = form.dataset.endpoint.trim();
-    if (!endpoint) {
-      const body = `Name: ${payload.name}\nEmail: ${payload.email}\nOrganization: ${payload.business || 'Not provided'}\n\n${payload.message}`;
-      window.location.href = `mailto:marielwhitney.design@gmail.com?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(body)}`;
-      return;
-    }
+    const endpoint = form.action;
     sending = true;
     submit.disabled = true; form.setAttribute('aria-busy', 'true');
-    submitLabel.textContent = 'Sending your wishlist…'; status.textContent = 'Sending your ideas to 17C…';
+    submitLabel.textContent = 'Sending…'; status.textContent = 'Sending your ideas to 17C…';
     render();
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 20000);
@@ -192,12 +190,22 @@
         body: JSON.stringify(payload), signal: controller.signal
       });
       const result = await response.json();
-      if (!response.ok || result.ok !== true) throw new Error('Not accepted');
+      if (!response.ok || result.ok === false) {
+        const errors = Array.isArray(result.errors) ? result.errors : [];
+        const firstFieldError = errors.find(error => ['name', 'email', 'project'].includes(error.field));
+        errors.forEach(error => {
+          if (!['name', 'email', 'project'].includes(error.field)) return;
+          form.elements[error.field].setAttribute('aria-invalid', 'true');
+          document.querySelector(`#wishlist-${error.field}-error`).textContent = error.message || 'Please check this field.';
+        });
+        if (firstFieldError) form.elements[firstFieldError.field].focus();
+        throw new Error(errors.map(error => error.message).filter(Boolean).join(' ') || 'Please try again in a moment.');
+      }
       snapshot.forEach(id => selected.delete(id)); save(); form.reset();
-      status.textContent = 'Your wishlist is on its way. Thanks for sharing what you’re thinking about!';
+      status.textContent = 'Your inquiry was sent. Thanks for sharing what you’re thinking about!';
       status.dataset.state = 'success';
     } catch {
-      status.textContent = 'I couldn’t confirm your wishlist was sent. Your selections are saved. Please try again or contact marielwhitney.design@gmail.com.';
+      status.textContent = 'I couldn’t confirm your inquiry was sent. Your message and selections are kept here. Please try again or contact marielwhitney.design@gmail.com.';
       status.dataset.state = 'error';
     } finally {
       clearTimeout(timeout); sending = false; submit.disabled = false;

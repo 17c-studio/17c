@@ -1,26 +1,19 @@
-# Wishlist email delivery
+# Wishlist Formspree delivery
 
-By default, the wishlist inquiry opens an email draft addressed to `marielwhitney.design@gmail.com`, with the visitor’s name, email, optional organization, required project message, and selected wishlist items. The visitor sends that draft in their email app. The wishlist form opens the draft directly without displaying a follow-up draft panel or message. Opening a draft does not claim delivery or clear the form or selections. An inquiry can also be started without selected items. The “Include my wishlist” checkbox lets visitors choose whether their selected services are attached. Unchecking it preserves selections; successful direct submission clears only the items included in that submission.
+The inquiry forms on `services.html` and `index.html` use `https://formspree.io/f/xoejkyvk`. This site uses plain HTML, CSS, and JavaScript with no bundler or backend. `wishlist.js` submits JSON with `fetch` and `Accept: application/json`, adapting the Vanilla JS AJAX approach to the existing wishlist behavior without adding a library.
 
-Required-field maximum lengths are validated explicitly; the project message is limited to 5,000 code units, matching HTML maxlength behavior.
+Both forms collect required name, email, and project message, plus optional organization. The “Include my wishlist” checkbox attaches readable selections grouped by service. Inquiries also work without selected items. JavaScript provides inline validation, loading, field-level server errors, and success/failure feedback. A failed or timed-out request keeps contact input and selections in the current page. Successful acceptance resets the form and removes only submitted selections. Acceptance does not guarantee inbox delivery.
 
-You can optionally configure an endpoint for direct submission instead; the button then reads “Send my wishlist.”
+Without JavaScript, the form submits directly to Formspree using its `action` and `method="post"`; saved wishlist selections require JavaScript. Required inputs use native validation in this mode.
 
-## Connect Formspree
+## Shared assets
 
-1. Create a Formspree form and set its recipient to **marielwhitney.design@gmail.com**. Verify that recipient in Formspree. If a different recipient is intended, change it in Formspree and update the contact fallback text in `wishlist.js`.
-2. Copy the form endpoint, such as `https://formspree.io/f/YOUR_FORM_ID`.
-3. Set `data-endpoint="https://formspree.io/f/YOUR_FORM_ID"` on `#wishlist-form` in `services.html`.
-4. Configure the allowed site domain and spam protection in the service dashboard. Submit a real test inquiry after configuration, then confirm its arrival in the recipient inbox.
+Deploy `wishlist.js`, `wishlist.css`, and `wishlist-catalog.js` alongside both pages. The shared catalog resolves existing saved selection IDs on the homepage. When service checkbox IDs or labels change, update the matching entries in `wishlist-catalog.js` too.
 
-The public form ID is configuration, not a secret. The browser sends JSON containing name, email, optional business, project, subject, grouped wishlist, and a readable message. Formspree handles delivery credentials; never add an API key or SMTP password to these static files.
+Only selection IDs are stored in localStorage under `17c-project-wishlist-v1`. Contact details are not persisted. The public Formspree ID is configuration; no API key or server credentials are needed.
 
-An alternative server endpoint must accept this same JSON payload, validate the required name, email, and project fields and any wishlist items server-side, apply spam/rate protection, and return JSON `{ "ok": true }` with a successful HTTP status **only after the email service accepts the message**. Keep its recipient address and sending credentials on the server. Errors must return a non-success status or `{ "ok": false }`. A successful HTTP status alone is not enough for this interface to claim success.
+## Verify delivery
 
-The browser saves only selected catalog IDs under `17c-project-wishlist-v1`. Contact information is never saved to localStorage. Failed, unconfigured, malformed-response, and timed-out requests preserve the wishlist. Successful acceptance clears the submitted wishlist items and contact form. Acceptance is not a guarantee of inbox delivery.
+In the Formspree dashboard, confirm the intended recipient is verified and the deployed site domain is allowed if domain restrictions are enabled. Submit a test inquiry from the hosted site and confirm it arrives in the intended inbox. Check both forms with and without wishlist inclusion, and verify that failed submissions retain input and selections.
 
-## Verification
-
-After changing delivery configuration, verify validation, loading, failure with preserved selections, and explicit `{ "ok": true }` acceptance with reset. Confirm real delivery in the recipient inbox after connecting an endpoint.
-
-[Formspree AJAX documentation](https://help.formspree.io/articles/building-your-form/submit-forms-with-javascript-ajax).
+[Formspree AJAX documentation](https://help.formspree.io/articles/building-your-form/submit-forms-with-javascript-ajax/).

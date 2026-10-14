@@ -8,7 +8,7 @@ Open `index.html` in a browser, or run `python3 -m http.server 8000` from this d
 
 ## Contact
 
-The project form opens the visitor’s email app with a message addressed to `marielwhitney.design@gmail.com`. Visitors must send the email themselves. No form data is stored or submitted to a server. Change `CONTACT_EMAIL` in `script.js` to update the address.
+The inquiry forms on `index.html` and `services.html` submit to `https://formspree.io/f/xoejkyvk`. Plain JavaScript adds validation, loading, success, and error feedback; the HTML form also supports standard POST submission without JavaScript. Visitors can include their saved service wishlist from either page. Formspree controls the recipient and email delivery settings. See `WISHLIST_SETUP.md` for verification.
 
 ## Design
 
@@ -20,7 +20,7 @@ Google Fonts supplies DM Sans and Libre Caslon Display, with system fallbacks if
 
 ## Publish
 
-Upload `index.html`, `styles.css`, `script.js`, `17c-cover.png`, `17c-clear-logo.png`, and the `assets` folder to any static website host. No credentials or server configuration are required by the site itself.
+Upload both HTML pages, all local CSS and JavaScript files (including `wishlist.css`, `wishlist.js`, and `wishlist-catalog.js`), the image files, and the `assets` folder to any static website host. No credentials or server configuration are required by the site itself.
 
 ## Personalized prospect links
 

@@ -10,11 +10,14 @@
   <script src="prospect-reveal.js?v=8"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
   <link rel="stylesheet" href="styles.css?v=79">
+  <link rel="stylesheet" href="wishlist.css?v=1">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
   <script src="prospects.js?v=12" defer></script>
   <script src="email-draft.js?v=1" defer></script>
+  <script src="wishlist-catalog.js?v=1" defer></script>
+  <script src="wishlist.js?v=8" defer></script>
   <script src="script.js?v=26" defer></script>
   <script src="contact-navigation.js?v=1" defer></script>
 </head>
@@ -25,7 +28,7 @@
       <a class="wordmark" href="index.html" aria-label="17C home"><img class="header-monogram" src="17c-clear-logo.png" alt="" width="1122" height="1402"></a>
     </div>
     
-    <nav aria-label="Main navigation"><a href="services.html">Services</a><a href="https://marielwhitney.github.io/portfolio/index.html">Work</a><a class="nav-cta" href="mailto:marielwhitney.design@gmail.com">Connect <span class="arrow-drift" aria-hidden="true">→</span></a></nav>
+    <nav aria-label="Main navigation"><a href="services.html">Services</a><a href="https://marielwhitney.github.io/portfolio/index.html">Work</a><a class="nav-cta" href="#wishlist-inquiry">Connect <span class="arrow-drift" aria-hidden="true">→</span></a></nav>
   </header>
   <main id="main">
     <section class="cover" aria-labelledby="cover-title">
@@ -217,7 +220,41 @@ and a creative partner who grows with you</span>
       </div>
       
     </div>
+ <section class="wishlist-inquiry wrap" id="wishlist-inquiry" aria-labelledby="wishlist-inquiry-title">
+  <div class="wishlist-inquiry-intro">
+   <p class="editorial-label">A partner for what comes next</p>
+   <h2 id="wishlist-inquiry-title">Good businesses<br>deserve to be known.</h2>
+   <p>You’ve built something worth caring about.<br>Let’s help more people see it.</p>
+   <a class="wishlist-browse" href="services.html">Explore services and build your wishlist →</a>
+   <p class="wishlist-storage-note" id="wishlist-storage-note" role="status"></p>
+  </div>
+  <!-- Static-host compatible Formspree submission; wishlist.js adds AJAX feedback. -->
+  <form id="wishlist-form" action="https://formspree.io/f/xoejkyvk" method="post" aria-describedby="wishlist-required-note">
+   <noscript><p>You can send an inquiry here. Enable JavaScript to include saved wishlist selections.</p></noscript>
+   <input type="hidden" name="subject" value="17C — Project inquiry">
+   <p id="wishlist-required-note" class="wishlist-required-note"><span aria-hidden="true">*</span> Required fields</p>
+   <div class="wishlist-fields">
+    <label>Name <span aria-hidden="true">*</span><input name="name" autocomplete="name" required maxlength="100" aria-describedby="wishlist-name-error"><span id="wishlist-name-error" class="wishlist-field-error"></span></label>
+    <label>Email <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required maxlength="200" aria-describedby="wishlist-email-error"><span id="wishlist-email-error" class="wishlist-field-error"></span></label>
+    <label>Organization <span class="wishlist-optional">(optional)</span><input name="business" autocomplete="organization" maxlength="200"></label>
+    <label>What can I help you with? <span aria-hidden="true">*</span><textarea name="project" rows="5" required maxlength="5000" aria-describedby="wishlist-project-error"></textarea><span id="wishlist-project-error" class="wishlist-field-error"></span></label>
+   </div>
+   <div class="wishlist-inquiry-option">
+    <label class="wishlist-include-label"><input id="wishlist-include" name="includeWishlist" type="checkbox" checked aria-describedby="wishlist-option-note"><span>Include my wishlist <span class="wishlist-optional">(optional)</span></span></label>
+    <p id="wishlist-option-note" aria-live="polite">Choose services you’re interested in, then include them with your inquiry.</p>
+    <button id="wishlist-review" class="wishlist-text-button" type="button" aria-haspopup="dialog" aria-controls="wishlist-panel" hidden>Review wishlist</button>
+   </div>
+   <div class="wishlist-send"><button class="wishlist-send-button" type="submit"><span id="wishlist-submit-label">Send inquiry</span><span aria-hidden="true">→</span></button></div>
+   <p id="wishlist-form-status" role="status" aria-live="polite" tabindex="-1"></p>
+  </form>
+ </section>
   </main>
+  <button type="button" id="wishlist-floating" aria-haspopup="dialog" aria-controls="wishlist-panel" hidden>Your wishlist · 0 selected</button>
+  <dialog id="wishlist-panel" aria-labelledby="wishlist-panel-title" data-lenis-prevent>
+   <div class="wishlist-panel-heading"><h2 id="wishlist-panel-title">Your wishlist</h2><button type="button" id="wishlist-close" aria-label="Close wishlist">×</button></div>
+   <div id="wishlist-panel-summary" class="wishlist-summary"></div>
+   <a class="wishlist-text-button" id="wishlist-inquiry-link" href="#wishlist-inquiry">Let’s see what you have in mind →</a>
+  </dialog>
   <footer class="footer wrap"><a class="wordmark" href="#" aria-label="17C home"><img src="17c-clear-logo.png" alt="17C" width="1122" height="1402"></a><small>© <span id="year">2026</span> 17C Studio</small><a href="#">Back to top ↑</a></footer>
 </body>
 </html>

@@ -1,0 +1,91 @@
+/* Shared wishlist form and review dialog for the home and services pages. */
+body { --chapter-accent: #c2bcb3; --thread: color-mix(in srgb, var(--color-ink) 23%, transparent); }
+.wishlist-inquiry h2, .wishlist-panel-heading h2 { font-family: var(--serif); font-weight: 400; }
+.wishlist-inquiry .editorial-label { text-transform: uppercase; }
+/* A quiet, optional wishlist alongside the editorial service chapters. */
+.wishlist-intro { padding: 36px 0; max-width: 700px; margin-left: auto; text-align: right; }
+#wishlist-toggle { display: inline-flex; align-items: center; gap: 16px; }
+#wishlist-toggle .disclosure-icon { flex: 0 0 28px; width: 28px; margin-top: 0; }
+#wishlist-toggle[aria-expanded="true"] .disclosure-icon::after { transform: rotate(0); }
+.wishlist-text-button { background: none; color: var(--chapter-accent); padding: 10px 0; font-size: 13px; border: none; }
+#wishlist-explanation { color: var(--muted); margin: 12px 0 0; }
+.wishlist-storage-note { font-size: 12px; color: var(--muted); }
+.wishlist-storage-note:empty { display: none; }
+.wishlist-item { position: relative; display: flex; gap: 12px; align-items: flex-start; padding: 12px 10px; cursor: pointer; border-radius: 3px;  align-items: center;}
+.service-deliverables li:has(.wishlist-item) { padding: 0; }
+.wishlist-checkbox { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.wishlist-item i { color: var(--chapter-accent); padding-top: 4px; flex: 0 0 16px; font-size: 15px; }
+.wishlist-item:has(input:checked) { background: color-mix(in srgb, var(--chapter-accent) 10%, transparent); color: var(--ink); }
+.wishlist-item:focus-within { outline: 2px solid var(--chapter-accent); outline-offset: 3px; }
+#wishlist-floating { position: fixed; right: var(--page-gutter); bottom: 24px; z-index: 20; border: 1px solid var(--thread); border-radius: 30px; background: var(--color-surface-alt); color: var(--ink); padding: 14px 22px; box-shadow: 0 6px 24px rgb(0 0 0 / 15%); font-size: 12px; }
+#wishlist-floating[hidden], #wishlist-explanation[hidden] { display: none; }
+#wishlist-panel { color: var(--ink); background: var(--color-surface); border: 1px solid var(--thread); border-radius: 8px; width: min(520px, calc(100% - 32px)); max-height: 80svh; padding: 28px; overscroll-behavior: contain; }
+#wishlist-panel::backdrop { background: rgb(0 0 0 / 45%); }
+.wishlist-panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.wishlist-panel-heading h2 { font-size: 36px; margin: 0; }
+#wishlist-close { background: none; border: none; font-size: 28px; color: var(--ink); min-width: 44px; min-height: 44px; }
+.wishlist-summary h3 { font-family: var(--sans); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; margin: 26px 0 12px; }
+.wishlist-summary ul { list-style: none; padding: 0; margin: 0; }
+.wishlist-summary li { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid var(--thread); padding: 8px 0; color: var(--muted); font-size: 12px; }
+.wishlist-summary button { background: none; border: none; color: var(--chapter-accent); text-decoration: underline; min-height: 44px; font-size: 11px; }
+.wishlist-inquiry { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--content-gap); align-items: start; padding: 80px 0 100px; border-top: 1px solid var(--thread); }
+.wishlist-inquiry .editorial-label { font-size: 12px; letter-spacing: .12em; margin: 0 0 24px; }
+.wishlist-inquiry h2 { font-size: clamp(42px, 4.3vw, 64px); line-height: 1.04; letter-spacing: -.025em; margin: 0 0 32px; }
+.wishlist-inquiry-intro > p:not(.editorial-label) { font-size: 16px; line-height: 1.7; color: var(--muted); margin: 0 0 32px; }
+.wishlist-direct-contact { margin-top: 36px; color: var(--muted); font-size: 14px; letter-spacing: .08em; }
+.wishlist-direct-contact a { display: inline-block; max-width: 100%; overflow-wrap: anywhere; margin-top: 10px; padding-bottom: 5px; border-bottom: 1px solid var(--muted); font-size: 12px; letter-spacing: 0; }
+#wishlist-form { display: block; margin: 0; }
+.wishlist-required-note { margin: 0 0 28px; color: var(--muted); font-size: 14px; }
+.wishlist-fields { display: grid; grid-template-columns: 1fr; gap: 26px; margin: 0 0 28px; }
+.wishlist-fields label { display: block; font-size: 14px; color: var(--ink); }
+.wishlist-optional { color: var(--muted); }
+.wishlist-fields input, .wishlist-fields textarea { display: block; width: 100%; min-height: 50px; margin-top: 10px; padding: 14px 16px; border: 1px solid var(--color-line); background: var(--color-surface-alt); color: var(--ink); border-radius: 0; font: inherit; }
+.wishlist-fields textarea { min-height: 160px; resize: vertical; }
+.wishlist-field-error { display: block; margin-top: 8px; color: var(--chapter-accent); font-size: 12px; }
+.wishlist-field-error:empty { display: none; }
+.wishlist-fields :is(input, textarea)[aria-invalid="true"] { border-color: var(--chapter-accent); }
+.wishlist-send { display: flex; align-items: center; }
+.wishlist-send-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; border: 1px solid var(--ink); color: var(--color-surface); background: var(--ink); padding: 16px 24px; font-size: 14px; font-weight: 600; letter-spacing: .025em; text-transform: uppercase; cursor: pointer; }
+.wishlist-send-button > span[aria-hidden] { font-size: 26px; line-height: 1; font-weight: 400; }
+.wishlist-send-button:hover { opacity: .85; }
+#wishlist-form-status { margin: 20px 0 0; font-size: 13px; color: var(--muted); }
+#wishlist-form-status:empty { display: none; }
+#wishlist-form-status[data-state="error"] { color: var(--chapter-accent); }
+:is(.wishlist-inquiry, #wishlist-panel, #wishlist-floating, .wishlist-intro) :focus-visible { outline: 2px solid var(--chapter-accent); outline-offset: 4px; }
+.wishlist-send-button:disabled { opacity: .6; cursor: wait; }
+@media (max-width: 700px) {
+ .wishlist-inquiry { grid-template-columns: 1fr; gap: 44px; padding: 60px 0 80px; }
+ .wishlist-inquiry h2 { font-size: clamp(44px, 8vw, 60px); }
+ .wishlist-send { flex-direction: column; align-items: flex-start; gap: 12px; }
+ #wishlist-floating { bottom: max(16px, env(safe-area-inset-bottom)); right: 16px; padding: 12px 18px; }
+ body:has(#wishlist-floating:not([hidden])) .footer { padding-bottom: 90px; }
+ .wishlist-fields input, .wishlist-fields textarea { font-size: 16px; }
+ .services-page .service-explanation p, .services-page .service-deliverables li { font-size: 16px; }
+ #wishlist-panel { padding: 20px; }
+ .wishlist-panel-heading { gap: 12px; }
+ .wishlist-panel-heading h2 { font-size: 30px; }
+ .wishlist-summary li { font-size: 14px; }
+ .wishlist-text-button { display: inline-flex; align-items: center; min-height: 44px; }
+}
+/* Optional wishlist attached to the inquiry. */
+.wishlist-inquiry-option { margin: 0 0 28px; padding: 22px 0; border-top: 1px solid var(--thread); border-bottom: 1px solid var(--thread); }
+.wishlist-include-label { display: flex; align-items: center; gap: 12px; font-size: 14px; cursor: pointer; }
+.wishlist-include-label input { width: 18px; height: 18px; min-height: 0; margin: 0; padding: 0; flex: 0 0 18px; accent-color: var(--chapter-accent); }
+#wishlist-option-note { margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.wishlist-inquiry-option .wishlist-text-button { display: inline-block; }
+
+/* Keep selection controls visible even if the icon CDN is unavailable. */
+.wishlist-checkbox { position: static; width: 16px; height: 16px; opacity: 1; flex: 0 0 16px; margin: 4px 0 0; accent-color: var(--chapter-accent); }
+.wishlist-item i { display: none; }
+
+.wishlist-checkbox { appearance: none; border: 1px solid var(--chapter-accent); border-radius: 50%; background: transparent; }
+.wishlist-checkbox:checked { background: var(--chapter-accent); box-shadow: inset 0 0 0 3px var(--color-surface); }
+
+/* A floating wishlist must never obscure form, disclosure, or link controls. */
+#wishlist-floating { max-width: calc(100vw - 32px); }
+#wishlist-floating[data-obscured="true"] { visibility: hidden; pointer-events: none; }
+
+#wishlist-review[hidden] { display: none; }
+
+.wishlist-inquiry :focus-visible, #wishlist-panel :focus-visible { outline: 2px solid var(--chapter-accent); outline-offset: 4px; }
+.wishlist-browse { display: inline-block; padding: 8px 0; text-decoration: underline; }
