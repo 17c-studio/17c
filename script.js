@@ -502,7 +502,7 @@ if (form && status) {
   });
 }
 
-// A slow, seamless mobile logo loop; native scrolling remains available.
+// A subpixel transform keeps the mobile logo loop smooth; swipes use native scrolling.
 const logoRow = document.querySelector('.business-names');
 if (logoRow) {
   const mobileLogos = window.matchMedia('(max-width: 767px)');
@@ -512,76 +512,95 @@ if (logoRow) {
     disposeLogoCarousel = () => {};
     if (!mobileLogos.matches || scrollMotionPreference.matches || logoRow.scrollWidth <= logoRow.clientWidth) return;
     const originals = [...logoRow.children];
+    const track = document.createElement('div');
+    track.className = 'logo-carousel-track';
+    track.append(...originals);
     const clones = originals.map(original => {
       const clone = original.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
-      logoRow.append(clone);
+      track.append(clone);
       return clone;
     });
-    const period = clones[0].offsetLeft - originals[0].offsetLeft;
-    const control = document.createElement('button');
-    control.type = 'button';
-    control.className = 'logo-carousel-control';
-    control.textContent = 'Pause logos';
-    control.setAttribute('aria-label', 'Pause client logo carousel');
-    logoRow.after(control);
+    logoRow.append(track);
     logoRow.classList.add('is-rotating');
-    let frame, previousTime, resumeTimer;
-    let position = logoRow.scrollLeft;
-    let paused = false, hovered = false, touching = false, visible = false;
+    const period = clones[0].offsetLeft - originals[0].offsetLeft;
+    if (period <= 0) {
+      logoRow.replaceChildren(...originals);
+      logoRow.classList.remove('is-rotating');
+      return;
+    }
+    const normalize = value => ((value % period) + period) % period;
+    // Linear transforms retain fractional pixels and wrap across identical copies.
+    const animation = track.animate([
+      { transform: 'translate3d(0, 0, 0)' },
+      { transform: `translate3d(${-period}px, 0, 0)` }
+    ], { duration: period / 18 * 1000, iterations: Infinity, easing: 'linear' });
+    animation.pause();
+    animation.currentTime = normalize(logoRow.scrollLeft) / 18 * 1000;
+    logoRow.scrollLeft = 0;
+    let resumeTimer;
+    let hovered = false, touching = false, pointerHeld = false, visible = false, nativeScrolling = false;
     let disposed = false;
-    const canRun = () => !disposed && !paused && !hovered && !touching && visible && !document.hidden && document.activeElement !== logoRow;
-    const tick = time => {
-      frame = undefined;
-      if (!canRun()) return;
-      if (previousTime !== undefined) position = (position + Math.min(time - previousTime, 64) * 0.018) % period;
-      previousTime = time;
-      logoRow.scrollLeft = position;
-      frame = requestAnimationFrame(tick);
-    };
+    const canRun = () => !disposed && !hovered && !touching && visible && !document.hidden && !logoRow.matches(':focus-visible');
     const sync = () => {
-      cancelAnimationFrame(frame);
-      frame = undefined;
-      previousTime = undefined;
-      position = logoRow.scrollLeft % period;
-      if (canRun()) frame = requestAnimationFrame(tick);
+      if (canRun()) {
+        if (nativeScrolling) {
+          animation.currentTime = normalize(logoRow.scrollLeft) / 18 * 1000;
+          logoRow.scrollLeft = 0;
+          nativeScrolling = false;
+        }
+        animation.play();
+      } else {
+        animation.pause();
+      }
+    };
+    const useNativeScroll = () => {
+      animation.pause();
+      if (nativeScrolling) return;
+      const position = normalize(Number(animation.currentTime) / 1000 * 18 + logoRow.scrollLeft);
+      animation.currentTime = 0;
+      logoRow.scrollLeft = position;
+      nativeScrolling = true;
     };
     const listeners = [];
-    const listen = (target, name, callback) => {
-      target.addEventListener(name, callback);
-      listeners.push(() => target.removeEventListener(name, callback));
+    const listen = (target, name, callback, options) => {
+      target.addEventListener(name, callback, options);
+      listeners.push(() => target.removeEventListener(name, callback, options));
     };
-    listen(control, 'click', () => {
-      paused = !paused;
-      control.textContent = paused ? 'Play logos' : 'Pause logos';
-      control.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} client logo carousel`);
-      sync();
-    });
     listen(logoRow, 'pointerenter', event => { if (event.pointerType === 'mouse') { hovered = true; sync(); } });
     listen(logoRow, 'pointerleave', () => { hovered = false; sync(); });
-    listen(logoRow, 'focusin', sync);
+    listen(logoRow, 'focusin', () => { useNativeScroll(); sync(); });
     listen(logoRow, 'focusout', sync);
-    listen(logoRow, 'pointerdown', () => { clearTimeout(resumeTimer); touching = true; sync(); });
+    listen(logoRow, 'pointerdown', () => {
+      clearTimeout(resumeTimer);
+      touching = true;
+      pointerHeld = true;
+      useNativeScroll();
+    }, { passive: true });
     const release = () => {
-      if (!touching) return;
+      if (!touching || pointerHeld) return;
       clearTimeout(resumeTimer);
       resumeTimer = setTimeout(() => { touching = false; sync(); }, 3000);
     };
-    listen(window, 'pointerup', release);
-    listen(window, 'pointercancel', release);
+    const endPointer = () => { pointerHeld = false; release(); };
+    listen(window, 'pointerup', endPointer, { passive: true });
+    listen(window, 'pointercancel', endPointer, { passive: true });
+    listen(logoRow, 'wheel', () => { touching = true; useNativeScroll(); release(); }, { passive: true });
+    // Keep waiting while a swipe's momentum is still moving the native scroller.
+    listen(logoRow, 'scroll', () => { if (touching) release(); }, { passive: true });
     listen(document, 'visibilitychange', sync);
     const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); });
     observer.observe(logoRow);
     disposeLogoCarousel = () => {
       disposed = true;
-      cancelAnimationFrame(frame);
+      const position = normalize(Number(animation.currentTime) / 1000 * 18 + logoRow.scrollLeft);
+      animation.cancel();
       clearTimeout(resumeTimer);
       observer.disconnect();
       listeners.forEach(remove => remove());
+      logoRow.replaceChildren(...originals);
       logoRow.classList.remove('is-rotating');
-      logoRow.scrollLeft %= period;
-      clones.forEach(clone => clone.remove());
-      control.remove();
+      logoRow.scrollLeft = position;
     };
   };
   syncLogoCarousel();

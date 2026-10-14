@@ -3510,7 +3510,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   line-height: 1.4;
   letter-spacing: 0;
 }
-.prospect-curtain.is-ready { animation: prospect-curtain-lift 850ms cubic-bezier(0.76, 0, 0.24, 1) 8700ms both; }
+.prospect-curtain.is-ready { animation: prospect-curtain-lift 850ms cubic-bezier(0.76, 0, 0.24, 1) 6700ms both; }
 .prospect-reveal-shown :is(.cover-title-line, .services-hero h1) { animation: none; opacity: 1; transform: none; }
 @keyframes prospect-curtain-lift {
   from { transform: translateY(0); }
@@ -3683,7 +3683,8 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
     scrollbar-width: thin;
     scrollbar-color: #77716a transparent;
   }
-  .home-page .business-names > * {
+  .home-page .business-names > :not(.logo-carousel-track),
+  .home-page .logo-carousel-track > * {
     flex: 0 0 150px;
     width: 150px;
     max-width: none;
@@ -3691,19 +3692,17 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
     scroll-snap-align: start;
     object-fit: contain;
   }
-  .home-page .business-names > .business-name { align-items: center; justify-content: center; }
+  .home-page .business-names > .business-name,
+  .home-page .logo-carousel-track > .business-name { align-items: center; justify-content: center; }
   .home-page .business-names:focus-visible { outline: 2px solid var(--focus-color); outline-offset: 4px; }
-  .home-page .business-names.is-rotating { scroll-snap-type: none; scrollbar-width: none; }
+  .home-page .business-names.is-rotating { scroll-snap-type: none; scroll-behavior: auto; scrollbar-width: none; }
   .home-page .business-names.is-rotating::-webkit-scrollbar { display: none; }
-  .logo-carousel-control {
-    margin: -12px 0 0 auto;
-    padding: 8px 0 8px 16px;
-    min-height: 44px;
-    border: 0;
-    background: transparent;
-    color: var(--muted);
-    font-size: 11px;
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  .home-page .logo-carousel-track {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: inherit;
+    width: max-content;
+    will-change: transform;
   }
 }
