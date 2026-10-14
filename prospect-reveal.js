@@ -95,7 +95,7 @@
         if (event.target === curtain) finish();
       });
       clearTimeout(failsafe);
-      setTimeout(finish, reducedMotion ? 350 : 7750);
+      setTimeout(finish, reducedMotion ? 350 : 5200);
     }
   };
 })();
