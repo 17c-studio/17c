@@ -1,23 +1,33 @@
 // Resolve prospect copy before measuring headings and initializing animations.
 (async () => {
   await window.studioProspectReady;
-// Apply prospect copy before measuring headings or building the typewriter text.
-const savedBusiness = window.studioProspect?.businessName;
-if (savedBusiness) {
-  const personalizedCopy = [
-    ['.cover-title-line--first', () => `Custom-crafted for ${savedBusiness}.`],
-    ['#introduction .intro', text => text.replace('independent businesses', () => savedBusiness)],
-    ['#services-title', text => text.replace('your business', () => savedBusiness)],
-    ['.about-transition', () => `Enough about me, let’s imagine what I could make for ${savedBusiness}.`],
-    ['#possibilities-title .possibility-title-line--right', () => `that feels like ${savedBusiness}.`]
-  ];
-  personalizedCopy.forEach(([selector, personalize]) => {
-    const element = document.querySelector(selector);
-    if (!element) return;
-    element.textContent = personalize(element.textContent);
-    element.dataset.personalized = 'true';
+await window.studioBusinessReady;
+// Keep the original wording available when a public visitor clears their name.
+const personalizedCopy = [
+  ['.cover-title-line--first', name => `Custom-crafted for ${name}.`],
+  ['#introduction .intro', (name, original) => original.replace('independent businesses', () => name)],
+  ['#services-title', (name, original) => original.replace('your business', () => name)],
+  ['.about-transition', name => `Enough about me, let’s imagine what I could make for ${name}.`],
+  ['#possibilities-title .possibility-title-line--right', name => `that feels like ${name}.`]
+].map(([selector, personalize]) => ({ element: document.querySelector(selector), personalize }))
+  .filter(({ element }) => element)
+  .map(target => ({ ...target, original: target.element.textContent }));
+const applyBusinessCopy = () => {
+  const name = window.studioProspect?.businessName || window.studioCustomBusiness;
+  personalizedCopy.forEach(({ element, personalize, original }) => {
+    const copy = name ? personalize(name, original) : original;
+    if (element.matches('.about-transition') && element.querySelector('.about-transition-typed')) {
+      window.dispatchEvent(new CustomEvent('studio:transition-copy', { detail: copy.trim() }));
+    } else {
+      element.textContent = copy;
+    }
+    if (name) element.dataset.personalized = 'true';
+    else delete element.dataset.personalized;
   });
-}
+  window.ScrollTrigger?.refresh(true);
+};
+applyBusinessCopy();
+window.addEventListener('studio:business-change', applyBusinessCopy);
 
 // Set this to the studio's real email address to enable email inquiries.
 const CONTACT_EMAIL = 'marielwhitney.design@gmail.com';
@@ -292,7 +302,8 @@ window.addEventListener('pageshow', event => {
 const aboutTransition = document.querySelector('.about-transition');
 
 if (aboutTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const transitionText = aboutTransition.textContent.trim();
+  let transitionText = aboutTransition.textContent.trim();
+  let transitionVersion = 0;
   const typedText = document.createElement('span');
   const reservedText = document.createElement('span');
   reservedText.className = 'about-transition-reserved';
@@ -305,11 +316,23 @@ if (aboutTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').ma
   // Reserve the full wrapped height throughout typing, including on mobile.
   aboutTransition.append(reservedText, typedText);
 
+  window.addEventListener('studio:transition-copy', event => {
+    transitionVersion += 1;
+    transitionText = event.detail;
+    reservedText.textContent = transitionText;
+    typedText.textContent = transitionText;
+    aboutTransition.setAttribute('aria-label', transitionText);
+    aboutTransition.classList.add('is-typed');
+  });
+
   const typeTransition = () => {
+    if (aboutTransition.classList.contains('is-typed')) return;
+    const version = transitionVersion;
     const characters = Array.from(transitionText);
     let characterIndex = 0;
 
     const typeNextCharacter = () => {
+      if (version !== transitionVersion) return;
       if (scrollMotionPreference.matches) {
         typedText.textContent = transitionText;
         aboutTransition.classList.add('is-typed');

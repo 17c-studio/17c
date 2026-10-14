@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#171614">
   <meta name="description" content="17C is an independent website design studio. Thoughtful design, clear storytelling, and websites that feel like you. Born at the corner of 17th and Central.">
   <title>17C — Thoughtful websites. Personal by design.</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="17c-clear-logo.png" type="image/png">
   <script src="prospect-reveal.js?v=8"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
-  <link rel="stylesheet" href="styles.css?v=79">
+  <link rel="stylesheet" href="styles.css?v=82">
   <link rel="stylesheet" href="wishlist.css?v=1">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
@@ -18,7 +18,8 @@
   <script src="email-draft.js?v=1" defer></script>
   <script src="wishlist-catalog.js?v=1" defer></script>
   <script src="wishlist.js?v=8" defer></script>
-  <script src="script.js?v=26" defer></script>
+  <script src="business-customization.js?v=1" defer></script>
+  <script src="script.js?v=27" defer></script>
   <script src="contact-navigation.js?v=1" defer></script>
 </head>
 <body class="home-page">
@@ -27,8 +28,23 @@
     <div class="header-brand">
       <a class="wordmark" href="index.html" aria-label="17C home"><img class="header-monogram" src="17c-clear-logo.png" alt="" width="1122" height="1402"></a>
     </div>
-    
-    <nav aria-label="Main navigation"><a href="services.html">Services</a><a href="https://marielwhitney.github.io/portfolio/index.html">Work</a><a class="nav-cta" href="#wishlist-inquiry">Connect <span class="arrow-drift" aria-hidden="true">→</span></a></nav>
+
+    <nav aria-label="Main navigation">
+      <a href="services.html">Services</a><a href="https://marielwhitney.github.io/portfolio/index.html">Work</a><a class="nav-cta" href="#wishlist-inquiry">Connect <span class="arrow-drift" aria-hidden="true">→</span></a></nav>
+    <div class="customization" hidden>
+        <button id="customization-toggle" type="button" aria-expanded="false" aria-controls="customization-panel" aria-haspopup="dialog">psst... over here</button>
+        <div id="customization-panel" role="dialog" aria-labelledby="customization-title" hidden>
+          <form id="customization-form">
+            <h2 id="customization-title">Let’s make this feel like you.</h2>
+            <label class="business-control" for="customization-business">Type your business
+              <input id="customization-business" name="business" type="text" maxlength="15" aria-describedby="business-counter" autocomplete="off">
+            </label>
+            <span id="business-counter">0 / 15</span>
+            <button class="customization-confirm" type="submit">Confirm changes</button>
+            <p id="customization-error" role="alert"></p>
+          </form>
+        </div>
+      </div>
   </header>
   <main id="main">
     <section class="cover" aria-labelledby="cover-title">
@@ -48,7 +64,7 @@ and a creative partner who grows with you</span>
         <p class="intro">17C designs, builds, and manages thoughtful websites for independent businesses so you can focus on the work only you can do.</p>
         <a class="button" href="mailto:marielwhitney.design@gmail.com">Let’s talk<span class="arrow-drift" aria-hidden="true">→</span></a>
       </div>
-      
+
     </section>
     <section id="services" class="services" aria-labelledby="services-title">
       <div class="service-track">
@@ -137,9 +153,9 @@ and a creative partner who grows with you</span>
         </div>
         <div class="about-mariel-copy">
           <p class="eyebrow">A LITTLE ABOUT ME</p>
-          <h2 id="about-mariel-title">One person invested, from first conversation onward.</h2>
-         
-          <p>Hi! I'm Mariel, I started this studio for independent businesses that care deeply about what they do, but don’t want to become website experts to share it well. 
+          <h2 id="about-mariel-title">One person, invested from the first conversation onward.</h2>
+
+          <p>Hi! I'm Mariel, I started this studio for independent businesses that care deeply about what they do, but don’t want to become website experts to share it well.
           You’ll work directly with me throughout the process. No handoffs, no layers, and no disappearing act after launch. Just close collaboration and a website that feels unmistakably yours.</p>
           <a class="about-link" href="mailto:marielwhitney.design@gmail.com">Let's chat <span class="arrow-drift" aria-hidden="true">→</span></a>
         </div>
@@ -149,7 +165,7 @@ and a creative partner who grows with you</span>
       </div>
       <p class="about-transition">Enough about me, let’s imagine what I could make for you.</p>
     </section>
-    
+
     <section class="possibilities wrap section-space" aria-labelledby="possibilities-title">
       <div class="work-heading possibilities-heading">
         <h2 id="possibilities-title"><span class="possibility-title-line possibility-title-line--left">Let’s make something</span><em class="possibility-title-line possibility-title-line--right">that feels like you.</em></h2>
@@ -162,44 +178,44 @@ and a creative partner who grows with you</span>
         <article class="concept project-preview-card" data-parallax-from="30" data-parallax-to="-30">
           <div class="project-preview">
             <img class="project-screenshot" src="ghc-after.png" alt="Glass House Creative Community website" width="2940" height="12180" loading="lazy" decoding="async">
-           
+
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="45" data-parallax-to="-35">
           <div class="project-preview">
             <img class="project-screenshot" src="dare-to-hope-admissions-after.png" alt="Dare to Hope admissions website" width="2794" height="3917" loading="lazy" decoding="async">
-           
+
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="25" data-parallax-to="-55">
           <div class="project-preview">
             <img class="project-screenshot" src="basketball-after.png" alt="Hope College basketball website" width="2938" height="8102" loading="lazy" decoding="async">
-           
+
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="40" data-parallax-to="-25">
           <div class="project-preview">
             <img class="project-screenshot" src="haworth-after.png" alt="Haworth Hotel website" width="2940" height="8756" loading="lazy" decoding="async">
-           
+
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="35" data-parallax-to="-45">
           <div class="project-preview">
             <img class="project-screenshot" src="font-playground-index.png" alt="Font Playground website" width="2940" height="1604" loading="lazy" decoding="async">
-           
+
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="20" data-parallax-to="-50">
           <div class="project-preview">
             <img class="project-screenshot" src="anchor-index.png" alt="Anchor website" width="2940" height="1604" loading="lazy" decoding="async">
-           
+
           </div>
         </article>
 
         <article class="concept project-preview-card" data-parallax-from="35" data-parallax-to="-65">
           <div class="project-preview">
             <img class="project-screenshot" src="ghc-events.png" alt="GHC Events website" width="1940" height="1204" loading="lazy" decoding="async">
-           
+
           </div>
         </article>
       </div>
@@ -207,7 +223,7 @@ and a creative partner who grows with you</span>
    <div class="intro-strip wrap">
       <figure class="client-quote">
         <blockquote>“17C brought clarity to our ideas and created a website that finally feels like us.”</blockquote>
-        <figcaption>— Finn Whitney</figcaption>
+        <figcaption>— Just Travis</figcaption>
       </figure>
       <div class="business-names" role="region" aria-label="Client logos" tabindex="0">
         <div class="business-name" aria-label="Glass House Creative Community">
@@ -218,14 +234,14 @@ and a creative partner who grows with you</span>
         <img class="business-logo business-logo-springsweet" src="https://springsweet.com/cdn/shop/files/website_logo-01_copy.png?v=1617214296&amp;width=600" alt="Spring Sweet">
         <img class="business-logo business-logo-hope" src="https://hope.edu/offices/public-affairs-marketing/resources/logos/horizontal/horiz_4color.png" alt="Hope College">
       </div>
-      
+
     </div>
  <section class="wishlist-inquiry wrap" id="wishlist-inquiry" aria-labelledby="wishlist-inquiry-title">
   <div class="wishlist-inquiry-intro">
    <p class="editorial-label">A partner for what comes next</p>
    <h2 id="wishlist-inquiry-title">Good businesses<br>deserve to be known.</h2>
    <p>You’ve built something worth caring about.<br>Let’s help more people see it.</p>
-   <a class="wishlist-browse" href="services.html">Explore services and build your wishlist →</a>
+
    <p class="wishlist-storage-note" id="wishlist-storage-note" role="status"></p>
   </div>
   <!-- Static-host compatible Formspree submission; wishlist.js adds AJAX feedback. -->
@@ -239,11 +255,7 @@ and a creative partner who grows with you</span>
     <label>Organization <span class="wishlist-optional">(optional)</span><input name="business" autocomplete="organization" maxlength="200"></label>
     <label>What can I help you with? <span aria-hidden="true">*</span><textarea name="project" rows="5" required maxlength="5000" aria-describedby="wishlist-project-error"></textarea><span id="wishlist-project-error" class="wishlist-field-error"></span></label>
    </div>
-   <div class="wishlist-inquiry-option">
-    <label class="wishlist-include-label"><input id="wishlist-include" name="includeWishlist" type="checkbox" checked aria-describedby="wishlist-option-note"><span>Include my wishlist <span class="wishlist-optional">(optional)</span></span></label>
-    <p id="wishlist-option-note" aria-live="polite">Choose services you’re interested in, then include them with your inquiry.</p>
-    <button id="wishlist-review" class="wishlist-text-button" type="button" aria-haspopup="dialog" aria-controls="wishlist-panel" hidden>Review wishlist</button>
-   </div>
+
    <div class="wishlist-send"><button class="wishlist-send-button" type="submit"><span id="wishlist-submit-label">Send inquiry</span><span aria-hidden="true">→</span></button></div>
    <p id="wishlist-form-status" role="status" aria-live="polite" tabindex="-1"></p>
   </form>

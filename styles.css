@@ -3706,3 +3706,68 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
     will-change: transform;
   }
 }
+
+/* A light introduction with dark copy and controls. */
+.home-page #introduction {
+  --color-surface: #edebe3;
+  --color-ink: #45403a;
+  --color-muted: #696158;
+  --ink: var(--color-ink);
+  --muted: var(--color-muted);
+  --control-bg: #45403a;
+  --control-text: #fff;
+  --focus-color: #8d6540;
+  width: 100%;
+  max-width: none;
+  background: var(--color-surface);
+  color: var(--ink);
+  color-scheme: light;
+}
+.home-page #introduction .hero-copy {
+  width: min(100%, calc(var(--content-max) - 2 * var(--page-gutter)));
+  margin-inline: auto;
+}
+
+/* Business customization on the public home page. */
+.customization { position: relative; display: inline-block; }
+.home-page .header > .customization { grid-column: 3; justify-self: end; font-size: 12px; line-height: 1.65; }
+    .customization, .customization * { box-sizing: border-box; }
+    #customization-toggle {
+      padding: 8px 0; min-height: 48px; cursor: pointer; border: 0; background: transparent; color: #b7b4af;
+      font: inherit; font-size: 12px;
+    }
+    #customization-toggle:hover { color: #d1cbc3; }
+    #customization-panel {
+      position: absolute; top: calc(100% + 12px); right: 0; z-index: 100;
+      width: min(300px, calc(100vw - 32px)); max-height: calc(100dvh - 150px);
+      overflow-y: auto; overscroll-behavior: contain; padding: 28px 24px;
+      border: 1px solid #b7b4af; border-radius: 12px; background: #edebe3;
+      color: #45403a; box-shadow: 0 12px 36px rgb(0 0 0 / 14%); text-align: center;
+    }
+    #customization-panel[hidden] { display: none; }
+    #customization-form { display: flex; flex-direction: column; gap: 24px; }
+    #customization-title {
+      margin: 0; font-family: Georgia, serif; font-size: 1.8rem;
+      font-weight: 400; line-height: 1.15; letter-spacing: -.02em;
+    }
+    .business-control { display: flex; flex-direction: column; gap: 10px; font-size: .875rem; }
+    #customization-business {
+      width: 100%; min-width: 0; padding: 10px; border: 1px solid #b7b4af;
+      border-radius: 4px; background: #fff; color: #45403a; text-align: center; font: inherit;
+    }
+    #business-counter { margin-top: -18px; color: #696158; font-size: .75rem; }
+    .customization-confirm {
+      padding: 12px; border: 1px solid #45403a; border-radius: 4px;
+      background: #45403a; color: #fff; font: inherit; font-size: .75rem;
+    }
+    #customization-error { margin: 0; font-size: .8125rem; }
+    #customization-error:empty { display: none; }
+    .customization :focus-visible { outline: 2px solid #45403a; outline-offset: 4px; }
+.customization[hidden], .has-prospect .customization { display: none; }
+@media (max-width: 700px) {
+  .home-page .header { row-gap: 0; }
+  .home-page .header nav { grid-row: 1; }
+  .home-page .header > .customization { grid-column: 2; grid-row: 2; text-align: right; align-self: start; }
+  #customization-toggle { min-height: 36px; padding-block: 4px; font-size: 12px; }
+  #customization-panel { top: calc(100% + 4px); }
+}
