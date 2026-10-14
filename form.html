@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-theme="dark" style="color-scheme: dark;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171614">
+  <meta name="description" content="Tell 17C about your next website project.">
+  <title>Connect — 17C Studio</title>
+  <link rel="icon" href="17c-clear-logo.png" type="image/png">
+  <link rel="stylesheet" href="styles.css?v=82">
+  <link rel="stylesheet" href="wishlist.css?v=1">
+  <style>
+    .form-page { min-height: 100svh; }
+    .form-page .header { position: relative; }
+    .form-page .header nav { gap: clamp(16px, 2vw, 28px); }
+    .form-page .header nav a { display: inline-flex; align-items: center; min-height: 48px; }
+    .form-page .wishlist-inquiry { padding: clamp(40px, 6vw, 80px) var(--page-gutter) 80px; }
+    .form-page .wishlist-inquiry h1 {
+      margin: 0 0 32px;
+      font-family: var(--serif);
+      font-size: clamp(42px, 4.3vw, 64px);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -.025em;
+    }
+    .form-page :focus-visible { outline-color: var(--focus-color); }
+    @media (max-width: 700px) {
+      .form-page .header { grid-template-columns: 56px minmax(0, 1fr); gap: 12px; }
+      .form-page .header nav { justify-self: end; gap: 14px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body class="form-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="header wrap">
+    <div class="header-brand">
+      <a class="wordmark" href="index.html" aria-label="17C home"><img class="header-monogram" src="17c-clear-logo.png" alt="" width="1122" height="1402"></a>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="services.html">Services</a><a href="https://marielwhitney.github.io/portfolio/index.html">Work</a><a class="nav-cta" href="#wishlist-inquiry">Connect <span class="arrow-drift" aria-hidden="true">→</span></a></nav>
+  </header>
+  <main id="main">
+ <section class="wishlist-inquiry wrap" id="wishlist-inquiry" aria-labelledby="wishlist-inquiry-title">
+  <div class="wishlist-inquiry-intro">
+   <p class="editorial-label">A partner for what comes next</p>
+   <h1 id="wishlist-inquiry-title">Good businesses<br>deserve to be known.</h1>
+   <p>You’ve built something worth caring about.<br>Let’s help more people see it.</p>
+
+  </div>
+  <form id="wishlist-form" action="https://formspree.io/f/xoejkyvk" method="post" aria-describedby="wishlist-required-note">
+   <input type="hidden" name="subject" value="17C — Project inquiry">
+   <p id="wishlist-required-note" class="wishlist-required-note"><span aria-hidden="true">*</span> Required fields</p>
+   <div class="wishlist-fields">
+    <label>Name <span aria-hidden="true">*</span><input name="name" autocomplete="name" required maxlength="100" aria-describedby="wishlist-name-error"><span id="wishlist-name-error" class="wishlist-field-error"></span></label>
+    <label>Email <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required maxlength="200" aria-describedby="wishlist-email-error"><span id="wishlist-email-error" class="wishlist-field-error"></span></label>
+    <label>Organization <span class="wishlist-optional">(optional)</span><input name="business" autocomplete="organization" maxlength="200"></label>
+    <label>What can I help you with? <span aria-hidden="true">*</span><textarea name="project" rows="5" required maxlength="5000" aria-describedby="wishlist-project-error"></textarea><span id="wishlist-project-error" class="wishlist-field-error"></span></label>
+   </div>
+
+   <div class="wishlist-send"><button class="wishlist-send-button" type="submit"><span id="wishlist-submit-label">Send inquiry</span><span aria-hidden="true">→</span></button></div>
+   <p id="wishlist-form-status" role="status" aria-live="polite" tabindex="-1"></p>
+  </form>
+ </section>
+  </main>
+</body>
+</html>
