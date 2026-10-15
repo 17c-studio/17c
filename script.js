@@ -11,12 +11,25 @@ const personalizedCopy = [
   ['#possibilities-title .possibility-title-line--right', name => `that feels like ${name}.`]
 ].map(([selector, personalize]) => ({ element: document.querySelector(selector), personalize }))
   .filter(({ element }) => element)
-  .map(target => ({ ...target, original: target.element.textContent }));
+  .map(target => ({
+    ...target,
+    original: target.element.textContent,
+    introNodes: target.element.matches('#introduction .intro')
+      ? [...target.element.childNodes].map(node => node.cloneNode(true)) : null
+  }));
 const applyBusinessCopy = () => {
   const name = window.studioProspect?.businessName || window.studioCustomBusiness;
-  personalizedCopy.forEach(({ element, personalize, original }) => {
+  personalizedCopy.forEach(({ element, personalize, original, introNodes }) => {
     const copy = name ? personalize(name, original) : original;
-    if (element.matches('.about-transition') && element.querySelector('.about-transition-typed')) {
+    if (introNodes) {
+      element.replaceChildren(...introNodes.map(node => node.cloneNode(true)));
+      if (name) {
+        const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+        while (walker.nextNode()) {
+          walker.currentNode.textContent = personalize(name, walker.currentNode.textContent);
+        }
+      }
+    } else if (element.matches('.about-transition') && element.querySelector('.about-transition-typed')) {
       window.dispatchEvent(new CustomEvent('studio:transition-copy', { detail: copy.trim() }));
     } else {
       element.textContent = copy;

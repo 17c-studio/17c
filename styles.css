@@ -1639,7 +1639,7 @@ form .button {
     max-width: 120px;
   }
   .intro-strip em {
-    display: block;
+    /* display: block; */
     margin: 0;
   }
   .section-space {
@@ -2862,6 +2862,7 @@ textarea::placeholder {
   font-size: var(--text-label);
   line-height: 1.4;
   letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
 }
 
 .home-page .cover-title {
@@ -2917,7 +2918,10 @@ textarea::placeholder {
 .home-page .hero .intro {
   margin-inline: auto;
   margin-bottom: var(--space-8);
+  
 }
+
+
 
 .home-page .services .section-heading {
   max-width: 600px;
