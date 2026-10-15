@@ -357,14 +357,18 @@ h2 em {
   }
 
 .intro-strip {
+  --color-surface: #edebe3;
+  --color-ink: #45403a;
+  --ink: var(--color-ink);
+  --muted: var(--color-ink);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: var(--content-gap);
   min-height: 126px;
   padding-block: var(--space-8);
-  background: var(--color-surface-alt);
-  box-shadow: 0 0 0 100vmax var(--color-surface-alt);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 100vmax var(--color-surface);
   clip-path: inset(0 -100vmax);
   border: 0;
   font-size: var(--text-body);
@@ -448,7 +452,7 @@ h2 em {
   padding-block: var(--section-space);
 }
 .about-mariel {
-  --portrait-height: calc(100svh - 48px);
+  --portrait-height: calc(100svh - 200px);
   width: 100%;
   max-width: none;
   padding-block: var(--space-16);
@@ -2998,12 +3002,12 @@ textarea::placeholder {
   transform: none;
 }
 
-.home-page .about-link {
+/* .home-page .about-link {
   min-height: 48px;
   margin-top: var(--space-6);
   font-size: var(--text-meta);
   line-height: 1.4;
-}
+} */
 
 .home-page .about-transition {
   line-height: 1.5;
@@ -3300,12 +3304,10 @@ html[data-theme] .home-page :is(a, button, input, textarea):focus-visible {
 html[data-theme] .home-page .about-link:hover {
   color: var(--color-ink-hover);
 }
-html[data-theme="dark"] .footer .wordmark img,
-html[data-theme="dark"] .business-logo {
+html[data-theme="dark"] .footer .wordmark img {
   filter: brightness(0) invert(1);
 }
 html[data-theme="dark"] .home-page :is(.form-error, #form-status.is-error) { color: #ffb5a8; }
-html[data-theme="dark"] .business-name { color: var(--ink); }
 html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8; }
 @media (hover: hover) and (pointer: fine) {
   html[data-theme] .home-page :is(.button, .possibility-primary):not(:disabled):hover {
@@ -3865,3 +3867,45 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 .about-name-answer { padding-bottom: 20px; color: var(--muted); }
 .about-name-answer p { margin: 0 0 12px; }
 .about-name-answer p:last-child { margin-bottom: 0; }
+
+/* Light inquiry section on the home page only. */
+.home-page .wishlist-inquiry {
+  --color-surface: #edebe3;
+  --color-surface-alt: #f7f6f3;
+  --color-ink: #45403a;
+  --color-muted: #696158;
+  --color-line: #b7b4af;
+  --ink: var(--color-ink);
+  --muted: var(--color-muted);
+  --chapter-accent: #696158;
+  --thread: color-mix(in srgb, var(--color-ink) 23%, transparent);
+  --focus-color: #8d6540;
+  background: var(--color-surface);
+  color: var(--ink);
+  color-scheme: light;
+  box-shadow: 0 0 0 100vmax var(--color-surface);
+  clip-path: inset(0 -100vmax);
+}
+
+.home-page .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  font-size: var(--text-meta);
+}
+.home-page .footer-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+@media (max-width: 700px) {
+  .home-page .footer-links {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .home-page .footer small {
+    grid-row: 3;
+    width: auto;
+  }
+}

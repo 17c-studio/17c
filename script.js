@@ -7,6 +7,8 @@ const personalizedCopy = [
   ['.cover-title-line--first', name => `Custom-crafted for ${name}.`],
   ['#introduction .intro', (name, original) => original.replace('independent businesses', () => name)],
   ['#services-title', (name, original) => original.replace('your business', () => name)],
+  ['#services-business-name', name => name],
+  ['#about-business-name', name => name],
   ['.about-transition', name => `Enough about me, let’s imagine what I could make for ${name}.`],
   ['#possibilities-title .possibility-title-line--right', name => `that feels like ${name}.`]
 ].map(([selector, personalize]) => ({ element: document.querySelector(selector), personalize }))
