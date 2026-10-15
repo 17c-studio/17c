@@ -3363,7 +3363,7 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
 /* Fixed circle cursor; touch devices retain their normal cursor behavior. */
 @media (hover: hover) and (pointer: fine) {
   html[data-cursor="circle"], html[data-cursor="circle"] * {
-    cursor: url("assets/cursors/circle-dark.svg") 8 8, auto !important;
+    cursor: url("assets/cursors/ring-dark.svg") 8 8, auto !important;
   }
 }
 
@@ -3495,7 +3495,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 @media (hover: hover) and (pointer: fine) {
   html[data-cursor="circle"] .prospect-curtain,
   html[data-cursor="circle"] .prospect-curtain * {
-    cursor: url("assets/cursors/circle-light.svg") 8 8, auto !important;
+    cursor: url("assets/cursors/ring-dark.svg") 8 8, auto !important;
   }
 }
 .prospect-curtain .prospect-brand { margin: 0 0 18px; }
@@ -3742,7 +3742,10 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
       width: min(300px, calc(100vw - 48px)); max-height: calc(100dvh - 150px);
       overflow-y: auto; overscroll-behavior: contain; padding: 24px;
       border: 1px solid var(--color-line); border-radius: 0;
-      background: var(--color-surface); color: var(--ink); text-align: left;
+     background-color: rgba(39, 39, 39, 0.8);   color: var(--ink); text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 12px 30px rgb(0 0 0 / 25%);
+
     }
     #customization-panel[hidden] { display: none; }
     #customization-form { display: flex; flex-direction: column; gap: 20px; }
@@ -3788,3 +3791,54 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 @media (max-width: 700px) {
   :root .editorial-label { display: none; }
 }
+
+/* A small dictionary note within the About paragraph. */
+.dictionary-entry { position: relative; display: inline-block; max-width: 100%; }
+.dictionary-trigger {
+  display: inline; padding: 0; border: 0; background: transparent;
+  color: inherit; font: inherit; text-align: left;
+  text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 4px; text-decoration-color: var(--muted);
+}
+.dictionary-trigger:hover { text-decoration-color: currentColor; }
+.dictionary-definition {
+  position: absolute; left: 0; bottom: calc(100% + 12px); z-index: 20;
+  display: grid; gap: 12px; width: min(340px, calc(100vw - 64px));
+  padding: 20px; border: 1px solid var(--color-line);
+  background: var(--color-surface); color: var(--ink);
+  font-family: var(--sans); font-size: 14px; line-height: 1.6;
+  text-align: left; box-shadow: 0 8px 24px rgb(0 0 0 / 15%);
+}
+.dictionary-definition::after { content: ""; position: absolute; inset: 100% 0 -14px; }
+.dictionary-definition[hidden] { display: none; }
+.dictionary-pronunciation { color: var(--muted); }
+
+/* Keep the biography readable while using two columns on wider screens. */
+@media (min-width: 1000px) {
+  .home-page .about-mariel-copy > .about-story {
+    max-width: none;
+    column-count: 2;
+    column-gap: 32px;
+    orphans: 3;
+    widows: 3;
+  }
+}
+
+/* The studio name story sits beneath the biography columns. */
+.about-name-story { margin-top: 28px; border-block: 1px solid var(--color-line); }
+.about-name-story > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  min-height: 56px; padding-block: 16px; cursor: pointer; list-style: none;
+}
+.about-name-story > summary::-webkit-details-marker { display: none; }
+.about-name-story strong { font-weight: 600; }
+.about-name-icon { position: relative; flex: 0 0 16px; width: 16px; height: 16px; }
+.about-name-icon::before, .about-name-icon::after {
+  content: ""; position: absolute; background: currentColor;
+}
+.about-name-icon::before { left: 0; top: 7px; width: 16px; height: 1px; }
+.about-name-icon::after { top: 0; left: 7px; height: 16px; width: 1px; }
+.about-name-story[open] .about-name-icon::after { display: none; }
+.about-name-answer { padding-bottom: 20px; color: var(--muted); }
+.about-name-answer p { margin: 0 0 12px; }
+.about-name-answer p:last-child { margin-bottom: 0; }

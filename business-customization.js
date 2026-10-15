@@ -21,7 +21,7 @@ window.studioBusinessReady = (async () => {
       const business = form.elements.business;
       const counter = document.querySelector('#business-counter');
       const error = document.querySelector('#customization-error');
-      const normalize = value => typeof value === 'string' ? value.trim().slice(0, 15).trim() : '';
+      const normalize = value => typeof value === 'string' ? value.trim().slice(0, 20).trim() : '';
       let saved = '';
       try { saved = normalize(localStorage.getItem(storageKey)); } catch { /* Use original copy. */ }
 
@@ -30,8 +30,8 @@ window.studioBusinessReady = (async () => {
         window.dispatchEvent(new Event('studio:business-change'));
       };
       const count = () => {
-        business.value = business.value.slice(0, 15);
-        counter.textContent = `${business.value.length} / 15`;
+        business.value = business.value.slice(0, 20);
+        counter.textContent = `${business.value.length} / 20`;
       };
       const restore = () => {
         business.value = saved;
