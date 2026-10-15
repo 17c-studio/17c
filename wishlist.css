@@ -54,7 +54,7 @@ body { --chapter-accent: #c2bcb3; --thread: color-mix(in srgb, var(--color-ink) 
 :is(.wishlist-inquiry, #wishlist-panel, #wishlist-floating, .wishlist-intro) :focus-visible { outline: 2px solid var(--chapter-accent); outline-offset: 4px; }
 .wishlist-send-button:disabled { opacity: .6; cursor: wait; }
 @media (max-width: 700px) {
- .wishlist-inquiry { grid-template-columns: 1fr; gap: 44px; padding: 60px 0 80px; }
+ .wishlist-inquiry { grid-template-columns: 1fr; gap: 44px; padding: 60px var(--page-gutter) 80px; }
  .wishlist-inquiry h2 { font-size: clamp(44px, 8vw, 60px); }
  .wishlist-send { flex-direction: column; align-items: flex-start; gap: 12px; }
  #wishlist-floating { bottom: max(16px, env(safe-area-inset-bottom)); right: 16px; padding: 12px 18px; }
