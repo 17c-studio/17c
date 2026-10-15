@@ -3767,7 +3767,19 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 @media (max-width: 700px) {
   .home-page .header { row-gap: 0; }
   .home-page .header nav { grid-row: 1; }
-  .home-page .header > .customization { grid-column: 2; grid-row: 2; text-align: right; align-self: start; }
-  #customization-toggle { min-height: 36px; padding-block: 4px; font-size: 12px; }
-  #customization-panel { top: calc(100% + 4px); }
+  .home-page .cover > .customization {
+    position: absolute;
+    left: var(--page-gutter);
+    bottom: var(--space-8);
+    z-index: 2;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  #customization-toggle { min-height: 44px; padding-block: 4px; font-size: 12px; }
+  #customization-panel { top: auto; bottom: calc(100% + 12px); left: 0; right: auto; }
+}
+
+/* Hide editorial labels at the mobile breakpoint. */
+@media (max-width: 700px) {
+  :root .editorial-label { display: none; }
 }

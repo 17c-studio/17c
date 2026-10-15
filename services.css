@@ -117,6 +117,7 @@
  .services-method { padding: 65px 0 60px 50px; }
  .services-method::before { left: 12px; top: 73px; }
  .process-staircase { grid-template-columns: 1fr; gap: 22px; margin-top: 40px; }
+ .process-staircase .step-number > span[aria-hidden="true"] { display: inline-block; transform: rotate(90deg); }
  .process-staircase li:nth-child(n) { margin-top: 0; }
  .process-staircase h3 { font-size: 34px; }
  .services-closing { padding: 110px 0 80px; text-align: left; }

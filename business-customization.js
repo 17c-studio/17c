@@ -8,6 +8,16 @@ window.studioBusinessReady = (async () => {
       const panel = document.querySelector('#customization-panel');
       const form = document.querySelector('#customization-form');
       if (!toggle || !panel || !form) return;
+      const customization = toggle.closest('.customization');
+      const header = document.querySelector('.header');
+      const cover = document.querySelector('.cover');
+      const mobile = window.matchMedia('(max-width: 700px)');
+      const placeCustomization = () => {
+        const parent = mobile.matches ? cover : header;
+        if (parent && customization) parent.append(customization);
+      };
+      placeCustomization();
+      mobile.addEventListener('change', placeCustomization);
       const business = form.elements.business;
       const counter = document.querySelector('#business-counter');
       const error = document.querySelector('#customization-error');
