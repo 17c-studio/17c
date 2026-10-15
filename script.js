@@ -44,13 +44,6 @@ const applyBusinessCopy = () => {
 applyBusinessCopy();
 window.addEventListener('studio:business-change', applyBusinessCopy);
 
-// Set this to the studio's real email address to enable email inquiries.
-const CONTACT_EMAIL = 'marielwhitney.design@gmail.com';
-
-const dialog = document.querySelector('#inquiry-dialog');
-const form = document.querySelector('#inquiry-form');
-const status = document.querySelector('#form-status');
-
 // Drive smooth scrolling and the pinned services from the same animation clock.
 const scrollMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 let destroySmoothScroll = () => {};
@@ -458,89 +451,6 @@ if (possibilitiesSection && possibilityCards.length) {
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
 
-if (form && status) {
-  if (dialog) {
-    document.querySelector('#open-inquiry')?.addEventListener('click', () => dialog.showModal());
-    document.querySelector('.dialog-close')?.addEventListener('click', () => dialog.close());
-    dialog.addEventListener('click', event => {
-      const rect = dialog.getBoundingClientRect();
-      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
-    });
-  }
-
-  if (CONTACT_EMAIL) {
-    const formNote = document.querySelector('#form-note');
-    const submitInquiry = document.querySelector('#submit-inquiry');
-    if (formNote) formNote.textContent = 'Tell us a little about your business and what you have in mind. We’ll open your email app with your inquiry ready to send.';
-    if (submitInquiry) submitInquiry.innerHTML = 'Open email draft <span class="arrow-drift" aria-hidden="true">→</span>';
-  }
-
-  const fields = [...form.querySelectorAll('input, textarea')];
-  fields.forEach(field => {
-    field.addEventListener('input', () => {
-      field.removeAttribute('aria-invalid');
-      const error = document.querySelector(`#inquiry-${field.name}-error`);
-      if (error) error.textContent = '';
-      if (status.classList.contains('is-error')) {
-        status.textContent = '';
-        status.classList.remove('is-error');
-      }
-    });
-  });
-
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    fields.forEach(field => {
-      field.removeAttribute('aria-invalid');
-      const error = document.querySelector(`#inquiry-${field.name}-error`);
-      if (error) error.textContent = '';
-    });
-    status.classList.remove('is-error');
-
-    const nameField = form.elements.name;
-    const emailField = form.elements.email;
-    const projectField = form.elements.project;
-    const invalid = [];
-
-    if (!nameField.value.trim()) invalid.push([nameField, 'Enter your name.']);
-    if (!emailField.value.trim()) {
-      invalid.push([emailField, 'Enter your email address.']);
-    } else if (emailField.validity.typeMismatch) {
-      invalid.push([emailField, 'Enter a valid email address.']);
-    }
-    if (!projectField.value.trim()) invalid.push([projectField, 'Tell us what you would like help with.']);
-
-    if (invalid.length) {
-      invalid.forEach(([field, message]) => {
-        field.setAttribute('aria-invalid', 'true');
-        document.querySelector(`#inquiry-${field.name}-error`).textContent = message;
-      });
-      status.textContent = invalid.map(([, message]) => message).join(' ');
-      status.classList.add('is-error');
-      invalid[0][0].focus();
-      return;
-    }
-
-    const data = new FormData(form);
-    const brief = `17C — Project inquiry\n\nName: ${data.get('name')}\nEmail: ${data.get('email')}\nOrganization: ${data.get('organization') || 'Not provided'}\n\nWhat can we help with?\n${data.get('project')}\n`;
-    if (CONTACT_EMAIL) {
-      const draftUrl = window.prepareEmailDraft(form, { to: CONTACT_EMAIL, subject: 'A new project for 17C — ' + data.get('name'), body: brief });
-      window.location.href = draftUrl;
-      status.textContent = 'Send the draft in your email app to finish. If no app opens, use the save or copy option below.';
-      return;
-    }
-    const url = URL.createObjectURL(new Blob([brief], { type: 'text/plain;charset=utf-8' }));
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = '17C-project-brief.txt';
-    document.body.append(link);
-    link.click();
-    link.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-    status.textContent = 'Your brief is ready to save. Nothing has been sent; keep this file to share with the studio.';
-  });
-}
-
 // A subpixel transform keeps the mobile logo loop smooth; swipes use native scrolling.
 const logoRow = document.querySelector('.business-names');
 if (logoRow) {
@@ -580,7 +490,7 @@ if (logoRow) {
     let resumeTimer;
     let hovered = false, touching = false, pointerHeld = false, visible = false, nativeScrolling = false;
     let disposed = false;
-    const canRun = () => !disposed && !hovered && !touching && visible && !document.hidden && !logoRow.matches(':focus-visible');
+    const canRun = () => !disposed && !hovered && !touching && visible && !document.hidden && !logoRow.matches(':focus-visible') && !document.body.classList.contains('motion-paused');
     const sync = () => {
       if (canRun()) {
         if (nativeScrolling) {
@@ -628,6 +538,7 @@ if (logoRow) {
     // Keep waiting while a swipe's momentum is still moving the native scroller.
     listen(logoRow, 'scroll', () => { if (touching) release(); }, { passive: true });
     listen(document, 'visibilitychange', sync);
+    listen(window, 'studio:motion-change', sync);
     const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); });
     observer.observe(logoRow);
     disposeLogoCarousel = () => {
@@ -654,7 +565,7 @@ const decorativeVideo = document.querySelector('.service-more-video');
 if (decorativeVideo) {
   let videoVisible = false;
   const syncVideo = () => {
-    if (scrollMotionPreference.matches || !videoVisible || document.hidden) decorativeVideo.pause();
+    if (document.body.classList.contains('motion-paused') || scrollMotionPreference.matches || !videoVisible || document.hidden) decorativeVideo.pause();
     else decorativeVideo.play().catch(() => {});
   };
   if ('IntersectionObserver' in window) {
@@ -663,6 +574,7 @@ if (decorativeVideo) {
   }
   scrollMotionPreference.addEventListener('change', syncVideo);
   document.addEventListener('visibilitychange', syncVideo);
+  window.addEventListener('studio:motion-change', syncVideo);
 }
 
 })();

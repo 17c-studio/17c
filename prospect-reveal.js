@@ -13,6 +13,7 @@
   let finished = false;
   const preventScroll = event => event.preventDefault();
   const preventScrollKeys = event => {
+    if (event.key === 'Escape' || event.key === 'Tab') { finish(); return; }
     if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) event.preventDefault();
   };
   window.addEventListener('wheel', preventScroll, { passive: false, capture: true });

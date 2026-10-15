@@ -35,11 +35,13 @@ window.studioProspectReady = (async () => {
     if (!href || href.startsWith('#')) return;
     const url = new URL(href, window.location.href);
     const directory = new URL('.', window.location.href);
-    if (url.origin !== directory.origin || !['index.html', 'services.html'].some(page => url.pathname === directory.pathname + page)) return;
+    if (url.origin !== directory.origin || !['index.html', 'services.html', 'form.html'].some(page => url.pathname === directory.pathname + page)) return;
     url.searchParams.set('for', prospect.slug);
     link.setAttribute('href', url.pathname.slice(directory.pathname.length) + url.search + url.hash);
   });
 
+  // On the dedicated contact page, only carry context and prefill organization.
+  if (document.body.classList.contains('form-page')) return;
   const main = document.querySelector('main');
   if (!main) return;
   const coverLabel = document.querySelector('.cover-title > .editorial-label, .services-hero .hero-heading > .editorial-label');
@@ -73,7 +75,7 @@ window.studioProspectReady = (async () => {
   }
 
   const email = 'marielwhitney.design@gmail.com';
-  document.querySelectorAll(`.header .nav-cta, .home-page a[href="mailto:${email}"]`).forEach(link => {
+  document.querySelectorAll('.header .nav-cta').forEach(link => {
     link.setAttribute('href', '#contact');
   });
   const invitation = document.createElement('section');

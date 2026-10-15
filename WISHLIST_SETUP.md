@@ -1,19 +1,22 @@
-# Wishlist Formspree delivery
+# Inquiry and wishlist delivery
 
-The inquiry forms on `services.html` and `index.html` use `https://formspree.io/f/xoejkyvk`. This site uses plain HTML, CSS, and JavaScript with no bundler or backend. `wishlist.js` submits JSON with `fetch` and `Accept: application/json`, adapting the Vanilla JS AJAX approach to the existing wishlist behavior without adding a library.
+`index.html`, `services.html`, and `form.html` POST to `https://formspree.io/f/xoejkyvk`. The public endpoint ID is configuration, not a secret API key.
 
-Both forms collect required name, email, and project message, plus optional organization. The “Include my wishlist” checkbox attaches readable selections grouped by service. Inquiries also work without selected items. JavaScript provides inline validation, loading, field-level server errors, and success/failure feedback. A failed or timed-out request keeps contact input and selections in the current page. Successful acceptance resets the form and removes only submitted selections. Acceptance does not guarantee inbox delivery.
+`inquiry.js` provides shared field validation, a pending state with inputs temporarily locked, field-level rejection messages, a 20-second timeout, and polite success/error status feedback. Required name, email, and project fields have stable accessible names. Organization is optional. A hidden `_gotcha` field is included in HTML and AJAX payloads for Formspree's honeypot filtering.
 
-Without JavaScript, the form submits directly to Formspree using its `action` and `method="post"`; saved wishlist selections require JavaScript. Required inputs use native validation in this mode.
+`wishlist.js` manages selection IDs, the review dialog, inclusion choice, and optional readable wishlist content. Only selected IDs are stored under `17c-project-wishlist-v1`. Form contact data is not persisted. Failed requests leave inputs and selections in the current page. Successful acceptance resets the form and removes only selections included in that request. Acceptance is not proof of inbox delivery.
 
-## Shared assets
+Without JavaScript the HTML form uses a standard POST and native validation. A saved wishlist cannot be attached without JavaScript.
 
-Deploy `wishlist.js`, `wishlist.css`, and `wishlist-catalog.js` alongside both pages. The shared catalog resolves existing saved selection IDs on the homepage. When service checkbox IDs or labels change, update the matching entries in `wishlist-catalog.js` too.
+## Hosted acceptance checklist
 
-Only selection IDs are stored in localStorage under `17c-project-wishlist-v1`. Contact details are not persisted. The public Formspree ID is configuration; no API key or server credentials are needed.
+- [ ] Confirm endpoint ownership and the intended verified recipient in Formspree.
+- [ ] Confirm account/project retention, recipient access, integrations, CAPTCHA or other spam controls, and any domain restrictions.
+- [ ] From the final hosted domain, submit an authorized test inquiry on all three pages and verify inbox receipt. Test services with and without wishlist inclusion.
+- [ ] Confirm timeout, rate-limit, CAPTCHA, and network-error behavior against the actual account configuration. The local audit exercised simulated responses only.
+- [ ] Confirm spam submissions are filtered server-side. A honeypot is one layer, not complete spam protection.
+- [ ] Approve the draft Privacy Policy against actual provider settings.
 
-## Verify delivery
+Deploy `inquiry.js`, `wishlist.js`, `wishlist-catalog.js`, `wishlist.css`, `launch.js`, and `launch.css` along with each page's other referenced resources. Update catalog labels and IDs whenever service selections change.
 
-In the Formspree dashboard, confirm the intended recipient is verified and the deployed site domain is allowed if domain restrictions are enabled. Submit a test inquiry from the hosted site and confirm it arrives in the intended inbox. Check both forms with and without wishlist inclusion, and verify that failed submissions retain input and selections.
-
-[Formspree AJAX documentation](https://help.formspree.io/articles/building-your-form/submit-forms-with-javascript-ajax/).
+Implementation references: [Formspree AJAX documentation](https://help.formspree.io/articles/building-your-form/submit-forms-with-javascript-ajax/) and [Formspree honeypot documentation](https://help.formspree.io/articles/building-your-form/honeypot-spam-filtering).

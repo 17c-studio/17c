@@ -2,39 +2,53 @@
 <html lang="en" data-theme="dark" data-cursor="circle" style="color-scheme: dark;">
 <head>
   <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#171614">
-  <meta name="description" content="17C is an independent website design studio. Thoughtful design and websites that feel like you and is optimized for your growth.">
-  <title>17C — Thoughtful websites. Personal by design.</title>
-  <link rel="icon" href="assets/favicon-white.svg?v=2" type="image/svg+xml">
-  <script src="prospect-reveal.js?v=8"></script>
+  <meta name="description" content="17C Studio offers thoughtful website design and ongoing support for independent businesses in Holland, Michigan and West Michigan. Personal by design.">
+  <title>17C Studio | Website Design in Holland, Michigan</title>
+  <link rel="icon" href="assets/optimized/17c-logo-112.png" type="image/png">
+  <link rel="preload" as="image" href="assets/optimized/17c-cover-1536.jpg" imagesrcset="assets/optimized/17c-cover-768.jpg 768w, assets/optimized/17c-cover-1536.jpg 1536w" imagesizes="100vw">
+  <script src="prospect-reveal.js?v=9"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
-  <link rel="stylesheet" href="styles.css?v=104">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&amp;display=swap">
+<link rel="stylesheet" href="styles.css?v=105">
   <link rel="stylesheet" href="wishlist.css?v=2">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
-  <script src="prospects.js?v=12" defer></script>
-  <script src="email-draft.js?v=1" defer></script>
+  <script src="prospects.js?v=14" defer></script>
   <script src="wishlist-catalog.js?v=1" defer></script>
-  <script src="wishlist.js?v=8" defer></script>
-  <script src="business-customization.js?v=3" defer></script>
-  <script src="script.js?v=31" defer></script>
+  <script src="wishlist.js?v=9" defer></script>
+  <script src="business-customization.js?v=4" defer></script>
+  <script src="script.js?v=32" defer></script>
   <script src="dictionary.js?v=3" defer></script>
   <script src="contact-navigation.js?v=1" defer></script>
+  <link rel="stylesheet" href="launch.css?v=2">
+  <script src="launch.js?v=3" defer></script>
+  <script src="inquiry.js?v=1" defer></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="17C Studio">
+  <meta property="og:title" content="17C Studio | Website Design in Holland, Michigan">
+  <meta property="og:description" content="17C Studio offers thoughtful website design and ongoing support for independent businesses in Holland, Michigan and West Michigan. Personal by design.">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
-<body class="home-page">
+<body id="top" class="home-page">
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="header wrap">
     <div class="header-brand">
-      <a class="wordmark" href="index.html" aria-label="17C home"><img class="header-monogram" src="17c-clear-logo.png" alt="17C Studio" width="1122" height="1402"></a>
+      <a class="wordmark" href="index.html" aria-label="17C home"><img class="header-monogram" src="assets/optimized/17c-logo-112.png" srcset="assets/optimized/17c-logo-112.png 112w, assets/optimized/17c-logo-224.png 224w" sizes="64px" alt="17C Studio" width="1122" height="1402"></a>
     </div>
 
     <nav aria-label="Main navigation">
       <a href="services.html">Services</a><a href="https://marielwhitney.github.io/portfolio/index.html" target="_blank" rel="noopener noreferrer">Work</a><a class="nav-cta" href="form.html">Connect <span class="arrow-drift" aria-hidden="true">→</span></a></nav>
     <div class="customization" hidden>
-        <button id="customization-toggle" type="button" aria-expanded="false" aria-controls="customization-panel" aria-haspopup="dialog">psst... over here</button>
+        <button id="customization-toggle" type="button" aria-expanded="false" aria-controls="customization-panel" aria-haspopup="dialog">psst... make it yours</button>
         <div id="customization-panel" role="dialog" aria-labelledby="customization-title" hidden>
+          <button id="customization-close" type="button" aria-label="Close personalization">×</button>
           <form id="customization-form">
             <h2 id="customization-title">Let’s make this feel like you.</h2>
             <label class="business-control" for="customization-business">Type your business
@@ -47,9 +61,9 @@
         </div>
       </div>
   </header>
-  <main id="main">
+  <main tabindex="-1" id="main">
     <section class="cover" aria-labelledby="cover-title">
-      <img class="cover-image" src="17c-cover.png" alt="" width="1536" height="1024" fetchpriority="high">
+      <img class="cover-image" src="assets/optimized/17c-cover-1536.jpg" srcset="assets/optimized/17c-cover-768.jpg 768w, assets/optimized/17c-cover-1536.jpg 1536w" sizes="100vw" alt="" width="1536" height="1024" fetchpriority="high">
       <div class="cover-bottom">
         <h1 class="cover-title" id="cover-title">
            <span class="editorial-label">Thoughtful websites and a creative partner who grows with you</span>
@@ -83,7 +97,7 @@
 <div class="service-grid">
 
   <article tabindex="0">
-    <img class="service-image" src="assets/service-something-new.jpg" alt="" width="1200" height="800" decoding="async">
+    <img class="service-image" src="assets/service-something-new.jpg" alt="" width="1200" height="800" decoding="async" loading="lazy">
     <h3>Build something new</h3>
     <p>
       A complete website built around your business, your goals,
@@ -95,7 +109,7 @@
   </article>
 
   <article tabindex="0">
-    <img class="service-image" src="assets/service-coffee-laptop.jpg" alt="" width="800" height="1200" decoding="async">
+    <img class="service-image" src="assets/service-coffee-laptop.jpg" alt="" width="800" height="1200" decoding="async" loading="lazy">
     <h3>Improve what you have</h3>
     <p>
       An intentional redesign that turns an outdated or
@@ -108,7 +122,7 @@
   </article>
 
   <article tabindex="0">
-    <img class="service-image" src="assets/service-empty-notebook.jpg" alt="" width="1200" height="800" decoding="async">
+    <img class="service-image" src="assets/service-empty-notebook.jpg" alt="" width="1200" height="800" decoding="async" loading="lazy">
     <h3>Make the message clear</h3>
     <p>
       Clear, thoughtful website content that helps customers quickly
@@ -120,7 +134,7 @@
   </article>
 
   <article tabindex="0">
-    <img class="service-image" src="assets/service-meetings.jpg" alt="" width="1200" height="800" decoding="async">
+    <img class="service-image" src="assets/service-meetings.jpg" alt="" width="1200" height="800" decoding="async" loading="lazy">
     <h3>Keep it working</h3>
     <p>
       Ongoing website management, updates, and support so your site
@@ -149,7 +163,7 @@
         </div>
         <div class="about-mariel-portrait-track">
           <div class="about-mariel-media">
-            <img class="about-mariel-image" src="mariel-mat.jpeg" alt="Mariel and Tori" width="4284" height="5712" loading="lazy">
+            <img class="about-mariel-image" src="mariel-mat.jpeg" alt="Mariel" width="4016" height="5356" loading="lazy">
           </div>
         </div>
         <div class="about-mariel-copy">
@@ -182,7 +196,7 @@
 
         </div>
         <div class="about-rail about-rail-bottom" aria-hidden="true">
-          <span class="about-rail-mark"><img src="17c-clear-logo.png" alt=""></span>
+          <span class="about-rail-mark"><img src="assets/optimized/17c-logo-112.png" srcset="assets/optimized/17c-logo-112.png 112w, assets/optimized/17c-logo-224.png 224w" sizes="64px" alt=""></span>
         </div>
       </div>
       <p class="about-transition">Enough about me, let’s imagine what I could make for you.</p>
@@ -196,53 +210,54 @@
           <a class="possibility-secondary" href="https://marielwhitney.github.io/portfolio/index.html" target="_blank" rel="noopener noreferrer">View more work<span class="arrow-drift" aria-hidden="true">→</span></a>
         </div>
       </div>
+      <p class="portfolio-context">A selection of my work. For the story behind any example, including my role and collaborators, please ask. Explore my <a href="https://marielwhitney.github.io/portfolio/index.html" target="_blank" rel="noopener noreferrer">portfolio</a>.</p>
       <div class="concept-grid">
         <article class="concept project-preview-card" data-parallax-from="30" data-parallax-to="-30">
           <div class="project-preview">
-            <img class="project-screenshot" src="ghc-after.png" alt="Glass House Creative Community website" width="2940" height="12180" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/ghc-after-1200.jpg" srcset="assets/optimized/ghc-after-600.jpg 600w, assets/optimized/ghc-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Glass House Creative Community website" width="1200" height="4971" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="45" data-parallax-to="-35">
           <div class="project-preview">
-            <img class="project-screenshot" src="dare-to-hope-admissions-after.png" alt="Dare to Hope admissions website" width="2794" height="3917" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/dare-to-hope-admissions-after-1200.jpg" srcset="assets/optimized/dare-to-hope-admissions-after-600.jpg 600w, assets/optimized/dare-to-hope-admissions-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Dare to Hope admissions website" width="1200" height="1682" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="25" data-parallax-to="-55">
           <div class="project-preview">
-            <img class="project-screenshot" src="basketball-after.png" alt="Hope College basketball website" width="2938" height="8102" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/basketball-after-1200.jpg" srcset="assets/optimized/basketball-after-600.jpg 600w, assets/optimized/basketball-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Hope College basketball website" width="1200" height="3309" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="40" data-parallax-to="-25">
           <div class="project-preview">
-            <img class="project-screenshot" src="haworth-after.png" alt="Haworth Hotel website" width="2940" height="8756" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/haworth-after-1200.jpg" srcset="assets/optimized/haworth-after-600.jpg 600w, assets/optimized/haworth-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Haworth Hotel website" width="1200" height="3574" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="35" data-parallax-to="-45">
           <div class="project-preview">
-            <img class="project-screenshot" src="font-playground-index.png" alt="Font Playground website" width="2940" height="1604" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/font-playground-index-1200.jpg" srcset="assets/optimized/font-playground-index-600.jpg 600w, assets/optimized/font-playground-index-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Font Playground website" width="1200" height="654" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="20" data-parallax-to="-50">
           <div class="project-preview">
-            <img class="project-screenshot" src="anchor-index.png" alt="Anchor website" width="2940" height="1604" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/anchor-index-1200.jpg" srcset="assets/optimized/anchor-index-600.jpg 600w, assets/optimized/anchor-index-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Anchor website" width="1200" height="654" loading="lazy" decoding="async">
 
           </div>
         </article>
 
         <article class="concept project-preview-card" data-parallax-from="35" data-parallax-to="-65">
           <div class="project-preview">
-            <img class="project-screenshot" src="ghc-events.png" alt="GHC Events website" width="1940" height="1204" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/ghc-events-1200.jpg" srcset="assets/optimized/ghc-events-600.jpg 600w, assets/optimized/ghc-events-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="GHC Events website" width="1200" height="620" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="25" data-parallax-to="-30">
           <div class="project-preview">
-            <img class="project-screenshot" src="degree-program-cropped.png" alt="Degree program website" width="2827" height="2086" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/degree-program-cropped-1200.jpg" srcset="assets/optimized/degree-program-cropped-600.jpg 600w, assets/optimized/degree-program-cropped-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Degree program website" width="1200" height="885" loading="lazy" decoding="async">
           </div>
         </article>
       </div>
@@ -257,9 +272,9 @@
           <span class="business-name-title">Glass House</span>
           <span class="business-name-subtitle">Creative Community</span>
         </div>
-        <img class="business-logo business-logo-haworth" src="https://haworthhotel.com/wp-content/uploads/2025/09/Haworth_Hotel_Logos_AtHopeCollege_WHITE-1.png" alt="Haworth Hotel at Hope College">
-        <img class="business-logo business-logo-springsweet" src="https://springsweet.com/cdn/shop/files/website_logo-01_copy.png?v=1617214296&amp;width=600" alt="Spring Sweet">
-        <img class="business-logo business-logo-hope" src="https://hope.edu/offices/public-affairs-marketing/resources/logos/horizontal/horiz_4color.png" alt="Hope College">
+        <img class="business-logo business-logo-haworth" src="https://haworthhotel.com/wp-content/uploads/2025/09/Haworth_Hotel_Logos_AtHopeCollege_WHITE-1.png" alt="Haworth Hotel at Hope College" width="600" height="102" loading="lazy" decoding="async">
+        <img class="business-logo business-logo-springsweet" src="https://springsweet.com/cdn/shop/files/website_logo-01_copy.png?v=1617214296&amp;width=600" alt="Spring Sweet" width="600" height="121" loading="lazy" decoding="async">
+        <img class="business-logo business-logo-hope" src="https://hope.edu/offices/public-affairs-marketing/resources/logos/horizontal/horiz_4color.png" alt="Hope College" width="1149" height="162" loading="lazy" decoding="async">
       </div>
 
     </div>
@@ -274,15 +289,22 @@
   <!-- Static-host compatible Formspree submission; wishlist.js adds AJAX feedback. -->
   <form id="wishlist-form" action="https://formspree.io/f/xoejkyvk" method="post" aria-describedby="wishlist-required-note">
    <noscript><p>You can send an inquiry here. Enable JavaScript to include saved wishlist selections.</p></noscript>
+   <label class="form-honeypot" aria-hidden="true">Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
    <input type="hidden" name="subject" value="17C — Project inquiry">
    <p id="wishlist-required-note" class="wishlist-required-note"><span aria-hidden="true">*</span> Required fields</p>
    <div class="wishlist-fields">
-    <label>Name <span aria-hidden="true">*</span><input name="name" autocomplete="name" required maxlength="100" aria-describedby="wishlist-name-error"><span id="wishlist-name-error" class="wishlist-field-error"></span></label>
-    <label>Email <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required maxlength="200" aria-describedby="wishlist-email-error"><span id="wishlist-email-error" class="wishlist-field-error"></span></label>
+    <label>Name <span aria-hidden="true">*</span><input aria-label="Name" name="name" autocomplete="name" required maxlength="100" aria-describedby="wishlist-name-error"><span id="wishlist-name-error" class="wishlist-field-error"></span></label>
+    <label>Email <span aria-hidden="true">*</span><input aria-label="Email" name="email" type="email" autocomplete="email" required maxlength="200" aria-describedby="wishlist-email-error"><span id="wishlist-email-error" class="wishlist-field-error"></span></label>
     <label>Organization <span class="wishlist-optional">(optional)</span><input name="business" autocomplete="organization" maxlength="200"></label>
-    <label>What can I help you with? <span aria-hidden="true">*</span><textarea name="project" rows="5" required maxlength="5000" aria-describedby="wishlist-project-error"></textarea><span id="wishlist-project-error" class="wishlist-field-error"></span></label>
+    <label>What can I help you with? <span aria-hidden="true">*</span><textarea aria-label="What can I help you with?" name="project" rows="5" required maxlength="5000" aria-describedby="wishlist-project-error"></textarea><span id="wishlist-project-error" class="wishlist-field-error"></span></label>
    </div>
 
+   <div class="wishlist-inquiry-option">
+    <label class="wishlist-include-label"><input id="wishlist-include" name="includeWishlist" type="checkbox" checked aria-describedby="wishlist-option-note"><span>Include my wishlist <span class="wishlist-optional">(optional)</span></span></label>
+    <p id="wishlist-option-note" aria-live="polite">Choose services you’re interested in, then include them with your inquiry.</p>
+    <button id="wishlist-review" class="wishlist-text-button" type="button" aria-haspopup="dialog" aria-controls="wishlist-panel" hidden>Review wishlist</button>
+   </div>
+   <p class="form-privacy">Your inquiry is processed by Formspree. See the <a href="privacy.html">draft Privacy Policy</a>. Please avoid sending sensitive information.</p>
    <div class="wishlist-send"><button class="wishlist-send-button" type="submit"><span id="wishlist-submit-label">Send inquiry</span><span aria-hidden="true">→</span></button></div>
    <p id="wishlist-form-status" role="status" aria-live="polite" tabindex="-1"></p>
   </form>
@@ -294,17 +316,23 @@
    <div id="wishlist-panel-summary" class="wishlist-summary"></div>
    <a class="wishlist-text-button" id="wishlist-inquiry-link" href="#wishlist-inquiry">Let’s see what you have in mind →</a>
   </dialog>
-  <footer class="footer wrap">
-    <a class="wordmark" href="index.html" aria-label="17C home"><img src="17c-clear-logo.png" alt="17C" width="1122" height="1402"></a>
+  <footer class="footer launch-footer wrap">
+    <div class="footer-identity">
+      <a class="wordmark" href="index.html" aria-label="17C Studio home"><img src="assets/optimized/17c-logo-112.png" srcset="assets/optimized/17c-logo-112.png 112w, assets/optimized/17c-logo-224.png 224w" sizes="64px" alt="17C Studio" width="1122" height="1402" loading="lazy" decoding="async"></a>
+      <p>Thoughtful websites. Personal by design.<br>Independent web design in Holland, Michigan.</p>
+      <a href="mailto:marielwhitney.design@gmail.com">marielwhitney.design@gmail.com</a>
+    </div>
     <nav class="footer-links" aria-label="Footer navigation">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
+      <a href="index.html">Home</a><a href="services.html">Services</a>
       <a href="https://marielwhitney.github.io/portfolio/index.html" target="_blank" rel="noopener noreferrer">Projects</a>
-      <a href="form.html">Connect</a>
-      <a href="https://www.instagram.com/17cstudio?exln=amh3a3NuejllbHZr&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="form.html">Contact</a><a href="https://www.instagram.com/17cstudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
     </nav>
-    <small>© <span id="year">2026</span> 17C Studio</small>
-    <a href="#">Back to top ↑</a>
+    <nav class="footer-policies" aria-label="Policies and accessibility">
+      <a href="privacy.html">Privacy Policy (draft)</a><a href="terms.html">Terms of Use (draft)</a><a href="accessibility.html">Accessibility</a>
+    </nav>
+    <button id="motion-toggle" type="button" aria-pressed="false">Pause decorative motion</button>
+    <small>© <span data-current-year>2026</span> 17C Studio</small>
+    <a class="back-to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
   </footer>
 </body>
 </html>

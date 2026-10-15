@@ -1,73 +1,48 @@
 # 17C Studio
 
-A responsive, single-page website for 17C. Built with plain HTML, CSS, and JavaScript; no build step or dependencies.
+A static website for an independent web design studio in Holland, Michigan. Plain HTML, CSS, and JavaScript; no package installation or build step.
 
-## Preview
+## Pages
 
-Open `index.html` in a browser, or run `python3 -m http.server 8000` from this directory and visit http://localhost:8000.
+- `index.html`: studio introduction, mobile service cards, About and Sonder story, project examples, testimonial, logos, inquiry.
+- `services.html`: six native service disclosures, wishlist selection and review, inquiry.
+- `form.html`: dedicated inquiry with expandable next steps.
+- `privacy.html`, `terms.html`: clearly marked, noindex drafts requiring business and legal review.
+- `accessibility.html`: practices, limitations, and a contact route. No formal conformance claim.
 
-## Contact
+## Preview and checks
 
-The inquiry forms on `index.html` and `services.html` submit to `https://formspree.io/f/xoejkyvk`. Plain JavaScript adds validation, loading, success, and error feedback; the HTML form also supports standard POST submission without JavaScript. Visitors can include their saved service wishlist from either page. Formspree controls the recipient and email delivery settings. See `WISHLIST_SETUP.md` for verification.
+Run `python3 -m http.server 8000`, then open `http://localhost:8000/`.
+Run `python3 tools/check_site.py` for local references, fragment targets, duplicate IDs, image alt attributes, ARIA targets, and hardcoded development links in HTML.
 
-## Design
+Read `PRELAUNCH_AUDIT.md` for findings, changes, validation, and remaining release gates. Older audit files are historical and describe earlier implementations.
 
-Palette: Stone `#696158`, Chalk `#E1DED7`, and Grey `#B7B4AF`, with darker Stone for hover and focus states. Grey is used for decorative accents rather than body text.
+## Contact delivery
 
-The monogram is an SVG interpretation of the supplied reference. The original uploaded logo was not available as a file in the workspace. Both portfolio previews are original illustrative design concepts, clearly labeled as such. They are not claims of completed client work.
+All three inquiry forms POST to `https://formspree.io/f/xoejkyvk`. `inquiry.js` shares validation, loading, success, and error handling. `wishlist.js` manages selections on all three inquiry pages and provides optional submission content to the shared handler. HTML POST and native required-field validation work without JavaScript; wishlist inclusion requires JavaScript.
 
-Google Fonts supplies DM Sans and Libre Caslon Display, with system fallbacks if unavailable. All illustrations are local SVG or CSS.
+The public business email is `marielwhitney.design@gmail.com`, confirmed for current use on October 15, 2026. Recipient verification, spam/CAPTCHA configuration, domain restrictions, and actual inbox delivery are controlled by Formspree and still need a hosted acceptance test. See `WISHLIST_SETUP.md`.
 
-## Publish
+Contact form details are not saved in localStorage. The optional personalization name and selected service IDs are stored locally. Failed form requests retain inputs only in the current page; a refresh may clear them.
 
-Upload both HTML pages, all local CSS and JavaScript files (including `wishlist.css`, `wishlist.js`, and `wishlist-catalog.js`), the image files, and the `assets` folder to any static website host. No credentials or server configuration are required by the site itself.
+## Third-party resources
+
+Google Fonts supplies DM Sans, Cormorant Garamond, and Bebas Neue. Pinned jsDelivr scripts provide GSAP 3.13.0, ScrollTrigger 3.13.0, and Lenis 1.3.26. Personalized links can load a Calendly embed. Three organization logos are hotlinked. The draft Privacy Policy documents these actual requests and identifies settings requiring review. No analytics or advertising tracker was found in the source.
+
+## Images and motion
+
+Original images remain in place. The About portrait uses its original file after a conversion defect; other production imagery uses smaller variants in `assets/optimized` with responsive `srcset`, below-fold lazy loading, and dimensions. `python3 tools/optimize_images.py` regenerates variants on macOS using built-in `sips`; it is not needed by the deployed site. The homepage has a pause control for decorative motion, and reduced-motion preferences disable the automatic logo loop and video.
 
 ## Personalized prospect links
 
-Run `python3 -m http.server 8000` in this folder. Prospect data loads over HTTP;
-opening the HTML directly as a file will show the normal site instead.
+Use `index.html?for=the-sky-floor` or `services.html?for=the-sky-floor`. Add entries to the array in `prospects.json`; use relative local logo paths. Optional meeting copy is used only when supplied. Context carries to the contact page, where the organization field is prefilled.
 
-Sky Floor example: http://localhost:8000/?for=the-sky-floor
-Wishlist: http://localhost:8000/services.html?for=the-sky-floor
+The JSON and logos are public assets. Include only information authorized for public access, never confidential proposals, private contact details, or secrets. A sessionStorage flag remembers the welcome animation. Tab or Escape can dismiss the entrance. Email links open drafts for visitors to send themselves.
 
-Personalized pages show an ivory curtain once per business per browser session.
-The logo entrance, hold, and curtain take about 8 seconds on mobile and desktop once assets are ready.
-The browser remembers it in session storage; a fresh browser session previews it again. Reduced-motion visitors see a short fade instead.
-Include `prospect-reveal.js` when uploading the site.
-Include `contact-navigation.js` too; it handles the personalized contact links
-after the invitation and fonts are ready.
+## Before deployment
 
-To add another prospect in under two minutes:
-
-1. Open `prospects.json`, copy the existing object, and separate the objects with a comma.
-2. Give the copy a unique lowercase slug such as `another-business` and its exact `businessName`.
-3. Fill optional fields only with information you have. Leave `personalLine` and `proposedTime` empty until supplied. Use an empty `logo` for the styled business-name fallback, or a relative saved-file path such as `logos/another-business.png`.
-4. Save and open `http://localhost:8000/?for=another-business`.
-
-Example entry (replace the sample name):
-
-```json
-{
-  "slug": "another-business",
-  "businessName": "Another Business",
-  "domain": "",
-  "firstName": "",
-  "personalLine": "",
-  "proposedTime": "",
-  "logo": ""
-}
-```
-
-The JSON is an array: keep the surrounding `[` and `]`, and avoid trailing commas.
-The domain is informational; the site does not call any logo services.
-The home and services pages always use the dark theme and circle cursor.
-Prospect names apply only through the prospect link. Email links open drafts
-for the visitor to send.
-
-When hosted, `prospects.json` will be publicly readable. Include no private
-information or secrets. These links use relative paths and also work when the
-whole site is hosted in a subfolder. Include `prospects.json`, `prospects.js`, and
-any saved logos along with all the existing site files when eventually publishing.
-Nothing has been published as part of this feature.
-# skyfloor
-
+1. Complete the review gates in `PRELAUNCH_AUDIT.md`, especially legal drafts, portfolio attribution/permissions, testimonial approval, provider settings, and hosted delivery.
+2. Set the confirmed HTTPS production URL, including any subdirectory, using `python3 tools/configure_seo.py --base-url YOUR_CONFIRMED_HTTPS_URL`. This generates canonical and social URLs, limited organization data, `sitemap.xml`, and a sitemap reference in `robots.txt`. No domain is invented in the repository. Draft legal pages remain excluded from the sitemap and noindex.
+3. After policy approval, replace draft language, add the approved effective date, update all footer/form labels, and remove policy noindex only if appropriate. Do not deploy the drafts as finalized policies.
+4. Upload the six root HTML files, referenced local CSS/JS, `assets`, `logos`, `prospects.json`, `robots.txt`, generated sitemap, and the referenced decorative video. Do not upload `.git`, `.codex`, `.aws`, local audit fixtures, or private working documents.
+5. In the host dashboard, verify HTTPS, redirects, canonical hostname, caching/MIME types, and supported security headers. Test the final deployed URLs and social previews. No deployment was performed during this audit.

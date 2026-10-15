@@ -2,12 +2,16 @@
 <html lang="en" data-cursor="circle" data-theme="dark" style="color-scheme: dark;">
 <head>
   <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#171614">
   <meta name="description" content="Tell 17C about your next website project.">
   <title>Connect — 17C Studio</title>
-  <link rel="icon" href="assets/favicon-white.svg?v=2" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=87">
+  <link rel="icon" href="assets/optimized/17c-logo-112.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&amp;display=swap">
+<link rel="stylesheet" href="styles.css?v=105">
   <link rel="stylesheet" href="wishlist.css?v=2">
   <style>
     .form-page { min-height: 100svh; }
@@ -29,39 +33,83 @@
       .form-page .header nav { justify-self: end; gap: 14px; font-size: 12px; }
     }
   </style>
+  <link rel="stylesheet" href="launch.css?v=2">
+  <script src="prospects.js?v=14" defer></script>
+  <script src="launch.js?v=3" defer></script>
+  <script src="wishlist-catalog.js?v=1" defer></script>
+  <script src="wishlist.js?v=9" defer></script>
+  <script src="inquiry.js?v=1" defer></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="17C Studio">
+  <meta property="og:title" content="Connect — 17C Studio">
+  <meta property="og:description" content="Tell 17C about your next website project.">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
-<body class="form-page">
+<body id="top" class="form-page">
+  <a class="skip-link" href="#main">Skip to content</a>
  
   <header class="header wrap">
     <div class="header-brand">
-      <a class="wordmark" href="index.html" aria-label="17C home"><img class="header-monogram" src="17c-clear-logo.png" alt="" width="1122" height="1402"></a>
+      <a class="wordmark" href="index.html" aria-label="17C home"><img class="header-monogram" src="assets/optimized/17c-logo-112.png" srcset="assets/optimized/17c-logo-112.png 112w, assets/optimized/17c-logo-224.png 224w" sizes="64px" alt="17C Studio" width="1122" height="1402"></a>
     </div>
 
     <nav aria-label="Main navigation">
       <a href="services.html">Services</a><a href="https://marielwhitney.github.io/portfolio/index.html" target="_blank" rel="noopener noreferrer">Work</a><a class="nav-cta" href="form.html">Connect <span class="arrow-drift" aria-hidden="true">→</span></a></nav>
   </header>
-  <main id="main">
+  <main tabindex="-1" id="main">
  <section class="wishlist-inquiry wrap" id="wishlist-inquiry" aria-labelledby="wishlist-inquiry-title">
   <div class="wishlist-inquiry-intro">
    <p class="editorial-label">A partner for what comes next</p>
    <h1 id="wishlist-inquiry-title">Good businesses<br>deserve to be known.</h1>
    <p>You’ve built something worth caring about.<br>Let’s help more people see it.</p>
+   <details class="contact-next"><summary>What happens next?</summary><p>Send me a little about your business and what you have in mind. I’ll review your inquiry and reach out to discuss whether we’re a good fit.</p><p>From there, we’ll get to know your goals, explore possibilities, and put together a proposal tailored to your needs.</p></details>
 
   </div>
+  <p class="wishlist-storage-note" id="wishlist-storage-note" role="status"></p>
   <form id="wishlist-form" action="https://formspree.io/f/xoejkyvk" method="post" aria-describedby="wishlist-required-note">
+   <label class="form-honeypot" aria-hidden="true">Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
    <input type="hidden" name="subject" value="17C — Project inquiry">
    <p id="wishlist-required-note" class="wishlist-required-note"><span aria-hidden="true">*</span> Required fields</p>
    <div class="wishlist-fields">
-    <label>Name <span aria-hidden="true">*</span><input name="name" autocomplete="name" required maxlength="100" aria-describedby="wishlist-name-error"><span id="wishlist-name-error" class="wishlist-field-error"></span></label>
-    <label>Email <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required maxlength="200" aria-describedby="wishlist-email-error"><span id="wishlist-email-error" class="wishlist-field-error"></span></label>
+    <label>Name <span aria-hidden="true">*</span><input aria-label="Name" name="name" autocomplete="name" required maxlength="100" aria-describedby="wishlist-name-error"><span id="wishlist-name-error" class="wishlist-field-error"></span></label>
+    <label>Email <span aria-hidden="true">*</span><input aria-label="Email" name="email" type="email" autocomplete="email" required maxlength="200" aria-describedby="wishlist-email-error"><span id="wishlist-email-error" class="wishlist-field-error"></span></label>
     <label>Organization <span class="wishlist-optional">(optional)</span><input name="business" autocomplete="organization" maxlength="200"></label>
-    <label>What can I help you with? <span aria-hidden="true">*</span><textarea name="project" rows="5" required maxlength="5000" aria-describedby="wishlist-project-error"></textarea><span id="wishlist-project-error" class="wishlist-field-error"></span></label>
+    <label>What can I help you with? <span aria-hidden="true">*</span><textarea aria-label="What can I help you with?" name="project" rows="5" required maxlength="5000" aria-describedby="wishlist-project-error"></textarea><span id="wishlist-project-error" class="wishlist-field-error"></span></label>
    </div>
 
+   <div class="wishlist-inquiry-option">
+    <label class="wishlist-include-label"><input id="wishlist-include" name="includeWishlist" type="checkbox" checked aria-describedby="wishlist-option-note"><span>Include my wishlist <span class="wishlist-optional">(optional)</span></span></label>
+    <p id="wishlist-option-note" aria-live="polite">Choose services you’re interested in, then include them with your inquiry.</p>
+    <button id="wishlist-review" class="wishlist-text-button" type="button" aria-haspopup="dialog" aria-controls="wishlist-panel" hidden>Review wishlist</button>
+   </div>
+   <p class="form-privacy">Your inquiry is processed by Formspree. See the <a href="privacy.html">draft Privacy Policy</a>. Please avoid sending sensitive information.</p>
    <div class="wishlist-send"><button class="wishlist-send-button" type="submit"><span id="wishlist-submit-label">Send inquiry</span><span aria-hidden="true">→</span></button></div>
    <p id="wishlist-form-status" role="status" aria-live="polite" tabindex="-1"></p>
   </form>
  </section>
   </main>
+  <button type="button" id="wishlist-floating" aria-haspopup="dialog" aria-controls="wishlist-panel" hidden>Your wishlist · 0 selected</button>
+  <dialog id="wishlist-panel" aria-labelledby="wishlist-panel-title" data-lenis-prevent>
+   <div class="wishlist-panel-heading"><h2 id="wishlist-panel-title">Your wishlist</h2><button type="button" id="wishlist-close" aria-label="Close wishlist">×</button></div>
+   <div id="wishlist-panel-summary" class="wishlist-summary"></div>
+   <a class="wishlist-text-button" id="wishlist-inquiry-link" href="#wishlist-inquiry">Let’s see what you have in mind →</a>
+  </dialog>
+  <footer class="footer launch-footer wrap">
+    <div class="footer-identity">
+      <a class="wordmark" href="index.html" aria-label="17C Studio home"><img src="assets/optimized/17c-logo-112.png" srcset="assets/optimized/17c-logo-112.png 112w, assets/optimized/17c-logo-224.png 224w" sizes="64px" alt="17C Studio" width="1122" height="1402" loading="lazy" decoding="async"></a>
+      <p>Thoughtful websites. Personal by design.<br>Independent web design in Holland, Michigan.</p>
+      <a href="mailto:marielwhitney.design@gmail.com">marielwhitney.design@gmail.com</a>
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html">Home</a><a href="services.html">Services</a>
+      <a href="https://marielwhitney.github.io/portfolio/index.html" target="_blank" rel="noopener noreferrer">Projects</a>
+      <a href="form.html">Contact</a><a href="https://www.instagram.com/17cstudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </nav>
+    <nav class="footer-policies" aria-label="Policies and accessibility">
+      <a href="privacy.html">Privacy Policy (draft)</a><a href="terms.html">Terms of Use (draft)</a><a href="accessibility.html">Accessibility</a>
+    </nav>
+    <small>© <span data-current-year>2026</span> 17C Studio</small>
+    <a class="back-to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+  </footer>
 </body>
 </html>

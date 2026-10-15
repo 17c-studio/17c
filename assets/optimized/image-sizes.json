@@ -1,0 +1,182 @@
+[
+  {
+    "source": "17c-cover.png",
+    "originalBytes": 407692,
+    "variants": [
+      {
+        "path": "assets/optimized/17c-cover-768.jpg",
+        "width": 768,
+        "height": 512,
+        "bytes": 48066
+      },
+      {
+        "path": "assets/optimized/17c-cover-1536.jpg",
+        "width": 1536,
+        "height": 1024,
+        "bytes": 273581
+      }
+    ]
+  },
+  {
+    "source": "laptop-computer.png",
+    "originalBytes": 1704292,
+    "variants": [
+      {
+        "path": "assets/optimized/laptop-computer-768.jpg",
+        "width": 768,
+        "height": 1075,
+        "bytes": 101746
+      },
+      {
+        "path": "assets/optimized/laptop-computer-1600.jpg",
+        "width": 1600,
+        "height": 2240,
+        "bytes": 364283
+      }
+    ]
+  },
+  {
+    "source": "ghc-after.png",
+    "originalBytes": 9353027,
+    "variants": [
+      {
+        "path": "assets/optimized/ghc-after-600.jpg",
+        "width": 600,
+        "height": 2485,
+        "bytes": 364610
+      },
+      {
+        "path": "assets/optimized/ghc-after-1200.jpg",
+        "width": 1200,
+        "height": 4971,
+        "bytes": 1210432
+      }
+    ]
+  },
+  {
+    "source": "dare-to-hope-admissions-after.png",
+    "originalBytes": 1231838,
+    "variants": [
+      {
+        "path": "assets/optimized/dare-to-hope-admissions-after-600.jpg",
+        "width": 600,
+        "height": 841,
+        "bytes": 98354
+      },
+      {
+        "path": "assets/optimized/dare-to-hope-admissions-after-1200.jpg",
+        "width": 1200,
+        "height": 1682,
+        "bytes": 271946
+      }
+    ]
+  },
+  {
+    "source": "basketball-after.png",
+    "originalBytes": 1934934,
+    "variants": [
+      {
+        "path": "assets/optimized/basketball-after-600.jpg",
+        "width": 600,
+        "height": 1654,
+        "bytes": 200574
+      },
+      {
+        "path": "assets/optimized/basketball-after-1200.jpg",
+        "width": 1200,
+        "height": 3309,
+        "bytes": 598813
+      }
+    ]
+  },
+  {
+    "source": "haworth-after.png",
+    "originalBytes": 4957154,
+    "variants": [
+      {
+        "path": "assets/optimized/haworth-after-600.jpg",
+        "width": 600,
+        "height": 1787,
+        "bytes": 273202
+      },
+      {
+        "path": "assets/optimized/haworth-after-1200.jpg",
+        "width": 1200,
+        "height": 3574,
+        "bytes": 840420
+      }
+    ]
+  },
+  {
+    "source": "font-playground-index.png",
+    "originalBytes": 157670,
+    "variants": [
+      {
+        "path": "assets/optimized/font-playground-index-600.jpg",
+        "width": 600,
+        "height": 327,
+        "bytes": 23300
+      },
+      {
+        "path": "assets/optimized/font-playground-index-1200.jpg",
+        "width": 1200,
+        "height": 654,
+        "bytes": 54640
+      }
+    ]
+  },
+  {
+    "source": "anchor-index.png",
+    "originalBytes": 3445781,
+    "variants": [
+      {
+        "path": "assets/optimized/anchor-index-600.jpg",
+        "width": 600,
+        "height": 327,
+        "bytes": 55223
+      },
+      {
+        "path": "assets/optimized/anchor-index-1200.jpg",
+        "width": 1200,
+        "height": 654,
+        "bytes": 157337
+      }
+    ]
+  },
+  {
+    "source": "ghc-events.png",
+    "originalBytes": 3078786,
+    "variants": [
+      {
+        "path": "assets/optimized/ghc-events-600.jpg",
+        "width": 600,
+        "height": 310,
+        "bytes": 40089
+      },
+      {
+        "path": "assets/optimized/ghc-events-1200.jpg",
+        "width": 1200,
+        "height": 620,
+        "bytes": 109730
+      }
+    ]
+  },
+  {
+    "source": "degree-program-cropped.png",
+    "originalBytes": 2966100,
+    "variants": [
+      {
+        "path": "assets/optimized/degree-program-cropped-600.jpg",
+        "width": 600,
+        "height": 442,
+        "bytes": 61630
+      },
+      {
+        "path": "assets/optimized/degree-program-cropped-1200.jpg",
+        "width": 1200,
+        "height": 885,
+        "bytes": 188965
+      }
+    ]
+  }
+]

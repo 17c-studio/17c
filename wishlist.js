@@ -1,7 +1,6 @@
 (() => {
   const form = document.querySelector('#wishlist-form');
   if (!form) return;
-  form.noValidate = true;
   const key = '17c-project-wishlist-v1';
   const boxes = [...document.querySelectorAll('.wishlist-checkbox')];
   const catalog = new Map((window.studioWishlistCatalog || []).map(item => [item.id, item]));
@@ -149,68 +148,14 @@
     const remaining = [...container.querySelectorAll('button[data-remove]')];
     (remaining[Math.min(index, remaining.length - 1)] || (panel.open ? document.querySelector('#wishlist-close') : (toggle || form.elements.name))).focus();
   }));
-  for (const name of ['name', 'email', 'project']) form.elements[name].addEventListener('input', () => {
-    form.elements[name].removeAttribute('aria-invalid');
-    document.querySelector(`#wishlist-${name}-error`).textContent = '';
-  });
-  form.addEventListener('submit', async event => {
-    event.preventDefault();
-    if (sending) return;
-    status.textContent = ''; status.dataset.state = '';
-    let firstInvalid;
-    for (const name of ['name', 'email', 'project']) {
-      const field = form.elements[name];
-      const tooLong = field.maxLength > 0 && field.value.length > field.maxLength;
-      const invalid = !field.value.trim() || !field.validity.valid || tooLong;
-      const error = document.querySelector(`#wishlist-${name}-error`);
-      error.textContent = tooLong ? `Use ${field.maxLength} characters or fewer.` : invalid ? (name === 'email' ? 'Enter a valid email address.' : (name === 'project' ? 'Tell me what you have in mind.' : 'Enter your name.')) : '';
-      field.setAttribute('aria-invalid', String(invalid));
-      if (invalid && !firstInvalid) firstInvalid = field;
-    }
-    if (firstInvalid) { firstInvalid.focus(); return; }
-    const snapshot = includeWishlist.checked ? new Set(selected) : new Set();
-    const wishlistMessage = groups(snapshot).map(group => `${group.service}\n${group.items.map(item => `• ${item.text}`).join('\n')}`).join('\n\n');
-    const payload = {
-      name: form.elements.name.value.trim(), email: form.elements.email.value.trim(),
-      business: form.elements.business.value.trim(), subject: '17C — Project inquiry',
-      project: form.elements.project.value.trim(),
-      wishlist: wishlistMessage || 'No wishlist included',
-      message: [form.elements.project.value.trim(), wishlistMessage].filter(Boolean).join('\n\n')
-    };
-    const endpoint = form.action;
-    sending = true;
-    submit.disabled = true; form.setAttribute('aria-busy', 'true');
-    submitLabel.textContent = 'Sending…'; status.textContent = 'Sending your ideas to 17C…';
-    render();
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 20000);
-    try {
-      const response = await fetch(endpoint, {
-        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload), signal: controller.signal
-      });
-      const result = await response.json();
-      if (!response.ok || result.ok === false) {
-        const errors = Array.isArray(result.errors) ? result.errors : [];
-        const firstFieldError = errors.find(error => ['name', 'email', 'project'].includes(error.field));
-        errors.forEach(error => {
-          if (!['name', 'email', 'project'].includes(error.field)) return;
-          form.elements[error.field].setAttribute('aria-invalid', 'true');
-          document.querySelector(`#wishlist-${error.field}-error`).textContent = error.message || 'Please check this field.';
-        });
-        if (firstFieldError) form.elements[firstFieldError.field].focus();
-        throw new Error(errors.map(error => error.message).filter(Boolean).join(' ') || 'Please try again in a moment.');
-      }
-      snapshot.forEach(id => selected.delete(id)); save(); form.reset();
-      status.textContent = 'Your inquiry was sent. Thanks for sharing what you’re thinking about!';
-      status.dataset.state = 'success';
-    } catch {
-      status.textContent = 'I couldn’t confirm your inquiry was sent. Your message and selections are kept here. Please try again or contact marielwhitney.design@gmail.com.';
-      status.dataset.state = 'error';
-    } finally {
-      clearTimeout(timeout); sending = false; submit.disabled = false;
-      form.removeAttribute('aria-busy'); submitLabel.textContent = idleSubmitLabel; render();
-    }
-  });
+  window.studioInquiryWishlist = {
+    capture() {
+      const ids = includeWishlist.checked ? new Set(selected) : new Set();
+      const message = groups(ids).map(group => `${group.service}\n${group.items.map(item => `• ${item.text}`).join('\n')}`).join('\n\n');
+      return { ids, message };
+    },
+    setSending(value) { sending = value; render(); },
+    complete(snapshot) { snapshot.ids.forEach(id => selected.delete(id)); save(); }
+  };
   render();
 })();

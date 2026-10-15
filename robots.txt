@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Add the confirmed production sitemap URL using tools/configure_seo.py.
+# Draft policy pages use HTML noindex, follow, rather than robots exclusion.

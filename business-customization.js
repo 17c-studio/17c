@@ -38,8 +38,19 @@ window.studioBusinessReady = (async () => {
         count();
         error.textContent = '';
       };
+      const syncPanel = () => {
+        const viewport = window.visualViewport;
+        const compact = mobile.matches && !panel.hidden;
+        panel.classList.toggle('is-mobile-open', compact);
+        panel.style.setProperty('--panel-top', `${(viewport?.offsetTop || 0) + 16}px`);
+        panel.style.setProperty('--panel-height', `${Math.max(100, (viewport?.height || window.innerHeight) - 32)}px`);
+      };
+      window.visualViewport?.addEventListener('resize', syncPanel);
+      window.visualViewport?.addEventListener('scroll', syncPanel);
+      window.addEventListener('resize', syncPanel);
       const close = (returnFocus = false) => {
         panel.hidden = true;
+        syncPanel();
         toggle.setAttribute('aria-expanded', 'false');
         if (returnFocus) toggle.focus();
       };
@@ -48,8 +59,10 @@ window.studioBusinessReady = (async () => {
         restore();
         panel.hidden = false;
         toggle.setAttribute('aria-expanded', 'true');
+        syncPanel();
         business.focus();
       });
+      document.querySelector('#customization-close')?.addEventListener('click', () => close(true));
       document.addEventListener('pointerdown', event => {
         if (!panel.hidden && !panel.contains(event.target) && !toggle.contains(event.target)) close();
       });
