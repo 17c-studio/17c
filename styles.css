@@ -2868,6 +2868,8 @@ textarea::placeholder {
   max-width: none;
 }
 
+.home-page [data-personalized] { overflow-wrap: anywhere; }
+
 .home-page .header-tagline,
 .home-page .header nav,
 .home-page .button,
@@ -3189,6 +3191,8 @@ textarea::placeholder {
   }
 
   .home-page #hero-title {
+    width: calc(100% + 24px);
+    margin-inline: -12px;
     line-height: 1.1;
   }
 
@@ -3363,6 +3367,7 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
     grid-template-columns: 56px minmax(0, 1fr);
     gap: 12px;
   }
+  .home-page .header { --page-gutter: 16px; }
   :is(.home-page, .services-page) .header nav {
     justify-self: end;
     font-size: 12px;
@@ -3555,8 +3560,12 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 /* Mobile heroes and tap-to-open service cards. */
 @media (max-width: 767px) {
   .cover .prospect-brand, .services-hero .prospect-brand { display: none; }
-  .home-page .cover, .services-page .services-hero { min-height: max(680px, 100svh); }
-  .home-page .service-grid article { min-height: 240px; padding: 72px 24px 32px; }
+  .home-page .cover { min-height: 100svh; }
+  .services-page .services-hero { min-height: max(680px, 100svh); }
+  .home-page .cover-bottom { padding-block: 120px 112px; }
+  .home-page .cover-title-line { opacity: 1; transform: none; animation: none; overflow-wrap: anywhere; }
+  .home-page .cover-title .editorial-label { display: block; margin-bottom: 20px; font-size: 12px; line-height: 1.5; }
+  .home-page .service-grid article { min-height: 240px; padding: 72px 24px 32px; justify-content: flex-start; overflow-anchor: none; }
   .home-page .service-grid article > h3 {
     position: static;
     width: 100%;
@@ -3708,7 +3717,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
     font-size: 12px;
     white-space: nowrap;
   }
-  .home-page .intro-strip { gap: 20px; }
+  .home-page .intro-strip { gap: 20px; flex-wrap: wrap; }
   .home-page .business-names {
     flex: 0 0 100%;
     width: 100%;
@@ -3854,6 +3863,8 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 .dictionary-definition::after { content: ""; position: absolute; inset: 100% 0 -14px; }
 .dictionary-definition[hidden] { display: none; }
 .dictionary-pronunciation { color: var(--muted); }
+.about-background .about-name-answer { overflow: visible; }
+.about-name-story > summary:focus-visible { outline: 2px solid var(--focus-color); outline-offset: 4px; }
 
 .about-mariel-copy > .about-story {
   margin: 0;

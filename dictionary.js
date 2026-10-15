@@ -23,18 +23,18 @@
       trigger.setAttribute('aria-expanded', 'true');
       position();
     };
-    entry.addEventListener('pointerenter', event => {
-      if (event.pointerType !== 'touch') show();
+    // Explicit disclosure works consistently with touch, mouse, and keyboard.
+    trigger.addEventListener('click', () => {
+      if (definition.hidden) show();
+      else hide(entry);
     });
-    entry.addEventListener('pointerleave', () => {
-      if (!entry.contains(document.activeElement)) hide(entry);
-    });
-    trigger.addEventListener('focus', show);
-    trigger.addEventListener('click', show);
     entry.addEventListener('focusout', event => {
       if (!entry.contains(event.relatedTarget)) hide(entry);
     });
     window.addEventListener('resize', position);
+    entry.closest('details')?.addEventListener('toggle', event => {
+      if (!event.currentTarget.open) hide(entry);
+    });
   }
   document.addEventListener('pointerdown', event => {
     entries.forEach(entry => { if (!entry.contains(event.target)) hide(entry); });
