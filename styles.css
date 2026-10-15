@@ -3605,7 +3605,10 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
     pointer-events: none;
   }
   .home-page .possibilities-heading h2 { text-shadow: 0 2px 18px rgb(0 0 0 / 45%); }
-  .home-page .possibility-title-line { transform: none !important; }
+  .home-page .possibility-title-line {
+    display: block;
+    width: 100%;
+  }
   .home-page .possibilities .concept-grid {
     position: absolute;
     inset: 0;
@@ -3647,19 +3650,25 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   .home-page .possibilities .project-preview-card:nth-child(7) { top: 49%; right: -23%; width: 38%; }
   .home-page .possibilities .project-preview-card:nth-child(7) .project-preview { aspect-ratio: 3 / 4; }
   .home-page .possibilities .concept-grid a { pointer-events: auto; }
-  .home-page .possibilities-actions { flex-direction: row; flex-wrap: nowrap; gap: 8px; }
-  .home-page .possibilities-actions a {
-    flex: 1;
-    min-width: 0;
-    width: auto;
-    min-height: 48px;
-    padding: 10px;
-    gap: 6px;
-    font-size: 10px;
-    letter-spacing: 0;
-    white-space: nowrap;
+  .home-page .possibilities-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
   }
-  .home-page .possibilities-actions .possibility-secondary { flex: 1.2; }
+  .home-page .possibilities-actions a {
+    flex: none;
+    min-width: 0;
+    width: 100%;
+    min-height: 54px;
+    justify-content: center;
+    padding: 14px 20px;
+    gap: 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    letter-spacing: 0;
+    white-space: normal;
+  }
   :is(.home-page, .services-page) .footer {
     display: grid;
     grid-template-columns: 1fr auto;
