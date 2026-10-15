@@ -2352,6 +2352,12 @@ textarea::placeholder {
     pointer-events: none;
   }
 
+  .possibilities .project-preview-card:nth-child(8) {
+    bottom: 5%;
+    left: 28%;
+    width: clamp(260px, 30%, 400px);
+  }
+
   .possibilities .project-preview-card:nth-child(7) {
     top: 33%;
     right: 50%;
@@ -3649,6 +3655,11 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   .home-page .possibilities .project-preview-card:nth-child(6) { top: 77%; right: -10%; width: 66%; }
   .home-page .possibilities .project-preview-card:nth-child(7) { top: 49%; right: -23%; width: 38%; }
   .home-page .possibilities .project-preview-card:nth-child(7) .project-preview { aspect-ratio: 3 / 4; }
+  .home-page .possibilities .project-preview-card:nth-child(8) {
+    top: 88%;
+    left: 20%;
+    width: 48%;
+  }
   .home-page .possibilities .concept-grid a { pointer-events: auto; }
   .home-page .possibilities-actions {
     flex-direction: column;
@@ -3917,4 +3928,13 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
     grid-row: 3;
     width: auto;
   }
+}
+
+.home-page .possibilities .project-preview-card:nth-child(8) .project-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgb(14 14 12 / 50%);
+  pointer-events: none;
 }
