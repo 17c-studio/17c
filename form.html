@@ -11,13 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&amp;display=swap">
-<link rel="stylesheet" href="styles.css?v=105">
-  <link rel="stylesheet" href="wishlist.css?v=2">
+<link rel="stylesheet" href="styles.css?v=108">
+  <link rel="stylesheet" href="wishlist.css?v=3">
   <style>
     .form-page { min-height: 100svh; }
-    .form-page .header { position: relative; }
-    .form-page .header nav { gap: clamp(16px, 2vw, 28px); }
-    .form-page .header nav a { display: inline-flex; align-items: center; min-height: 48px; }
     .form-page .wishlist-inquiry { padding: clamp(40px, 6vw, 80px) var(--page-gutter) 80px; }
     .form-page .wishlist-inquiry h1 {
       margin: 0 0 32px;
@@ -28,10 +25,6 @@
       letter-spacing: -.025em;
     }
     .form-page :focus-visible { outline-color: var(--focus-color); }
-    @media (max-width: 700px) {
-      .form-page .header { grid-template-columns: 56px minmax(0, 1fr); gap: 12px; }
-      .form-page .header nav { justify-self: end; gap: 14px; font-size: 12px; }
-    }
   </style>
   <link rel="stylesheet" href="launch.css?v=2">
   <script src="prospects.js?v=14" defer></script>
@@ -62,10 +55,10 @@
    <p class="editorial-label">A partner for what comes next</p>
    <h1 id="wishlist-inquiry-title">Good businesses<br>deserve to be known.</h1>
    <p>You’ve built something worth caring about.<br>Let’s help more people see it.</p>
-   <details class="contact-next"><summary>What happens next?</summary><p>Send me a little about your business and what you have in mind. I’ll review your inquiry and reach out to discuss whether we’re a good fit.</p><p>From there, we’ll get to know your goals, explore possibilities, and put together a proposal tailored to your needs.</p></details>
+   
 
+   <p class="wishlist-storage-note" id="wishlist-storage-note" role="status"></p>
   </div>
-  <p class="wishlist-storage-note" id="wishlist-storage-note" role="status"></p>
   <form id="wishlist-form" action="https://formspree.io/f/xoejkyvk" method="post" aria-describedby="wishlist-required-note">
    <label class="form-honeypot" aria-hidden="true">Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
    <input type="hidden" name="subject" value="17C — Project inquiry">
@@ -77,12 +70,7 @@
     <label>What can I help you with? <span aria-hidden="true">*</span><textarea aria-label="What can I help you with?" name="project" rows="5" required maxlength="5000" aria-describedby="wishlist-project-error"></textarea><span id="wishlist-project-error" class="wishlist-field-error"></span></label>
    </div>
 
-   <div class="wishlist-inquiry-option">
-    <label class="wishlist-include-label"><input id="wishlist-include" name="includeWishlist" type="checkbox" checked aria-describedby="wishlist-option-note"><span>Include my wishlist <span class="wishlist-optional">(optional)</span></span></label>
-    <p id="wishlist-option-note" aria-live="polite">Choose services you’re interested in, then include them with your inquiry.</p>
-    <button id="wishlist-review" class="wishlist-text-button" type="button" aria-haspopup="dialog" aria-controls="wishlist-panel" hidden>Review wishlist</button>
-   </div>
-   <p class="form-privacy">Your inquiry is processed by Formspree. See the <a href="privacy.html">draft Privacy Policy</a>. Please avoid sending sensitive information.</p>
+   
    <div class="wishlist-send"><button class="wishlist-send-button" type="submit"><span id="wishlist-submit-label">Send inquiry</span><span aria-hidden="true">→</span></button></div>
    <p id="wishlist-form-status" role="status" aria-live="polite" tabindex="-1"></p>
   </form>

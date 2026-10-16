@@ -3341,8 +3341,8 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
   }
 }
 
-/* Shared home and services header layout. */
-:is(.home-page, .services-page) .header {
+/* Shared homepage, services, and contact form header. */
+:is(.home-page, .services-page, .form-page) .header {
   --page-gutter: clamp(28px, 6vw, 96px);
   --content-max: 1400px;
   position: absolute;
@@ -3358,33 +3358,35 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
   grid-template-columns: 1fr auto 1fr;
   gap: 15px;
 }
-:is(.home-page, .services-page) .header nav {
+:is(.home-page, .services-page, .form-page) .header nav {
   grid-column: 2;
+  grid-row: 1;
   justify-self: center;
   gap: clamp(16px, 2vw, 28px);
   font-size: 12px;
   line-height: 1.65;
 }
-:is(.home-page, .services-page) .header nav a {
+:is(.home-page, .services-page, .form-page) .header nav a {
   display: inline-flex;
   align-items: center;
   min-height: 48px;
   padding-block: 8px;
 }
-:is(.home-page, .services-page) .header nav a:hover { color: #fff; }
+:is(.home-page, .services-page, .form-page) .header nav a:hover { color: #fff; }
+.form-page .header { position: relative; }
 @media (max-width: 700px) {
-  :is(.home-page, .services-page) .header {
+  :is(.home-page, .services-page, .form-page) .header {
     height: 100px;
     grid-template-columns: 56px minmax(0, 1fr);
     gap: 12px;
   }
-  .home-page .header { --page-gutter: 16px; }
-  :is(.home-page, .services-page) .header nav {
+  :is(.home-page, .services-page, .form-page) .header { --page-gutter: 16px; }
+  :is(.home-page, .services-page, .form-page) .header nav {
     justify-self: end;
     font-size: 12px;
     gap: 10px;
   }
-  :is(.home-page, .services-page) .header nav a {
+  :is(.home-page, .services-page, .form-page) .header nav a {
     min-width: 44px;
     justify-content: center;
   }
