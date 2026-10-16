@@ -41,7 +41,7 @@
   --content-gap: clamp(48px, 6vw, 96px);
 
   --text-label: 10px;
-  --text-meta: 11px;
+  --text-meta: 12px;
   --text-body: 14px;
   --text-card-title: clamp(1.95rem, 2.3vw, 2.7rem);
   --text-section-title: clamp(3rem, 4.5vw, 4.75rem);

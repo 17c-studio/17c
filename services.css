@@ -64,7 +64,8 @@
 .when-open, [open] .when-closed { display: none; }
 [open] .when-open { display: inline; }
 .service-expanded { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(28px, 4vw, 60px); padding: 0 0 52px 100px; }
-.service-explanation p { margin: 0 0 18px; color: var(--muted); }
+.service-expanded > .best-for { grid-column: 1 / -1; margin: 0; }
+.service-explanation p { margin: 0 0 18px; color: #edebe3; }
 .service-deliverables h3 { font-family: var(--sans); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; margin: 0 0 20px; }
 .service-deliverables ul { padding: 0; list-style: none; margin: 0; }
 .service-deliverables li { border-top: 1px solid var(--thread); padding: 9px 0; font-size: 12px; color: var(--muted); }
