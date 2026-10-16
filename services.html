@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&amp;display=swap">
-<link rel="stylesheet" href="styles.css?v=108">
-  <link rel="stylesheet" href="services.css?v=18">
+<link rel="stylesheet" href="styles.css?v=109">
+  <link rel="stylesheet" href="services.css?v=19">
   <link rel="stylesheet" href="wishlist.css?v=3">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
@@ -198,7 +198,7 @@
     <p id="wishlist-option-note" aria-live="polite">Choose services you’re interested in, then include them with your inquiry.</p>
     <button id="wishlist-review" class="wishlist-text-button" type="button" aria-haspopup="dialog" aria-controls="wishlist-panel" hidden>Review wishlist</button>
    </div>
-   <p class="form-privacy">Your inquiry is processed by Formspree. See the <a href="privacy.html">draft Privacy Policy</a>. Please avoid sending sensitive information.</p>
+  
    <div class="wishlist-send"><button class="wishlist-send-button" type="submit"><span id="wishlist-submit-label">Send inquiry</span><span aria-hidden="true">→</span></button></div>
    <p id="wishlist-form-status" role="status" aria-live="polite" tabindex="-1"></p>
   </form>
@@ -210,22 +210,34 @@
    <div id="wishlist-panel-summary" class="wishlist-summary"></div>
    <a class="wishlist-text-button" id="wishlist-inquiry-link" href="#wishlist-inquiry">Let’s see what you have in mind →</a>
   </dialog>
-  <footer class="footer launch-footer wrap">
-    <div class="footer-identity">
-      <a class="wordmark" href="index.html" aria-label="17C Studio home"><img src="assets/optimized/17c-logo-112.png" srcset="assets/optimized/17c-logo-112.png 112w, assets/optimized/17c-logo-224.png 224w" sizes="64px" alt="17C Studio" width="1122" height="1402" loading="lazy" decoding="async"></a>
-      <p>Thoughtful websites. Personal by design.<br>Independent web design in Holland, Michigan.</p>
-      <a href="mailto:marielwhitney.design@gmail.com">marielwhitney.design@gmail.com</a>
+  <footer class="footer studio-footer wrap">
+    <div class="studio-footer-top">
+      <a class="wordmark studio-footer-logo" href="index.html" aria-label="17C Studio home"><img src="assets/optimized/17c-logo-224.png" alt="17C Studio" width="224" height="280" loading="lazy" decoding="async"></a>
+      <div class="studio-footer-contact">
+        <h2>Good businesses deserve to be known.</h2>
+        <a href="mailto:marielwhitney.design@gmail.com">marielwhitney.design@gmail.com</a>
+      </div>
     </div>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="index.html">Home</a><a href="services.html">Services</a>
-      <a href="https://marielwhitney.github.io/portfolio/index.html" target="_blank" rel="noopener noreferrer">Projects</a>
-      <a href="form.html">Contact</a><a href="https://www.instagram.com/17cstudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
-    </nav>
-    <nav class="footer-policies" aria-label="Policies and accessibility">
-      <a href="privacy.html">Privacy Policy (draft)</a><a href="terms.html">Terms of Use (draft)</a><a href="accessibility.html">Accessibility</a>
-    </nav>
-    <small>© <span data-current-year>2026</span> 17C Studio</small>
-    <a class="back-to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    <div class="studio-footer-navigation">
+      <nav class="studio-footer-column" aria-label="Footer navigation">
+        <p class="studio-footer-label">Site</p>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="https://marielwhitney.github.io/portfolio/index.html" target="_blank" rel="noopener noreferrer">Projects</a>
+        <a href="index.html#about-mariel">About</a>
+        <a href="form.html">Contact</a>
+      </nav>
+      <nav class="studio-footer-column" aria-label="Social media">
+        <p class="studio-footer-label">Follow</p>
+        <a href="https://www.linkedin.com/in/mariel-domnenko/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/17cstudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.pinterest.com/marielwhitney/web-design/" target="_blank" rel="noopener noreferrer">Pinterest</a>
+      </nav>
+    </div>
+    <div class="studio-footer-bottom">
+      <small>© <span data-current-year>2026</span> 17C Studio</small>
+      <a class="back-to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
   </footer>
 </body>
 </html>
