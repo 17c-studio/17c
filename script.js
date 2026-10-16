@@ -451,7 +451,7 @@ if (possibilitiesSection && possibilityCards.length) {
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
 
-// A subpixel transform keeps the mobile logo loop smooth; swipes use native scrolling.
+// A subpixel transform keeps the mobile logo loop moving through taps and clicks.
 const logoRow = document.querySelector('.business-names');
 if (logoRow) {
   const mobileLogos = window.matchMedia('(max-width: 767px)');
@@ -487,56 +487,21 @@ if (logoRow) {
     animation.pause();
     animation.currentTime = normalize(logoRow.scrollLeft) / 18 * 1000;
     logoRow.scrollLeft = 0;
-    let resumeTimer;
-    let hovered = false, touching = false, pointerHeld = false, visible = false, nativeScrolling = false;
+    let visible = false;
     let disposed = false;
-    const canRun = () => !disposed && !hovered && !touching && visible && !document.hidden && !logoRow.matches(':focus-visible') && !document.body.classList.contains('motion-paused');
+    const canRun = () => !disposed && visible && !document.hidden && !document.body.classList.contains('motion-paused');
     const sync = () => {
       if (canRun()) {
-        if (nativeScrolling) {
-          animation.currentTime = normalize(logoRow.scrollLeft) / 18 * 1000;
-          logoRow.scrollLeft = 0;
-          nativeScrolling = false;
-        }
         animation.play();
       } else {
         animation.pause();
       }
-    };
-    const useNativeScroll = () => {
-      animation.pause();
-      if (nativeScrolling) return;
-      const position = normalize(Number(animation.currentTime) / 1000 * 18 + logoRow.scrollLeft);
-      animation.currentTime = 0;
-      logoRow.scrollLeft = position;
-      nativeScrolling = true;
     };
     const listeners = [];
     const listen = (target, name, callback, options) => {
       target.addEventListener(name, callback, options);
       listeners.push(() => target.removeEventListener(name, callback, options));
     };
-    listen(logoRow, 'pointerenter', event => { if (event.pointerType === 'mouse') { hovered = true; sync(); } });
-    listen(logoRow, 'pointerleave', () => { hovered = false; sync(); });
-    listen(logoRow, 'focusin', () => { useNativeScroll(); sync(); });
-    listen(logoRow, 'focusout', sync);
-    listen(logoRow, 'pointerdown', () => {
-      clearTimeout(resumeTimer);
-      touching = true;
-      pointerHeld = true;
-      useNativeScroll();
-    }, { passive: true });
-    const release = () => {
-      if (!touching || pointerHeld) return;
-      clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(() => { touching = false; sync(); }, 3000);
-    };
-    const endPointer = () => { pointerHeld = false; release(); };
-    listen(window, 'pointerup', endPointer, { passive: true });
-    listen(window, 'pointercancel', endPointer, { passive: true });
-    listen(logoRow, 'wheel', () => { touching = true; useNativeScroll(); release(); }, { passive: true });
-    // Keep waiting while a swipe's momentum is still moving the native scroller.
-    listen(logoRow, 'scroll', () => { if (touching) release(); }, { passive: true });
     listen(document, 'visibilitychange', sync);
     listen(window, 'studio:motion-change', sync);
     const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); });
@@ -545,7 +510,6 @@ if (logoRow) {
       disposed = true;
       const position = normalize(Number(animation.currentTime) / 1000 * 18 + logoRow.scrollLeft);
       animation.cancel();
-      clearTimeout(resumeTimer);
       observer.disconnect();
       listeners.forEach(remove => remove());
       logoRow.replaceChildren(...originals);

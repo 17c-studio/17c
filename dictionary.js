@@ -9,6 +9,15 @@
     const definition = entry.querySelector('.dictionary-definition');
     const position = () => {
       if (definition.hidden) return;
+      if (window.matchMedia('(max-width: 767px)').matches) {
+        // Anchor the mobile note to the paragraph so it stays inside the copy.
+        definition.style.left = '0';
+        const paragraph = entry.closest('p');
+        const below = paragraph.getBoundingClientRect().top < definition.offsetHeight + 12;
+        definition.style.top = below ? 'calc(100% + 12px)' : 'auto';
+        definition.style.bottom = below ? 'auto' : 'calc(100% + 12px)';
+        return;
+      }
       const bounds = entry.getBoundingClientRect();
       const width = definition.getBoundingClientRect().width;
       const left = Math.max(16, Math.min(bounds.left, window.innerWidth - width - 16));
