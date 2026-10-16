@@ -2802,7 +2802,7 @@ textarea::placeholder {
   }
 
   .about-rail {
-    font-size: 8px;
+    font-size: var(--text-label);
   }
 
   .about-rail-top,
@@ -2811,7 +2811,7 @@ textarea::placeholder {
   }
 
   .about-rail-top span {
-    max-width: 190px;
+    max-width: 210px;
   }
 
   .about-rail-mark {
@@ -3575,8 +3575,21 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   .cover .prospect-brand, .services-hero .prospect-brand { display: none; }
   .home-page .cover { min-height: 100svh; }
   .services-page .services-hero { min-height: max(680px, 100svh); }
-  .home-page .cover-bottom { padding-block: 120px 112px; }
-  .home-page .cover-title-line { opacity: 1; transform: none; animation: none; overflow-wrap: anywhere; }
+  .home-page .cover-bottom { padding: 120px 16px 112px; }
+  .home-page .cover-title {
+    width: 100%;
+    max-width: none;
+    font-size: clamp(1rem, 7vw, 2.75rem);
+  }
+  .home-page .cover-title-line { opacity: 1; transform: none; animation: none; overflow-wrap: normal; white-space: nowrap; }
+  .home-page .cover-title-line[data-personalized] { white-space: normal; overflow-wrap: anywhere; }
+  .home-page #hero-title {
+    width: calc(100% + 2 * var(--page-gutter) - 32px);
+    margin-inline: calc(16px - var(--page-gutter));
+    font-size: clamp(1rem, 7vw, 2.5rem);
+    white-space: nowrap;
+    line-height: 1.15;
+  }
   .home-page .cover-title .editorial-label { display: block; margin-bottom: 20px; font-size: 12px; line-height: 1.5; }
   .home-page .service-grid article { min-height: 150px; padding: 72px 24px 32px; justify-content: flex-start; overflow-anchor: none; }
   .home-page .service-grid article > h3 {
@@ -3632,7 +3645,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
     transform: translate(-50%, -50%);
     pointer-events: none;
   }
-  .home-page .possibilities-heading h2 { text-shadow: 0 2px 18px rgb(0 0 0 / 45%);  font-size: clamp(3rem, 4vw, 3.5rem);}
+  .home-page .possibilities-heading h2 { text-shadow: 0 2px 18px rgb(0 0 0 / 45%);  font-size: clamp(2.5rem, 4vw, 3.5rem);}
   .home-page .possibility-title-line {
     display: block;
     width: 100%;
@@ -3759,7 +3772,17 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   .home-page .business-names > .business-name,
   .home-page .logo-carousel-track > .business-name { align-items: center; justify-content: center; }
   .home-page .business-names:focus-visible { outline: 2px solid var(--focus-color); outline-offset: 4px; }
-  .home-page .business-names.is-rotating { overflow-x: hidden; touch-action: pan-y; scroll-snap-type: none; scroll-behavior: auto; scrollbar-width: none; }
+  .home-page .business-names.is-rotating {
+    flex-basis: 100vw;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    padding-inline: 0;
+    overflow-x: hidden;
+    touch-action: pan-y;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    scrollbar-width: none;
+  }
   .home-page .business-names.is-rotating::-webkit-scrollbar { display: none; }
   .home-page .logo-carousel-track {
     display: flex;
@@ -4110,9 +4133,23 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 }
 @media (max-width: 700px) {
   .home-page .studio-footer { gap: var(--space-12); }
-  .studio-footer-top { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
-  .studio-footer-contact h2 { max-width: 15ch; }
-  .studio-footer-navigation { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .studio-footer-top { grid-template-columns: 88px minmax(0, 1fr); gap: var(--space-4); }
+  .home-page .studio-footer .studio-footer-logo { --footer-logo-width: 95px; }
+  .studio-footer-contact {
+    grid-column: 2;
+    width: 100%;
+    min-width: 0;
+  }
+  .studio-footer-contact h2 {
+    max-width: none;
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  .studio-footer-contact > a { max-width: 100%; font-size: 12px; }
+  .studio-footer-navigation {
+    grid-template-columns: repeat(2, max-content);
+    justify-content: space-around;
+  }
+  .studio-footer-column { align-items: flex-start; text-align: left; }
   .studio-footer-bottom { gap: var(--space-3) var(--space-6); }
  
   .studio-footer-bottom .back-to-top { margin-left: 0; }
