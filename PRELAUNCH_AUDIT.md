@@ -72,7 +72,7 @@ No Lighthouse, field LCP/INP/CLS, real mobile-network, or deployed-cache measure
 
 ### Business, legal, and privacy
 
-- [x] Public business email: **marielwhitney.design@gmail.com**, confirmed for current use during this task.
+- [x] Public business email: **mariel@17c.studio**, confirmed for current use during this task.
 - [ ] Confirm legal operator/registered business name; Holland, Michigan and studio positioning came from the supplied request. No street address is invented.
 - [ ] Review privacy.html and terms.html with appropriate business/legal advice. They are visibly drafts and noindex; they are not finalized policies.
 - [ ] Confirm retention/deletion practices, provider recipients/access, Formspree integrations and CAPTCHA configuration, Calendly cookies/booking practices, and hosting logs/analytics.

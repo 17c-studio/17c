@@ -21,7 +21,7 @@ Read `PRELAUNCH_AUDIT.md` for findings, changes, validation, and remaining relea
 
 All three inquiry forms POST to `https://formspree.io/f/xoejkyvk`. `inquiry.js` shares validation, loading, success, and error handling. `wishlist.js` manages selections on all three inquiry pages and provides optional submission content to the shared handler. HTML POST and native required-field validation work without JavaScript; wishlist inclusion requires JavaScript.
 
-The public business email is `marielwhitney.design@gmail.com`, confirmed for current use on October 15, 2026. Recipient verification, spam/CAPTCHA configuration, domain restrictions, and actual inbox delivery are controlled by Formspree and still need a hosted acceptance test. See `WISHLIST_SETUP.md`.
+The public business email is `mariel@17c.studio`, confirmed for current use on October 15, 2026. Recipient verification, spam/CAPTCHA configuration, domain restrictions, and actual inbox delivery are controlled by Formspree and still need a hosted acceptance test. See `WISHLIST_SETUP.md`.
 
 Contact form details are not saved in localStorage. The optional personalization name and selected service IDs are stored locally. Failed form requests retain inputs only in the current page; a refresh may clear them.
 
