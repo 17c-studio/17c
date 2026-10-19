@@ -1,25 +1,24 @@
 # 17C Studio
 
-A static website for an independent web design studio in Holland, Michigan. Plain HTML, CSS, and JavaScript; no package installation or build step.
+A static website for an independent web design studio serving businesses across the United States. Plain HTML, CSS, and JavaScript; no package installation or build step.
 
 ## Pages
 
-- `index.html`: studio introduction, mobile service cards, About and Sonder story, project examples, testimonial, logos, inquiry.
+- `index.html`: studio introduction, mobile service cards, About and Sonder story, project examples, logos, and contact links.
 - `services.html`: six native service disclosures, wishlist selection and review, inquiry.
-- `form.html`: dedicated inquiry with expandable next steps.
-- `privacy.html`, `terms.html`: clearly marked, noindex drafts requiring business and legal review.
-- `accessibility.html`: practices, limitations, and a contact route. No formal conformance claim.
+- `form.html`: dedicated inquiry with saved wishlist review.
+- `proposal.html`: fictional sample proposal, intentionally noindex and excluded from the sitemap.
 
 ## Preview and checks
 
 Run `python3 -m http.server 8000`, then open `http://localhost:8000/`.
 Run `python3 tools/check_site.py` for local references, fragment targets, duplicate IDs, image alt attributes, ARIA targets, and hardcoded development links in HTML.
 
-Read `PRELAUNCH_AUDIT.md` for findings, changes, validation, and remaining release gates. Older audit files are historical and describe earlier implementations.
+Run `python3 tools/check_seo.py` for metadata, JSON-LD reference and sitemap checks. Read `SEO_AUDIT.md` for the current SEO audit, metadata table, setup steps and verification results. Earlier audit files describe historical implementations.
 
 ## Contact delivery
 
-All three inquiry forms POST to `https://formspree.io/f/xoejkyvk`. `inquiry.js` shares validation, loading, success, and error handling. `wishlist.js` manages selections on all three inquiry pages and provides optional submission content to the shared handler. HTML POST and native required-field validation work without JavaScript; wishlist inclusion requires JavaScript.
+The services and contact inquiry forms POST to `https://formspree.io/f/xoejkyvk`. `inquiry.js` shares validation, loading, success, and error handling. `wishlist.js` manages selections on the services and contact pages and provides optional submission content to the shared handler. HTML POST and native required-field validation work without JavaScript; wishlist inclusion requires JavaScript.
 
 The public business email is `mariel@17c.studio`, confirmed for current use on October 15, 2026. Recipient verification, spam/CAPTCHA configuration, domain restrictions, and actual inbox delivery are controlled by Formspree and still need a hosted acceptance test. See `WISHLIST_SETUP.md`.
 
@@ -27,11 +26,11 @@ Contact form details are not saved in localStorage. The optional personalization
 
 ## Third-party resources
 
-Google Fonts supplies DM Sans, Cormorant Garamond, and Bebas Neue. Pinned jsDelivr scripts provide GSAP 3.13.0, ScrollTrigger 3.13.0, and Lenis 1.3.26. Personalized links can load a Calendly embed. Three organization logos are hotlinked. The draft Privacy Policy documents these actual requests and identifies settings requiring review. No analytics or advertising tracker was found in the source.
+Google Fonts supplies DM Sans, Cormorant Garamond, and Bebas Neue. Pinned jsDelivr scripts provide GSAP 3.13.0, ScrollTrigger 3.13.0, and Lenis 1.3.26. Personalized links can load a Calendly embed. Three organization logos are hotlinked. No analytics or advertising tracker is installed. `analytics-events.js` and `inquiry.js` emit local integration events without sending or storing analytics. See `SEO_AUDIT.md` before connecting a consent-aware analytics adapter.
 
 ## Images and motion
 
-Original images remain in place. The About portrait uses its original file after a conversion defect; other production imagery uses smaller variants in `assets/optimized` with responsive `srcset`, below-fold lazy loading, and dimensions. `python3 tools/optimize_images.py` regenerates variants on macOS using built-in `sips`; it is not needed by the deployed site. The homepage has a pause control for decorative motion, and reduced-motion preferences disable the automatic logo loop and video.
+Original images remain in place. The About portrait and project imagery use smaller variants in `assets/optimized` with responsive `srcset`, below-fold lazy loading, and dimensions. `python3 tools/optimize_images.py` regenerates variants on macOS using built-in `sips`; it is not needed by the deployed site. Reduced-motion preferences are supported. Portrait variants were decoded and resized through Chromium after a prior sips conversion defect; the sips script intentionally leaves them untouched.
 
 ## Personalized prospect links
 
@@ -41,8 +40,8 @@ The JSON and logos are public assets. Include only information authorized for pu
 
 ## Before deployment
 
-1. Complete the review gates in `PRELAUNCH_AUDIT.md`, especially legal drafts, portfolio attribution/permissions, testimonial approval, provider settings, and hosted delivery.
-2. Set the confirmed HTTPS production URL, including any subdirectory, using `python3 tools/configure_seo.py --base-url YOUR_CONFIRMED_HTTPS_URL`. This generates canonical and social URLs, limited organization data, `sitemap.xml`, and a sitemap reference in `robots.txt`. No domain is invented in the repository. Draft legal pages remain excluded from the sitemap and noindex.
-3. After policy approval, replace draft language, add the approved effective date, update all footer/form labels, and remove policy noindex only if appropriate. Do not deploy the drafts as finalized policies.
-4. Upload the six root HTML files, referenced local CSS/JS, `assets`, `logos`, `prospects.json`, `robots.txt`, generated sitemap, and the referenced decorative video. Do not upload `.git`, `.codex`, `.aws`, local audit fixtures, or private working documents.
-5. In the host dashboard, verify HTTPS, redirects, canonical hostname, caching/MIME types, and supported security headers. Test the final deployed URLs and social previews. No deployment was performed during this audit.
+1. Review the current changes and approve deployment. This SEO task did not commit, push or deploy anything.
+2. Production SEO is configured for `https://17c.studio/`. After changing page titles, descriptions, indexability or routes, rerun `python3 tools/configure_seo.py --base-url https://17c.studio/`, then both checks above. The generator uses existing HTML pages and excludes noindex pages from the sitemap.
+3. Keep the sample proposal noindex. It contains illustrative scope and investment, not an actual client engagement.
+4. Deploy the four root HTML files and referenced assets, CSS/JS, `logos`, `prospects.json`, `robots.txt` and `sitemap.xml`. Internal documentation and tooling are not website content.
+5. Enable Enforce HTTPS in GitHub Pages settings and verify preferred-host redirects, caching, canonical URLs and social previews on the live host. Connect Search Console and analytics only with real account configuration.

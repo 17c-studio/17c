@@ -35,9 +35,9 @@ window.studioProspectReady = (async () => {
     if (!href || href.startsWith('#')) return;
     const url = new URL(href, window.location.href);
     const directory = new URL('.', window.location.href);
-    if (url.origin !== directory.origin || !['index.html', 'services.html', 'form.html'].some(page => url.pathname === directory.pathname + page)) return;
+    if (url.origin !== directory.origin || !['', 'index.html', 'services.html', 'form.html'].some(page => url.pathname === directory.pathname + page)) return;
     url.searchParams.set('for', prospect.slug);
-    link.setAttribute('href', url.pathname.slice(directory.pathname.length) + url.search + url.hash);
+    link.setAttribute('href', (url.pathname.slice(directory.pathname.length) || './') + url.search + url.hash);
   });
 
   // On the dedicated contact page, only carry context and prefill organization.

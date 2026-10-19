@@ -61,6 +61,12 @@
         }
         throw new Error('Submission not confirmed');
       }
+      // Confirmed success only. Keep form values and prospect query strings private.
+      const serviceIds = [...new Set([...snapshot.ids || []]
+        .map(id => id.match(/^service-[1-6](?=-)/)?.[0]).filter(Boolean))];
+      window.dispatchEvent(new CustomEvent('studio:analytics', {
+        detail: { name: 'generate_lead', page_path: location.pathname, service_ids: serviceIds }
+      }));
       wishlist?.complete(snapshot);
       form.reset();
       status.textContent = 'Your inquiry was accepted. Thanks for sharing what you’re thinking about!';
