@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#171614">
+<link rel="icon" href="assets/optimized/17c-logo-112.png" type="image/png">
+<title>Zeeland Christian School · Website Refresh · Proposal</title>
+<!--
+  INTERNAL TODO REGISTER - not rendered in the client presentation.
+  RESOLVED: Mariel reports Peter fixed the Financial Aid form and it appeared
+  to work on her latest website check. Removed from active findings and scope.
+  HTML comments remain readable in page source; do not store private information here.
+  Sources: original ZCS meeting transcript; existing proposal scope and prices;
+  mariel@17c.studio is listed in proposal.html, form.html, services.html, and index.html.
+
+  TODO [PRICING]: Confirm Option 2 ($8,250), Option 3 ($15,000), and care rates
+  ($600/month for 6 months; $500/month for 12 months) before issuing an agreement.
+  These are existing proposed figures, not prices agreed in the meeting.
+  Option 1 ($5,500) and its WordPress training/guide were explicitly requested by Mariel.
+  TODO [SCOPE]: Agree the exact priority-page list within the 8-page / 15-page caps;
+  the Option 2 page ideas are priorities to choose from, not additional uncapped pages.
+  Confirm the number of Spanish/Mandarin pages within Option 3's total cap, who
+  supplies approved translations, and the effort involved before issuing an agreement.
+  Any editing-tool migration needs an agreed scope and price before commitment.
+  TODO [TRAINING]: Confirm staff attendees and practical session length. The base
+  session now includes a brief introduction to available website reports; Option 3
+  retains two additional on-site sessions for deeper reporting and page maintenance.
+  TODO [TEAM]: Confirm Peter’s approval role, staff contacts, and feedback deadlines.
+  TODO [NAVIGATION]: Agree Blue Note wording and preserve its emailed access path.
+  TODO [APP]: Confirm app launch plans, content ownership, and whether any connection
+  is supported. The included deliverable is a content/responsibility map, not integration.
+  TODO [CARE]: Confirm what counts as a small design update, responsibility for
+  backups/security with the host, and the post-initial-term renewal rate in the agreement.
+  TODO [COSTS]: Obtain current hosting, domain, plugin, and software renewal amounts.
+  TODO [TERMS]: Approve the existing proposed 15-day invoice period, 30-day overdue
+  pause, two feedback rounds per milestone, 30-day project-pause rule, 30-day fix
+  period, and portfolio permission before issuing the separate agreement.
+  TODO [GOVERNING LAW]: Confirm jurisdiction. The former [Michigan] placeholder
+  was not an approved fact and is intentionally omitted from the public summary.
+  TODO [SCHEDULING]: Add Mariel's actual calendar URL when supplied. Peter requested
+  a few days to review, then a calendar link. No meeting date is agreed.
+  TODO [CONTACT]: Add a verified phone number only if Mariel wants one displayed.
+  TODO [EVIDENCE]: Verify meeting findings before work; add current screenshots
+  if useful. No screenshot files were supplied. Text observations remain visible.
+  TODO [LAUNCH QA]: Verify the proposal in desktop/mobile browsers, check the remote
+  video and email-app handoff, and review print output. Source and script checks
+  do not establish live playback, email delivery, or visual correctness.
+  Confirm current impact figures and school-history dates before publishing them
+  as refreshed website copy. Existing draft referenced 1915 and 160 students / 81 families.
+  TODO [MEDIA]: Confirm permission for proposal use of ZCS's supplied/public video.
+  TODO [TESTIMONIAL]: Verify wording, attribution, and proposal-use permission for
+  the Travis / Glass House Creative Community quote before restoring it.
+  TODO [ACCEPTANCE]: This page prepares a non-binding email reply, not an electronic
+  signature. No submission service or signed-copy delivery is configured. If on-page
+  signing is desired later, supply an endpoint, finalize terms, and test delivery
+  before enabling it. Never add credentials to this file.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+<style>
+
+:root {
+  /* Match the live site's default dark theme and editorial type scale. */
+  color-scheme: dark;
+  --paper:#171614; 
+   --ink:#f6f5f1; --muted:#c2bcb3;
+  --accent:#f6f5f1; --accent-ink:#171614; --soft:#24221f; --line:#77716a;
+  --yellow:#c8b366; --yellow-line:rgb(200 179 102 / 32%);
+  --focus:#c8b366;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"DM Sans",Arial,sans-serif;
+  --gutter:clamp(24px,4vw,64px); --section-space:clamp(64px,7vw,96px);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:150px}
+html.lenis{scroll-behavior:auto}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.8 var(--sans);-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+a{color:inherit;text-underline-offset:5px}
+a:hover{color:#fff}
+img{max-width:100%;height:auto}
+::selection{background:#c8bda9;color:#171614}
+:focus-visible{outline:2px solid var(--focus);outline-offset:5px}
+.skip{position:absolute;left:var(--gutter);top:-100px;background:var(--ink);color:var(--paper);padding:12px 18px;z-index:100}
+.skip:focus{top:12px}
+/* Match the shared homepage/services header, over the proposal video. */
+.top{position:absolute;inset:0 0 auto;z-index:50;width:min(100%,1400px);max-width:1400px;height:118px;margin:0 auto;padding:0 clamp(28px,6vw,96px);display:grid;grid-template-columns:1fr auto;align-items:center;gap:15px;background:transparent;color:#f6f5f1}
+.top .header-brand{display:flex;align-items:center;min-width:0}
+.top .wordmark{display:block;line-height:0;text-decoration:none}
+.top .wordmark img{display:block;width:8rem;height:8rem;object-fit:contain;filter:brightness(0) saturate(100%) invert(91%) sepia(9%) saturate(190%) hue-rotate(2deg) brightness(99%) contrast(88%)}
+.top nav{grid-column:2;grid-row:1;justify-self:end;display:flex;align-items:center;gap:clamp(16px,2vw,28px);font-size:12px;font-weight:500;line-height:1.65;letter-spacing:.04em}
+.top nav a{display:inline-flex;align-items:center;min-height:48px;padding-block:8px;color:inherit;text-decoration:none}
+.top nav a:hover{color:#fff}
+.top .nav-cta{gap:24px;padding:12px 20px;border:1px solid var(--line);background:var(--ink);color:var(--paper);white-space:nowrap}
+.top .nav-cta:hover{background:#d1cbc3;color:var(--paper)}
+.top .nav-cta span{display:inline-block}
+.top .arrow-drift{animation:proposal-header-arrow 4s ease-in-out infinite}
+@keyframes proposal-header-arrow{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
+@media(max-width:700px){
+  .top{height:100px;padding-inline:16px;grid-template-columns:56px minmax(0,1fr);gap:12px}
+  .top .wordmark img{width:56px;height:70px}
+  .top nav{justify-self:end;gap:10px}
+  .top nav a{min-width:44px;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){.top .arrow-drift{animation:none}}
+section{padding:var(--section-space) 0}
+.wrap,.wide{position:relative;max-width:1280px;margin:auto;padding:0 var(--gutter)}
+.eyebrow,.tier,th,.card h5{font-size:12px;font-weight:500;line-height:1.5;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.eyebrow{margin:0 0 24px}
+h1,h2,h3,h4{margin:0;color:var(--ink)}
+h1,h2,h3{font-family:var(--serif);font-weight:400}
+h1{font-size:clamp(56px,6.6vw,96px);line-height:.98;letter-spacing:-.035em;margin:0 0 40px;max-width:1000px;text-wrap:balance}
+h2{font-size:clamp(40px,4.5vw,64px);line-height:1.05;letter-spacing:-.025em;margin-bottom:32px;text-wrap:balance}
+h3{font-size:34px;line-height:1.15;margin:40px 0 20px}
+h4{font:500 15px/1.5 var(--sans);margin:32px 0 10px}
+p{margin:0 0 20px}
+p:not(.eyebrow),li{overflow-wrap:break-word}
+ul,ol{padding-left:20px;margin:0 0 24px}
+li{margin-bottom:10px}
+strong{font-weight:600}
+.wrap>p:not(.eyebrow),.wrap>ul,.wrap>ol{color:var(--muted)}
+.wrap strong{color:var(--ink)}
+hr.rule{border:0;border-top:1px solid var(--line);max-width:calc(1280px - var(--gutter)*2);margin:0 auto}
+.lede{font-size:18px;line-height:1.7;color:var(--muted);max-width:720px}
+.panel{background:var(--soft);border:1px solid var(--line);padding:clamp(24px,3vw,40px);margin:32px 0}
+.panel p:last-child,.panel ul:last-child{margin-bottom:0}
+#top{position:relative;isolation:isolate;overflow:hidden;padding:calc(100px + clamp(64px,7vw,104px)) 0 112px;background:#171614}
+#top::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgb(23 22 20 / 90%),rgb(23 22 20 / 72%)),linear-gradient(0deg,#171614,transparent 45%);pointer-events:none}
+#top .wrap{position:relative;z-index:2;display:block}
+#top>.hero{position:absolute;inset:0;z-index:0;margin:0;pointer-events:none}
+#top .hero video{display:block;width:100%;height:100%;object-fit:cover;background:#171614}
+#top .hero figcaption{position:absolute;right:var(--gutter);bottom:24px;color:#f6f5f1;font-size:10px}
+#top .wrap>p:not(.eyebrow){max-width:640px;color:#f6f5f1}
+#top .eyebrow{color:#d1cbc3}
+#introduction{background:#edebe3;color:#45403a;text-align:center;display:flex;align-items:center;justify-content:center}
+#introduction .intro-copy{width:100%;max-width:768px;padding-inline:var(--gutter);display:flex;flex-direction:column;align-items:center}
+#introduction p{color:inherit}
+#introduction .lede{font:italic 32px/1.2 var(--serif);color:inherit}
+#introduction p:last-child{margin-bottom:0}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:56px 0 40px}
+.card{position:relative;display:flex;flex-direction:column;background:var(--soft);border:1px solid var(--line);padding:32px 24px;min-width:0}
+.card.rec{border-color:var(--line)}
+.badge{position:absolute;left:-1px;right:-1px;top:-29px;background:var(--ink);color:var(--paper);padding:7px 24px;font-size:9px;line-height:1.6;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.card h3{font-size:32px;margin:20px 0 12px}
+.price{font:400 58px/1.05 var(--serif);letter-spacing:-.035em;margin:12px 0 16px}
+.card .when{color:var(--muted);font-size:12px;min-height:44px}
+.card h5{margin:28px 0 14px}
+.card ul{font-size:13px;color:var(--muted)}
+.card .best{margin:auto 0 0;padding-top:24px;border-top:1px solid var(--line);font-size:13px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:32px 0}
+.two>.panel{margin:0}
+table{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px}
+th,td{text-align:left;padding:18px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft)}
+td{color:var(--muted)}
+.steps{list-style:none;padding:0;counter-reset:step}
+.steps li{counter-increment:step;position:relative;padding:24px 0 24px 56px;margin:0;border-top:1px solid var(--line)}
+.steps li::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:27px;color:var(--muted);font:12px/1.8 var(--sans)}
+.steps strong{display:block;margin-bottom:10px}
+.fig{margin:32px 0;min-width:0}
+.fig img{display:block;width:100%;height:auto}
+.fig figcaption{font-size:12px;line-height:1.8;color:var(--muted);margin-top:16px}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 32px;margin:40px 0}
+.finding-card{margin:0;padding:24px;border:1px solid var(--line);background:var(--soft)}
+.finding-card p{margin:0;font-size:14px;line-height:1.8}
+.finding-list{list-style:none;padding:0;margin:32px 0}
+.finding-list li{border-top:1px solid var(--line);padding:20px 0;margin:0;color:var(--muted)}
+.finding-list strong{color:var(--ink)}
+.two>.panel h4{margin:0 0 16px}
+.card li strong{color:var(--ink)}
+.callout{display:inline-block;font-size:10px;margin-right:12px;color:var(--ink);border-bottom:1px solid var(--line)}
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:32px 0}
+.quote{border-block:1px solid var(--line);padding:32px 0}
+.quote>p{font:italic 32px/1.3 var(--serif)}
+.who{display:flex;align-items:center;gap:16px;font-size:12px;color:var(--muted)}
+.av{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--line);flex:none}
+.terms h4{margin:24px 0 8px}
+.terms p{font-size:14px}
+form.accept{padding:clamp(24px,4vw,48px);background:var(--soft);border:1px solid var(--line);margin:32px 0}
+label{display:block;font-size:12px;font-weight:500;margin:24px 0 10px}
+form.accept>label:first-child{margin-top:0}
+input[type=text],input[type=email],select,textarea{width:100%;min-height:48px;padding:12px 14px;font:inherit;border:1px solid var(--line);border-radius:0;background:var(--paper);color:var(--ink)}
+textarea{resize:vertical}
+.reply-help{font-size:12px;color:var(--muted);margin-top:16px}
+#reply-preview{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+.signature{font:italic 40px/1.3 var(--serif);margin:32px 0 0}
+.check{display:flex;gap:12px;align-items:flex-start;line-height:1.8}
+.check input{width:18px;height:18px;flex:none;margin:3px 0 0;accent-color:var(--ink)}
+button.go{min-height:48px;padding:16px 24px;margin-top:16px;border:1px solid var(--line);border-radius:0;background:var(--ink);color:var(--paper);font:500 12px/1.5 var(--sans);letter-spacing:.04em;cursor:pointer}
+button.go:hover{background:#d1cbc3}
+#formnote{margin:16px 0 0;font-size:13px}
+.hp{position:absolute;left:-9999px}
+footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px solid var(--line);font-size:12px;line-height:2;color:var(--muted)}
+@media(max-width:1000px){
+  .cards{gap:16px}.card{padding:24px 18px}.card h3{font-size:28px}.price{font-size:48px}
+}
+@media(max-width:760px){
+  html{scroll-padding-top:110px}
+  #top{padding-top:148px}
+  body{font-size:14px}
+  h1{font-size:clamp(48px,10vw,72px)}h2{font-size:42px}
+  .cards,.two,.shots,.quotes{grid-template-columns:1fr}
+  .cards{gap:48px}.card{padding:32px}.card h3{font-size:36px}.price{font-size:64px}.card .when{min-height:0}
+  .two{gap:24px}.shots{gap:32px}
+  th,td{padding:14px 8px;font-size:12px;overflow-wrap:anywhere}
+  .check{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{
+  @page{margin:18mm}
+  :root{color-scheme:light;--paper:#fff;--soft:#fff;--ink:#171614;--muted:#45403a;--soft:#f0efeb;--line:#77716a;--gutter:0px;--section-space:24px}
+  body{font-size:10pt;line-height:1.5}
+  .top,form.accept,.skip{display:none!important}
+  #top{padding:24px 0;background:transparent}
+  #top::before,#top>.hero{display:none!important}
+  #top .wrap>p:not(.eyebrow),#top .eyebrow{color:var(--ink)}
+  #top .wrap{display:block}
+  h1{font-size:40pt}h2{font-size:28pt}h3{font-size:20pt}h2,h3,h4{break-after:avoid}
+  .card,.quote,.panel,.fig,.finding-card,tr{break-inside:avoid}
+  .cards{grid-template-columns:1fr;gap:32px;margin-top:40px}.card{display:block;padding:20px}.card .best{margin-top:20px}
+  .badge{background:#eee;color:#171614;border:1px solid var(--line)}
+  .price{font-size:36pt}  a{color:inherit}.quote>p{font-size:22pt}footer{font-size:9pt}
+}
+
+/* Proposal chapter index, matching the services page. */
+.proposal-body{display:grid;grid-template-columns:160px minmax(0,1fr);gap:clamp(32px,4vw,64px);max-width:1400px;margin-inline:auto;padding-inline:var(--gutter)}
+.service-index{position:sticky;top:32px;align-self:start;display:flex;flex-direction:column;gap:6px;padding:32px 0;max-height:calc(100svh - 64px);overflow-y:auto}
+.index-logo{display:block;width:72px;height:90px;object-fit:contain;object-position:left;filter:brightness(0) invert(1);margin:0 0 4px 10px;align-self:flex-start;flex-shrink:0}
+.service-index a{display:flex;align-items:center;gap:12px;min-height:40px;padding:8px 0 8px 10px;border-left:1px solid var(--line);color:var(--muted);text-decoration:none;font-size:12px;line-height:1.4;transition:color .2s,border-color .2s}
+.index-number{font-size:10px;opacity:.7}
+.service-index a:hover,.service-index a[aria-current]{color:var(--ink);border-color:var(--line)}
+/* One shared content column for every proposal chapter. */
+.proposal-chapters{min-width:0}
+.proposal-chapters section>.wrap,.proposal-chapters section>.wide{width:100%;max-width:none;margin-inline:0;padding-inline:0}
+.proposal-chapters section>.wrap>.eyebrow,.proposal-chapters section>.wide>.eyebrow{position:static;max-width:none;margin:0 0 16px}
+.proposal-chapters h2{margin-bottom:24px}
+.proposal-chapters h4{margin-top:32px;margin-bottom:12px}
+.proposal-chapters .two>.panel h4{margin-top:0}
+.proposal-chapters .lede{max-width:none}
+.proposal-chapters section>.wrap>:last-child,.proposal-chapters section>.wide>:last-child{margin-bottom:0}
+.proposal-chapters hr.rule{max-width:none}
+@media(max-width:900px){.proposal-body{display:block}.service-index{display:none}}
+@media print{.proposal-body{display:block;padding:0}.service-index{display:none!important}}
+/* Yellow is reserved for chapter dividers; other borders use the shared gray. */
+#introduction{border-block:1px solid var(--line)}
+.proposal-chapters hr.rule{border-color:var(--yellow-line)}
+</style>
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header top">
+    <div class="header-brand"><a class="wordmark" href="./" aria-label="17C home"><img class="header-monogram" src="assets/optimized/17c-logo-112.png" srcset="assets/optimized/17c-logo-112.png 112w, assets/optimized/17c-logo-224.png 224w" sizes="64px" alt="17C Studio" width="1122" height="1402"></a></div>
+    <nav aria-label="Proposal action">
+      <a class="nav-cta" href="#accept-section">Sign now <span class="arrow-drift" aria-hidden="true">→</span></a>
+    </nav>
+  </header>
+
+<main id="main">
+
+<section id="top">
+    <figure class="fig hero">
+      <video autoplay muted loop playsinline preload="metadata" id="hero-video" aria-hidden="true" tabindex="-1">
+        <source src="https://www.zcs.org/wp-content/uploads/2023/02/ZCS_Website_Banner-1.mp4" type="video/mp4">
+        Your browser doesn’t support embedded video. <a href="https://www.zcs.org/wp-content/uploads/2023/02/ZCS_Website_Banner-1.mp4">Watch the Zeeland Christian School video.</a>
+      </video>
+      <figcaption id="hero-video-caption">Video: Zeeland Christian School.</figcaption>
+    </figure>
+  <div class="wrap">
+    <p class="eyebrow">Proposal</p>
+    <h1>Zeeland Christian School: Website Refresh, Search Visibility and Ongoing Support</h1>
+
+
+  </div>
+</section>
+
+<section id="introduction" aria-label="A note for Peter">
+  <div class="intro-copy">
+    <p class="lede">Hi Peter,</p>
+    <p>Thank you for the time on Thursday, October 15. I enjoyed hearing the story behind Zeeland Christian, and the way you described the next three years stayed with me.</p>
+    <p>I put this proposal on a webpage so you can explore the options, share them with your team, and come back to the details when you need them.</p>
+    <p>I’d love to help more families see what makes ZCS special, while making the website easier for your team to look after. We can start with the immediate improvements and choose the level of ongoing support that fits.</p>
+  </div>
+</section>
+
+<div class="proposal-body">
+  <nav class="service-index" aria-label="Proposal sections" data-lenis-prevent>
+    <img class="index-logo" src="assets/optimized/17c-logo-112.png" width="40" height="50" alt="17C Studio">
+    <a href="#overview"><span class="index-number" aria-hidden="true">01</span><span class="index-name">Overview</span></a>
+    <a href="#noticed"><span class="index-number" aria-hidden="true">02</span><span class="index-name">Initial findings</span></a>
+    <a href="#scope"><span class="index-number" aria-hidden="true">03</span><span class="index-name">What I’ll do</span></a>
+    <a href="#questions"><span class="index-number" aria-hidden="true">04</span><span class="index-name">Questions</span></a>
+    <a href="#timeline"><span class="index-number" aria-hidden="true">05</span><span class="index-name">Timeline</span></a>
+    <a href="#about"><span class="index-number" aria-hidden="true">06</span><span class="index-name">How I work</span></a>
+    <a href="#investment"><span class="index-number" aria-hidden="true">07</span><span class="index-name">Investment</span></a>
+    <a href="#payment"><span class="index-number" aria-hidden="true">08</span><span class="index-name">Payment</span></a>
+    <a href="#assumptions"><span class="index-number" aria-hidden="true">09</span><span class="index-name">Assumptions</span></a>
+    <a href="#terms"><span class="index-number" aria-hidden="true">10</span><span class="index-name">Short terms</span></a>
+    <a href="#accept-section"><span class="index-number" aria-hidden="true">11</span><span class="index-name">Next step</span></a>
+  </nav>
+  <div class="proposal-chapters">
+<section id="overview">
+  <div class="wrap">
+    <p class="eyebrow">Overview</p>
+    <h2>A clearer welcome for new families. Less work for your team.</h2>
+    <p>You described a website that works, but has grown “arms and legs” as new pages and requests have been added. It’s “due for a cleanup.” With open house and enrollment season approaching, the first priority is helping prospective families find information, ask a question, and take the next step.</p>
+    <h4>What I heard you want</h4>
+    <ul>
+      <li><strong>A simpler admissions experience.</strong> Clear, consistent steps to inquire, visit, and apply.</li>
+      <li><strong>A refresh of the WordPress site you already have.</strong> Better navigation, reliable layouts on phones and tablets, and more room for the school’s story.</li>
+      <li><strong>Help with search visibility.</strong> Make the programs and information families need easier to find through Google and AI search tools.</li>
+      <li><strong>A partner for design and technical support.</strong> Your team can keep handling everyday content changes, with someone available for the bigger questions.</li>
+      <li><strong>A choice of scope and commitment.</strong> Project options, plus six-month and one-year care plans.</li>
+    </ul>
+    <div class="panel">
+      <p><strong>Your three-year vision, as I heard it:</strong> technical support is no longer a headache, the website stays fresh, ZCS keeps pace with changes in search, and the prospective family experience is “second to none.” You want the site to become an example other schools can learn from.</p>
+    </div>
+    <h4>Tell the story families should see.</h4>
+    <p>Your history, Christian education, Spanish and Mandarin immersion, and outdoor learning offer plenty to talk about. The homepage can give families a clearer picture of those experiences, using the photos, videos, and language your team already creates.</p>
+    <h4>Help families find their next step.</h4>
+    <p>Prospective families come first, with clear routes for current families and donors too. Consistent buttons and helpful explanations can make it easier to understand what happens before an inquiry, tour, or application.</p>
+    <h4>Measure what changes.</h4>
+    <p>You planned to ask your admissions director about inquiry and tour numbers. I’ll review what’s already tracked, then help connect website activity with those records where the admissions tools allow it. That gives us a starting point for judging improvements, rather than guessing at enrollment results.</p>
+  </div>
+</section>
+
+<hr class="rule">
+<section id="noticed">
+  <div class="wide">
+    <p class="eyebrow">Initial findings</p>
+    <h2>What came up in our conversation.</h2>
+    <p class="lede">These observations come from our meeting walkthrough and your team’s experience. I haven’t re-tested them as part of this proposal review. I’ll verify each one, agree on the intended behavior with your team, and confirm where the change needs to happen.</p>
+    <div class="shots">
+      <article class="finding-card">
+        <p><span class="callout">1</span><strong>Homepage video on mobile.</strong> You mentioned during our conversation that the homepage video doesn’t always load on phones. I’ll check playback on mobile and review the video settings and delivery with your current host if needed, before recommending a fix.</p>
+      </article>
+      <article class="finding-card">
+        <p><span class="callout">2</span><strong>Admissions buttons.</strong> The walkthrough raised inconsistent destinations across Inquire, Visit, and Apply. Inquire opened a form in some places and a portal sign-in on the homepage; Apply also led to sign-in. I’ll map all three routes and confirm when an account is actually needed.</p>
+      </article>
+      <article class="finding-card">
+        <p><span class="callout">3</span><strong>English / Traditional program link.</strong> The English link under Explore appeared to open the outdoor program. We found a separate Traditional page during the call. I’ll check whether the link has since been corrected and confirm the right label and destination.</p>
+      </article>
+      <article class="finding-card">
+        <p><span class="callout">4</span><strong>Footer social links.</strong> Several links appeared broken or led somewhere unexpected. I’ll check each one against ZCS’s current social accounts.</p>
+      </article>
+    </div>
+    <h3>The rest of the first review</h3>
+    <ul class="finding-list">
+      <li><strong>Clickable contact email addresses.</strong> The walkthrough found email text that had to be copied and pasted. I’ll check the contact page and make the addresses open an email app with a click.</li>
+      <li><strong>A lighter first inquiry.</strong> Forms reviewed during the call asked for a child’s birthday, current school, and mailing address. I’ll ask admissions which details are needed at first contact and which can wait.</li>
+      <li><strong>A clearer tour scheduling process.</strong> The tour request didn’t make it clear how to choose a time. I’ll confirm whether families should select an available slot, suggest a time, or wait for staff to arrange the visit, then make those instructions clear.</li>
+      <li><strong>Yellow and white color combinations.</strong> Contrast concerns came up during the walkthrough. I’ll check text and buttons for accessibility and adjust the combinations that are difficult to read while keeping the ZCS identity.</li>
+      <li><strong>Mobile and tablet formatting.</strong> You mentioned differences after desktop edits, and we discussed shifting buttons and the About page’s core values. I’ll test those areas at phone, tablet, and desktop sizes and address the confirmed layout issues.</li>
+    </ul>
+    <div class="two">
+      <div class="panel">
+        <h4>Changes within WordPress</h4>
+        <p>Link destinations, clickable email addresses, button labels, color combinations, and page formatting can usually be adjusted in the existing site. I’ll verify the cause before making changes.</p>
+      </div>
+      <div class="panel">
+        <h4>Changes that need another system</h4>
+        <p>Inquiry fields, tour availability, and account requirements may be controlled by an external admissions system. Reviewing the options and updating website links and instructions are included. Changes inside that system depend on its settings, access, and provider support; any extra work or cost will be agreed first.</p>
+      </div>
+    </div>
+    <h3>What I’d keep</h3>
+    <p>The navigation that stays visible as you scroll, clear tuition information, your school history, and your team’s photography and videos are useful foundations. I’d build on those strengths while keeping the path for new families clear.</p>
+  </div>
+</section>
+
+<hr class="rule">
+<section id="scope">
+  <div class="wrap">
+    <p class="eyebrow">What I’ll do</p>
+    <h2>Start with the essentials. Build from there.</h2>
+    <h4>Check and fix the immediate issues.</h4>
+    <p>I’ll start with the admissions paths, program navigation, footer links, and contact email addresses. Confirmed WordPress fixes come first, alongside color contrast checks, phone and tablet testing, and investigation of the homepage video.</p>
+    <h4>Make the admissions steps clear.</h4>
+    <p>I’ll create a reusable Inquire / Visit / Apply button set with consistent labels and agreed destinations. With your admissions team, I’ll review the information requested at first contact and explain how tour scheduling works. Changes to externally managed forms or scheduling depend on what that system supports.</p>
+    <h4>Give your staff a useful handoff.</h4>
+    <p>Every option includes <strong>WordPress Training &amp; Handoff</strong>: one live WordPress training session for relevant ZCS staff and a custom, easy-to-follow documentation guide. We’ll use your existing WordPress setup to practice editing text, swapping photos, updating links, and checking pages on mobile before publishing. We’ll also look at the available website reports so admissions staff know where to find the numbers and what they mean.</p>
+    <h4>Give the school’s story more room.</h4>
+    <p>Options 2 and 3 build on the essentials with refreshed pages that explain the programs, share your history, and show what learning at ZCS looks like. I’ll work with the messaging and media your team provides.</p>
+    <h4>Make useful information easier to find.</h4>
+    <p>I’ll put agreed FAQ information directly on the website and improve page titles, descriptions, and organization so families and search tools can understand it. Option 3 adds Spanish and Mandarin pages for families searching in those languages.</p>
+    <h4>Understand what’s working.</h4>
+    <p>I’ll review existing analytics and set up tracking for the website’s admissions buttons and any forms we can measure. Completed inquiries and bookings inside another system depend on the reporting and access it provides.</p>
+    <h4>Choose support after launch.</h4>
+    <p>An optional care plan covers ongoing technical support, search improvements, and small design updates. Your team keeps handling the everyday content changes.</p>
+    <h3>What’s outside this scope</h3>
+    <p>A ground-up rebuild, a move away from WordPress, and building the school app are separate projects. ZCS provides new photos, videos, and approved content. Replacing an admissions system, building a custom connection to it, or paying for provider changes is also outside this quote. If we find a need for additional work, I’ll explain it and agree on a price with you before starting.</p>
+    <p>The options below spell out the page counts and deliverables included at each level.</p>
+  </div>
+</section>
+
+<hr class="rule">
+<section id="questions">
+  <div class="wrap">
+    <p class="eyebrow">Questions answered up front</p>
+    <h2>The questions you may be asking.</h2>
+    <h4>Why not start over with a full rebuild?</h4>
+    <p>You said it would be easier to make decisions if we focus on improving the site you already have. That gives us a practical place to start: resolve the immediate issues, make admissions clearer, and refresh the pages families rely on. Option 3 carries the design further across the site. I’ll review the editing tools before recommending any change to them.</p>
+    <h4>Does my team have to learn something new?</h4>
+    <p>We’ll start with the WordPress setup your team already uses. Every option includes one live training session and a custom documentation guide for everyday updates, including how to check mobile layouts. If we agree on a change to the editing tools in Option 3, the additional training will cover that change too.</p>
+    <h4>What about the support you already have?</h4>
+    <p>You said you’d consider bringing refresh work and technical support together with me. I’ll first confirm what Nerdy Nonprofit currently handles and coordinate any handoff with you. Hosting can stay where it is if that works for ZCS, and we’ll make sure responsibilities and account access are clear.</p>
+    <h4>Do families really use their phones?</h4>
+    <p>I’d like to show you instead of guess. Once I have access to your analytics, I’ll pull the share of visits that come from phones and tell you what it says. If I’m wrong, I’ll say so.</p>
+    <h4>How does this fit with the school app?</h4>
+    <p>You hope the app will handle the teacher blog, calendar, and hot lunch menu. Option 3 includes a written map of what belongs where, who keeps it current, and how families get to it. We’ll confirm what the app can support before suggesting any technical connection.</p>
+  </div>
+</section>
+
+<hr class="rule">
+<section id="timeline">
+  <div class="wrap">
+    <p class="eyebrow">Timeline</p>
+    <h2>A practical sequence, with the urgent work first.</h2>
+    <ol class="steps">
+      <li><strong>Week 1 · Access and verification</strong> Once the separate agreement is signed and the first payment is in, I’ll review WordPress, analytics, and the admissions links. The Inquire / Visit / Apply routes are the first check. I’ll make the confirmed WordPress fixes and flag anything that needs the host or another provider.</li>
+      <li><strong>Weeks 2–3 · Admissions paths and handoff</strong> I’ll standardize the buttons, review inquiry and tour steps with admissions, test layouts and contrast, investigate mobile video loading, and set up the agreed tracking and search improvements. Option 1 finishes with the live WordPress training session and custom guide.</li>
+      <li><strong>Weeks 4–8 · Refreshed pages</strong> Options 2 and 3 continue with the homepage, About, and other agreed pages. Your team provides approved messaging and media. Peter coordinates decisions, with input from your marketing and communications specialists and admissions director. We’ll review the changes together and deliver the WordPress handoff at your project’s launch.</li>
+      <li><strong>Weeks 9–12 · Broader improvements</strong> Option 3 continues with the additional pages, Spanish and Mandarin content, media direction, app planning, and two additional on-site training sessions.</li>
+    </ol>
+    <p>Allow about 3 weeks for Option 1, 8 weeks for Option 2, and 12 weeks for Option 3. These are planning estimates from our agreed kickoff date, after the separate agreement is signed and the first payment is received, with timely access, content, and feedback. External provider work may affect the relevant dates; I’ll keep you informed.</p>
+    <p>If you choose a care plan, it starts when your project launches.</p>
+  </div>
+</section>
+
+<hr class="rule">
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">How I work</p>
+    <h2>One person, invested from the first conversation onward.</h2>
+    <p>Your school’s history and story are what drew me into this conversation. I want families to see the care behind the programs, understand what makes ZCS different, and picture their children learning there. That starts with getting to know your school and listening to the people who tell its story every day.</p>
+    <h4>A partner, not a vendor</h4>
+    <p>I’ll learn how your school works and involve your team as we make decisions. If you choose ongoing care, we’ll review progress each quarter and decide together what needs attention next.</p>
+    <h4>You work directly with me</h4>
+    <p>You’ll work directly with me, from the first review through launch. You’ll know who to ask and what I’m working on.</p>
+    <h4>You keep the keys</h4>
+    <p>Your domain, hosting and accounts stay in ZCS’s name. I’m added as a user, and you can take your site anywhere, any time.</p>
+    <h4>One price, no clock</h4>
+    <p>I price the outcome, not the hours. If something takes me longer than I expected, that’s my problem, not yours.</p>
+    <h3>My process</h3>
+    <ol class="steps">
+      <li><strong>Listen</strong> We’ve had the discovery call. We’ll walk through this proposal together, and you tell me what I’ve missed.</li>
+      <li><strong>Get set up</strong> You add me as a user, and I get access to WordPress, analytics and hosting details.</li>
+      <li><strong>Fix, measure, build</strong> The quick fixes first, then tracking, then the story, with a check-in each week and feedback gathered in one place.</li>
+      <li><strong>Launch and care</strong> We review the finished work, complete your training and guide, and go live together. If you choose a care plan, ongoing support begins at launch.</li>
+    </ol>
+  </div>
+</section>
+
+<hr class="rule">
+<section id="investment">
+  <div class="wide">
+    <p class="eyebrow">Investment</p>
+    <h2>Three ways to do this.</h2>
+    <p class="lede">The proposed fixed project fees below include WordPress training and a custom guide. Options 2 and 3 build on Option 1. The admissions-system limits described above apply to every option.</p>
+    <div class="cards">
+      <article class="card" id="opt1">
+        <span class="tier">Option 1</span>
+        <h3>Fix and Measure</h3>
+        <div class="price">$5,500</div>
+        <p class="when">About 3 weeks</p>
+        <p><strong>Goal:</strong> Make the essential steps easier for families and give your team a clear starting point for future improvements.</p>
+        <h5>You get</h5>
+        <ul>
+          <li><strong>Priority WordPress fixes.</strong> Verify and correct the English / Traditional program link, footer social links, and clickable contact email addresses where the changes are within WordPress.</li>
+          <li><strong>Consistent admissions buttons.</strong> One reusable Inquire / Visit / Apply set with agreed labels and destinations.</li>
+          <li><strong>Inquiry and tour review.</strong> Agree on the information needed at first contact and make scheduling instructions clear. Update WordPress forms where available; changes inside an external admissions system depend on its capabilities and access.</li>
+          <li><strong>Accessibility and layout checks.</strong> Check yellow and white contrast, test the identified phone and tablet formatting concerns, and correct confirmed WordPress layout issues.</li>
+          <li><strong>Mobile video investigation.</strong> Check the reported homepage loading issue and recommend the next step, coordinating with the host where needed.</li>
+          <li><strong>Useful measurement.</strong> Review analytics and track admissions button clicks and measurable forms. Confirm separately what the external system can report about completed inquiries and tours.</li>
+          <li><strong>Search basics.</strong> Publish agreed FAQ information on the site and improve page titles, descriptions, and information that helps search tools understand the school.</li>
+          <li><strong>WordPress Training &amp; Handoff.</strong> One live WordPress training session for relevant ZCS staff, plus a custom, easy-to-follow WordPress documentation guide. Both focus on ZCS’s existing WordPress setup: editing text, replacing photos, updating links, and checking mobile layouts. The same session includes a brief walkthrough of available website reports for admissions staff, with those steps included in the guide.</li>
+        </ul>
+        <h5>So that</h5>
+        <ul>
+          <li>Families have clearer routes to ask a question, arrange a visit, and apply.</li>
+          <li>Your team understands what’s being measured and what still needs provider support.</li>
+          <li>Staff can make everyday updates confidently, with a guide to refer back to.</li>
+        </ul>
+        <p class="best"><strong>Best for:</strong> Addressing the immediate priorities before choosing a broader refresh.</p>
+      </article>
+      <article class="card rec" id="opt2">
+        <span class="badge">Recommended</span>
+        <span class="tier">Option 2</span>
+        <h3>Refresh</h3>
+        <div class="price">$8,250</div>
+        <p class="when">About 8 weeks, with confirmed WordPress fixes prioritized in the first 3</p>
+        <p style="font-size:.95rem"><strong>Goal:</strong> Turn the site you have into a stronger tool for prospective families, without rebuilding it.</p><p style="font-size:.95rem">Everything in Option 1, plus:</p>
+        <h5>You get</h5>
+        <ul><li><strong>Up to 8 priority pages</strong> improved in total, including the homepage and About. We’ll agree on the remaining pages from the priorities below before work begins</li><li><strong>A homepage with room for the story</strong>: your school history, impact numbers up front, video and the outdoor program</li><li><strong>The About page</strong> refreshed with ZCS’s approved mission, vision, core values, portrait of a learner, and language about inclusive education</li><li><strong>Program information</strong> that clearly distinguishes the two English tracks, Spanish immersion, and Mandarin immersion</li><li><strong>Application Process and Apply combined</strong> into one page, and fewer, clearer pages overall</li><li><strong>Donor information</strong> that shows approved impact numbers where donors look, plus a family story with permission</li><li><strong>Current-family page priorities</strong>: a news and calendar banner, the theme verse higher, and fewer links that drop into Drive or Facebook. Clarify what Blue Note is and agree where it belongs in navigation, preserving access from the weekly email</li></ul>
+        <h5>So that</h5>
+        <ul><li>Prospective families understand the programs and see why ZCS is different, so more tours become applications</li><li>Donors see the impact where they look</li><li>Current families find what they need quickly</li></ul>
+        <p class="best"><strong>Best for:</strong> ZCS as you described it: optimize and refresh, not rebuild.</p>
+      </article>
+      <article class="card" id="opt3">
+        <span class="tier">Option 3</span>
+        <h3>Partnership</h3>
+        <div class="price">$15,000</div>
+        <p class="when">About 12 weeks</p>
+        <p style="font-size:.95rem"><strong>Goal:</strong> Give ZCS a consistent website and a clear plan for the next stage of growth.</p><p style="font-size:.95rem">Everything in Options 1 and 2, plus:</p>
+        <h5>You get</h5>
+        <ul><li>The refreshed design carried through <strong>up to 15 priority pages</strong> in total, including the pages in Option 2, so families see a consistent school identity</li><li>A review of the <strong>WordPress editing tools</strong> and an agreed plan to simplify them across the included pages. I’ll confirm the current setup and any proposed change before we commit to a move</li><li><strong>Spanish and Mandarin pages</strong> within the 15-page total, using ZCS-approved translations and set up so searchers can find them</li><li><strong>A shot list and direction</strong> for your in-house photo and video team, including a replacement for the car line video</li><li><strong>Two additional on-site training sessions</strong>, beyond the WordPress Training &amp; Handoff included in Option 1: one for a deeper look at admissions reporting and one for maintaining the refreshed pages</li><li><strong>A written website-and-app content map</strong>: where the teacher blog, calendar, and hot lunch information will live, who maintains each, and how families reach them. Any new connection between systems is separately scoped</li><li><strong>A 12-month website improvement roadmap</strong>, so you can budget around what’s next</li><li><strong>A clearer giving experience</strong>, with a WordPress page to introduce the impact of a gift and host or link to the Neon form as supported. Review the sign-in wording with your database manager so families understand their choices without creating more duplicate donor records. Account and form changes depend on Neon’s available settings</li></ul>
+        <h5>So that</h5>
+        <ul><li>Families see a consistent design across the agreed pages, and staff have a clearer process for maintaining them</li><li>Spanish- and Mandarin-speaking families can find ZCS</li><li>Your own photography and video tell the story</li><li>Your team understands the available reports and has a clear plan for what belongs on the website and in the app</li></ul>
+        <p class="best"><strong>Best for:</strong> A broader refresh across the agreed pages, with training and a plan to keep improving after launch.</p>
+      </article>
+    </div>
+    <p>The separate agreement will confirm your selected scope, fixed fee, and start date before we begin. Anything outside that scope needs a new quote and your approval first.</p>
+
+    <h3 id="care-plan">Ongoing care</h3>
+    <div>
+      <p>You said your team can handle everyday content updates, but would value help with design, search, and technical questions. A care plan gives you a consistent person to contact for that work after launch.</p>
+    </div>
+    <div class="two">
+      <article class="card">
+        <span class="tier">6 months</span>
+        <div class="price">$600<span style="font-size:1rem;font-weight:400"> / month</span></div>
+        <p class="when">Billed monthly, starting at launch.</p>
+      </article>
+      <article class="card">
+        <span class="tier">12 months</span>
+        <div class="price">$500<span style="font-size:1rem;font-weight:400"> / month</span></div>
+        <p class="when">Billed monthly, starting at launch.</p>
+      </article>
+    </div>
+    <div>
+      <p><strong>Why is the 12-month rate lower?</strong> The service is the same. A year-long commitment lets me plan my time around ZCS, spend less on setup and renewals, and hold your rate for the whole term. I pass that on as a lower monthly price. The 6-month plan is the flexible option: a shorter commitment at a slightly higher rate.</p>
+      <p><strong>What’s included each month:</strong></p>
+      <ul>
+        <li>Technical support, with a reply within one business day</li>
+        <li>Updates, backups and security checks</li>
+        <li>A monthly search visibility improvement and a one-page report on website activity, with inquiry and tour results where the admissions system provides them</li>
+        <li>Small design touch-ups</li>
+        <li>A quarterly performance review (30 minutes): what the numbers say, what’s coming up (open house, enrollment), and what to do next</li>
+        <li>Your team keeps the everyday content updates, like adding a paragraph or swapping a photo</li>
+      </ul>
+      <p>The proposed care commitment is 6 or 12 months, billed monthly from launch. After the initial term, it continues month to month; either of us can end it with 30 days’ notice. The agreement will confirm the renewal rate. Work outside this list is quoted before it starts. Neither plan counts hours. You get a reply within one business day either way.</p>
+      <h4>Costs that pass through at cost</h4>
+      <p>Hosting, your domain, plugins and software are billed by the provider to ZCS, with no markup from me. Hosting stays with your current provider unless you decide otherwise. I’ll review the existing subscriptions with you and confirm any additional costs before you approve them.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+<section id="payment">
+  <div class="wrap">
+    <p class="eyebrow">Payment</p>
+    <h2>How it’s invoiced.</h2>
+    <table>
+      <thead><tr><th>When</th><th>Amount</th><th>What it covers</th></tr></thead>
+      <tbody>
+        <tr><td>After the agreement is signed</td><td>50% of the project fee</td><td>Initial invoice. Work starts after payment is received.</td></tr>
+        <tr><td>At launch</td><td>50% of the project fee</td><td>Final invoice, payable within 15 days.</td></tr>
+        <tr><td>Monthly, starting at launch</td><td>Selected care-plan rate</td><td>Separate from the project fee, only if chosen.</td></tr>
+      </tbody>
+    </table>
+    <p>Payment instructions will be included with each invoice. ZCS’s budget year runs July 1 to June 30, and a 12-month care plan crosses that line. If it helps to match payments to your budget, I’ll set the schedule to fit.</p>
+    <p>The price is the same however fast I work.</p>
+  </div>
+</section>
+
+<hr class="rule">
+<section id="assumptions">
+  <div class="wrap">
+    <p class="eyebrow">What I’m assuming</p>
+    <h2>What has to be true for this to go well.</h2>
+    <ul>
+      <li>I’ll have access to WordPress, analytics, and hosting details within the first week of kickoff.</li>
+      <li>You’ll send the shared folder: brand standards, new messaging and the materials built for your new marketing specialist. The yearly theme comes from the middle school art program, so I’ll design around it.</li>
+      <li>ZCS will send the new About language (mission, vision, core values, portrait of a learner, why we exist).</li>
+      <li>Your admissions director will help confirm inquiry and tour counts, existing reporting, the right form fields, and how visits should be scheduled.</li>
+      <li>I’ll confirm who owns the domain and how hosting is set up. I’ll review the editing and translation tools already in use, and check whether translated content can be found through search. Any change to those tools or the agreed scope will be discussed before work starts.</li>
+      <li>You explained that the giving form is managed in Neon, with limits on formatting, and that repeat donors can create duplicate records. I’ll review any proposed form or sign-in changes with your database manager before recommending them.</li>
+      <li>How the school app connects to the site isn’t decided yet. We’ll settle that together.</li>
+      <li>Peter is the primary decision-maker, with input from the two marketing and communications specialists and the admissions director. Feedback comes back together through one agreed contact.</li>
+      <li>The initial findings come from our meeting, not a new audit. I’ll verify them in WordPress and any connected systems before confirming the work required.</li>
+    </ul>
+    <p>If any of these change, tell me early and we’ll adjust together.</p>
+  </div>
+</section>
+
+<!-- INTERNAL TODO [TESTIMONIAL]: Restore only after approval.
+Original draft quote: “17C brought clarity to our ideas and created a website that finally feels like us.”
+Attribution: Travis, Glass House Creative Community.
+--> 
+
+<hr class="rule">
+<section id="terms">
+  <div class="wrap terms">
+    <p class="eyebrow">Short terms</p>
+    <h2>Simple, fair terms.</h2>
+    <p>Here’s how I propose we work together. These points will be confirmed in the separate agreement, along with your selected option, care plan, and start date. Reviewing this page or emailing a preference doesn’t sign an agreement or create a payment obligation.</p>
+    <h4>Payment</h4>
+    <p>After the agreement is signed, I’ll invoice 50% of the project fee. Work starts after that payment is received. I’ll invoice the remaining 50% at launch. Both invoices are payable within 15 days of issue. Work pauses if an invoice remains unpaid more than 30 days after its due date.</p>
+    <h4>Fixed price and scope</h4>
+    <p>The price covers the scope in the option you choose. Anything beyond it is a new quote, agreed in writing before work starts.</p>
+    <h4>Content and timing</h4>
+    <p>The timeline assumes you provide content, access and feedback when asked. If those slip, the launch date moves by the same amount. If the project stalls for more than 30 days, we’ll pause it, and payment for work completed to that point is due.</p>
+    <h4>Revisions</h4>
+    <p>Each milestone includes two rounds of consolidated feedback. More rounds are quoted separately.</p>
+    <h4>Your accounts and files</h4>
+    <p>You own your domain, hosting and accounts, and I’m added as a user. When the final payment is made, you receive the finished files.</p>
+    <h4>Ownership</h4>
+    <p>When the final payment is made, the finished deliverables are yours. I may show the work in my portfolio, and I keep my general tools, templates and know-how. Photos, videos, logos and text that ZCS provides remain ZCS’s. Third-party items (fonts, plugins, stock photos) stay under their own licenses.</p>
+    <h4>Ongoing care</h4>
+    <p>A care plan is optional and separate from the project fee. The initial commitment is the 6 or 12 months selected in the agreement, billed monthly from launch. After that term, it continues month to month at the agreed renewal rate; either of us can end it with 30 days’ notice. Additional work is quoted first.</p>
+    <h4>Warranty</h4>
+    <p>I’ll do the work professionally. If something in the agreed scope doesn’t work as described, I’ll fix it at no charge for 30 days after launch.</p>
+    <h4>Confidentiality</h4>
+    <p>Each of us keeps the other’s non-public information private, including student and family information, which I won’t ask for and will handle with care if I see it.</p>
+  </div>
+</section>
+
+<hr class="rule">
+<section id="accept-section">
+  <div class="wrap">
+    <p class="eyebrow">Next step</p>
+    <h2>Let’s find the right starting point.</h2>
+    <p>Take a few days to look this over with your team, as you suggested. Then let me know which option feels closest and what questions you’d like to talk through. We can arrange a time together.</p>
+    <p>You can <a href="mailto:mariel@17c.studio?subject=ZCS%20website%20proposal">email me at mariel@17c.studio</a>, or use the form below to prepare your reply. This is a conversation about your preferred scope, not a signature or payment commitment.</p>
+    <form id="reply" class="accept" hidden>
+      <label for="name">Your name</label>
+      <input id="name" name="name" type="text" autocomplete="name" maxlength="150" required>
+      <label for="option">Which option feels closest?</label>
+      <select id="option" name="option" required>
+        <option value="">Choose one</option>
+        <option>Option 1: Fix and Measure ($5,500)</option>
+        <option>Option 2: Refresh ($8,250, recommended)</option>
+        <option>Option 3: Partnership ($15,000)</option>
+        <option>I’d like to discuss the options</option>
+      </select>
+      <label for="care">What are you thinking for ongoing care?</label>
+      <select id="care" name="care" required>
+        <option value="">Choose one</option>
+        <option>6 months at $600/month</option>
+        <option>12 months at $500/month</option>
+        <option>No care plan for now</option>
+        <option>I’d like to talk about care</option>
+      </select>
+      <label for="questions-text">Questions or thoughts (optional)</label>
+      <textarea data-lenis-prevent id="questions-text" name="questions" rows="4" maxlength="2000"></textarea>
+      <button class="go" type="submit">Prepare my email reply</button>
+      <p id="formnote" role="status" aria-live="polite"></p>
+      <div id="reply-preview" hidden>
+        <p><a id="email-reply">Open this reply in your email app ↗</a></p>
+        <label for="reply-text">Or copy this reply into an email to mariel@17c.studio</label>
+        <textarea data-lenis-prevent id="reply-text" rows="10" readonly></textarea>
+        <p class="reply-help">Nothing is sent from this page. Review the message and send it from your email app. If the link doesn’t open an app, use the text above.</p>
+      </div>
+    </form>
+    <p>Once we’ve agreed on the scope, I’ll send the separate agreement and initial invoice. We’ll confirm a start date after the agreement is signed and the first payment is received.</p>
+    <p class="signature">Mariel</p>
+  </div>
+</section>
+
+  </div>
+</div>
+</main>
+
+<footer>
+  Mariel Whitney · 17C Studio · <a href="mailto:mariel@17c.studio">mariel@17c.studio</a>
+  <br><small>Prepared for Zeeland Christian School. This page asks search engines not to index it.</small>
+</footer>
+
+<script>
+/* Prepare a reply locally. No backend, signature collection, or automatic submission. */
+(function(){
+  'use strict';
+  var form=document.getElementById('reply');
+  var note=document.getElementById('formnote');
+  var preview=document.getElementById('reply-preview');
+  var output=document.getElementById('reply-text');
+  var link=document.getElementById('email-reply');
+  form.addEventListener('submit',function(event){
+    event.preventDefault();
+    if(!form.reportValidity()) return;
+    var name=document.getElementById('name').value.trim();
+    if(!name){
+      note.textContent='Please enter your name before preparing a reply.';
+      document.getElementById('name').focus();
+      return;
+    }
+    var questions=document.getElementById('questions-text').value.trim();
+    var message=[
+      'Hi Mariel,', '',
+      'I’ve reviewed the ZCS website proposal. Here’s what I’d like to discuss:', '',
+      'Project: '+document.getElementById('option').value,
+      'Ongoing care: '+document.getElementById('care').value, '',
+      questions ? 'Questions and thoughts: '+questions : 'Let’s arrange a time to talk through the next steps.', '',
+      'I understand this reply is a preference for discussion, not a signed agreement.', '',
+      name
+    ].join('\n');
+    output.value=message;
+    link.href='mailto:mariel@17c.studio?subject='+encodeURIComponent('ZCS website proposal')+'&body='+encodeURIComponent(message);
+    preview.hidden=false;
+    note.textContent='Your reply is ready below. Nothing has been sent.';
+    link.focus();
+  });
+  form.addEventListener('input',function(){
+    preview.hidden=true;
+    output.value='';
+    link.removeAttribute('href');
+    note.textContent='';
+  });
+  form.hidden=false;
+})();
+</script>
+<script>
+/* Respect reduced-motion preferences for the background video. */
+(function(){
+  var video=document.getElementById('hero-video');
+  var motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  function respectMotion(){if(motion.matches) video.pause();}
+  if(motion.addEventListener) motion.addEventListener('change',respectMotion);
+  respectMotion();
+})();
+</script>
+<script>
+/* Follow the proposal section crossing the upper third of the viewport. */
+(function(){
+  var links=Array.from(document.querySelectorAll('.service-index a'));
+  var chapters=links.map(function(link){return document.getElementById(link.hash.slice(1));});
+  if(!links.length) return;
+  var scheduled=false;
+  function update(){
+    var active=null;
+    var readingLine=window.innerHeight*.33;
+    chapters.forEach(function(chapter){
+      if(chapter && chapter.getBoundingClientRect().top<=readingLine) active=chapter;
+    });
+    links.forEach(function(link){
+      if(active && link.hash==='#'+active.id) link.setAttribute('aria-current','location');
+      else link.removeAttribute('aria-current');
+    });
+    scheduled=false;
+  }
+  function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(update);}}
+  window.addEventListener('scroll',schedule,{passive:true});
+  window.addEventListener('resize',schedule);
+  window.addEventListener('load',schedule);
+  update();
+})();
+</script>
+<script>
+/* Same Lenis wheel easing and anchor behavior as the studio homepage. */
+document.addEventListener('DOMContentLoaded',function(){
+  var motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  var smoothScroll;
+  function destroy(){
+    if(!smoothScroll) return;
+    smoothScroll.destroy();
+    if(window.studioSmoothScroll===smoothScroll) delete window.studioSmoothScroll;
+    smoothScroll=undefined;
+  }
+  function initialize(){
+    destroy();
+    if(motion.matches || !window.Lenis) return;
+    smoothScroll=new window.Lenis({
+      lerp:0.1,
+      smoothWheel:true,
+      syncTouch:false,
+      anchors:{offset:-25},
+      allowNestedScroll:true,
+      autoRaf:true
+    });
+    window.studioSmoothScroll=smoothScroll;
+  }
+  if(motion.addEventListener) motion.addEventListener('change',initialize);
+  window.addEventListener('pagehide',destroy);
+  window.addEventListener('pageshow',function(event){if(event.persisted) initialize();});
+  initialize();
+});
+</script>
+</body>
+</html>

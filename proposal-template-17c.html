@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>[Client Name] · [Project Name] · Proposal</title>
+<!--
+  PROPOSAL TEMPLATE (v1) · 17C Studio skin
+  How it works:
+  - Yellow boxes (.fill) are things to replace. Grey italic notes (.hint) are writing prompts to delete.
+  - A bar at the top counts what's left. When it disappears, you're done. Then delete the <script> at the bottom's "draft bar" block.
+  - Restyle for each client by changing the colors in :root below. Keep text contrast at 4.5:1 or better.
+  - Section order and ids stay the same every time. Delete a section only when this guide says it's optional.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  /* 17C Studio design tokens (from 17c.studio) */
+  --ink:#45403a;          /* main text */
+  --muted:#645c53;        /* secondary text (slightly darker than site's #696158 for small text) */
+  --paper:#edebe3;        /* page background (site: surface) */
+  --card:#f6f5f1;         /* cards (site: on-dark) */
+  --accent:#171614;       /* buttons, links, eyebrows (site: dark) */
+  --accent-ink:#f6f5f1;   /* text on accent */
+  --soft:#e2dfd6;         /* tinted panels */
+  --line:#b7b4af;         /* hairlines (site: line) */
+  --flag:#fff1a8;         /* placeholder highlight, remove with the draft bar */
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--sans);-webkit-text-size-adjust:100%}
+a{color:var(--accent)}
+img{max-width:100%;height:auto}
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:var(--accent-ink);padding:.6rem 1rem;z-index:100}
+.skip:focus{left:8px;top:8px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* draft helpers */
+.fill{background:var(--flag);color:var(--ink);padding:0 .2em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hint{color:var(--muted);font-style:italic;font-size:.92rem;border-left:3px solid var(--line);padding:.1rem 0 .1rem .8rem;margin:1rem 0}
+#draftbar{position:sticky;top:0;z-index:60;background:#fff8c9;color:var(--ink);border-bottom:2px solid #e2c94a;padding:.5rem 1rem;font-size:.9rem;text-align:center}
+
+/* header */
+.top{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.96);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--line)}
+#draftbar:not([hidden]) ~ .top{top:38px}
+.top .in{max-width:1040px;margin:0 auto;padding:.7rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{font-family:var(--serif);font-weight:700;font-size:1.15rem;letter-spacing:.01em;color:var(--ink);text-decoration:none}
+.sign{white-space:nowrap;flex:none;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:600;font-size:.95rem;padding:.55rem 1.1rem;border-radius:999px}
+.sign:hover{filter:brightness(1.1)}
+
+/* layout */
+section{padding:4.5rem 0 1rem}
+.wrap{max-width:720px;margin:0 auto;padding:0 1.25rem}
+.wide{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 .6rem}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.2;color:var(--ink);margin:0}
+h1{font-size:clamp(2rem,5.5vw,3.1rem);margin:.4rem 0 1.2rem}
+h2{font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:1.1rem}
+h3{font-size:1.3rem;margin:2rem 0 .5rem}
+h4{font-size:1.1rem;margin:1.6rem 0 .3rem}
+p{margin:0 0 1.1rem}
+ul,ol{padding-left:1.25rem;margin:0 0 1.2rem}
+li{margin-bottom:.45rem}
+hr.rule{border:0;border-top:1px solid var(--line);margin:3.5rem auto 0;max-width:720px}
+.lede{font-size:1.15rem;color:var(--muted)}
+.panel{background:var(--soft);border-radius:14px;padding:1.4rem 1.5rem;margin:1.6rem 0}
+.panel p:last-child,.panel ul:last-child{margin-bottom:0}
+
+/* option cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:2rem 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;position:relative}
+.card.rec{border:2px solid var(--accent);box-shadow:0 8px 28px rgba(31,78,121,.12)}
+.badge{position:absolute;top:-.8rem;left:1.2rem;background:var(--accent);color:var(--accent-ink);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .7rem;border-radius:999px}
+.card .tier{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.card h3{margin:.3rem 0 .2rem;font-size:1.35rem}
+.price{font-family:var(--serif);font-size:2.2rem;font-weight:700;margin:.2rem 0 .3rem}
+.card .when{font-style:italic;color:var(--muted);font-size:.93rem;margin-bottom:1rem}
+.card h5{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:1rem 0 .4rem}
+.card ul{font-size:.97rem;margin-bottom:.6rem}
+.card .best{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line);font-size:.95rem}
+
+/* care plan + tables */
+.two{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin:1.6rem 0}
+table{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.98rem;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:.8rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+
+/* process */
+.steps{list-style:none;padding:0;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding-left:3.2rem;margin-bottom:1.3rem}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:700;display:grid;place-items:center;font-family:var(--serif)}
+.steps strong{display:block}
+
+/* proof */
+.stars{font-family:var(--serif);font-size:1.3rem;margin-bottom:1rem}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:1.6rem 0}
+.quote{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.2rem}
+.quote p{font-size:.97rem}
+.who{display:flex;align-items:center;gap:.7rem;font-size:.9rem}
+.av{width:2.6rem;height:2.6rem;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-weight:700;color:var(--accent);flex:none}
+
+/* terms */
+.terms h4{font-family:var(--sans);font-size:1rem;margin:1.2rem 0 .1rem}
+.terms p{font-size:.97rem;margin-bottom:.4rem}
+
+/* accept form */
+form.accept{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.6rem;margin:1.6rem 0}
+label{display:block;font-weight:600;font-size:.93rem;margin:1rem 0 .3rem}
+input[type=text],input[type=email],select{width:100%;font:inherit;padding:.7rem .8rem;border:1px solid #8b95a5;border-radius:8px;background:#fff;color:var(--ink)}
+.sigfield{font-family:"Snell Roundhand","Brush Script MT",cursive;font-size:1.6rem}
+.check{display:flex;gap:.6rem;align-items:flex-start;font-weight:400;margin:1.1rem 0}
+.check input{margin-top:.35rem;width:1.1rem;height:1.1rem}
+button.go{margin-top:.8rem;background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:700;border:0;border-radius:999px;padding:.9rem 1.8rem;cursor:pointer}
+button.go:hover{filter:brightness(1.1)}
+#formnote{margin-top:1rem;font-size:.95rem}
+.hp{position:absolute;left:-9999px}
+footer{margin-top:4rem;padding:2rem 1.25rem 3rem;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:.95rem}
+
+@media (max-width:860px){
+  .cards,.quotes{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+  .cards{margin-top:2.4rem}
+  section{padding-top:3.2rem}
+  table,th,td{font-size:.92rem}
+  th,td{padding:.65rem .7rem}
+}
+
+
+/* 17C skin: editorial serif headlines, DM Sans body, square-cornered buttons */
+h1,h2,h3{font-weight:500;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,6.5vw,4.2rem);line-height:1.02}
+h2{font-size:clamp(2.1rem,5vw,3.2rem);line-height:1.05}
+h3{font-size:1.75rem}
+h4{font-family:var(--sans);font-size:1.05rem;font-weight:600;letter-spacing:0;margin:1.6rem 0 .3rem}
+.brand{font-weight:600;letter-spacing:.04em}
+.sign,button.go{border-radius:3px;letter-spacing:.02em}
+.badge{border-radius:3px}
+.card,.quote,form.accept,table,.panel{border-radius:4px}
+.card.rec{box-shadow:none;border:2px solid var(--accent)}
+.eyebrow,.card .tier,.card h5,th{letter-spacing:.16em}
+.price{font-weight:600;font-size:2.7rem}
+.card h3{font-size:1.6rem}
+.steps li::before{border-radius:50%;font-family:var(--serif);font-size:1.15rem}
+.top{background:rgba(237,235,227,.96)}
+input[type=text],input[type=email],select{border-radius:3px}
+
+
+/* images from the client's own assets */
+.fig{margin:1.8rem 0}
+.fig img{display:block;width:100%;height:auto;border-radius:4px;border:1px solid var(--line)}
+.fig figcaption{font-size:.88rem;color:var(--muted);margin-top:.5rem}
+.fig.hero{margin:0 0 2rem}
+.imgslot{display:grid;place-items:center;text-align:center;min-height:190px;border:2px dashed #b59b00;border-radius:4px;padding:1rem;font-size:.92rem;line-height:1.4}
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin:1.6rem 0}
+.shots .fig{margin:0}
+.callout{display:inline-grid;place-items:center;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:.78rem;font-weight:700;margin-right:.4rem;vertical-align:middle}
+@media (max-width:860px){.shots{grid-template-columns:1fr}}
+
+/* print: clean PDF for forwarding */
+@media print{
+  :root{--paper:#fff}
+  body{font-size:11pt;background:#fff}
+  #draftbar,.top,form.accept,.sign,.skip,.hint{display:none!important}
+  section{padding-top:1.5rem;break-inside:auto}
+  .card,.quote,table,.panel,.fig{break-inside:avoid}
+  .cards,.quotes{grid-template-columns:1fr 1fr 1fr}
+  .card.rec{box-shadow:none}
+  a{color:inherit;text-decoration:underline}
+  .fill{background:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="draftbar" hidden></div>
+
+<header class="top">
+  <div class="in">
+    <a class="brand" href="#top"><span class="fill">[YOUR NAME OR STUDIO]</span></a>
+    <a class="sign" href="#accept">Sign now</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- 1. TITLE + OPENING LETTER -->
+<section id="top" style="padding-top:3.5rem">
+  <div class="wrap">
+    <p class="eyebrow">Proposal</p>
+    <h1><span class="fill">[Client Name]</span> · <span class="fill">[Project name, plainly: e.g. Website Refresh and Search Visibility]</span></h1>
+
+    <figure class="fig hero">
+      <div class="imgslot fill" role="img" aria-label="Photo placeholder">[PHOTO: a real photo from the client's own assets, shown large. Replace this box with the img line in the comment below.]</div>
+      <!-- <img src="images/client-hero.jpg" width="1600" height="900" alt="Describe what is in the photo" fetchpriority="high"> -->
+      <figcaption class="fill">[Caption: what it shows. "Photo: Client Name."]</figcaption>
+    </figure>
+    <p class="hint">Delete before sending: use a real photo the client already publishes or sent you, with their okay. It shows you're designing for them, not from a template. Compress it first (see the guide).</p>
+    <p class="lede">Hi <span class="fill">[First names of the people on the call]</span>,</p>
+    <p>Thank you for the time on <span class="fill">[day of the call]</span>. <span class="fill">[One sentence that shows you listened: what stood out about them, in their words.]</span></p>
+    <p>I made you a website because that's what I do. Improving your online presence is the main thing I'd be doing for you, so this page is a small demonstration of that work. It's a link, not a file, and it's private to you.</p>
+    <p class="hint">Delete before sending: keep this letter short. Name the people. Thank them. Say why this is a web page. The "why" sentence above is yours to keep; it explains the choice and costs nothing.</p>
+  </div>
+</section>
+
+<!-- 2. SUMMARY / THEIR SITUATION -->
+<hr class="rule">
+<section id="overview">
+  <div class="wrap">
+    <p class="eyebrow">Overview</p>
+    <h2><span class="fill">[A short promise in their words, ending in a period: e.g. "From a patchwork to a front porch."]</span></h2>
+    <p><span class="fill">[Where they are now: two or three sentences, in their language. What's working, what's costing them.]</span></p>
+    <p><span class="fill">[Where they want to be: the outcome they described. If you used the three-years-from-now question, quote it here.]</span></p>
+    <div class="panel">
+      <p><strong>In your words:</strong> <span class="fill">["A line they said on the call, exactly, in quotation marks."]</span></p>
+    </div>
+    <h4><span class="fill">[Their goal #1, as an outcome]</span></h4>
+    <p><span class="fill">[One or two sentences: what it means for their business.]</span></p>
+    <h4><span class="fill">[Their goal #2, as an outcome]</span></h4>
+    <p><span class="fill">[One or two sentences.]</span></p>
+    <h4><span class="fill">[Their goal #3, as an outcome]</span></h4>
+    <p><span class="fill">[One or two sentences.]</span></p>
+    <p class="hint">Delete before sending: this whole section is about them. No "I" or "we" in the headline. Use their exact phrases at least three times. Every goal is an outcome (more inquiries, fewer headaches), not a task (redo navigation).</p>
+  </div>
+</section>
+
+<!-- 2b. WHAT I NOTICED (optional but recommended when they have an existing site) -->
+<hr class="rule">
+<section id="noticed">
+  <div class="wide">
+    <p class="eyebrow">What I noticed</p>
+    <h2>What I saw when I looked closely.</h2>
+    <p class="lede" style="max-width:720px"><span class="fill">[One or two sentences: you walked their site and these are the things families or customers run into. Kind, specific, never snarky.]</span></p>
+    <div class="shots">
+      <figure class="fig">
+        <div class="imgslot fill" role="img" aria-label="Screenshot placeholder">[SCREENSHOT 1: the most urgent problem, cropped tight]</div>
+        <!-- <img src="images/current-site-1.jpg" width="1200" height="750" alt="Describe what the screenshot shows" loading="lazy"> -->
+        <figcaption><span class="callout">1</span><span class="fill">[What this shows and why it matters to them, in one sentence.]</span></figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="imgslot fill" role="img" aria-label="Screenshot placeholder">[SCREENSHOT 2: a second issue]</div>
+        <!-- <img src="images/current-site-2.jpg" width="1200" height="750" alt="Describe what the screenshot shows" loading="lazy"> -->
+        <figcaption><span class="callout">2</span><span class="fill">[What this shows and why it matters to them, in one sentence.]</span></figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="imgslot fill" role="img" aria-label="Screenshot placeholder">[SCREENSHOT 3: a third issue]</div>
+        <!-- <img src="images/current-site-3.jpg" width="1200" height="750" alt="Describe what the screenshot shows" loading="lazy"> -->
+        <figcaption><span class="callout">3</span><span class="fill">[What this shows and why it matters to them, in one sentence.]</span></figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="imgslot fill" role="img" aria-label="Screenshot placeholder">[SCREENSHOT 4: a fourth issue or a before/after idea]</div>
+        <!-- <img src="images/current-site-4.jpg" width="1200" height="750" alt="Describe what the screenshot shows" loading="lazy"> -->
+        <figcaption><span class="callout">4</span><span class="fill">[What this shows and why it matters to them, in one sentence.]</span></figcaption>
+      </figure>
+    </div>
+    <div class="two">
+      <div class="panel"><strong>Keep what's working</strong>
+        <ul><li><span class="fill">[Something good about their site]</span></li><li><span class="fill">[Another]</span></li><li><span class="fill">[Another]</span></li></ul></div>
+      <div class="panel"><strong>Fix first</strong>
+        <ul><li><span class="fill">[Most urgent fix]</span></li><li><span class="fill">[Next]</span></li><li><span class="fill">[Next]</span></li></ul></div>
+    </div>
+    <p class="hint">Delete before sending: capture screenshots from their live site yourself (desktop about 1440 wide, mobile about 390 wide), crop tight, and number the problem spots. Say "to be confirmed once I have access" if you haven't seen the admin. Leave this section out if they have no existing site.</p>
+  </div>
+</section>
+
+<!-- 3. WHAT WE'LL DO -->
+<hr class="rule">
+<section id="scope">
+  <div class="wrap">
+    <p class="eyebrow">What I'll do</p>
+    <h2>What I'm <span class="fill">[building / fixing / setting up]</span> for you.</h2>
+    <h4><span class="fill">[Deliverable, named plainly]</span></h4>
+    <p><span class="fill">[What you'll do, then what it does for them. Always end on the benefit.]</span></p>
+    <h4><span class="fill">[Deliverable]</span></h4>
+    <p><span class="fill">[What you'll do and what it does for them.]</span></p>
+    <h4><span class="fill">[Deliverable]</span></h4>
+    <p><span class="fill">[What you'll do and what it does for them.]</span></p>
+    <h3>What this doesn't include</h3>
+    <p><span class="fill">[Say what's out of scope and why, plainly. Fewer surprises later. "If you want something that isn't listed here, tell me and I'll send a new quote before any work starts."]</span></p>
+  </div>
+</section>
+
+<!-- 4. QUESTIONS ANSWERED UP FRONT -->
+<hr class="rule">
+<section id="questions">
+  <div class="wrap">
+    <p class="eyebrow">Questions answered up front</p>
+    <h2>The questions you may be asking.</h2>
+    <h4><span class="fill">[An objection you expect, as they'd say it: "Why not just use a template?"]</span></h4>
+    <p><span class="fill">[A sentence or two. Honest, specific, no pressure.]</span></p>
+    <h4><span class="fill">[Another one: "Why only one person?"]</span></h4>
+    <p><span class="fill">[Answer.]</span></p>
+    <h4><span class="fill">[Another one, from a fear they voiced on the call]</span></h4>
+    <p><span class="fill">[Answer.]</span></p>
+    <p class="hint">Delete before sending: file away every worry they mentioned during discovery. Each one belongs here, or in the care plan.</p>
+  </div>
+</section>
+
+<!-- 5. TIMELINE -->
+<hr class="rule">
+<section id="timeline">
+  <div class="wrap">
+    <p class="eyebrow">Timeline</p>
+    <h2>A clear path, start to launch.</h2>
+    <ol class="steps">
+      <li><strong><span class="fill">[Phase 1 · weeks 1–2]</span></strong> <span class="fill">[What happens, what you need from them, by what date.]</span></li>
+      <li><strong><span class="fill">[Phase 2 · weeks 3–6]</span></strong> <span class="fill">[What happens.]</span></li>
+      <li><strong><span class="fill">[Phase 3 · launch]</span></strong> <span class="fill">[What happens. Name a launch-by date.]</span></li>
+    </ol>
+    <p>These dates start the day the proposal is signed and the first payment is made.</p>
+  </div>
+</section>
+
+<!-- 6. ABOUT + PROCESS (new clients; optional for returning clients) -->
+<hr class="rule">
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">How I work</p>
+    <h2>You'll work with the person doing the work.</h2>
+    <p><span class="fill">[Who you are in two or three sentences. Beliefs, not a biography: why you work the way you do.]</span></p>
+    <h4>No game of telephone</h4>
+    <p>You talk to the person who builds it. There's no account manager in between and no agency overhead in your price.</p>
+    <h4>You keep the keys</h4>
+    <p>Your domain, hosting and accounts stay in your name. I'm added as a user. You can take your site anywhere, any time.</p>
+    <h4>One price, no clock</h4>
+    <p>I price the outcome, not the hours. If something takes me longer than I expected, that's my problem, not yours.</p>
+    <p class="hint">Delete before sending: keep these three if they're true for you. Add your own beliefs. If you're mentored by someone, "mentored by Joel Miller at The Sky Floor" goes here, one sentence, only when it fits naturally.</p>
+    <h3>My process</h3>
+    <ol class="steps">
+      <li><strong><span class="fill">[Step name]</span></strong> <span class="fill">[One or two sentences: what happens and what you need from them.]</span></li>
+      <li><strong><span class="fill">[Step name]</span></strong> <span class="fill">[One or two sentences.]</span></li>
+      <li><strong><span class="fill">[Step name]</span></strong> <span class="fill">[One or two sentences.]</span></li>
+      <li><strong><span class="fill">[Step name]</span></strong> <span class="fill">[One or two sentences.]</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 7. INVESTMENT: THREE OPTIONS -->
+<hr class="rule">
+<section id="investment">
+  <div class="wide">
+    <p class="eyebrow">Investment</p>
+    <h2>Three ways to do this.</h2>
+    <p class="lede" style="max-width:720px">The prices below are fixed for the whole project. Each option builds on the one before it, so you can pick the level that fits where you are right now.</p>
+
+    <div class="cards">
+      <article class="card" id="opt1">
+        <span class="tier">Option 1</span>
+        <h3><span class="fill">[Short name: the floor]</span></h3>
+        <div class="price"><span class="fill">$X,XXX</span></div>
+        <p class="when"><span class="fill">[Timeline, e.g. "About 3 weeks"]</span></p>
+        <h5>You get</h5>
+        <ul><li><span class="fill">[Deliverable]</span></li><li><span class="fill">[Deliverable]</span></li><li><span class="fill">[Deliverable]</span></li></ul>
+        <h5>So that</h5>
+        <ul><li><span class="fill">[Business benefit]</span></li><li><span class="fill">[Business benefit]</span></li></ul>
+        <p class="best"><strong>Best for:</strong> <span class="fill">[Who this fits]</span></p>
+      </article>
+
+      <article class="card rec" id="opt2">
+        <span class="badge">Recommended</span>
+        <span class="tier">Option 2</span>
+        <h3><span class="fill">[Short name: the one you expect]</span></h3>
+        <div class="price"><span class="fill">$XX,XXX</span></div>
+        <p class="when"><span class="fill">[Timeline]</span></p>
+        <p style="font-size:.95rem">Everything in Option 1, plus:</p>
+        <h5>You get</h5>
+        <ul><li><span class="fill">[Deliverable]</span></li><li><span class="fill">[Deliverable]</span></li><li><span class="fill">[Deliverable]</span></li></ul>
+        <h5>So that</h5>
+        <ul><li><span class="fill">[Business benefit]</span></li><li><span class="fill">[Business benefit]</span></li></ul>
+        <p class="best"><strong>Best for:</strong> <span class="fill">[Who this fits]</span></p>
+      </article>
+
+      <article class="card" id="opt3">
+        <span class="tier">Option 3</span>
+        <h3><span class="fill">[Short name: the reach]</span></h3>
+        <div class="price"><span class="fill">$XX,XXX</span></div>
+        <p class="when"><span class="fill">[Timeline]</span></p>
+        <p style="font-size:.95rem">Everything in Options 1 and 2, plus:</p>
+        <h5>You get</h5>
+        <ul><li><span class="fill">[Deliverable]</span></li><li><span class="fill">[Deliverable]</span></li><li><span class="fill">[Deliverable]</span></li></ul>
+        <h5>So that</h5>
+        <ul><li><span class="fill">[Business benefit]</span></li><li><span class="fill">[Business benefit]</span></li></ul>
+        <p class="best"><strong>Best for:</strong> <span class="fill">[Who this fits]</span></p>
+      </article>
+    </div>
+    <p class="hint">Delete before sending: build the middle option first, at the price you really want. The floor still has to cover what they critically need. The reach holds the extras they called "optional." Never push anyone to the top; let them choose the fit.</p>
+    <p style="max-width:720px">This is a quote, not an estimate. The price you choose is exactly what you'll pay for the scope listed. If anything you want isn't listed, we'll talk and I'll send a revised quote before any work starts.</p>
+
+    <h3 id="care-plan">Ongoing care</h3>
+    <div style="max-width:720px">
+      <p>A launch is the start of a relationship, not the end of one. Ongoing care means <span class="fill">[speak back the fear they named: "you never have to wonder who to call when something breaks"]</span>.</p>
+    </div>
+    <div class="two">
+      <article class="card">
+        <span class="tier"><span class="fill">[Term A: e.g. 6 months]</span></span>
+        <div class="price"><span class="fill">$XXX</span><span style="font-size:1rem;font-weight:400"> / month</span></div>
+        <p class="when">Billed monthly, starting at launch.</p>
+      </article>
+      <article class="card">
+        <span class="tier"><span class="fill">[Term B: e.g. 12 months]</span></span>
+        <div class="price"><span class="fill">$XXX</span><span style="font-size:1rem;font-weight:400"> / month</span></div>
+        <p class="when">Billed monthly, starting at launch.</p>
+      </article>
+    </div>
+    <div style="max-width:720px">
+      <p><strong>What's included each month:</strong></p>
+      <ul>
+        <li><span class="fill">[Support: how fast you reply, e.g. "within one business day"]</span></li>
+        <li><span class="fill">[Updates, backups, security checks]</span></li>
+        <li><span class="fill">[Monthly improvement + one-page report tied to what matters to them]</span></li>
+        <li><span class="fill">[Small design touch-ups, up to a stated amount]</span></li>
+      </ul>
+      <p>Minimum of three months, then month to month with 30 days' notice. Work outside this list is quoted before it starts. <span class="fill">[Why the longer term costs less: a longer commitment, not less of your time.]</span></p>
+      <h4>Costs that pass through at cost</h4>
+      <p>Hosting, domains, plugins, software and any AI usage are billed by the provider to you, with no markup from me. <span class="fill">[List the ones that apply and the approximate yearly cost.]</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. PAYMENT -->
+<hr class="rule">
+<section id="payment">
+  <div class="wrap">
+    <p class="eyebrow">Payment</p>
+    <h2>How it's invoiced.</h2>
+    <table>
+      <thead><tr><th>When</th><th>Amount</th><th>What it covers</th></tr></thead>
+      <tbody>
+        <tr><td>At signing</td><td>50%</td><td>Work begins once this is paid.</td></tr>
+        <tr><td>At launch</td><td>50%</td><td>Due when the site goes live.</td></tr>
+        <tr><td>Monthly, after launch</td><td>Care plan</td><td>Only if you choose it.</td></tr>
+      </tbody>
+    </table>
+    <p>You can pay by card or bank transfer from the invoice. <span class="fill">[If their budget runs on a different rhythm, say so: "If it's easier to match your budget year, we'll set the payments to fit."]</span></p>
+    <p>The price is the same however fast I work.</p>
+  </div>
+</section>
+
+<!-- 9. RISKS + ASSUMPTIONS -->
+<hr class="rule">
+<section id="assumptions">
+  <div class="wrap">
+    <p class="eyebrow">What I'm assuming</p>
+    <h2>What has to be true for this to go well.</h2>
+    <ul>
+      <li>I'll have the access I need (<span class="fill">[site admin, hosting, analytics]</span>) by <span class="fill">[date]</span>.</li>
+      <li>Your team provides <span class="fill">[content, photos, brand guide]</span> by the dates in the timeline.</li>
+      <li>Feedback comes back together, from one person, so we don't chase conflicting notes.</li>
+      <li><span class="fill">[Anything you don't know yet and will confirm: page builder, who owns the domain, who handles hosting, how a third-party tool connects.]</span></li>
+      <li><span class="fill">[A risk you want to name honestly.]</span></li>
+    </ul>
+    <p>If any of these change, tell me early and we'll adjust together.</p>
+  </div>
+</section>
+
+<!-- 10. PROOF -->
+<hr class="rule">
+<section id="proof">
+  <div class="wide">
+    <p class="eyebrow">What people say</p>
+    <h2>Proof, in their words.</h2>
+    <p class="stars"><span class="fill">[Optional: rating and where it's from, e.g. "4.8 out of 5 on Google (31 reviews)"]</span></p>
+    <div class="quotes">
+      <figure class="quote" style="margin:0">
+        <p>“<span class="fill">[A real quote, used with permission]</span>”</p>
+        <figcaption class="who"><span class="av">AB</span><span><span class="fill">[Name]</span>, <span class="fill">[Role, Organization]</span></span></figcaption>
+      </figure>
+      <figure class="quote" style="margin:0">
+        <p>“<span class="fill">[A real quote]</span>”</p>
+        <figcaption class="who"><span class="av">CD</span><span><span class="fill">[Name]</span>, <span class="fill">[Role, Organization]</span></span></figcaption>
+      </figure>
+      <figure class="quote" style="margin:0">
+        <p>“<span class="fill">[A real quote]</span>”</p>
+        <figcaption class="who"><span class="av">EF</span><span><span class="fill">[Name]</span>, <span class="fill">[Role, Organization]</span></span></figcaption>
+      </figure>
+    </div>
+    <p class="hint">Delete before sending: use only real words from real people, with permission. A professor, a past employer or a first small client counts. If you have none yet, delete this whole section. Never invent a quote or a rating. Start collecting from your very first client.</p>
+  </div>
+</section>
+
+<!-- 11. SHORT TERMS -->
+<hr class="rule">
+<section id="terms">
+  <div class="wrap terms">
+    <p class="eyebrow">Short terms</p>
+    <h2>Simple, fair terms.</h2>
+    <p>Web projects don't need a giant contract. Here's what we agree to, in plain language.</p>
+    <p class="hint">Delete before sending: starter text. Read every line, change what doesn't match how you really work, and have a lawyer look at it once. Then reuse it.</p>
+    <h4>Payment</h4>
+    <p>50% is due at signing, before any work begins, and 50% at launch. Invoices are due within <span class="fill">[15]</span> days. If a payment is more than <span class="fill">[30]</span> days late, work pauses until it's paid. <span class="fill">[Optional: a monthly late fee, e.g. 1.5%.]</span></p>
+    <h4>Fixed price and scope</h4>
+    <p>The price covers the scope in the option you choose. Anything beyond it is a new quote, agreed in writing before work starts.</p>
+    <h4>Content and timing</h4>
+    <p>The timeline assumes you provide content, access and feedback by the dates listed. If those slip, the launch date moves by the same amount. If the project stalls for more than <span class="fill">[30]</span> days, we'll pause it, and payment for work completed to that point is due.</p>
+    <h4>Revisions</h4>
+    <p>Each milestone includes <span class="fill">[two]</span> rounds of consolidated feedback. More rounds are quoted separately.</p>
+    <h4>Your accounts and files</h4>
+    <p>You own your domain, hosting and accounts, and I'm added as a user. When the final payment is made, you receive the finished files.</p>
+    <h4>Ownership</h4>
+    <p>When the final payment is made, the finished deliverables are yours. I may show the work in my portfolio, and I keep my general tools, templates and know-how. Third-party items (fonts, plugins, stock photos) stay under their own licenses.</p>
+    <h4>Ongoing care</h4>
+    <p>If you choose a care plan, it runs for the minimum term you select, then month to month. Either of us can end it with 30 days' notice. Work outside what the plan lists is quoted first.</p>
+    <h4>Warranty</h4>
+    <p>I'll do the work professionally. If something in the agreed scope doesn't work as described, I'll fix it at no charge for <span class="fill">[30]</span> days after launch.</p>
+    <h4>Confidentiality</h4>
+    <p>Each of us keeps the other's non-public information private.</p>
+    <h4>Governing law</h4>
+    <p>These terms are governed by the laws of <span class="fill">[your state]</span>.</p>
+  </div>
+</section>
+
+<!-- 12. ACCEPT -->
+<hr class="rule">
+<section id="accept-section">
+  <div class="wrap">
+    <p class="eyebrow">Next step</p>
+    <h2>Choose an option and sign.</h2>
+    <p><span class="fill">[Walkthrough: "Let's go through this together on [day, date] at [time]. If it looks right, you can sign right here."]</span></p>
+    <form id="accept" class="accept" action="REPLACE-WITH-FORM-ENDPOINT" method="post" novalidate>
+      <label for="name">Your name</label>
+      <input id="name" name="name" type="text" autocomplete="name" required>
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" autocomplete="organization-title" required>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
+      <label for="option">Select your option</label>
+      <select id="option" name="option" required>
+        <option value="">Choose one</option>
+        <option>Option 1</option>
+        <option>Option 2 (recommended)</option>
+        <option>Option 3</option>
+      </select>
+      <label for="care">Ongoing care</label>
+      <select id="care" name="care" required>
+        <option value="">Choose one</option>
+        <option>Term A</option>
+        <option>Term B</option>
+        <option>No care plan for now</option>
+      </select>
+      <label for="sig">Type your full name as your signature</label>
+      <input id="sig" name="signature" type="text" class="sigfield" autocomplete="off" required>
+      <label class="check"><input type="checkbox" name="agree" required> <span>I've read this proposal and the short terms, and I accept the options selected above.</span></label>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="signed_at" id="signed_at">
+      <input type="hidden" name="page" id="page_url">
+      <button class="go" type="submit">I accept this proposal</button>
+      <p id="formnote" role="status" aria-live="polite"></p>
+    </form>
+    <p>You'll get a date-stamped copy by email. After that I'll send the agreement and the first invoice the same day.</p>
+    <p class="hint">Delete before sending: connect the form to an endpoint (see the guide) and send yourself a test. Until you replace REPLACE-WITH-FORM-ENDPOINT, the button will refuse to send, so nobody can submit into the void.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span class="fill">[Your name]</span> · <span class="fill">[phone]</span> · <a href="mailto:you@example.com"><span class="fill">[email]</span></a>
+  <br><small>This page is private to you and isn't listed in search engines.</small>
+</footer>
+
+<script>
+/* Draft bar: counts what's left. Delete this block when the bar no longer shows. */
+(function(){
+  var fills=document.querySelectorAll('.fill').length;
+  var hints=document.querySelectorAll('.hint').length;
+  var bar=document.getElementById('draftbar');
+  if(fills+hints>0){
+    bar.hidden=false;
+    bar.textContent=fills+' placeholders and '+hints+' notes left. Replace the yellow, delete the grey notes, then remove this bar.';
+  }
+})();
+
+/* Accept form: refuses to send until connected to a real endpoint. */
+(function(){
+  var f=document.getElementById('accept');
+  var note=document.getElementById('formnote');
+  f.addEventListener('submit',function(e){
+    var action=f.getAttribute('action')||'';
+    document.getElementById('signed_at').value=new Date().toISOString();
+    document.getElementById('page_url').value=location.href;
+    if(!f.checkValidity()){
+      e.preventDefault();
+      note.textContent='Please complete every field and check the box.';
+      var bad=f.querySelector(':invalid'); if(bad) bad.focus();
+      return;
+    }
+    if(action.indexOf('REPLACE-WITH-FORM-ENDPOINT')>-1){
+      e.preventDefault();
+      note.textContent='This form is not connected yet, so nothing was sent.';
+    }
+  });
+})();
+</script>
+</body>
+</html>
