@@ -190,20 +190,63 @@ const initServiceScroller = () => {
       0,
       serviceTrack.scrollWidth - window.innerWidth
     );
-    // Reserve the horizontal travel in normal flow. Native sticky positioning
-    // releases the section at the shell boundary without switching pin modes.
+    let distance = 0;
+    let rampIn = 0;
+    let rampOut = 0;
+    let radius = 0;
+    let entryOverlap = 0;
+    let exitOverlap = 0;
+    let stickyDistance = 0;
     const measure = () => {
-      shell.style.height = `${servicesSection.offsetHeight + horizontalDistance()}px`;
+      distance = horizontalDistance();
+      rampIn = Math.min(window.innerHeight * 0.25, 240);
+      rampOut = Math.min(rampIn, distance);
+      radius = Math.min(rampIn / 2, distance / 4);
+      // The rounded vertical handoff also contributes to simultaneous motion.
+      // Reduce that whole overlap by a third, keeping both speed ramps intact.
+      entryOverlap = (rampIn + radius) * 2 / 3 - radius;
+      exitOverlap = (rampOut + radius) * 2 / 3 - radius;
+      stickyDistance = distance > 0 ? distance + rampIn - entryOverlap - exitOverlap : 0;
+      shell.style.height = `${servicesSection.offsetHeight + stickyDistance}px`;
     };
     measure();
+    // Ramp speed only at the ends, retaining steady travel through the middle.
+    const horizontalEase = progress => {
+      const total = distance + rampIn;
+      const startRamp = rampIn / total;
+      const endRamp = rampOut / total;
+      const speed = 1 / (1 - (startRamp + endRamp) / 2);
+      if (progress < startRamp) return speed * progress * progress / (2 * startRamp);
+      if (endRamp && progress > 1 - endRamp) {
+        return 1 - speed * (1 - progress) ** 2 / (2 * endRamp);
+      }
+      return speed * (progress - startRamp / 2);
+    };
+    const setVerticalOffset = gsap.quickSetter(serviceTrack, 'y', 'px');
+    const softenVerticalHandoffs = progress => {
+      if (!radius) { setVerticalOffset(0); return; }
+      const position = progress * (distance + rampIn) - entryOverlap;
+      const release = position - stickyDistance;
+      let offset = 0;
+      // Round the two native sticky corners without changing document flow.
+      if (Math.abs(position) < radius) {
+        offset += (radius - position) ** 2 / (4 * radius) - Math.max(-position, 0);
+      }
+      if (Math.abs(release) < radius) {
+        offset += -((release + radius) ** 2) / (4 * radius) - Math.min(-release, 0);
+      }
+      setVerticalOffset(offset);
+    };
     const tween = gsap.to(serviceTrack, {
       x: () => -horizontalDistance(),
-      ease: 'none',
+      ease: horizontalEase,
+      onUpdate() { softenVerticalHandoffs(this.progress()); },
       scrollTrigger: {
         id: 'services-horizontal',
         trigger: shell,
-        start: 'top top',
-        end: () => `+=${horizontalDistance()}`,
+        start: () => `top ${entryOverlap}px`,
+        // Keep moving sideways briefly after the section starts leaving view.
+        end: () => `+=${distance + rampIn}`,
         scrub: true,
         invalidateOnRefresh: true,
         onRefreshInit: measure,
