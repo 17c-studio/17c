@@ -52,10 +52,11 @@
   TODO [MEDIA]: Confirm permission for proposal use of ZCS's supplied/public video.
   TODO [TESTIMONIAL]: Verify wording, attribution, and proposal-use permission for
   the Travis / Glass House Creative Community quote before restoring it.
-  TODO [ACCEPTANCE]: This page prepares a non-binding email reply, not an electronic
-  signature. No submission service or signed-copy delivery is configured. If on-page
-  signing is desired later, supply an endpoint, finalize terms, and test delivery
-  before enabling it. Never add credentials to this file.
+  TODO [ACCEPTANCE]: Replies POST to the Formspree endpoint supplied by Mariel.
+  Verify the form is active and a real submission reaches the intended inbox before
+  sharing. No live test submission has been sent. This is a non-binding preference
+  form, not an electronic signature or payment commitment. Signed-copy delivery
+  is not configured. Never add credentials to this file.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,11 +131,11 @@ hr.rule{border:0;border-top:1px solid var(--line);max-width:calc(1280px - var(--
 .panel{background:var(--soft);border:1px solid var(--line);padding:clamp(24px,3vw,40px);margin:32px 0}
 .panel p:last-child,.panel ul:last-child{margin-bottom:0}
 #top{position:relative;isolation:isolate;overflow:hidden;padding:calc(100px + clamp(64px,7vw,104px)) 0 112px;background:#171614}
-#top::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgb(23 22 20 / 90%),rgb(23 22 20 / 72%)),linear-gradient(0deg,#171614,transparent 45%);pointer-events:none}
+#top::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgb(23 22 20 / 90%),rgb(23 22 20 / 76%)),linear-gradient(0deg,#171614,transparent 45%);pointer-events:none}
 #top .wrap{position:relative;z-index:2;display:block}
 #top>.hero{position:absolute;inset:0;z-index:0;margin:0;pointer-events:none}
 #top .hero video{display:block;width:100%;height:100%;object-fit:cover;background:#171614}
-#top .hero figcaption{position:absolute;right:var(--gutter);bottom:24px;color:#f6f5f1;font-size:10px}
+#top .hero-credit{position:absolute;z-index:2;right:var(--gutter);bottom:24px;margin:0;color:#f6f5f1;font-size:10px}
 #top .wrap>p:not(.eyebrow){max-width:640px;color:#f6f5f1}
 #top .eyebrow{color:#d1cbc3}
 #introduction{background:#edebe3;color:#45403a;text-align:center;display:flex;align-items:center;justify-content:center}
@@ -166,7 +167,12 @@ td{color:var(--muted)}
 .fig img{display:block;width:100%;height:auto}
 .fig figcaption{font-size:12px;line-height:1.8;color:var(--muted);margin-top:16px}
 .shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 32px;margin:40px 0}
-.finding-card{margin:0;padding:24px;border:1px solid var(--line);background:var(--soft)}
+.finding-card{margin:0;padding:24px;border:1px solid var(--line);min-height:420px;display:flex;align-items:flex-end;background-color:var(--soft);background-image:linear-gradient(180deg,rgb(23 22 20 / 70%) 0%,rgb(23 22 20 / 88%) 42%,rgb(23 22 20 / 97%) 100%),var(--finding-image);background-size:cover;background-position:center;background-repeat:no-repeat;color:#f6f5f1}
+.finding-card strong,.finding-card .callout{color:inherit}
+.finding-card--mobile{--finding-image:url("proposal/ZCS/zcs-phone-hold.png")} 
+.finding-card--buttons{--finding-image:url("proposal/ZCS/zcs-computer.png")} 
+.finding-card--program{--finding-image:url("proposal/ZCS/zcs-computer%20(2).png")} 
+.finding-card--social{--finding-image:url("proposal/ZCS/zcs-computer%20(1).png")} 
 .finding-card p{margin:0;font-size:14px;line-height:1.8}
 .finding-list{list-style:none;padding:0;margin:32px 0}
 .finding-list li{border-top:1px solid var(--line);padding:20px 0;margin:0;color:var(--muted)}
@@ -186,14 +192,14 @@ label{display:block;font-size:12px;font-weight:500;margin:24px 0 10px}
 form.accept>label:first-child{margin-top:0}
 input[type=text],input[type=email],select,textarea{width:100%;min-height:48px;padding:12px 14px;font:inherit;border:1px solid var(--line);border-radius:0;background:var(--paper);color:var(--ink)}
 textarea{resize:vertical}
-.reply-help{font-size:12px;color:var(--muted);margin-top:16px}
-#reply-preview{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
 .signature{font:italic 40px/1.3 var(--serif);margin:32px 0 0}
 .check{display:flex;gap:12px;align-items:flex-start;line-height:1.8}
 .check input{width:18px;height:18px;flex:none;margin:3px 0 0;accent-color:var(--ink)}
 button.go{min-height:48px;padding:16px 24px;margin-top:16px;border:1px solid var(--line);border-radius:0;background:var(--ink);color:var(--paper);font:500 12px/1.5 var(--sans);letter-spacing:.04em;cursor:pointer}
 button.go:hover{background:#d1cbc3}
-#formnote{margin:16px 0 0;font-size:13px}
+button.go:disabled{opacity:.65;cursor:wait}
+#reply-status{margin:16px 0 0;font-size:14px}
+#reply-status:empty{display:none}
 .hp{position:absolute;left:-9999px}
 footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px solid var(--line);font-size:12px;line-height:2;color:var(--muted)}
 @media(max-width:1000px){
@@ -217,7 +223,7 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
   body{font-size:10pt;line-height:1.5}
   .top,form.accept,.skip{display:none!important}
   #top{padding:24px 0;background:transparent}
-  #top::before,#top>.hero{display:none!important}
+  #top::before,#top>.hero,#top .hero-credit{display:none!important}
   #top .wrap>p:not(.eyebrow),#top .eyebrow{color:var(--ink)}
   #top .wrap{display:block}
   h1{font-size:40pt}h2{font-size:28pt}h3{font-size:20pt}h2,h3,h4{break-after:avoid}
@@ -236,6 +242,10 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
 .service-index a:hover,.service-index a[aria-current]{color:var(--ink);border-color:var(--line)}
 /* One shared content column for every proposal chapter. */
 .proposal-chapters{min-width:0}
+/* The eleven main sections share equal space above and below their content. */
+.proposal-chapters>section{padding-block:var(--section-space);padding-inline:0;margin-block:0}
+.proposal-chapters>section>:first-child{margin-top:0}
+.proposal-chapters>section>:last-child{margin-bottom:0}
 .proposal-chapters section>.wrap,.proposal-chapters section>.wide{width:100%;max-width:none;margin-inline:0;padding-inline:0}
 .proposal-chapters section>.wrap>.eyebrow,.proposal-chapters section>.wide>.eyebrow{position:static;max-width:none;margin:0 0 16px}
 .proposal-chapters h2{margin-bottom:24px}
@@ -243,14 +253,273 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
 .proposal-chapters .two>.panel h4{margin-top:0}
 .proposal-chapters .lede{max-width:none}
 .proposal-chapters section>.wrap>:last-child,.proposal-chapters section>.wide>:last-child{margin-bottom:0}
-.proposal-chapters hr.rule{max-width:none}
+.proposal-chapters hr.rule{max-width:none;margin-block:0}
 @media(max-width:900px){.proposal-body{display:block}.service-index{display:none}}
 @media print{.proposal-body{display:block;padding:0}.service-index{display:none!important}}
 /* Yellow is reserved for chapter dividers; other borders use the shared gray. */
 #introduction{border-block:1px solid var(--line)}
 .proposal-chapters hr.rule{border-color:var(--yellow-line)}
+/* A restrained lift and surface change for the proposal cards. */
+@media screen and (hover:hover) and (pointer:fine){
+  .finding-card,.card{transition:transform .22s ease,background-color .22s ease,box-shadow .22s ease}
+  .finding-card:hover,.card:hover{transform:translateY(-3px);background-color:#2b2823;box-shadow:0 10px 24px rgb(0 0 0 / 14%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .finding-card,.card{transition:none}
+  .finding-card:hover,.card:hover{transform:none}
+}
+/* A brief opening welcome, independent of video or external asset loading. */
+html.is-opening{overflow:hidden}
+.opening-screen{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:32px;background:#0c2444;color:#fff;text-align:center;opacity:1;transition:opacity .45s ease}
+.opening-screen.is-leaving{opacity:0;pointer-events:none}
+.opening-logo{display:block;width:clamp(130px,18vw,180px);max-width:55vw;height:auto;max-height:140px;object-fit:contain}
+.opening-message{margin:0;max-width:880px;color:#fff;font:400 clamp(32px,4.8vw,64px)/1.12 var(--serif);letter-spacing:-.02em;text-wrap:balance}
+.opening-message span{display:block}
+@media(prefers-reduced-motion:reduce){.opening-screen{transition:none}}
+@media print{.opening-screen{display:none!important}html.is-opening{overflow:visible}}
+/* Native question disclosures remain usable with keyboard or without JavaScript. */
+.question{border-top:1px solid var(--line)}
+.question:last-child{border-bottom:1px solid var(--line)}
+.question summary{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding:20px 0;cursor:pointer;list-style:none;font-weight:500;color:var(--ink)}
+.question summary::-webkit-details-marker{display:none}
+.question summary:hover{color:#fff}
+.question-icon{position:relative;flex:0 0 16px;width:16px;height:16px;color:var(--muted)}
+.question-icon::before,.question-icon::after{content:"";position:absolute;left:0;top:7px;width:16px;height:1px;background:currentColor}
+.question-icon::after{transform:rotate(90deg)}
+.question[open] .question-icon::after{transform:rotate(0)}
+.question-answer{padding:0 36px 24px 0;color:var(--muted)}
+.question-answer p{margin:0}
+@media print{.question{break-inside:avoid}.question-icon{display:none}.question summary:hover{color:var(--ink)}}
+@media print{
+  .finding-card{min-height:0;background:none;color:var(--ink)}
+}
+/* Give the recommendation a quiet emphasis, with equal card sizing and gray borders. */
+@media screen{
+  .cards .card.rec{background-color:#2b2823}
+  .cards .card.rec::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--line);pointer-events:none}
+  .cards .card.rec .badge{top:-13px;left:24px;right:auto;padding:5px 12px;font-size:10px;line-height:1.5;letter-spacing:.12em;background:#edebe3;color:#45403a;border:1px solid var(--line)}
+}
+@media screen and (hover:hover) and (pointer:fine){
+  .cards .card.rec:hover{background-color:#302c27}
+}
+/* Reading rhythm: shared section widths with a comfortable measure for prose. */
+@media screen{
+  body{font-size:16px;line-height:1.8}
+  .proposal-chapters section>.wrap>p:not(.eyebrow),
+  .proposal-chapters section>.wide>p:not(.eyebrow),
+  #investment>.wide>div:not(.cards):not(.two)>p{max-width:68ch}
+  .proposal-chapters .lede{max-width:60ch;font-size:19px;line-height:1.75}
+  .proposal-chapters h2{line-height:1.1;margin-bottom:28px}
+  .proposal-chapters h3{line-height:1.2}
+  .proposal-chapters p{margin-bottom:24px}
+  .proposal-chapters .eyebrow{font-size:11px;letter-spacing:.17em}
+  .reading-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px;margin:40px 0}
+  .reading-group{min-width:0}
+  .proposal-chapters .subheading{font:600 17px/1.45 var(--sans);letter-spacing:0;margin:0 0 12px;color:var(--ink)}
+  .reading-group p{max-width:68ch;margin:0;color:var(--muted);font-size:15px;line-height:1.85}
+  .overview-outcomes{grid-template-columns:1fr;gap:32px}
+  .proposal-chapters .panel p:last-child{margin-bottom:0}
+  .card ul{font-size:14px;line-height:1.75}
+  .card li{margin-bottom:18px}
+  .card li:last-child{margin-bottom:0}
+  .card li>strong:first-child{display:block;margin-bottom:5px;font-weight:600}
+  .card p,.card .best{font-size:14px;line-height:1.75}
+  .card h5{font-size:11px;margin:28px 0 16px}
+  .card .when{font-size:13px;line-height:1.6}
+  .finding-card p{font-size:15px;line-height:1.8;margin:0}
+  .finding-card strong{display:block;font-size:17px;line-height:1.45;margin:8px 0 12px}
+  .finding-list li{padding:24px 0;line-height:1.8}
+  .finding-list strong{display:block;margin-bottom:8px;color:var(--ink)}
+  .question-answer{max-width:70ch;line-height:1.85}
+  .steps li{line-height:1.8;padding-block:28px}
+  .steps strong{font-size:16px;line-height:1.5;margin-bottom:12px}
+  #assumptions>.wrap>ul{max-width:72ch}
+  #assumptions li{margin-bottom:20px}
+  #reply{max-width:760px}
+  #reply label{font-size:14px;line-height:1.5}
+}
+@media screen and (max-width:1100px){.cards{grid-template-columns:1fr;gap:48px}.card .when{min-height:0}}
+@media screen and (max-width:760px){
+  body{font-size:15px}
+  .reading-groups{grid-template-columns:1fr;gap:28px;margin-block:32px}
+  .proposal-chapters .lede{font-size:18px}
+  .card{padding:28px 24px}
+  .finding-card{padding:24px}
+}
+@media print{
+  .reading-groups{display:block}
+  .reading-group{margin:20px 0;break-inside:avoid}
+  .proposal-chapters .subheading{font:600 11pt/1.4 var(--sans);margin:0 0 8px}
+}
+/* Project phases share a track; the light segment follows reading progress. */
+.timeline-durations{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:0;margin:32px 0 40px}
+.timeline-durations li{margin:0;padding:16px 0;border-block:1px solid var(--line);font-size:13px;line-height:1.6}
+.timeline-durations strong,.timeline-durations span{display:block}
+.timeline-durations strong{font-weight:600;color:var(--ink);margin-bottom:4px}
+.timeline-durations span{color:var(--muted)}
+.project-timeline{position:relative;list-style:none;padding:0;margin:40px 0;--timeline-start:36px;--timeline-height:calc(100% - 150px);--timeline-fill:0px}
+.project-timeline::before,.project-timeline::after{content:"";position:absolute;left:7px;top:var(--timeline-start);width:2px;pointer-events:none}
+.project-timeline::before{height:var(--timeline-height);background:var(--line);opacity:.5}
+.project-timeline::after{height:var(--timeline-fill);background:var(--ink)}
+.timeline-phase{position:relative;display:grid;grid-template-columns:120px minmax(0,1fr);align-items:start;gap:24px;padding:0 0 32px 44px;margin:0}
+.timeline-phase:last-child{padding-bottom:0}
+.timeline-dot{position:absolute;left:0;top:28px;width:16px;height:16px;border:2px solid var(--line);border-radius:50%;background:var(--paper);z-index:1}
+.phase-meta{padding-top:24px}
+.phase-week{font:500 12px/1.5 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.phase-options{font-size:11px;line-height:1.6;color:var(--muted);margin-top:8px}
+.phase-content{padding:24px;border:1px solid var(--line);background:var(--soft);min-width:0}
+.proposal-chapters .phase-content h3{font:500 clamp(24px,2.4vw,30px)/1.2 var(--serif);margin:0 0 14px}
+.proposal-chapters .phase-content p{font-size:15px;line-height:1.8;color:var(--muted);margin:0;max-width:65ch}
+.proposal-chapters .phase-meta p{margin-bottom:0}
+.timeline-phase.is-reached .timeline-dot{background:var(--ink)}
+.timeline-phase.is-current .phase-content{box-shadow:inset 3px 0 0 var(--ink)}
+@media screen and (max-width:760px){
+  .timeline-phase{grid-template-columns:1fr;gap:12px;padding-left:32px}
+  .phase-meta{padding-top:20px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .phase-options{margin-top:0}
+  .phase-content{padding:20px}
+  .timeline-durations{gap:12px}
+}
+@media print{
+  .timeline-phase{break-inside:avoid}
+  .project-timeline::after{display:none}
+  .timeline-phase.is-current .phase-content{box-shadow:none}
+  .timeline-phase.is-reached .timeline-dot{background:var(--paper)}
+}
+/* Responsive safeguards: shrink content rather than hide page overflow. */
+@media screen{
+  .proposal-body>*,.cards>*,.two>*,.shots>*,.reading-groups>*,.timeline-phase>*{min-width:0}
+  .proposal-chapters,.intro-copy,.phase-content,.question-answer{overflow-wrap:anywhere}
+  h1,h2,h3,h4,summary,.price{overflow-wrap:anywhere}
+  input[type=text],input[type=email],select,textarea{min-width:0;max-width:100%;font-size:16px}
+  button.go,.top .nav-cta{min-width:44px;min-height:48px;max-width:100%}
+  .service-index a{min-height:44px}
+  .service-index a:focus-visible{outline-offset:-3px}
+  .question summary{min-height:56px;overflow-wrap:anywhere}
+  .question summary:focus-visible{outline-offset:-3px}
+  .question-answer{padding-right:0}
+  .proposal-chapters a[href],footer a[href]{display:inline-block;max-width:100%;min-height:44px;padding-block:8px;overflow-wrap:anywhere}
+  .cards .card.rec .badge{max-width:calc(100% - 48px);overflow-wrap:anywhere}
+  #payment table{table-layout:fixed}
+  #payment th,#payment td{overflow-wrap:anywhere;hyphens:auto}
+  .opening-screen{overflow-y:auto}
+  .opening-logo,.opening-message{flex-shrink:0}
+}
+@media screen and (max-width:1279px){
+  .cards{grid-template-columns:1fr;gap:48px}
+  .card .when{min-height:0}
+}
+@media screen and (max-width:1024px){
+  .proposal-body{display:block}
+  .service-index{display:none}
+  .reading-groups{gap:28px}
+  .timeline-phase{grid-template-columns:100px minmax(0,1fr);gap:20px}
+}
+@media screen and (max-width:760px){
+  h1{font-size:clamp(40px,9vw,68px);line-height:1.06}
+  h2{font-size:clamp(34px,7vw,42px)}
+  .two,.shots,.reading-groups{grid-template-columns:1fr}
+  .timeline-phase{grid-template-columns:1fr;gap:12px}
+  .phase-meta{flex-wrap:wrap}
+  .finding-card{min-height:360px}
+  .price{font-size:clamp(46px,11vw,64px)}
+  .card h3{font-size:32px}
+  form.accept{padding:24px 20px}
+  #payment th,#payment td{padding:14px 8px;font-size:12px}
+  .timeline-durations{gap:12px}
+}
+@media screen and (max-width:380px){
+  .top .nav-cta{gap:12px;padding-inline:14px}
+  .timeline-durations{grid-template-columns:1fr;gap:0}
+  .timeline-durations li{display:flex;justify-content:space-between;gap:12px;padding-block:12px;border-bottom:0}
+  .timeline-durations li:last-child{border-bottom:1px solid var(--line)}
+  .timeline-durations strong{margin:0}
+  .card{padding:24px 20px}
+  .cards .card.rec .badge{left:20px;max-width:calc(100% - 40px)}
+}
+@media screen and (max-height:500px){
+  .opening-screen{gap:16px;padding:20px}
+  .opening-logo{max-height:64px}
+  .opening-message{font-size:clamp(26px,4vw,36px)}
+}
+#introduction :focus-visible{outline-color:#45403a}
+/* Initial Findings only: uncropped evidence with a clear observation/action hierarchy. */
+#noticed .audit-findings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin:48px 0 64px}
+#noticed .audit-finding{--audit-blue:#0c2444;--audit-heading:var(--ink);--audit-text:var(--muted);--audit-muted:var(--muted);min-width:0;overflow:visible;background:var(--soft);color:var(--audit-text);border:1px solid var(--line);border-radius:4px;box-shadow:none;padding:24px}
+#noticed .audit-heading{display:flex;align-items:center;gap:16px;min-height:78px;padding:0;margin-bottom:24px;border:0}
+#noticed .audit-number{flex:0 0 36px;width:36px;height:36px;display:grid;place-items:center;background:#c8b366;color:var(--audit-blue);border-radius:50%;font:600 12px/1 var(--sans);letter-spacing:.04em}
+#noticed .audit-title{margin:0;color:var(--audit-heading);font:500 clamp(26px,2.6vw,34px)/1.15 var(--serif);letter-spacing:-.01em;text-wrap:balance;overflow-wrap:anywhere}
+#noticed .audit-body{padding:0;min-width:0}
+#noticed .audit-evidence{margin:0;min-width:0}
+#noticed .audit-image-link{display:block;min-height:0;aspect-ratio:4/3;padding:0;max-width:100%;border:1px solid #77716a;border-radius:4px;box-shadow:0 2px 10px rgb(12 36 68 / 10%);background:var(--paper);line-height:0}
+#noticed .audit-image-link img{display:block;width:100%;max-width:100%;height:100%;object-fit:contain;border-radius:3px;filter:none}
+#noticed .audit-evidence figcaption{font:400 12px/1.65 var(--sans);color:var(--audit-muted);margin-top:12px;max-width:75ch}
+#noticed .audit-evidence figcaption a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:6px 0;color:var(--audit-heading);text-decoration:underline;text-underline-offset:4px}
+#noticed .audit-evidence a:hover{color:var(--ink)}
+#noticed .audit-finding :focus-visible{outline:3px solid var(--focus);outline-offset:4px}
+#noticed .audit-explanation{display:grid;grid-template-columns:1fr;gap:28px;margin-top:28px}
+#noticed .audit-note{min-width:0}
+#noticed .audit-note h4{font:600 12px/1.5 var(--sans);letter-spacing:.06em;color:var(--audit-heading);margin:0 0 10px}
+#noticed .audit-note p{font:400 15px/1.8 var(--sans);color:var(--audit-text);margin:0;max-width:62ch;overflow-wrap:anywhere}
+#noticed .audit-finding--mobile .audit-evidence{width:100%;margin-inline:0}
+#noticed .audit-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+
+@media screen and (max-width:760px){
+  #noticed .audit-findings{grid-template-columns:1fr;gap:24px;margin-block:32px 48px}
+  #noticed .audit-finding{padding:20px}
+      #noticed .audit-heading{gap:12px;min-height:0;padding:0;margin-bottom:20px}
+  #noticed .audit-body{padding:0}
+  #noticed .audit-explanation{grid-template-columns:1fr;gap:24px;margin-top:24px}
+  #noticed .audit-finding--mobile .audit-evidence{width:100%}
+}
+@media print{
+  #noticed .audit-findings{grid-template-columns:1fr}
+  #noticed .audit-image-link{aspect-ratio:auto}
+  #noticed .audit-image-link img{height:auto}
+  #noticed .audit-finding{break-inside:auto;background:transparent}
+  #noticed .audit-heading{break-after:avoid}
+  #noticed .audit-body{display:block}
+  #noticed .audit-evidence{break-inside:avoid}
+  #noticed .audit-image-link{box-shadow:none}
+  #noticed .audit-image-link img{max-height:150mm;width:auto;max-width:100%;margin-inline:auto}
+  #noticed .audit-finding--mobile .audit-image-link img{max-height:110mm}
+  #noticed .audit-evidence figcaption a{display:none}
+  #noticed .audit-explanation{display:block;margin-top:20px}
+  #noticed .audit-note{break-inside:avoid;margin:0 0 16px}
+}
 </style>
 </head><body>
+
+<div id="opening-screen" class="opening-screen" role="status" aria-label="Welcome to the Zeeland Christian School proposal" hidden>
+  <img class="opening-logo" src="https://www.zcs.org/wp-content/uploads/2021/02/ZCS-logo_RGB-white-225.png" alt="Zeeland Christian School" decoding="async" fetchpriority="high">
+  <p class="opening-message"><span>A clearer path for families.</span><span>A stronger story for Zeeland Christian.</span></p>
+</div>
+<script>
+/* Always reveal the page on a timer; never wait for the video or remote logo. */
+(function(){
+  var screen=document.getElementById('opening-screen');
+  var root=document.documentElement;
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dismissed=false;
+  screen.hidden=false;
+  root.classList.add('is-opening');
+  function dismiss(){
+    if(dismissed) return;
+    dismissed=true;
+    root.classList.remove('is-opening');
+    screen.classList.add('is-leaving');
+    document.removeEventListener('keydown',onKey,true);
+    setTimeout(function(){screen.hidden=true;},reduced ? 0 : 450);
+  }
+  function onKey(event){
+    if(event.key==='Escape' || event.key==='Tab') dismiss();
+  }
+  document.addEventListener('keydown',onKey,true);
+  setTimeout(dismiss,reduced ? 1400 : 2600);
+  window.addEventListener('pagehide',dismiss,{once:true});
+})();
+</script>
+
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="header top">
@@ -268,8 +537,8 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
         <source src="https://www.zcs.org/wp-content/uploads/2023/02/ZCS_Website_Banner-1.mp4" type="video/mp4">
         Your browser doesn’t support embedded video. <a href="https://www.zcs.org/wp-content/uploads/2023/02/ZCS_Website_Banner-1.mp4">Watch the Zeeland Christian School video.</a>
       </video>
-      <figcaption id="hero-video-caption">Video: Zeeland Christian School.</figcaption>
     </figure>
+  <p class="hero-credit" id="hero-video-caption">Video: Zeeland Christian School.</p>
   <div class="wrap">
     <p class="eyebrow">Proposal</p>
     <h1>Zeeland Christian School: Website Refresh, Search Visibility and Ongoing Support</h1>
@@ -319,12 +588,20 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
     <div class="panel">
       <p><strong>Your three-year vision, as I heard it:</strong> technical support is no longer a headache, the website stays fresh, ZCS keeps pace with changes in search, and the prospective family experience is “second to none.” You want the site to become an example other schools can learn from.</p>
     </div>
-    <h4>Tell the story families should see.</h4>
-    <p>Your history, Christian education, Spanish and Mandarin immersion, and outdoor learning offer plenty to talk about. The homepage can give families a clearer picture of those experiences, using the photos, videos, and language your team already creates.</p>
-    <h4>Help families find their next step.</h4>
-    <p>Prospective families come first, with clear routes for current families and donors too. Consistent buttons and helpful explanations can make it easier to understand what happens before an inquiry, tour, or application.</p>
-    <h4>Measure what changes.</h4>
-    <p>You planned to ask your admissions director about inquiry and tour numbers. I’ll review what’s already tracked, then help connect website activity with those records where the admissions tools allow it. That gives us a starting point for judging improvements, rather than guessing at enrollment results.</p>
+    <div class="reading-groups overview-outcomes">
+      <div class="reading-group">
+        <h3 class="subheading">Tell the story families should see.</h3>
+        <p>Your history, Christian education, Spanish and Mandarin immersion, and outdoor learning offer plenty to talk about. The homepage can give families a clearer picture of those experiences, using the photos, videos, and language your team already creates.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Help families find their next step.</h3>
+        <p>Prospective families come first, with clear routes for current families and donors too. Consistent buttons and helpful explanations can make it easier to understand what happens before an inquiry, tour, or application.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Measure what changes.</h3>
+        <p>You planned to ask your admissions director about inquiry and tour numbers. I’ll review what’s already tracked, then help connect website activity with those records where the admissions tools allow it. That gives us a starting point for judging improvements, rather than guessing at enrollment results.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -334,18 +611,98 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
     <p class="eyebrow">Initial findings</p>
     <h2>What came up in our conversation.</h2>
     <p class="lede">These observations come from our meeting walkthrough and your team’s experience. I haven’t re-tested them as part of this proposal review. I’ll verify each one, agree on the intended behavior with your team, and confirm where the change needs to happen.</p>
-    <div class="shots">
-      <article class="finding-card">
-        <p><span class="callout">1</span><strong>Homepage video on mobile.</strong> You mentioned during our conversation that the homepage video doesn’t always load on phones. I’ll check playback on mobile and review the video settings and delivery with your current host if needed, before recommending a fix.</p>
+    <div class="audit-findings">
+      <article class="audit-finding audit-finding--mobile" aria-labelledby="finding-mobile-title">
+        <header class="audit-heading">
+          <span class="audit-number" aria-label="Finding 1">01</span>
+          <h3 class="audit-title" id="finding-mobile-title">Homepage video on mobile</h3>
+        </header>
+        <div class="audit-body">
+          <figure class="audit-evidence">
+            <a class="audit-image-link" href="proposal/ZCS/zcs-phone-hold.png" target="_blank" rel="noopener" aria-label="View full-size image for finding 1: Homepage video on mobile">
+              <img src="proposal/ZCS/zcs-phone-hold.png" width="1080" height="1440" alt="A person holding a phone displaying the ZCS homepage at a desk beside a laptop and notebooks." loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <div class="audit-explanation">
+            <div class="audit-note">
+              <h4>What came up</h4>
+              <p>You mentioned that the homepage video doesn’t always load on phones. A family’s first visit should still feel complete when playback is delayed or unavailable.</p>
+            </div>
+            <div class="audit-note audit-recommendation">
+              <h4>What I’d improve</h4>
+              <p>I’ll test playback on phones, review the video settings and delivery with your host if needed, and recommend a reliable fallback so the welcome message stays clear.</p>
+            </div>
+          </div>
+        </div>
       </article>
-      <article class="finding-card">
-        <p><span class="callout">2</span><strong>Admissions buttons.</strong> The walkthrough raised inconsistent destinations across Inquire, Visit, and Apply. Inquire opened a form in some places and a portal sign-in on the homepage; Apply also led to sign-in. I’ll map all three routes and confirm when an account is actually needed.</p>
+      <article class="audit-finding audit-finding--buttons" aria-labelledby="finding-buttons-title">
+        <header class="audit-heading">
+          <span class="audit-number" aria-label="Finding 2">02</span>
+          <h3 class="audit-title" id="finding-buttons-title">Consistent, easy-to-use buttons</h3>
+        </header>
+        <div class="audit-body">
+          <figure class="audit-evidence">
+            <a class="audit-image-link" href="proposal/ZCS/zcs-computer.png" target="_blank" rel="noopener" aria-label="View full-size image for finding 2: Consistent, easy-to-use buttons">
+              <img src="proposal/ZCS/zcs-computer.png" width="1076" height="714" alt="A laptop showing four yellow ZCS About-page buttons with different text wrapping and spacing." loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <div class="audit-explanation">
+            <div class="audit-note">
+              <h4>What came up</h4>
+              <p>The walkthrough raised questions about button styling, placement, and destinations. The supplied image also shows uneven label wrapping, which can make choices harder to scan.</p>
+            </div>
+            <div class="audit-note audit-recommendation">
+              <h4>What I’d improve</h4>
+              <p>I’ll review labels, destinations, spacing, and placement as one consistent system, then test the buttons on phones and tablets so they’re easy to find and tap.</p>
+            </div>
+          </div>
+        </div>
       </article>
-      <article class="finding-card">
-        <p><span class="callout">3</span><strong>English / Traditional program link.</strong> The English link under Explore appeared to open the outdoor program. We found a separate Traditional page during the call. I’ll check whether the link has since been corrected and confirm the right label and destination.</p>
+      <article class="audit-finding audit-finding--program" aria-labelledby="finding-program-title">
+        <header class="audit-heading">
+          <span class="audit-number" aria-label="Finding 3">03</span>
+          <h3 class="audit-title" id="finding-program-title">Optimizing language pages</h3>
+        </header>
+        <div class="audit-body">
+          <figure class="audit-evidence">
+            <a class="audit-image-link" href="proposal/ZCS/zcs-computer%20(2).png" target="_blank" rel="noopener" aria-label="View full-size image for finding 3: Optimizing language pages">
+              <img src="proposal/ZCS/zcs-computer%20(2).png" width="1077" height="718" alt="An overhead laptop view showing a translated ZCS program page with four program icons and an outdoor learning image." loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <div class="audit-explanation">
+            <div class="audit-note">
+              <h4>What came up</h4>
+              <p>We discussed helping Spanish- and Mandarin-speaking families find ZCS in their own language. The site offers translation, but we still need to check how those pages appear in search and how easily families can navigate them.</p>
+            </div>
+            <div class="audit-note audit-recommendation">
+              <h4>What I’d improve</h4>
+              <p>I’ll review the translated pages, language navigation, and search visibility, then recommend clearer page titles, descriptions, and links. Any new translated pages will follow the scope of your selected option and use ZCS-approved language.</p>
+            </div>
+          </div>
+        </div>
       </article>
-      <article class="finding-card">
-        <p><span class="callout">4</span><strong>Footer social links.</strong> Several links appeared broken or led somewhere unexpected. I’ll check each one against ZCS’s current social accounts.</p>
+      <article class="audit-finding audit-finding--social" aria-labelledby="finding-social-title">
+        <header class="audit-heading">
+          <span class="audit-number" aria-label="Finding 4">04</span>
+          <h3 class="audit-title" id="finding-social-title">Footer social media links</h3>
+        </header>
+        <div class="audit-body">
+          <figure class="audit-evidence">
+            <a class="audit-image-link" href="proposal/ZCS/zcs-computer%20(1).png" target="_blank" rel="noopener" aria-label="View full-size image for finding 4: Footer social media links">
+              <img src="proposal/ZCS/zcs-computer%20(1).png" width="1079" height="719" alt="A laptop displaying the ZCS footer icons for Facebook, Twitter, Instagram, and email on a dark blue background." loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <div class="audit-explanation">
+            <div class="audit-note">
+              <h4>What came up</h4>
+              <p>Several footer links appeared broken or led somewhere unexpected during the walkthrough. Familiar icons should give families a dependable way to connect with the school.</p>
+            </div>
+            <div class="audit-note audit-recommendation">
+              <h4>What I’d improve</h4>
+              <p>I’ll check each destination against ZCS’s current accounts, update incorrect links, and agree with your team which icons should remain.</p>
+            </div>
+          </div>
+        </div>
       </article>
     </div>
     <h3>The rest of the first review</h3>
@@ -376,20 +733,36 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
   <div class="wrap">
     <p class="eyebrow">What I’ll do</p>
     <h2>Start with the essentials. Build from there.</h2>
-    <h4>Check and fix the immediate issues.</h4>
-    <p>I’ll start with the admissions paths, program navigation, footer links, and contact email addresses. Confirmed WordPress fixes come first, alongside color contrast checks, phone and tablet testing, and investigation of the homepage video.</p>
-    <h4>Make the admissions steps clear.</h4>
-    <p>I’ll create a reusable Inquire / Visit / Apply button set with consistent labels and agreed destinations. With your admissions team, I’ll review the information requested at first contact and explain how tour scheduling works. Changes to externally managed forms or scheduling depend on what that system supports.</p>
-    <h4>Give your staff a useful handoff.</h4>
-    <p>Every option includes <strong>WordPress Training &amp; Handoff</strong>: one live WordPress training session for relevant ZCS staff and a custom, easy-to-follow documentation guide. We’ll use your existing WordPress setup to practice editing text, swapping photos, updating links, and checking pages on mobile before publishing. We’ll also look at the available website reports so admissions staff know where to find the numbers and what they mean.</p>
-    <h4>Give the school’s story more room.</h4>
-    <p>Options 2 and 3 build on the essentials with refreshed pages that explain the programs, share your history, and show what learning at ZCS looks like. I’ll work with the messaging and media your team provides.</p>
-    <h4>Make useful information easier to find.</h4>
-    <p>I’ll put agreed FAQ information directly on the website and improve page titles, descriptions, and organization so families and search tools can understand it. Option 3 adds Spanish and Mandarin pages for families searching in those languages.</p>
-    <h4>Understand what’s working.</h4>
-    <p>I’ll review existing analytics and set up tracking for the website’s admissions buttons and any forms we can measure. Completed inquiries and bookings inside another system depend on the reporting and access it provides.</p>
-    <h4>Choose support after launch.</h4>
-    <p>An optional care plan covers ongoing technical support, search improvements, and small design updates. Your team keeps handling the everyday content changes.</p>
+    <div class="reading-groups">
+      <div class="reading-group">
+        <h3 class="subheading">Check and fix the immediate issues.</h3>
+        <p>I’ll start with the admissions paths, program navigation, footer links, and contact email addresses. Confirmed WordPress fixes come first, alongside color contrast checks, phone and tablet testing, and investigation of the homepage video.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Make the admissions steps clear.</h3>
+        <p>I’ll create a reusable Inquire / Visit / Apply button set with consistent labels and agreed destinations. With your admissions team, I’ll review the information requested at first contact and explain how tour scheduling works. Changes to externally managed forms or scheduling depend on what that system supports.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Give your staff a useful handoff.</h3>
+        <p>Every option includes <strong>WordPress Training &amp; Handoff</strong>: one live WordPress training session for relevant ZCS staff and a custom, easy-to-follow documentation guide. We’ll use your existing WordPress setup to practice editing text, swapping photos, updating links, and checking pages on mobile before publishing. We’ll also look at the available website reports so admissions staff know where to find the numbers and what they mean.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Give the school’s story more room.</h3>
+        <p>Options 2 and 3 build on the essentials with refreshed pages that explain the programs, share your history, and show what learning at ZCS looks like. I’ll work with the messaging and media your team provides.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Make useful information easier to find.</h3>
+        <p>I’ll put agreed FAQ information directly on the website and improve page titles, descriptions, and organization so families and search tools can understand it. Option 3 adds Spanish and Mandarin pages for families searching in those languages.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Understand what’s working.</h3>
+        <p>I’ll review existing analytics and set up tracking for the website’s admissions buttons and any forms we can measure. Completed inquiries and bookings inside another system depend on the reporting and access it provides.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Choose support after launch.</h3>
+        <p>An optional care plan covers ongoing technical support, search improvements, and small design updates. Your team keeps handling the everyday content changes.</p>
+      </div>
+    </div>
     <h3>What’s outside this scope</h3>
     <p>A ground-up rebuild, a move away from WordPress, and building the school app are separate projects. ZCS provides new photos, videos, and approved content. Replacing an admissions system, building a custom connection to it, or paying for provider changes is also outside this quote. If we find a need for additional work, I’ll explain it and agree on a price with you before starting.</p>
     <p>The options below spell out the page counts and deliverables included at each level.</p>
@@ -401,16 +774,26 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
   <div class="wrap">
     <p class="eyebrow">Questions answered up front</p>
     <h2>The questions you may be asking.</h2>
-    <h4>Why not start over with a full rebuild?</h4>
-    <p>You said it would be easier to make decisions if we focus on improving the site you already have. That gives us a practical place to start: resolve the immediate issues, make admissions clearer, and refresh the pages families rely on. Option 3 carries the design further across the site. I’ll review the editing tools before recommending any change to them.</p>
-    <h4>Does my team have to learn something new?</h4>
-    <p>We’ll start with the WordPress setup your team already uses. Every option includes one live training session and a custom documentation guide for everyday updates, including how to check mobile layouts. If we agree on a change to the editing tools in Option 3, the additional training will cover that change too.</p>
-    <h4>What about the support you already have?</h4>
-    <p>You said you’d consider bringing refresh work and technical support together with me. I’ll first confirm what Nerdy Nonprofit currently handles and coordinate any handoff with you. Hosting can stay where it is if that works for ZCS, and we’ll make sure responsibilities and account access are clear.</p>
-    <h4>Do families really use their phones?</h4>
-    <p>I’d like to show you instead of guess. Once I have access to your analytics, I’ll pull the share of visits that come from phones and tell you what it says. If I’m wrong, I’ll say so.</p>
-    <h4>How does this fit with the school app?</h4>
-    <p>You hope the app will handle the teacher blog, calendar, and hot lunch menu. Option 3 includes a written map of what belongs where, who keeps it current, and how families get to it. We’ll confirm what the app can support before suggesting any technical connection.</p>
+    <details class="question">
+      <summary>Why not start over with a full rebuild?<span class="question-icon" aria-hidden="true"></span></summary>
+      <div class="question-answer"><p>You said it would be easier to make decisions if we focus on improving the site you already have. That gives us a practical place to start: resolve the immediate issues, make admissions clearer, and refresh the pages families rely on. Option 3 carries the design further across the site. I’ll review the editing tools before recommending any change to them.</p></div>
+    </details>
+    <details class="question">
+      <summary>Does my team have to learn something new?<span class="question-icon" aria-hidden="true"></span></summary>
+      <div class="question-answer"><p>We’ll start with the WordPress setup your team already uses. Every option includes one live training session and a custom documentation guide for everyday updates, including how to check mobile layouts. If we agree on a change to the editing tools in Option 3, the additional training will cover that change too.</p></div>
+    </details>
+    <details class="question">
+      <summary>What about the support you already have?<span class="question-icon" aria-hidden="true"></span></summary>
+      <div class="question-answer"><p>You said you’d consider bringing refresh work and technical support together with me. I’ll first confirm what Nerdy Nonprofit currently handles and coordinate any handoff with you. Hosting can stay where it is if that works for ZCS, and we’ll make sure responsibilities and account access are clear.</p></div>
+    </details>
+    <details class="question">
+      <summary>Do families really use their phones?<span class="question-icon" aria-hidden="true"></span></summary>
+      <div class="question-answer"><p>I’d like to show you instead of guess. Once I have access to your analytics, I’ll pull the share of visits that come from phones and tell you what it says. If I’m wrong, I’ll say so.</p></div>
+    </details>
+    <details class="question">
+      <summary>How does this fit with the school app?<span class="question-icon" aria-hidden="true"></span></summary>
+      <div class="question-answer"><p>You hope the app will handle the teacher blog, calendar, and hot lunch menu. Option 3 includes a written map of what belongs where, who keeps it current, and how families get to it. We’ll confirm what the app can support before suggesting any technical connection.</p></div>
+    </details>
   </div>
 </section>
 
@@ -419,11 +802,32 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
   <div class="wrap">
     <p class="eyebrow">Timeline</p>
     <h2>A practical sequence, with the urgent work first.</h2>
-    <ol class="steps">
-      <li><strong>Week 1 · Access and verification</strong> Once the separate agreement is signed and the first payment is in, I’ll review WordPress, analytics, and the admissions links. The Inquire / Visit / Apply routes are the first check. I’ll make the confirmed WordPress fixes and flag anything that needs the host or another provider.</li>
-      <li><strong>Weeks 2–3 · Admissions paths and handoff</strong> I’ll standardize the buttons, review inquiry and tour steps with admissions, test layouts and contrast, investigate mobile video loading, and set up the agreed tracking and search improvements. Option 1 finishes with the live WordPress training session and custom guide.</li>
-      <li><strong>Weeks 4–8 · Refreshed pages</strong> Options 2 and 3 continue with the homepage, About, and other agreed pages. Your team provides approved messaging and media. Peter coordinates decisions, with input from your marketing and communications specialists and admissions director. We’ll review the changes together and deliver the WordPress handoff at your project’s launch.</li>
-      <li><strong>Weeks 9–12 · Broader improvements</strong> Option 3 continues with the additional pages, Spanish and Mandarin content, media direction, app planning, and two additional on-site training sessions.</li>
+    <ul class="timeline-durations" aria-label="Estimated project lengths">
+      <li><strong>Option 1</strong><span>About 3 weeks</span></li>
+      <li><strong>Option 2</strong><span>About 8 weeks</span></li>
+      <li><strong>Option 3</strong><span>About 12 weeks</span></li>
+    </ul>
+    <ol class="project-timeline" aria-label="Project phases by week and option">
+      <li class="timeline-phase">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="phase-meta"><p class="phase-week">Week 1</p><p class="phase-options">Options 1, 2 &amp; 3</p></div>
+        <div class="phase-content"><h3>Access and verification</h3><p>Once the separate agreement is signed and the first payment is in, I’ll review WordPress, analytics, and the admissions links. The Inquire / Visit / Apply routes are the first check. I’ll make the confirmed WordPress fixes and flag anything that needs the host or another provider.</p></div>
+      </li>
+      <li class="timeline-phase">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="phase-meta"><p class="phase-week">Weeks 2–3</p><p class="phase-options">Options 1, 2 &amp; 3</p></div>
+        <div class="phase-content"><h3>Admissions paths and handoff</h3><p>I’ll standardize the buttons, review inquiry and tour steps with admissions, test layouts and contrast, investigate mobile video loading, and set up the agreed tracking and search improvements. Option 1 finishes with the live WordPress training session and custom guide.</p></div>
+      </li>
+      <li class="timeline-phase">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="phase-meta"><p class="phase-week">Weeks 4–8</p><p class="phase-options">Options 2 &amp; 3</p></div>
+        <div class="phase-content"><h3>Refreshed pages</h3><p>Options 2 and 3 continue with the homepage, About, and other agreed pages. Your team provides approved messaging and media. Peter coordinates decisions, with input from your marketing and communications specialists and admissions director. We’ll review the changes together and deliver the WordPress handoff at your project’s launch.</p></div>
+      </li>
+      <li class="timeline-phase">
+        <span class="timeline-dot" aria-hidden="true"></span>
+        <div class="phase-meta"><p class="phase-week">Weeks 9–12</p><p class="phase-options">Option 3</p></div>
+        <div class="phase-content"><h3>Broader improvements</h3><p>Option 3 continues with the additional pages, Spanish and Mandarin content, media direction, app planning, and two additional on-site training sessions.</p></div>
+      </li>
     </ol>
     <p>Allow about 3 weeks for Option 1, 8 weeks for Option 2, and 12 weeks for Option 3. These are planning estimates from our agreed kickoff date, after the separate agreement is signed and the first payment is received, with timely access, content, and feedback. External provider work may affect the relevant dates; I’ll keep you informed.</p>
     <p>If you choose a care plan, it starts when your project launches.</p>
@@ -436,14 +840,24 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
     <p class="eyebrow">How I work</p>
     <h2>One person, invested from the first conversation onward.</h2>
     <p>Your school’s history and story are what drew me into this conversation. I want families to see the care behind the programs, understand what makes ZCS different, and picture their children learning there. That starts with getting to know your school and listening to the people who tell its story every day.</p>
-    <h4>A partner, not a vendor</h4>
-    <p>I’ll learn how your school works and involve your team as we make decisions. If you choose ongoing care, we’ll review progress each quarter and decide together what needs attention next.</p>
-    <h4>You work directly with me</h4>
-    <p>You’ll work directly with me, from the first review through launch. You’ll know who to ask and what I’m working on.</p>
-    <h4>You keep the keys</h4>
-    <p>Your domain, hosting and accounts stay in ZCS’s name. I’m added as a user, and you can take your site anywhere, any time.</p>
-    <h4>One price, no clock</h4>
-    <p>I price the outcome, not the hours. If something takes me longer than I expected, that’s my problem, not yours.</p>
+    <div class="reading-groups">
+      <div class="reading-group">
+        <h3 class="subheading">A partner, not a vendor</h3>
+        <p>I’ll learn how your school works and involve your team as we make decisions. If you choose ongoing care, we’ll review progress each quarter and decide together what needs attention next.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">You work directly with me</h3>
+        <p>You’ll work directly with me, from the first review through launch. You’ll know who to ask and what I’m working on.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">You keep the keys</h3>
+        <p>Your domain, hosting and accounts stay in ZCS’s name. I’m added as a user, and you can take your site anywhere, any time.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">One price, no clock</h3>
+        <p>I price the outcome, not the hours. If something takes me longer than I expected, that’s my problem, not yours.</p>
+      </div>
+    </div>
     <h3>My process</h3>
     <ol class="steps">
       <li><strong>Listen</strong> We’ve had the discovery call. We’ll walk through this proposal together, and you tell me what I’ve missed.</li>
@@ -597,24 +1011,44 @@ Attribution: Travis, Glass House Creative Community.
     <p class="eyebrow">Short terms</p>
     <h2>Simple, fair terms.</h2>
     <p>Here’s how I propose we work together. These points will be confirmed in the separate agreement, along with your selected option, care plan, and start date. Reviewing this page or emailing a preference doesn’t sign an agreement or create a payment obligation.</p>
-    <h4>Payment</h4>
-    <p>After the agreement is signed, I’ll invoice 50% of the project fee. Work starts after that payment is received. I’ll invoice the remaining 50% at launch. Both invoices are payable within 15 days of issue. Work pauses if an invoice remains unpaid more than 30 days after its due date.</p>
-    <h4>Fixed price and scope</h4>
-    <p>The price covers the scope in the option you choose. Anything beyond it is a new quote, agreed in writing before work starts.</p>
-    <h4>Content and timing</h4>
-    <p>The timeline assumes you provide content, access and feedback when asked. If those slip, the launch date moves by the same amount. If the project stalls for more than 30 days, we’ll pause it, and payment for work completed to that point is due.</p>
-    <h4>Revisions</h4>
-    <p>Each milestone includes two rounds of consolidated feedback. More rounds are quoted separately.</p>
-    <h4>Your accounts and files</h4>
-    <p>You own your domain, hosting and accounts, and I’m added as a user. When the final payment is made, you receive the finished files.</p>
-    <h4>Ownership</h4>
-    <p>When the final payment is made, the finished deliverables are yours. I may show the work in my portfolio, and I keep my general tools, templates and know-how. Photos, videos, logos and text that ZCS provides remain ZCS’s. Third-party items (fonts, plugins, stock photos) stay under their own licenses.</p>
-    <h4>Ongoing care</h4>
-    <p>A care plan is optional and separate from the project fee. The initial commitment is the 6 or 12 months selected in the agreement, billed monthly from launch. After that term, it continues month to month at the agreed renewal rate; either of us can end it with 30 days’ notice. Additional work is quoted first.</p>
-    <h4>Warranty</h4>
-    <p>I’ll do the work professionally. If something in the agreed scope doesn’t work as described, I’ll fix it at no charge for 30 days after launch.</p>
-    <h4>Confidentiality</h4>
-    <p>Each of us keeps the other’s non-public information private, including student and family information, which I won’t ask for and will handle with care if I see it.</p>
+    <div class="reading-groups">
+      <div class="reading-group">
+        <h3 class="subheading">Payment</h3>
+        <p>After the agreement is signed, I’ll invoice 50% of the project fee. Work starts after that payment is received. I’ll invoice the remaining 50% at launch. Both invoices are payable within 15 days of issue. Work pauses if an invoice remains unpaid more than 30 days after its due date.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Fixed price and scope</h3>
+        <p>The price covers the scope in the option you choose. Anything beyond it is a new quote, agreed in writing before work starts.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Content and timing</h3>
+        <p>The timeline assumes you provide content, access and feedback when asked. If those slip, the launch date moves by the same amount. If the project stalls for more than 30 days, we’ll pause it, and payment for work completed to that point is due.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Revisions</h3>
+        <p>Each milestone includes two rounds of consolidated feedback. More rounds are quoted separately.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Your accounts and files</h3>
+        <p>You own your domain, hosting and accounts, and I’m added as a user. When the final payment is made, you receive the finished files.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Ownership</h3>
+        <p>When the final payment is made, the finished deliverables are yours. I may show the work in my portfolio, and I keep my general tools, templates and know-how. Photos, videos, logos and text that ZCS provides remain ZCS’s. Third-party items (fonts, plugins, stock photos) stay under their own licenses.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Ongoing care</h3>
+        <p>A care plan is optional and separate from the project fee. The initial commitment is the 6 or 12 months selected in the agreement, billed monthly from launch. After that term, it continues month to month at the agreed renewal rate; either of us can end it with 30 days’ notice. Additional work is quoted first.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Warranty</h3>
+        <p>I’ll do the work professionally. If something in the agreed scope doesn’t work as described, I’ll fix it at no charge for 30 days after launch.</p>
+      </div>
+      <div class="reading-group">
+        <h3 class="subheading">Confidentiality</h3>
+        <p>Each of us keeps the other’s non-public information private, including student and family information, which I won’t ask for and will handle with care if I see it.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -624,10 +1058,12 @@ Attribution: Travis, Glass House Creative Community.
     <p class="eyebrow">Next step</p>
     <h2>Let’s find the right starting point.</h2>
     <p>Take a few days to look this over with your team, as you suggested. Then let me know which option feels closest and what questions you’d like to talk through. We can arrange a time together.</p>
-    <p>You can <a href="mailto:mariel@17c.studio?subject=ZCS%20website%20proposal">email me at mariel@17c.studio</a>, or use the form below to prepare your reply. This is a conversation about your preferred scope, not a signature or payment commitment.</p>
-    <form id="reply" class="accept" hidden>
+    <p>You can <a href="mailto:mariel@17c.studio?subject=ZCS%20website%20proposal">email me at mariel@17c.studio</a>, or send your reply directly using the form below. This is a conversation about your preferred scope, not a signature or payment commitment.</p>
+    <form id="reply" class="accept" action="https://formspree.io/f/xjygqoja" method="POST">
       <label for="name">Your name</label>
       <input id="name" name="name" type="text" autocomplete="name" maxlength="150" required>
+      <label for="email">Your email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
       <label for="option">Which option feels closest?</label>
       <select id="option" name="option" required>
         <option value="">Choose one</option>
@@ -646,14 +1082,8 @@ Attribution: Travis, Glass House Creative Community.
       </select>
       <label for="questions-text">Questions or thoughts (optional)</label>
       <textarea data-lenis-prevent id="questions-text" name="questions" rows="4" maxlength="2000"></textarea>
-      <button class="go" type="submit">Prepare my email reply</button>
-      <p id="formnote" role="status" aria-live="polite"></p>
-      <div id="reply-preview" hidden>
-        <p><a id="email-reply">Open this reply in your email app ↗</a></p>
-        <label for="reply-text">Or copy this reply into an email to mariel@17c.studio</label>
-        <textarea data-lenis-prevent id="reply-text" rows="10" readonly></textarea>
-        <p class="reply-help">Nothing is sent from this page. Review the message and send it from your email app. If the link doesn’t open an app, use the text above.</p>
-      </div>
+      <button class="go" type="submit">Send my reply</button>
+      <p id="reply-status" role="status" aria-live="polite" tabindex="-1"></p>
     </form>
     <p>Once we’ve agreed on the scope, I’ll send the separate agreement and initial invoice. We’ll confirm a start date after the agreement is signed and the first payment is received.</p>
     <p class="signature">Mariel</p>
@@ -669,49 +1099,6 @@ Attribution: Travis, Glass House Creative Community.
   <br><small>Prepared for Zeeland Christian School. This page asks search engines not to index it.</small>
 </footer>
 
-<script>
-/* Prepare a reply locally. No backend, signature collection, or automatic submission. */
-(function(){
-  'use strict';
-  var form=document.getElementById('reply');
-  var note=document.getElementById('formnote');
-  var preview=document.getElementById('reply-preview');
-  var output=document.getElementById('reply-text');
-  var link=document.getElementById('email-reply');
-  form.addEventListener('submit',function(event){
-    event.preventDefault();
-    if(!form.reportValidity()) return;
-    var name=document.getElementById('name').value.trim();
-    if(!name){
-      note.textContent='Please enter your name before preparing a reply.';
-      document.getElementById('name').focus();
-      return;
-    }
-    var questions=document.getElementById('questions-text').value.trim();
-    var message=[
-      'Hi Mariel,', '',
-      'I’ve reviewed the ZCS website proposal. Here’s what I’d like to discuss:', '',
-      'Project: '+document.getElementById('option').value,
-      'Ongoing care: '+document.getElementById('care').value, '',
-      questions ? 'Questions and thoughts: '+questions : 'Let’s arrange a time to talk through the next steps.', '',
-      'I understand this reply is a preference for discussion, not a signed agreement.', '',
-      name
-    ].join('\n');
-    output.value=message;
-    link.href='mailto:mariel@17c.studio?subject='+encodeURIComponent('ZCS website proposal')+'&body='+encodeURIComponent(message);
-    preview.hidden=false;
-    note.textContent='Your reply is ready below. Nothing has been sent.';
-    link.focus();
-  });
-  form.addEventListener('input',function(){
-    preview.hidden=true;
-    output.value='';
-    link.removeAttribute('href');
-    note.textContent='';
-  });
-  form.hidden=false;
-})();
-</script>
 <script>
 /* Respect reduced-motion preferences for the background video. */
 (function(){
@@ -744,6 +1131,7 @@ Attribution: Travis, Glass House Creative Community.
   function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(update);}}
   window.addEventListener('scroll',schedule,{passive:true});
   window.addEventListener('resize',schedule);
+  document.querySelectorAll('#questions details').forEach(function(question){question.addEventListener('toggle',schedule);});
   window.addEventListener('load',schedule);
   update();
 })();
@@ -777,6 +1165,116 @@ document.addEventListener('DOMContentLoaded',function(){
   window.addEventListener('pageshow',function(event){if(event.persisted) initialize();});
   initialize();
 });
+</script>
+<script>
+/* Match services.html's in-page JSON submission flow; never navigate on submit. */
+(function(){
+  var form=document.getElementById('reply');
+  var status=document.getElementById('reply-status');
+  if(!form || !status) return;
+  var button=form.querySelector('button[type="submit"]');
+  var pending=false;
+  form.addEventListener('input',function(){
+    if(pending) return;
+    status.textContent='';
+    status.dataset.state='';
+  });
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();
+    if(pending || !form.reportValidity()) return;
+    var payload=Object.fromEntries(new FormData(form));
+    Object.keys(payload).forEach(function(key){payload[key]=String(payload[key]).trim();});
+    var controls=Array.from(form.querySelectorAll('input,select,textarea,button'));
+    var previousDisabled=controls.map(function(control){return control.disabled;});
+    pending=true;
+    controls.forEach(function(control){control.disabled=true;});
+    button.textContent='Sending…';
+    form.setAttribute('aria-busy','true');
+    status.dataset.state='';
+    status.textContent='Sending your reply to 17C…';
+    var controller=new AbortController();
+    var timeout=setTimeout(function(){controller.abort();},20000);
+    try{
+      var response=await fetch(form.action,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify(payload),
+        signal:controller.signal
+      });
+      var result=await response.json();
+      if(!response.ok || result.ok===false) throw new Error('Submission not confirmed');
+      form.reset();
+      status.textContent='Your reply was accepted. Thank you! I’ll be in touch to talk through the next steps.';
+      status.dataset.state='success';
+    }catch(error){
+      status.textContent='I couldn’t confirm your reply was sent. Your details are still here. Please try again or email mariel@17c.studio.';
+      status.dataset.state='error';
+    }finally{
+      clearTimeout(timeout);
+      controls.forEach(function(control,index){control.disabled=previousDisabled[index];});
+      pending=false;
+      button.textContent='Send my reply';
+      form.removeAttribute('aria-busy');
+      status.focus({preventScroll:true});
+    }
+  });
+})();
+</script>
+<script>
+/* Include every answer in print, then restore the reader's expanded rows. */
+(function(){
+  var questions=Array.from(document.querySelectorAll('#questions details'));
+  var previous;
+  window.addEventListener('beforeprint',function(){
+    if(previous) return;
+    previous=questions.map(function(question){return question.open;});
+    questions.forEach(function(question){question.open=true;});
+  });
+  window.addEventListener('afterprint',function(){
+    if(!previous) return;
+    questions.forEach(function(question,index){question.open=previous[index];});
+    previous=undefined;
+  });
+})();
+</script>
+<script>
+/* Highlight reading progress only, not a claim about completed project work. */
+(function(){
+  var timeline=document.querySelector('.project-timeline');
+  if(!timeline) return;
+  var phases=Array.from(timeline.querySelectorAll('.timeline-phase'));
+  var motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  var queued=false;
+  function update(){
+    queued=false;
+    var rect=timeline.getBoundingClientRect();
+    var centers=phases.map(function(phase){
+      var dot=phase.querySelector('.timeline-dot').getBoundingClientRect();
+      return dot.top+dot.height/2;
+    });
+    var first=centers[0];
+    var height=Math.max(0,centers[centers.length-1]-first);
+    var readingLine=window.innerHeight*.45;
+    var fill=motion.matches ? 0 : Math.min(height,Math.max(0,readingLine-first));
+    timeline.style.setProperty('--timeline-start',(first-rect.top)+'px');
+    timeline.style.setProperty('--timeline-height',height+'px');
+    timeline.style.setProperty('--timeline-fill',fill+'px');
+    var active=-1;
+    centers.forEach(function(center,index){if(center<=readingLine) active=index;});
+    phases.forEach(function(phase,index){
+      phase.classList.toggle('is-reached',!motion.matches && index<=active);
+      phase.classList.toggle('is-current',!motion.matches && index===active);
+    });
+  }
+  function schedule(){if(!queued){queued=true;requestAnimationFrame(update);}}
+  window.addEventListener('scroll',schedule,{passive:true});
+  window.addEventListener('resize',schedule);
+  window.addEventListener('load',schedule);
+  document.querySelectorAll('#questions details').forEach(function(question){question.addEventListener('toggle',schedule);});
+  if(motion.addEventListener) motion.addEventListener('change',schedule);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  update();
+})();
 </script>
 </body>
 </html>
