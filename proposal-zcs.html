@@ -487,6 +487,7 @@ html.is-opening{overflow:hidden}
   #noticed .audit-explanation{display:block;margin-top:20px}
   #noticed .audit-note{break-inside:avoid;margin:0 0 16px}
 }
+.care-rate{margin-bottom:28px;border-bottom:1px solid var(--line)}
 </style>
 </head><body>
 
@@ -945,7 +946,10 @@ html.is-opening{overflow:hidden}
       </article>
     </div>
     <div>
-      <p><strong>Why is the 12-month rate lower?</strong> The service is the same. A year-long commitment lets me plan my time around ZCS, spend less on setup and renewals, and hold your rate for the whole term. I pass that on as a lower monthly price. The 6-month plan is the flexible option: a shorter commitment at a slightly higher rate.</p>
+      <details class="question care-rate">
+        <summary>Why is the 12-month rate lower?<span class="question-icon" aria-hidden="true"></span></summary>
+        <div class="question-answer"><p>The service is the same. A year-long commitment lets me plan my time around ZCS, spend less on setup and renewals, and hold your rate for the whole term. I pass that on as a lower monthly price. The 6-month plan is the flexible option: a shorter commitment at a slightly higher rate.</p></div>
+      </details>
       <p><strong>What’s included each month:</strong></p>
       <ul>
         <li>Technical support, with a reply within one business day</li>
@@ -1131,7 +1135,7 @@ Attribution: Travis, Glass House Creative Community.
   function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(update);}}
   window.addEventListener('scroll',schedule,{passive:true});
   window.addEventListener('resize',schedule);
-  document.querySelectorAll('#questions details').forEach(function(question){question.addEventListener('toggle',schedule);});
+  document.querySelectorAll('details.question').forEach(function(question){question.addEventListener('toggle',schedule);});
   window.addEventListener('load',schedule);
   update();
 })();
@@ -1223,7 +1227,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <script>
 /* Include every answer in print, then restore the reader's expanded rows. */
 (function(){
-  var questions=Array.from(document.querySelectorAll('#questions details'));
+  var questions=Array.from(document.querySelectorAll('details.question'));
   var previous;
   window.addEventListener('beforeprint',function(){
     if(previous) return;
@@ -1270,7 +1274,7 @@ document.addEventListener('DOMContentLoaded',function(){
   window.addEventListener('scroll',schedule,{passive:true});
   window.addEventListener('resize',schedule);
   window.addEventListener('load',schedule);
-  document.querySelectorAll('#questions details').forEach(function(question){question.addEventListener('toggle',schedule);});
+  document.querySelectorAll('details.question').forEach(function(question){question.addEventListener('toggle',schedule);});
   if(motion.addEventListener) motion.addEventListener('change',schedule);
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
   update();
