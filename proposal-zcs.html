@@ -16,13 +16,13 @@
   mariel@17c.studio is listed in proposal.html, form.html, services.html, and index.html.
 
   TODO [PRICING]: Confirm Option 2 ($8,250), Option 3 ($15,000), and care rates
-  ($600/month for 6 months; $500/month for 12 months) before issuing an agreement.
+  ($600/month for 6 months; $500/month for 12 months) before enabling acceptance on the published proposal.
   These are existing proposed figures, not prices agreed in the meeting.
   Option 1 ($5,500) and its WordPress training/guide were explicitly requested by Mariel.
   TODO [SCOPE]: Agree the exact priority-page list within the 8-page / 15-page caps;
   the Option 2 page ideas are priorities to choose from, not additional uncapped pages.
   Confirm the number of Spanish/Mandarin pages within Option 3's total cap, who
-  supplies approved translations, and the effort involved before issuing an agreement.
+  supplies approved translations, and the effort involved before enabling acceptance on the published proposal.
   Any editing-tool migration needs an agreed scope and price before commitment.
   TODO [TRAINING]: Confirm staff attendees and practical session length. The base
   session now includes a brief introduction to available website reports; Option 3
@@ -36,7 +36,7 @@
   TODO [COSTS]: Obtain current hosting, domain, plugin, and software renewal amounts.
   TODO [TERMS]: Approve the existing proposed 15-day invoice period, 30-day overdue
   pause, two feedback rounds per milestone, 30-day project-pause rule, 30-day fix
-  period, and portfolio permission before issuing the separate agreement.
+  period, and portfolio permission before enabling acceptance on the published proposal.
   TODO [GOVERNING LAW]: Confirm jurisdiction. The former [Michigan] placeholder
   was not an approved fact and is intentionally omitted from the public summary.
   TODO [SCHEDULING]: Add Mariel's actual calendar URL when supplied. Peter requested
@@ -52,11 +52,14 @@
   TODO [MEDIA]: Confirm permission for proposal use of ZCS's supplied/public video.
   TODO [TESTIMONIAL]: Verify wording, attribution, and proposal-use permission for
   the Travis / Glass House Creative Community quote before restoring it.
-  TODO [ACCEPTANCE]: Replies POST to the Formspree endpoint supplied by Mariel.
-  Verify the form is active and a real submission reaches the intended inbox before
-  sharing. No live test submission has been sent. This is a non-binding preference
-  form, not an electronic signature or payment commitment. Signed-copy delivery
-  is not configured. Never add credentials to this file.
+  TODO [ACCEPTANCE]: Electronic acceptance is now the agreement, not a preference.
+  Before sending, finalize commercial terms and verify Formspree accepts and retains
+  the full accepted_document JSON and optional signature PNG data URL fields.
+  Verify provider-side receipt timestamp and IP availability in the account; the
+  browser cannot supply a trusted public IP or server timestamp. Do not invent one.
+  PDF is generated locally after receipt and is not automatically archived/emailed
+  as a PDF attachment. The submitted snapshot permits later reconstruction.
+  Test real delivery only with explicit authorization; none has been sent here.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -488,6 +491,20 @@ html.is-opening{overflow:hidden}
   #noticed .audit-note{break-inside:avoid;margin:0 0 16px}
 }
 .care-rate{margin-bottom:28px;border-bottom:1px solid var(--line)}
+/* Low-friction electronic acceptance and optional signature pad. */
+.acceptance-summary:empty{display:none}
+.acceptance-summary{padding:20px;margin-top:24px;border:1px solid var(--line);font-size:14px;line-height:1.8;background:var(--paper);white-space:pre-line}
+#signature-pad{display:block;width:100%;height:160px;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:0;touch-action:none}
+.signature-clear{min-height:44px;padding:10px 14px;margin-top:12px;border:1px solid var(--line);background:transparent;color:var(--ink);font:500 12px/1.6 var(--sans);cursor:pointer}
+.signature-disclosure{margin-top:28px}
+.signature-disclosure p,.acceptance-help{font-size:13px;line-height:1.7;color:var(--muted)}
+.acceptance-consent{display:flex;align-items:flex-start;gap:12px;font-size:14px!important;font-weight:400;line-height:1.75!important;cursor:pointer;min-height:44px}
+.acceptance-consent input{flex:0 0 20px;width:20px;height:20px;margin:3px 0 0;accent-color:var(--ink)}
+.acceptance-downloads{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#acceptance-receipt{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+#acceptance-receipt h3{font-size:28px;margin:0 0 12px}
+#acceptance-reference{font-size:13px;overflow-wrap:anywhere}
+@media(max-width:480px){.acceptance-downloads{align-items:stretch;flex-direction:column}.acceptance-downloads button{width:100%}}
 </style>
 </head><body>
 
@@ -812,7 +829,7 @@ html.is-opening{overflow:hidden}
       <li class="timeline-phase">
         <span class="timeline-dot" aria-hidden="true"></span>
         <div class="phase-meta"><p class="phase-week">Week 1</p><p class="phase-options">Options 1, 2 &amp; 3</p></div>
-        <div class="phase-content"><h3>Access and verification</h3><p>Once the separate agreement is signed and the first payment is in, I’ll review WordPress, analytics, and the admissions links. The Inquire / Visit / Apply routes are the first check. I’ll make the confirmed WordPress fixes and flag anything that needs the host or another provider.</p></div>
+        <div class="phase-content"><h3>Access and verification</h3><p>Once this proposal is accepted and the first payment is in, I’ll review WordPress, analytics, and the admissions links. The Inquire / Visit / Apply routes are the first check. I’ll make the confirmed WordPress fixes and flag anything that needs the host or another provider.</p></div>
       </li>
       <li class="timeline-phase">
         <span class="timeline-dot" aria-hidden="true"></span>
@@ -830,7 +847,7 @@ html.is-opening{overflow:hidden}
         <div class="phase-content"><h3>Broader improvements</h3><p>Option 3 continues with the additional pages, Spanish and Mandarin content, media direction, app planning, and two additional on-site training sessions.</p></div>
       </li>
     </ol>
-    <p>Allow about 3 weeks for Option 1, 8 weeks for Option 2, and 12 weeks for Option 3. These are planning estimates from our agreed kickoff date, after the separate agreement is signed and the first payment is received, with timely access, content, and feedback. External provider work may affect the relevant dates; I’ll keep you informed.</p>
+    <p>Allow about 3 weeks for Option 1, 8 weeks for Option 2, and 12 weeks for Option 3. These are planning estimates from our agreed kickoff date, after this proposal is accepted and the first payment is received, with timely access, content, and feedback. External provider work may affect the relevant dates; I’ll keep you informed.</p>
     <p>If you choose a care plan, it starts when your project launches.</p>
   </div>
 </section>
@@ -927,7 +944,7 @@ html.is-opening{overflow:hidden}
         <p class="best"><strong>Best for:</strong> A broader refresh across the agreed pages, with training and a plan to keep improving after launch.</p>
       </article>
     </div>
-    <p>The separate agreement will confirm your selected scope, fixed fee, and start date before we begin. Anything outside that scope needs a new quote and your approval first.</p>
+    <p>Your acceptance below confirms your selected scope, fixed fee, and the terms on this page. We’ll agree on a kickoff date after the initial payment. Anything outside that scope needs a new quote and your approval first.</p>
 
     <h3 id="care-plan">Ongoing care</h3>
     <div>
@@ -959,7 +976,7 @@ html.is-opening{overflow:hidden}
         <li>A quarterly performance review (30 minutes): what the numbers say, what’s coming up (open house, enrollment), and what to do next</li>
         <li>Your team keeps the everyday content updates, like adding a paragraph or swapping a photo</li>
       </ul>
-      <p>The proposed care commitment is 6 or 12 months, billed monthly from launch. After the initial term, it continues month to month; either of us can end it with 30 days’ notice. The agreement will confirm the renewal rate. Work outside this list is quoted before it starts. Neither plan counts hours. You get a reply within one business day either way.</p>
+      <p>The proposed care commitment is 6 or 12 months, billed monthly from launch. After the initial term, it can continue month to month at a rate agreed in writing; either of us can end it with 30 days’ notice. Any renewal rate will be agreed in writing before the initial term ends. Work outside this list is quoted before it starts. Neither plan counts hours. You get a reply within one business day either way.</p>
       <h4>Costs that pass through at cost</h4>
       <p>Hosting, your domain, plugins and software are billed by the provider to ZCS, with no markup from me. Hosting stays with your current provider unless you decide otherwise. I’ll review the existing subscriptions with you and confirm any additional costs before you approve them.</p>
     </div>
@@ -974,7 +991,7 @@ html.is-opening{overflow:hidden}
     <table>
       <thead><tr><th>When</th><th>Amount</th><th>What it covers</th></tr></thead>
       <tbody>
-        <tr><td>After the agreement is signed</td><td>50% of the project fee</td><td>Initial invoice. Work starts after payment is received.</td></tr>
+        <tr><td>After this proposal is accepted</td><td>50% of the project fee</td><td>Initial invoice. Work starts after payment is received.</td></tr>
         <tr><td>At launch</td><td>50% of the project fee</td><td>Final invoice, payable within 15 days.</td></tr>
         <tr><td>Monthly, starting at launch</td><td>Selected care-plan rate</td><td>Separate from the project fee, only if chosen.</td></tr>
       </tbody>
@@ -1014,11 +1031,11 @@ Attribution: Travis, Glass House Creative Community.
   <div class="wrap terms">
     <p class="eyebrow">Short terms</p>
     <h2>Simple, fair terms.</h2>
-    <p>Here’s how I propose we work together. These points will be confirmed in the separate agreement, along with your selected option, care plan, and start date. Reviewing this page or emailing a preference doesn’t sign an agreement or create a payment obligation.</p>
+    <p>These terms apply to the project option and care plan you select below. By submitting the acceptance form, you electronically sign this proposal on behalf of Zeeland Christian School. No separate signature step is required. We’ll agree on a kickoff date after the initial payment.</p>
     <div class="reading-groups">
       <div class="reading-group">
         <h3 class="subheading">Payment</h3>
-        <p>After the agreement is signed, I’ll invoice 50% of the project fee. Work starts after that payment is received. I’ll invoice the remaining 50% at launch. Both invoices are payable within 15 days of issue. Work pauses if an invoice remains unpaid more than 30 days after its due date.</p>
+        <p>After this proposal is accepted, I’ll invoice 50% of the project fee. Work starts after that payment is received. I’ll invoice the remaining 50% at launch. Both invoices are payable within 15 days of issue. Work pauses if an invoice remains unpaid more than 30 days after its due date.</p>
       </div>
       <div class="reading-group">
         <h3 class="subheading">Fixed price and scope</h3>
@@ -1042,7 +1059,7 @@ Attribution: Travis, Glass House Creative Community.
       </div>
       <div class="reading-group">
         <h3 class="subheading">Ongoing care</h3>
-        <p>A care plan is optional and separate from the project fee. The initial commitment is the 6 or 12 months selected in the agreement, billed monthly from launch. After that term, it continues month to month at the agreed renewal rate; either of us can end it with 30 days’ notice. Additional work is quoted first.</p>
+        <p>A care plan is optional and separate from the project fee. The initial commitment is the 6 or 12 months selected in your acceptance, billed monthly from launch. After that term, it can continue month to month at a renewal rate agreed in writing; either of us can end it with 30 days’ notice. Additional work is quoted first.</p>
       </div>
       <div class="reading-group">
         <h3 class="subheading">Warranty</h3>
@@ -1060,36 +1077,57 @@ Attribution: Travis, Glass House Creative Community.
 <section id="accept-section">
   <div class="wrap">
     <p class="eyebrow">Next step</p>
-    <h2>Let’s find the right starting point.</h2>
-    <p>Take a few days to look this over with your team, as you suggested. Then let me know which option feels closest and what questions you’d like to talk through. We can arrange a time together.</p>
-    <p>You can <a href="mailto:mariel@17c.studio?subject=ZCS%20website%20proposal">email me at mariel@17c.studio</a>, or send your reply directly using the form below. This is a conversation about your preferred scope, not a signature or payment commitment.</p>
+    <h2>Ready when you are.</h2>
+    <p>Choose the option that fits ZCS, add your name, and accept below. This is your electronic signature, so there’s no separate agreement to sign afterward. I’ll follow up with the initial invoice and we’ll arrange our kickoff.</p>
+    <p>If you’d like to talk anything through first, <a href="mailto:mariel@17c.studio?subject=ZCS%20website%20proposal">email me</a>. I’m happy to help.</p>
     <form id="reply" class="accept" action="https://formspree.io/f/xjygqoja" method="POST">
-      <label for="name">Your name</label>
+      <label for="name">Your full name (electronic signature)</label>
       <input id="name" name="name" type="text" autocomplete="name" maxlength="150" required>
       <label for="email">Your email</label>
-      <input id="email" name="email" type="email" autocomplete="email" required>
-      <label for="option">Which option feels closest?</label>
+      <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+      <label for="signer-title">Your role at ZCS (optional)</label>
+      <input id="signer-title" name="title" type="text" autocomplete="organization-title" maxlength="150">
+      <label for="option">Choose your project option</label>
       <select id="option" name="option" required>
         <option value="">Choose one</option>
-        <option>Option 1: Fix and Measure ($5,500)</option>
-        <option>Option 2: Refresh ($8,250, recommended)</option>
-        <option>Option 3: Partnership ($15,000)</option>
-        <option>I’d like to discuss the options</option>
+        <option value="opt1">Option 1: Fix and Measure ($5,500)</option>
+        <option value="opt2">Option 2: Refresh ($8,250, recommended)</option>
+        <option value="opt3">Option 3: Partnership ($15,000)</option>
       </select>
-      <label for="care">What are you thinking for ongoing care?</label>
+      <label for="care">Choose ongoing care</label>
       <select id="care" name="care" required>
         <option value="">Choose one</option>
-        <option>6 months at $600/month</option>
-        <option>12 months at $500/month</option>
-        <option>No care plan for now</option>
-        <option>I’d like to talk about care</option>
+        <option value="six">6 months at $600/month ($3,600 initial term)</option>
+        <option value="twelve">12 months at $500/month ($6,000 initial term)</option>
+        <option value="none">No care plan for now</option>
       </select>
-      <label for="questions-text">Questions or thoughts (optional)</label>
-      <textarea data-lenis-prevent id="questions-text" name="questions" rows="4" maxlength="2000"></textarea>
-      <button class="go" type="submit">Send my reply</button>
+      <div id="acceptance-summary" class="acceptance-summary" aria-live="polite"></div>
+      <label for="questions-text">A note for me (optional)</label>
+      <textarea data-lenis-prevent id="questions-text" name="questions" rows="3" maxlength="2000"></textarea>
+      <details class="question signature-disclosure">
+        <summary>Add a handwritten signature <span class="question-icon" aria-hidden="true"></span></summary>
+        <p id="signature-help">Your typed name and consent are enough. If you’d like, draw your signature below with a mouse, finger, or stylus.</p>
+        <canvas id="signature-pad" width="1200" height="320" data-lenis-prevent aria-label="Optional signature drawing area" aria-describedby="signature-help"></canvas>
+        <button class="signature-clear" id="signature-clear" type="button">Clear signature</button>
+      </details>
+      <label class="acceptance-consent" for="accept-consent">
+        <input id="accept-consent" name="consent" type="checkbox" value="accepted" required>
+        <span id="consent-wording">I am authorized to sign for Zeeland Christian School. I have read and accept the selected project scope, fixed fee, payment schedule, assumptions, and short terms in this proposal, including the care plan and initial commitment if selected. By clicking “Sign &amp; accept proposal,” I intend my full name above and this submission to be my electronic signature, and I consent to keeping this agreement electronically.</span>
+      </label>
+      <p class="acceptance-help">Your acceptance records the selected terms and signing date. After submission, you can download a PDF copy for your records.</p>
+      <button class="go" id="accept-submit" type="submit" disabled>Sign &amp; accept proposal</button>
+      <noscript><p>Please enable JavaScript to sign and receive an acceptance record, or email mariel@17c.studio for help.</p></noscript>
       <p id="reply-status" role="status" aria-live="polite" tabindex="-1"></p>
+      <div id="acceptance-receipt" hidden>
+        <h3>Your acceptance copy</h3>
+        <p id="acceptance-reference"></p>
+        <div class="acceptance-downloads">
+          <button class="go" id="download-acceptance-pdf" type="button">Download signed PDF</button>
+          <button class="signature-clear" id="download-acceptance-record" type="button">Download acceptance record</button>
+        </div>
+        <p id="acceptance-download-status" role="status" aria-live="polite"></p>
+      </div>
     </form>
-    <p>Once we’ve agreed on the scope, I’ll send the separate agreement and initial invoice. We’ll confirm a start date after the agreement is signed and the first payment is received.</p>
     <p class="signature">Mariel</p>
   </div>
 </section>
@@ -1170,60 +1208,8 @@ document.addEventListener('DOMContentLoaded',function(){
   initialize();
 });
 </script>
-<script>
-/* Match services.html's in-page JSON submission flow; never navigate on submit. */
-(function(){
-  var form=document.getElementById('reply');
-  var status=document.getElementById('reply-status');
-  if(!form || !status) return;
-  var button=form.querySelector('button[type="submit"]');
-  var pending=false;
-  form.addEventListener('input',function(){
-    if(pending) return;
-    status.textContent='';
-    status.dataset.state='';
-  });
-  form.addEventListener('submit',async function(event){
-    event.preventDefault();
-    if(pending || !form.reportValidity()) return;
-    var payload=Object.fromEntries(new FormData(form));
-    Object.keys(payload).forEach(function(key){payload[key]=String(payload[key]).trim();});
-    var controls=Array.from(form.querySelectorAll('input,select,textarea,button'));
-    var previousDisabled=controls.map(function(control){return control.disabled;});
-    pending=true;
-    controls.forEach(function(control){control.disabled=true;});
-    button.textContent='Sending…';
-    form.setAttribute('aria-busy','true');
-    status.dataset.state='';
-    status.textContent='Sending your reply to 17C…';
-    var controller=new AbortController();
-    var timeout=setTimeout(function(){controller.abort();},20000);
-    try{
-      var response=await fetch(form.action,{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify(payload),
-        signal:controller.signal
-      });
-      var result=await response.json();
-      if(!response.ok || result.ok===false) throw new Error('Submission not confirmed');
-      form.reset();
-      status.textContent='Your reply was accepted. Thank you! I’ll be in touch to talk through the next steps.';
-      status.dataset.state='success';
-    }catch(error){
-      status.textContent='I couldn’t confirm your reply was sent. Your details are still here. Please try again or email mariel@17c.studio.';
-      status.dataset.state='error';
-    }finally{
-      clearTimeout(timeout);
-      controls.forEach(function(control,index){control.disabled=previousDisabled[index];});
-      pending=false;
-      button.textContent='Send my reply';
-      form.removeAttribute('aria-busy');
-      status.focus({preventScroll:true});
-    }
-  });
-})();
-</script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js" defer></script>
+<script src="proposal-zcs-acceptance.js" defer></script>
 <script>
 /* Include every answer in print, then restore the reader's expanded rows. */
 (function(){
