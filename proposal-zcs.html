@@ -53,12 +53,13 @@
   TODO [TESTIMONIAL]: Verify wording, attribution, and proposal-use permission for
   the Travis / Glass House Creative Community quote before restoring it.
   TODO [ACCEPTANCE]: Electronic acceptance is now the agreement, not a preference.
-  Before sending, finalize commercial terms and verify Formspree accepts and retains
-  the full accepted_document JSON and optional signature PNG data URL fields.
-  Verify provider-side receipt timestamp and IP availability in the account; the
-  browser cannot supply a trusted public IP or server timestamp. Do not invent one.
-  PDF is generated locally after receipt and is not automatically archived/emailed
-  as a PDF attachment. The submitted snapshot permits later reconstruction.
+  File uploads were rejected by Formspree, so uploadAttachments is false in the
+  acceptance script. Essentials, typed signature, consent and browser signing date
+  are submitted as text. The signed PDF and optional drawing are download-only.
+  To receive attachments, enable file uploads and submission storage in Formspree,
+  then set uploadAttachments to true and verify delivery before sending to ZCS.
+  Finalize commercial terms and verify provider-side receipt timestamp/IP availability.
+  The browser cannot supply a trusted public IP or server timestamp. Do not invent one.
   Test real delivery only with explicit authorization; none has been sent here.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -200,7 +201,8 @@ textarea{resize:vertical}
 .check input{width:18px;height:18px;flex:none;margin:3px 0 0;accent-color:var(--ink)}
 button.go{min-height:48px;padding:16px 24px;margin-top:16px;border:1px solid var(--line);border-radius:0;background:var(--ink);color:var(--paper);font:500 12px/1.5 var(--sans);letter-spacing:.04em;cursor:pointer}
 button.go:hover{background:#d1cbc3}
-button.go:disabled{opacity:.65;cursor:wait}
+button.go:disabled{opacity:.65;cursor:default}
+#reply[aria-busy="true"] #accept-submit{cursor:wait}
 #reply-status{margin:16px 0 0;font-size:14px}
 #reply-status:empty{display:none}
 .hp{position:absolute;left:-9999px}
@@ -1080,7 +1082,7 @@ Attribution: Travis, Glass House Creative Community.
     <h2>Ready when you are.</h2>
     <p>Choose the option that fits ZCS, add your name, and accept below. This is your electronic signature, so there’s no separate agreement to sign afterward. I’ll follow up with the initial invoice and we’ll arrange our kickoff.</p>
     <p>If you’d like to talk anything through first, <a href="mailto:mariel@17c.studio?subject=ZCS%20website%20proposal">email me</a>. I’m happy to help.</p>
-    <form id="reply" class="accept" action="https://formspree.io/f/xjygqoja" method="POST">
+    <form id="reply" class="accept" action="https://formspree.io/f/xjygqoja" method="POST" enctype="multipart/form-data">
       <label for="name">Your full name (electronic signature)</label>
       <input id="name" name="name" type="text" autocomplete="name" maxlength="150" required>
       <label for="email">Your email</label>
@@ -1123,7 +1125,6 @@ Attribution: Travis, Glass House Creative Community.
         <p id="acceptance-reference"></p>
         <div class="acceptance-downloads">
           <button class="go" id="download-acceptance-pdf" type="button">Download signed PDF</button>
-          <button class="signature-clear" id="download-acceptance-record" type="button">Download acceptance record</button>
         </div>
         <p id="acceptance-download-status" role="status" aria-live="polite"></p>
       </div>
