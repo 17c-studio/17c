@@ -91,6 +91,9 @@ window.studioProspectReady = (async () => {
       }
     });
   }
+  document.querySelectorAll('.about-link').forEach(link => {
+    link.setAttribute('href', '#contact');
+  });
   const invitation = document.createElement('section');
   invitation.id = 'contact';
   invitation.tabIndex = -1;
@@ -138,7 +141,21 @@ window.studioProspectReady = (async () => {
     directContact.append(helloLink);
     invitation.append(directContact);
   }
-  main.append(invitation);
+  const servicesForm = document.body.classList.contains('services-page')
+    ? document.querySelector('#wishlist-form') : null;
+  if (servicesForm) {
+    // Keep the services closing introduction and put the contact actions beside it.
+    actions.id = 'contact';
+    actions.tabIndex = -1;
+    actions.setAttribute('aria-labelledby', 'wishlist-inquiry-title');
+    const directContact = invitation.querySelector('.contact-note');
+    if (directContact) actions.append(directContact);
+    servicesForm.replaceWith(actions);
+    document.querySelectorAll('a[href="#wishlist-inquiry"]').forEach(link => link.setAttribute('href', '#contact'));
+    document.querySelectorAll('.wishlist-checkbox').forEach(box => { box.disabled = true; });
+  } else {
+    main.append(invitation);
+  }
   if (!prospect.proposedTime) {
     const widgetScript = document.createElement('script');
     widgetScript.src = 'https://assets.calendly.com/assets/external/widget.js';

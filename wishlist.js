@@ -1,4 +1,5 @@
-(() => {
+(async () => {
+  await window.studioProspectReady;
   const form = document.querySelector('#wishlist-form');
   if (!form) return;
   const key = '17c-project-wishlist-v1';

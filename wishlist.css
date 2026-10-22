@@ -108,3 +108,9 @@ body { --chapter-accent: #c2bcb3;  }
 
 .wishlist-inquiry :focus-visible, #wishlist-panel :focus-visible { outline: 2px solid var(--chapter-accent); outline-offset: 4px; }
 .wishlist-browse { display: inline-block; padding: 8px 0; text-decoration: underline; }
+
+/* Prospect services invite a conversation directly instead of collecting an inquiry. */
+.services-page.has-prospect :is(.wishlist-intro, .wishlist-list-instruction, .wishlist-checkbox, .wishlist-item > i, #wishlist-floating, #wishlist-panel) { display: none; }
+.services-page.has-prospect .wishlist-item { cursor: default; }
+.services-page.has-prospect .wishlist-inquiry .prospect-actions { min-width: 0; width: 100%; }
+.services-page.has-prospect .wishlist-inquiry .contact-note { margin: 24px 0 0; text-align: center; }
