@@ -75,7 +75,7 @@ window.studioProspectReady = (async () => {
   }
 
   const email = 'mariel@17c.studio';
-  document.querySelectorAll('.header .nav-cta, .possibility-primary').forEach(link => {
+  document.querySelectorAll('.header .nav-cta').forEach(link => {
     link.setAttribute('href', '#contact');
   });
   const primary = document.body.classList.contains('home-page')
@@ -91,7 +91,7 @@ window.studioProspectReady = (async () => {
       }
     });
   }
-  document.querySelectorAll('.about-link').forEach(link => {
+  document.querySelectorAll('.about-link, .possibilities .possibility-primary').forEach(link => {
     link.setAttribute('href', '#contact');
   });
   const invitation = document.createElement('section');
