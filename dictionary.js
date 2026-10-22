@@ -1,6 +1,8 @@
 (() => {
   const entries = [...document.querySelectorAll('.dictionary-entry')];
+  const pinned = new WeakSet();
   const hide = entry => {
+    pinned.delete(entry);
     entry.querySelector('.dictionary-definition').hidden = true;
     entry.querySelector('.dictionary-trigger').setAttribute('aria-expanded', 'false');
   };
@@ -32,10 +34,16 @@
       trigger.setAttribute('aria-expanded', 'true');
       position();
     };
-    // Explicit disclosure works consistently with touch, mouse, and keyboard.
+    // Hover previews the definition; clicking keeps it open until dismissed.
+    entry.addEventListener('pointerenter', event => {
+      if (event.pointerType !== 'touch' && window.matchMedia('(hover: hover)').matches) show();
+    });
+    entry.addEventListener('pointerleave', () => {
+      if (!pinned.has(entry)) hide(entry);
+    });
     trigger.addEventListener('click', () => {
-      if (definition.hidden) show();
-      else hide(entry);
+      if (pinned.has(entry)) hide(entry);
+      else { pinned.add(entry); show(); }
     });
     entry.addEventListener('focusout', event => {
       if (!entry.contains(event.relatedTarget)) hide(entry);
