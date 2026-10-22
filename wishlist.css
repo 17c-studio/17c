@@ -13,10 +13,42 @@
 body { --chapter-accent: #c2bcb3;  }
 .wishlist-inquiry h2, .wishlist-panel-heading h2 { font-family: var(--serif); font-weight: 400; }
 .wishlist-inquiry .editorial-label { text-transform: uppercase; }
-/* A quiet, optional wishlist alongside the editorial service chapters. */
-.wishlist-intro { padding: clamp(32px, 5vw, 64px) 24px; max-width: none; margin: 0; background: #edebe3; color: #45403a; text-align: center; }
-.wishlist-intro #wishlist-explanation { max-width: 65ch; margin: 0 auto; color: inherit; line-height: 1.7; }
-.wishlist-intro .wishlist-storage-note { color: inherit; }
+/* Match the homepage hero copy and services heading within the cream introduction. */
+.wishlist-intro {
+  width: 100vw;
+  max-width: none;
+  margin-block: 0 5rem;
+  margin-inline: calc(50% - 50vw);
+  padding: 96px 48px;
+  background: #edebe3;
+  color: #45403a;
+  color-scheme: light;
+  text-align: center;
+}
+.wishlist-intro #wishlist-explanation {
+  max-width: 1104px;
+  margin: 0 auto 24px;
+  color: #45403a;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
+}
+.wishlist-intro > p {
+  max-width: 65ch;
+  margin: 0 auto;
+  color: #696158;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.wishlist-intro .wishlist-storage-note { font-size: 12px; }
+@media (max-width: 767px) {
+  .wishlist-intro { padding: 64px 24px; }
+  .wishlist-intro #wishlist-explanation { line-height: 1.15; }
+}
 #wishlist-toggle { display: inline-flex; align-items: center; gap: 16px; }
 #wishlist-toggle .disclosure-icon { flex: 0 0 28px; width: 28px; margin-top: 0; }
 #wishlist-toggle[aria-expanded="true"] .disclosure-icon::after { transform: rotate(0); }
