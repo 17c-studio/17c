@@ -75,9 +75,22 @@ window.studioProspectReady = (async () => {
   }
 
   const email = 'mariel@17c.studio';
-  document.querySelectorAll('.header .nav-cta').forEach(link => {
+  document.querySelectorAll('.header .nav-cta, .possibility-primary').forEach(link => {
     link.setAttribute('href', '#contact');
   });
+  const primary = document.body.classList.contains('home-page')
+    ? document.querySelector('.possibility-primary') : null;
+  if (primary) {
+    primary.id = 'possibility-primary';
+    document.querySelectorAll('a[href]').forEach(link => {
+      if (link === primary) return;
+      const url = new URL(link.getAttribute('href'), window.location.href);
+      const formURL = new URL('form.html', window.location.href);
+      if (link.matches('.header .nav-cta') || (url.origin === formURL.origin && url.pathname === formURL.pathname)) {
+        link.setAttribute('href', '#possibility-primary');
+      }
+    });
+  }
   const invitation = document.createElement('section');
   invitation.id = 'contact';
   invitation.tabIndex = -1;

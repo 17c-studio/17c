@@ -132,8 +132,9 @@
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   });
   document.querySelector('#wishlist-close').addEventListener('click', () => panel.close());
-  document.querySelector('#wishlist-inquiry-link').addEventListener('click', () => {
-    const heading = document.querySelector('#wishlist-inquiry-title');
+  document.querySelector('#wishlist-inquiry-link').addEventListener('click', event => {
+    const heading = document.querySelector(event.currentTarget.hash || '#wishlist-inquiry-title');
+    if (!heading) { panel.close(); return; }
     heading.setAttribute('tabindex', '-1');
     returnFocus = heading;
     panel.close();
