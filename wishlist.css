@@ -14,7 +14,9 @@ body { --chapter-accent: #c2bcb3;  }
 .wishlist-inquiry h2, .wishlist-panel-heading h2 { font-family: var(--serif); font-weight: 400; }
 .wishlist-inquiry .editorial-label { text-transform: uppercase; }
 /* A quiet, optional wishlist alongside the editorial service chapters. */
-.wishlist-intro { padding: 36px 0; max-width: 700px; margin-left: auto; text-align: right; }
+.wishlist-intro { padding: clamp(32px, 5vw, 64px) 24px; max-width: none; margin: 0; background: #edebe3; color: #45403a; text-align: center; }
+.wishlist-intro #wishlist-explanation { max-width: 65ch; margin: 0 auto; color: inherit; line-height: 1.7; }
+.wishlist-intro .wishlist-storage-note { color: inherit; }
 #wishlist-toggle { display: inline-flex; align-items: center; gap: 16px; }
 #wishlist-toggle .disclosure-icon { flex: 0 0 28px; width: 28px; margin-top: 0; }
 #wishlist-toggle[aria-expanded="true"] .disclosure-icon::after { transform: rotate(0); }
