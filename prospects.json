@@ -61,5 +61,14 @@
     "personalLine": "",
     "proposedTime": "",
     "logo": "logos/engedi-salon-logo-brown.svg"
+  },
+  {
+    "slug": "gezellig",
+    "businessName": "Gezellig",
+    "domain": "",
+    "firstName": "",
+    "personalLine": "",
+    "proposedTime": "",
+    "logo": "logos/gezellig-logo.png"
   }
 ]

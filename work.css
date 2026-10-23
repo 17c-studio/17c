@@ -8,7 +8,17 @@
 .work-page .eyebrow { text-transform: uppercase; }
 .work-hero { padding-block: var(--space-16) var(--section-space); text-align: center; }
 .work-hero h1 { margin-bottom: var(--space-6); }
+#work-title {
+ opacity: 0;
+ transform: translateY(26px);
+ animation: cover-title-rise 5s cubic-bezier(0.2, 0.7, 0.25, 1) forwards;
+ animation-delay: 0.4s;
+}
 .work-hero > p:not(.eyebrow) { max-width: 420px; color: var(--muted); margin-inline: auto; margin-bottom: var(--space-6); }
+#work-intro { position: relative; }
+.work-intro-reserved { display: block; visibility: hidden; }
+.work-intro-typed { position: absolute; inset: 0; }
+.work-intro-typed::after { content: ""; display: inline-block; height: 1em; border-right: 1px solid currentColor; margin-left: 2px; vertical-align: -.12em; }
 .work-link { display: inline-flex; align-items: center; gap: var(--space-6); min-height: 44px; font-size: var(--text-meta); border-bottom: 1px solid var(--line); }
 .collection-intro { display: flex; justify-content: space-between; gap: var(--space-8); align-items: baseline; border-top: 1px solid var(--line); padding-top: var(--space-6); margin-bottom: var(--space-12); }
 .collection-intro h2 { margin: 0; font-family: var(--sans); font-size: var(--text-meta); font-weight: 400; letter-spacing: 0; white-space: nowrap; }
@@ -91,5 +101,26 @@
  .work-cta h2 { font-size: 42px; letter-spacing: -.03em; }
 }
 @media (prefers-reduced-motion: reduce) {
+ #work-title { opacity: 1; transform: none; }
  .work-page *, .work-page *::before, .work-page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* An intentionally unfinished fourth project, composed like the existing work. */
+.future-canvas { position: relative; aspect-ratio: 1.5; border: 0; }
+.future-canvas::before { content: ""; position: absolute; inset: 12%; border: 1px solid var(--line); opacity: .18; }
+.future-wireframe { position: absolute; inset: 18% 18%; display: grid; grid-template-rows: 1px 1fr 1px; gap: 18%; opacity: .08; transition: opacity 600ms ease; }
+.future-wireframe span { display: block; background: var(--line); }
+.future-wireframe .future-wireframe-header { width: 30%; }
+.future-wireframe .future-wireframe-space { background: transparent; border: 1px solid var(--line); }
+.future-wireframe .future-wireframe-line { width: 58%; }
+.future-label { font-size: var(--text-label); letter-spacing: var(--tracking-label); text-transform: uppercase; }
+.future-project:focus-within .future-wireframe { opacity: .3; }
+@media (hover: hover) {
+ .future-project:hover .future-wireframe { opacity: .3; }
+}
+@media (hover: none) {
+ .future-wireframe { opacity: .18; }
+}
+@media (max-width: 600px) {
+ .future-canvas { aspect-ratio: 1.1; }
 }
