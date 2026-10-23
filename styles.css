@@ -4160,3 +4160,6 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   filter: none;
   clip-path: circle(48.2% at 50% 50%);
 }
+
+/* Keep Tweed’s original paper-tag artwork and lettering visible. */
+.prospect-brand .prospect-logo[src="logos/tweed-baby-outfitters-logo.png"] { filter: none; }
