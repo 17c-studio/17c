@@ -3342,7 +3342,7 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
 }
 
 /* Shared homepage, services, and contact form header. */
-:is(.home-page, .services-page, .form-page) .header {
+:is(.home-page, .services-page, .form-page, .work-page) .header {
   --page-gutter: clamp(28px, 6vw, 96px);
   --content-max: 1400px;
   position: absolute;
@@ -3358,7 +3358,7 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
   grid-template-columns: 1fr auto 1fr;
   gap: 15px;
 }
-:is(.home-page, .services-page, .form-page) .header nav {
+:is(.home-page, .services-page, .form-page, .work-page) .header nav {
   grid-column: 2;
   grid-row: 1;
   justify-self: center;
@@ -3366,27 +3366,27 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
   font-size: 12px;
   line-height: 1.65;
 }
-:is(.home-page, .services-page, .form-page) .header nav a {
+:is(.home-page, .services-page, .form-page, .work-page) .header nav a {
   display: inline-flex;
   align-items: center;
   min-height: 48px;
   padding-block: 8px;
 }
-:is(.home-page, .services-page, .form-page) .header nav a:hover { color: #fff; }
+:is(.home-page, .services-page, .form-page, .work-page) .header nav a:hover { color: #fff; }
 .form-page .header { position: relative; }
 @media (max-width: 700px) {
-  :is(.home-page, .services-page, .form-page) .header {
+  :is(.home-page, .services-page, .form-page, .work-page) .header {
     height: 100px;
     grid-template-columns: 56px minmax(0, 1fr);
     gap: 12px;
   }
-  :is(.home-page, .services-page, .form-page) .header { --page-gutter: 16px; }
-  :is(.home-page, .services-page, .form-page) .header nav {
+  :is(.home-page, .services-page, .form-page, .work-page) .header { --page-gutter: 16px; }
+  :is(.home-page, .services-page, .form-page, .work-page) .header nav {
     justify-self: end;
     font-size: 12px;
     gap: 10px;
   }
-  :is(.home-page, .services-page, .form-page) .header nav a {
+  :is(.home-page, .services-page, .form-page, .work-page) .header nav a {
     min-width: 44px;
     justify-content: center;
   }
@@ -4017,7 +4017,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 }
 
 /* Spacious studio footer with the site's existing palette and type. */
-:is(.home-page, .services-page, .form-page) .studio-footer {
+:is(.home-page, .services-page, .form-page, .work-page) .studio-footer {
   display: grid;
   grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
   align-items: start;
@@ -4031,13 +4031,13 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   align-items: start;
   gap: var(--space-8);
 }
-:is(.home-page, .services-page, .form-page) .studio-footer .studio-footer-logo {
+:is(.home-page, .services-page, .form-page, .work-page) .studio-footer .studio-footer-logo {
   --footer-logo-width: clamp(100px, 10vw, 160px);
   justify-self: start;
   align-self: start;
   overflow: hidden;
 }
-:is(.home-page, .services-page, .form-page) .studio-footer .studio-footer-logo img {
+:is(.home-page, .services-page, .form-page, .work-page) .studio-footer .studio-footer-logo img {
   width: var(--footer-logo-width);
   height: auto;
   /* Remove the PNG's transparent top and bottom space from the layout. */
@@ -4096,7 +4096,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   color: var(--muted);
   font-size: var(--text-meta);
 }
-:is(.home-page, .services-page, .form-page) .studio-footer-bottom small { margin: 0; font-size: inherit; }
+:is(.home-page, .services-page, .form-page, .work-page) .studio-footer-bottom small { margin: 0; font-size: inherit; }
 
 .studio-footer-bottom a, .studio-footer-bottom button {
   display: inline-flex;
@@ -4112,29 +4112,29 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   cursor: pointer;
 }
 .studio-footer-bottom .back-to-top { margin-left: auto; gap: 8px; }
-:is(.home-page, .services-page, .form-page) .studio-footer a {
+:is(.home-page, .services-page, .form-page, .work-page) .studio-footer a {
   text-decoration: underline;
   text-decoration-color: transparent;
   text-decoration-thickness: 1px;
   text-underline-offset: 5px;
   transition: opacity 180ms ease, text-decoration-color 180ms ease;
 }
-:is(.home-page, .services-page, .form-page) .studio-footer a:focus-visible {
+:is(.home-page, .services-page, .form-page, .work-page) .studio-footer a:focus-visible {
   text-decoration-color: currentColor;
 }
 @media (hover: hover) and (pointer: fine) {
-  :is(.home-page, .services-page, .form-page) .studio-footer a:hover {
+  :is(.home-page, .services-page, .form-page, .work-page) .studio-footer a:hover {
     opacity: 0.75;
     text-decoration-color: currentColor;
   }
 }
 @media (max-width: 1000px) {
-  :is(.home-page, .services-page, .form-page) .studio-footer { grid-template-columns: minmax(0, 1fr); }
+  :is(.home-page, .services-page, .form-page, .work-page) .studio-footer { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 700px) {
-  :is(.home-page, .services-page, .form-page) .studio-footer { gap: var(--space-12); }
+  :is(.home-page, .services-page, .form-page, .work-page) .studio-footer { gap: var(--space-12); }
   .studio-footer-top { grid-template-columns: 88px minmax(0, 1fr); gap: var(--space-4); }
-  :is(.home-page, .services-page, .form-page) .studio-footer .studio-footer-logo { --footer-logo-width: 95px; }
+  :is(.home-page, .services-page, .form-page, .work-page) .studio-footer .studio-footer-logo { --footer-logo-width: 95px; }
   .studio-footer-contact {
     grid-column: 2;
     width: 100%;
