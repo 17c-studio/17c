@@ -4170,3 +4170,6 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 
 /* Preserve Don Lam Bees’ yellow-and-black logo artwork. */
 .prospect-brand .prospect-logo[src="logos/don-lam-bees-logo.png"] { filter: none; }
+
+/* Preserve Flowers by Design’s floral colors and lettering. */
+.prospect-brand .prospect-logo[src="logos/flowers-by-design-logo.png"] { filter: none; }
