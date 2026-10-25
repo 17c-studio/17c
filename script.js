@@ -161,11 +161,15 @@ const initServiceScroller = () => {
   if (!servicesSection || !serviceTrack || !window.gsap || !window.ScrollTrigger) return () => {};
 
   gsap.registerPlugin(ScrollTrigger);
+  // Browser chrome changes the mobile viewport height during a swipe.
+  ScrollTrigger.config({ ignoreMobileResize: true });
   window[SERVICE_SCROLLER_KEY]?.();
   ScrollTrigger.getById('services-horizontal')?.kill(true);
   const media = gsap.matchMedia();
   let refreshTimer;
   let destroyed = false;
+  let viewportWidth = window.innerWidth;
+  let viewportHeight = window.innerHeight;
 
   const refresh = () => {
     if (destroyed) return;
@@ -178,6 +182,18 @@ const initServiceScroller = () => {
         ScrollTrigger.refresh(true);
       });
     }, 150);
+  };
+
+  const handleResize = () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    // Match ScrollTrigger's mobile resize policy for our manual refresh too.
+    // Keep the last meaningful height so several small resizes can accumulate.
+    if (ScrollTrigger.isTouch === 1 && width === viewportWidth &&
+        Math.abs(height - viewportHeight) < viewportHeight * 0.25) return;
+    viewportWidth = width;
+    viewportHeight = height;
+    refresh();
   };
 
   media.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
@@ -266,7 +282,7 @@ const initServiceScroller = () => {
   });
 
   window.addEventListener('load', refresh);
-  window.addEventListener('resize', refresh, { passive: true });
+  window.addEventListener('resize', handleResize, { passive: true });
   window.addEventListener('orientationchange', refresh);
   document.fonts?.ready.then(refresh);
   refresh();
@@ -276,7 +292,7 @@ const initServiceScroller = () => {
     destroyed = true;
     window.clearTimeout(refreshTimer);
     window.removeEventListener('load', refresh);
-    window.removeEventListener('resize', refresh);
+    window.removeEventListener('resize', handleResize);
     window.removeEventListener('orientationchange', refresh);
     media.revert();
     ScrollTrigger.getById('services-horizontal')?.kill(true);
@@ -481,6 +497,17 @@ if (possibilitiesSection && possibilityCards.length) {
   };
 
   const requestPossibilityUpdate = () => {
+    // Mobile has no card parallax; avoid scheduling eight style removals per frame.
+    if (!desktopProjects.matches || reducedMotion.matches) {
+      if (parallaxFrame) cancelAnimationFrame(parallaxFrame);
+      parallaxFrame = null;
+      possibilityCards.forEach(card => {
+        if (card.style.getPropertyValue('--project-parallax-y')) {
+          card.style.removeProperty('--project-parallax-y');
+        }
+      });
+      return;
+    }
     if (!parallaxFrame) parallaxFrame = requestAnimationFrame(updatePossibilityParallax);
   };
 
