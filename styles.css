@@ -3373,6 +3373,7 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
   padding-block: 8px;
 }
 :is(.home-page, .services-page, .form-page, .work-page) .header nav a:hover { color: #fff; }
+.header nav [aria-current="page"] { border-bottom: 1px solid var(--line); }
 .form-page .header { position: relative; }
 @media (max-width: 700px) {
   :is(.home-page, .services-page, .form-page, .work-page) .header {
