@@ -4167,3 +4167,6 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 
 /* This JPEG includes a background, so a silhouette filter hides its artwork. */
 .prospect-brand .prospect-logo[src="logos/escape-ministries-logo.jpg"] { filter: none; }
+
+/* Preserve Don Lam Bees’ yellow-and-black logo artwork. */
+.prospect-brand .prospect-logo[src="logos/don-lam-bees-logo.png"] { filter: none; }
