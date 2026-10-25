@@ -1,47 +1,4 @@
 (() => {
-  const intro = document.querySelector('#work-intro');
-  if (intro) {
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const copy = intro.textContent;
-    let timer;
-    let position = 0;
-    const finish = () => {
-      clearTimeout(timer);
-      intro.classList.remove('is-typing');
-      intro.textContent = copy;
-    };
-    if (!preference.matches) {
-      // Reserve the complete sentence's space while exposing it once to readers.
-      const accessible = document.createElement('span');
-      accessible.className = 'visually-hidden';
-      accessible.textContent = copy;
-      const reserved = document.createElement('span');
-      reserved.className = 'work-intro-reserved';
-      reserved.setAttribute('aria-hidden', 'true');
-      reserved.textContent = copy;
-      const typed = document.createElement('span');
-      typed.className = 'work-intro-typed';
-      typed.setAttribute('aria-hidden', 'true');
-      intro.replaceChildren(accessible, reserved, typed);
-      intro.classList.add('is-typing');
-      const type = () => {
-        typed.textContent = copy.slice(0, ++position);
-        if (position < copy.length) timer = setTimeout(type, 40);
-        else finish();
-      };
-      timer = setTimeout(type, 400);
-    }
-    preference.addEventListener('change', finish);
-    window.addEventListener('pagehide', finish, { once: true });
-  }
-
-  const weight = document.querySelector('#type-weight');
-  weight.disabled = false;
-  weight.addEventListener('input', () => {
-    document.querySelector('#type-sample').style.fontWeight = weight.value;
-    document.querySelector('#type-weight-value').value = weight.value;
-  });
-
   // Use the same catalog IDs and persistence contract read by wishlist.js on
   // services.html and form.html. No separate portfolio selections are created.
   const key = '17c-project-wishlist-v1';
