@@ -1,4 +1,5 @@
 /* Work-only layouts; typography, colors, header, footer and buttons are shared. */
+.work-page { overflow-x: clip; }
 .work-page :focus-visible { outline: 2px solid var(--focus-color); outline-offset: 5px; }
 .work-page .header { position: relative; }
 .work-page .skip-link { top: 8px; transform: translateY(calc(-100% - 16px)); background: var(--control-bg); color: var(--control-text); }
@@ -23,23 +24,20 @@
 .work-status:empty { margin: 0; }
 .work-projects { display: grid; gap: var(--section-space); }
 .work-project { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); gap: clamp(32px, 4vw, 64px); align-items: center; }
-.work-project:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr); }
-.work-project:nth-child(even) .work-browser { grid-column: 2; grid-row: 1; }
-.work-project:nth-child(even) .work-project-copy { grid-column: 1; grid-row: 1; }
 .work-browser { min-width: 0; border: 1px solid var(--line); background: var(--color-surface-alt); }
-.browser-bar { display: flex; align-items: center; gap: var(--space-4); min-height: 36px; padding: 8px 12px; font-size: 10px; color: var(--muted); }
+.browser-bar { display: flex; align-items: center; gap: var(--space-4); min-height: 36px; padding: 8px 12px; font-size: 12px; color: var(--muted); }
 .browser-dots { display: flex; gap: 5px; }
 .browser-dots i { width: 5px; height: 5px; border: 1px solid var(--line); border-radius: 50%; }
 .work-preview { position: relative; aspect-ratio: 1.5; overflow: auto; scrollbar-width: thin; scrollbar-color: var(--color-muted) var(--color-surface-alt); }
 .work-preview:focus-visible { outline-offset: -4px; }
 .work-preview img { display: block; width: 100%; height: auto; }
-.browser-scroll-hint { display: flex; justify-content: space-between; margin: 0; padding: 8px 12px; font-size: 10px; color: var(--muted); }
-.work-project-copy { min-width: 0; }
+.browser-scroll-hint { display: flex; justify-content: space-between; margin: 0; padding: 8px 12px; font-size: 12px; color: var(--muted); }
+.work-project-copy { position: sticky; top: var(--space-8); align-self: start; min-width: 0; text-align: left; }
 .project-category { font-size: var(--text-meta); color: var(--muted); margin-bottom: var(--space-3); }
 .work-project h3 { font-family: var(--serif); font-size: var(--text-card-title); font-weight: 400; line-height: 1.08; margin-bottom: var(--space-4); }
 .project-intro { color: var(--muted); max-width: 34ch; margin-bottom: var(--space-4); }
 .project-links { display: flex; flex-wrap: wrap; gap: 0 var(--space-6); margin-bottom: var(--space-4); }
-.project-links a { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; font-size: var(--text-meta); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 5px; }
+.project-links a { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; font-size: var(--text-body); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 5px; }
 .work-story { border-top: 1px solid var(--line); }
 .work-story summary { display: flex; justify-content: space-between; align-items: center; min-height: 48px; gap: var(--space-4); font-size: var(--text-meta); cursor: pointer; list-style: none; }
 .work-story summary::-webkit-details-marker { display: none; }
@@ -63,12 +61,11 @@
  .project-links a:hover, .work-link:hover, .work-wish:not([aria-disabled="true"]):hover { opacity: .75; }
 }
 @media (max-width: 1100px) {
- .work-project, .work-project:nth-child(even) { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--space-8); }
- .work-project:nth-child(even) .work-browser, .work-project:nth-child(even) .work-project-copy { grid-column: auto; grid-row: auto; }
+ .work-project { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--space-8); }
 }
 @media (max-width: 900px) {
- .work-project, .work-project:nth-child(even) { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
- .work-project-copy { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-8); }
+ .work-project { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+ .work-project-copy { position: static; top: auto; display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-8); }
  .project-category, .work-project h3, .project-intro, .project-links { grid-column: 1; }
  .work-story { grid-column: 2; grid-row: 1 / 5; align-self: start; }
  .work-preview { aspect-ratio: 1.65; }
