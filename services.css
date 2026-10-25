@@ -20,7 +20,7 @@
   padding: 118px var(--page-gutter);
   text-align: center;
   color: var(--ink);
-  background: linear-gradient(180deg, rgb(23 22 20 / 48%), rgb(23 22 20 / 40%) 45%, rgb(23 22 20 / 82%)), url("assets/optimized/laptop-computer-1600.jpg") center 50% / cover no-repeat;
+  background: linear-gradient(180deg, rgb(23 22 20 / 48%), rgb(23 22 20 / 40%) 45%, rgb(23 22 20 / 82%)), url("laptop-interaction.jpeg") center 50% / cover no-repeat;
 }
 .hero-heading { align-self: center; justify-self: center; }
 .services-hero .hero-aside { display: contents; }
