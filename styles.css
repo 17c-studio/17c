@@ -1420,6 +1420,8 @@ h2 em {
 }
 .skip-link:focus {
   top: 10px;
+  color: #171614;
+  background: #f6f5f1;
 }
 dialog {
   background: var(--color-surface);
@@ -3622,6 +3624,8 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
   .home-page .possibility-title-line {
     display: block;
     width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
   }
   .home-page .possibilities .concept-grid {
     position: absolute;
