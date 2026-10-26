@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <script src="email-links.js?v=1" defer></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
@@ -13,7 +14,7 @@
   to work on her latest website check. Removed from active findings and scope.
   HTML comments remain readable in page source; do not store private information here.
   Sources: original ZCS meeting transcript; existing proposal scope and prices;
-  mariel@17c.studio is listed in proposal.html, form.html, services.html, and index.html.
+  Studio email links are managed by email-links.js.
 
   TODO [PRICING]: Confirm Option 2 ($8,250), Option 3 ($15,000), and care rates
   ($600/month for 6 months; $500/month for 12 months) before enabling acceptance on the published proposal.
@@ -1081,7 +1082,7 @@ Attribution: Travis, Glass House Creative Community.
     <p class="eyebrow">Next step</p>
     <h2>Ready when you are.</h2>
     <p>Choose the option that fits ZCS, add your name, and accept below. This is your electronic signature, so there’s no separate agreement to sign afterward. I’ll follow up with the initial invoice and we’ll arrange our kickoff.</p>
-    <p>If you’d like to talk anything through first, <a href="mailto:mariel@17c.studio?subject=ZCS%20website%20proposal">email me</a>. I’m happy to help.</p>
+    <p>If you’d like to talk anything through first, <a href="form.html" data-email data-email-subject="ZCS website proposal">email me</a>. I’m happy to help.</p>
     <form id="reply" class="accept" action="https://formspree.io/f/xjygqoja" method="POST" enctype="multipart/form-data">
       <label for="name">Your full name (electronic signature)</label>
       <input id="name" name="name" type="text" autocomplete="name" maxlength="150" required>
@@ -1118,7 +1119,7 @@ Attribution: Travis, Glass House Creative Community.
       </label>
       <p class="acceptance-help">Your acceptance records the selected terms and signing date. After submission, you can download a PDF copy for your records.</p>
       <button class="go" id="accept-submit" type="submit" disabled>Sign &amp; accept proposal</button>
-      <noscript><p>Please enable JavaScript to sign and receive an acceptance record, or email mariel@17c.studio for help.</p></noscript>
+      <noscript><p>Please enable JavaScript to sign and receive an acceptance record, or use the <a href="form.html">Connect form</a> for help.</p></noscript>
       <p id="reply-status" role="status" aria-live="polite" tabindex="-1"></p>
       <div id="acceptance-receipt" hidden>
         <h3>Your acceptance copy</h3>
@@ -1138,7 +1139,7 @@ Attribution: Travis, Glass House Creative Community.
 </main>
 
 <footer>
-  Mariel Whitney · 17C Studio LLC · <a href="mailto:mariel@17c.studio">mariel@17c.studio</a>
+  Mariel Whitney · 17C Studio LLC · <a href="form.html" data-email>Email me</a>
   <br><small>Prepared for Zeeland Christian School. This page asks search engines not to index it.</small>
 </footer>
 
@@ -1210,7 +1211,7 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js" defer></script>
-<script src="proposal-zcs-acceptance.js" defer></script>
+<script src="proposal-zcs-acceptance.js?v=2" defer></script>
 <script>
 /* Include every answer in print, then restore the reader's expanded rows. */
 (function(){

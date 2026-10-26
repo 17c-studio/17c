@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" data-theme="dark" data-cursor="circle" style="color-scheme: dark;">
 <head>
+  <script src="email-links.js?v=1" defer></script>
   <meta charset="UTF-8">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,17 +10,223 @@
   <title>Custom Web Design for Small Businesses | 17C Studio</title>
   <link rel="icon" href="assets/optimized/17c-logo-112.png" type="image/png">
   <link rel="preload" as="image" href="assets/optimized/17c-cover-1536.jpg" imagesrcset="assets/optimized/17c-cover-768.jpg 768w, assets/optimized/17c-cover-1536.jpg 1536w" imagesizes="100vw">
-  <script src="prospect-reveal.js?v=9"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
+  <!-- Set the personal welcome state before paint without fetching a script. -->
+  <script>
+    (() => {
+      const slug = new URLSearchParams(location.search).get('for');
+      if (!slug || location.hash) return;
+      try { if (sessionStorage.getItem(`17c-prospect-welcome:${slug}`)) return; } catch {}
+      document.documentElement.classList.add('prospect-reveal-pending');
+      window.studioProspectRevealFailsafe = setTimeout(() => {
+        document.documentElement.classList.remove('prospect-reveal-pending');
+      }, 11000);
+    })();
+  </script>
+  <!-- home-critical:start -->
+  <style id="home-critical">
+:root { --color-surface: #edebe3; --color-surface-alt: #e9e6e0; --color-ink: #45403a; --color-ink-hover: #514a43; --color-muted: #696158; --color-line: #b7b4af; --color-dark: #171614; --color-on-dark: #f6f5f1; --color-on-dark-muted: #d1cbc3; --color-line-on-dark: rgb(246 245 241 / 62%); --stone: var(--color-ink); --heading-text: var(--color-on-dark); --grey: var(--color-line); --sub-text: var(--color-on-dark-muted); --ink: var(--color-ink); --muted: var(--color-muted); --accent: var(--color-ink); --line: var(--color-line); --stone-dark: var(--color-ink-hover); --serif: "Cormorant Garamond", serif; --sans: "DM Sans", Arial, sans-serif; --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --space-24: 96px; --page-gutter: clamp(24px, 4vw, 64px); --section-space: clamp(64px, 7vw, 96px); --content-max: 1400px; --copy-max: 560px; --content-gap: clamp(48px, 6vw, 96px); --text-label: 10px; --text-meta: 12px; --text-body: 14px; --text-card-title: clamp(1.95rem, 2.3vw, 2.7rem); --text-section-title: clamp(3rem, 4.5vw, 4.75rem); --leading-tight: 1; --leading-heading: 1.05; --leading-body: 1.65; --tracking-label: 0.16em; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 25px; }
+html.lenis { scroll-behavior: auto; }
+body { margin: 0px; overflow-x: clip; background: var(--color-surface); color: var(--ink); font-family: var(--sans); font-size: var(--text-body); line-height: var(--leading-body); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--stone-dark); outline-offset: 5px; }
+.wrap { width: min(100%, var(--content-max)); margin-inline: auto; padding-inline: var(--page-gutter); }
+.header { height: 118px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 15px; }
+.header-brand { display: flex; align-items: center; gap: var(--space-4); min-width: 0px; }
+.wordmark { font-family: Georgia, serif; font-size: 43px; letter-spacing: -5px; line-height: 1; }
+.header nav { grid-column: 2; margin-left: 0px; display: flex; gap: var(--space-12); align-items: center; font-size: 12px; font-weight: 500; letter-spacing: 0.04em; }
+.header nav a:hover, .text-link:hover { color: var(--stone-dark); }
+.nav-cta { padding: 9px 0px; }
+.nav-cta span { display: inline-block; padding-left: 10px; }
+.arrow-drift { display: inline-block; animation: 4s ease-in-out 0s infinite normal none running nav-arrow-drift; }
+@keyframes nav-arrow-drift {
+  0%, 100% { transform: translateX(0px); }
+  50% { transform: translateX(3px); }
+}
+h1, h2, h3, p { margin-top: 0px; }
+h1, h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -2.3px; }
+h1 { font-size: clamp(58px, 5.3vw, 76px); line-height: 0.99; margin-bottom: 28px; }
+.editorial-label { font-size: 10px; letter-spacing: 0.17em; text-transform: uppercase; margin: 0px 0px 30px; font-family: var(--sans); }
+h2 { font-size: var(--text-section-title); line-height: var(--leading-heading); margin-bottom: var(--space-8); letter-spacing: -1.5px; }
+@media (min-width: 768px) {.home-page { overflow-x: clip; }}
+.skip-link { position: fixed; top: -100px; left: 20px; z-index: 20; background: var(--ink); color: var(--heading-text); padding: 15px; }
+.skip-link:focus { top: 10px; color: rgb(23, 22, 20); background: rgb(246, 245, 241); }
+form { display: grid; gap: var(--space-4); margin-top: var(--space-6); }
+label { font-size: var(--text-meta); display: grid; gap: var(--space-2); }
+input, select, textarea { width: 100%; border: 1px solid var(--stone); background: rgba(225, 222, 215, 0.3); border-radius: 0px; padding: var(--space-3); color: var(--ink); font-size: var(--text-body); }
+@media (min-width: 1500px) {.wrap { max-width: 1400px; }
+h1 { font-size: 83px; }}
+@media (max-width: 1050px) {h1 { font-size: 62px; }}
+@media (max-width: 700px) {.header { height: 88px; }
+.header .wordmark { font-size: 36px; }
+.header nav { gap: 20px; font-size: 10px; }
+.nav-cta span { padding-left: 7px; }
+h1 { font-size: clamp(57px, 10.6vw, 75px); letter-spacing: -2px; }
+h2 { font-size: 43px; }}
+@media (prefers-reduced-motion: reduce) {html { scroll-behavior: auto; }}
+.wordmark { display: inline-flex; align-items: center; flex-shrink: 0; line-height: 0; letter-spacing: 0px; }
+.wordmark img { display: block; width: 8rem; height: 8rem; object-fit: contain; }
+.header .wordmark img { filter: brightness(0) saturate(100%) invert(91%) sepia(9%) saturate(190%) hue-rotate(2deg) brightness(99%) contrast(88%); }
+@media (max-width: 700px) {.header .wordmark img { width: 56px; height: 70px; }
+.header { gap: 20px; }}
+.header { position: absolute; inset: 0px 0px auto; z-index: 2; width: 100%; color: var(--heading-text); }
+.header .nav-cta { border-color: rgba(225, 222, 215, 0.6); }
+.header nav a:hover { color: var(--heading-text); }
+.header a:focus-visible { outline-color: var(--heading-text); }
+.cover { position: relative; isolation: isolate; margin: 0px; border: 0px; min-height: max(800px, 85svh); overflow: hidden; background: var(--stone); color: var(--heading-text); }
+.cover-image { position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; z-index: -2; }
+.cover::after { content: ""; position: absolute; inset: 0px; z-index: -1; background: linear-gradient(rgba(35, 31, 27, 0.5), rgba(35, 31, 27, 0.08) 35%, rgba(35, 31, 27, 0.3) 60%, rgba(35, 31, 27, 0.72)); }
+.cover-bottom { position: absolute; inset: 0px; display: grid; place-items: center; padding: var(--page-gutter); }
+.cover-title { margin: 0px; max-width: 1200px; font-family: var(--serif); font-weight: 400; font-size: clamp(56px, 5.3vw, 96px); line-height: var(--leading-heading); letter-spacing: -1.5px; color: var(--heading-text); text-align: center; text-shadow: rgba(0, 0, 0, 0.2) 0px 2px 18px; }
+.cover-title-line { display: block; }
+.cover-title-line, #hero-title, .services-hero h1, #work-title, .form-page h1 { opacity: 0; transform: translateY(26px); animation: 5s cubic-bezier(0.2, 0.7, 0.25, 1) 0.4s 1 normal both running cover-title-rise; }
+.cover-title-line--second { font-weight: 500; }
+.cover-scroll { position: absolute; right: var(--page-gutter); bottom: var(--space-16); display: grid; place-items: center; flex-shrink: 0; width: 48px; height: 48px; border: 1px solid rgba(225, 222, 215, 0.6); border-radius: 50%; font-size: 26px; font-weight: 400; opacity: 0; animation: 1s ease 2.25s 1 normal forwards running cover-arrow-reveal; transition: background-color 0.5s, color 0.5s, border-color 0.5s; }
+.cover-scroll span { display: block; animation: 5.5s ease-in-out 3.25s infinite normal none running cover-arrow-float; }
+@keyframes cover-title-rise {
+  0% { opacity: 0; transform: translateY(26px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+@keyframes cover-arrow-reveal {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes cover-arrow-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(4px); }
+}
+@media (prefers-reduced-motion: reduce) {.cover-title-line, #hero-title, .services-hero h1, #work-title, .form-page h1, .cover-scroll, .cover-scroll span { opacity: 1; transform: none; animation: auto ease 0s 1 normal none running none; }}
+@media (hover: hover) and (pointer: fine) {.cover-scroll:hover { background: rgba(225, 222, 215, 0.06); color: rgb(255, 255, 255); }}
+.cover-scroll:focus-visible { outline-color: var(--heading-text); }
+@media (max-width: 700px) {.cover { min-height: max(600px, 85svh); }
+.cover-image { object-position: 43% center; }
+.cover-bottom { padding: var(--page-gutter); }
+.cover-title { font-size: clamp(43px, 11vw, 70px); letter-spacing: -0.8px; }
+.cover-scroll { right: var(--page-gutter); bottom: var(--space-8); width: 42px; height: 42px; font-size: 23px; }}
+@media (prefers-reduced-motion: reduce) {html { scroll-behavior: auto; }}
+input::placeholder, textarea::placeholder { color: var(--stone); opacity: 1; }
+.home-page { --page-gutter: 48px; --section-space: 96px; --content-max: 1200px; --copy-max: 65ch; --content-gap: 32px; --text-label: 0.75rem; --text-meta: 0.875rem; --text-body: 1rem; --text-card-title: clamp(1.5rem, 2.2vw, 2rem); --text-section-title: clamp(2.5rem, 4vw, 3.5rem); --leading-heading: 1.05; --leading-body: 1.6; --tracking-label: 0.12em; font-size: var(--text-body); line-height: var(--leading-body); }
+.home-page .wrap { max-width: var(--content-max); }
+.home-page .header-tagline, .home-page .header nav, .home-page .button, .home-page .possibilities-actions a { font-size: var(--text-meta); line-height: 1.4; }
+.home-page .header nav a { display: inline-flex; align-items: center; min-height: 48px; padding-block: var(--space-2); }
+.home-page .cover-title { max-width: 1100px; font-size: clamp(2.1rem, 5vw, 4.5rem); line-height: 1.02; }
+.home-page h2, .home-page #hero-title, .home-page .services .section-heading h2, .home-page .about-mariel-copy h2, .home-page .possibilities-heading h2, .home-page .contact h2 { font-size: var(--text-section-title); line-height: var(--leading-heading); letter-spacing: -0.035em; }
+.home-page input, .home-page textarea { min-height: 48px; padding: var(--space-3) var(--space-4); border-color: var(--color-ink); background: rgba(233, 230, 224, 0.38); font-size: 1rem; line-height: 1.5; }
+.home-page input:hover, .home-page textarea:hover { background: rgba(233, 230, 224, 0.65); }
+.home-page input:focus-visible, .home-page textarea:focus-visible { border-color: var(--color-ink-hover); outline: 2px solid var(--color-ink-hover); outline-offset: 2px; }
+@media (max-width: 1023px) {.home-page { --page-gutter: 32px; --section-space: 80px; }}
+@media (max-width: 700px) {.home-page { --page-gutter: 24px; --section-space: 64px; }
+.home-page .header { grid-template-columns: auto 1fr; gap: var(--space-4); }
+.home-page .header nav { grid-column: 2; justify-self: end; gap: var(--space-4); font-size: var(--text-meta); }
+.home-page .header nav a { display: inline-flex; }}
+.nav-cta, .about-link, .copy-button { transition: color 0.5s, border-color 0.5s; }
+@media (hover: hover) and (pointer: fine) {.header nav .nav-cta:hover, .about-link:hover, .copy-button:hover { color: rgb(255, 255, 255); }}
+@media (prefers-reduced-motion: reduce) {.home-page *, .home-page ::before, .home-page ::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }}
+@media (hover: hover) and (pointer: fine) {a:not(.service-card-link, .button, .possibility-primary, .possibility-secondary, .nav-cta, .about-link, .cover-scroll):hover { color: color-mix(in srgb, currentcolor 72%, white 28%); }}
+html[data-theme] { background: var(--color-surface); --control-bg: #45403a; --control-text: #fff; --focus-color: #8d6540; }
+html[data-theme="dark"] { --color-surface: #171614; --color-surface-alt: #24221f; --color-ink: #f6f5f1; --color-ink-hover: #fff; --color-muted: #c2bcb3; --color-line: #77716a; --control-bg: #e9e6e0; --control-text: #24221f; --focus-color: #e0b889; }
+.home-page .cover { --heading-text: #f6f5f1; --stone: #45403a; }
+html[data-theme] .home-page :is(input, textarea) { background: var(--color-surface-alt); color: var(--ink); border-color: var(--color-line); }
+html[data-theme] .home-page :is(input, textarea)::placeholder { color: var(--muted); opacity: 1; }
+html[data-theme] .home-page :is(input, textarea):hover { background: var(--color-surface-alt); }
+html[data-theme] .home-page :is(a, button, input, textarea):focus-visible { outline: 2px solid var(--focus-color); outline-offset: 4px; }
+:is(.home-page, .services-page, .form-page, .work-page) .header { --page-gutter: clamp(28px, 6vw, 96px); --content-max: 1400px; position: absolute; inset: 0px 0px auto; width: min(100%, 1400px); max-width: 1400px; margin: 0px auto; padding: 0 var(--page-gutter); z-index: 10; height: 118px; background: transparent; color: rgb(246, 245, 241); grid-template-columns: 1fr auto 1fr; gap: 15px; }
+:is(.home-page, .services-page, .form-page, .work-page) .header nav { grid-area: 1 / 2; justify-self: center; gap: clamp(16px, 2vw, 28px); font-size: 12px; line-height: 1.65; }
+:is(.home-page, .services-page, .form-page, .work-page) .header nav a { display: inline-flex; align-items: center; min-height: 48px; padding-block: 8px; }
+:is(.home-page, .services-page, .form-page, .work-page) .header nav a:hover { color: rgb(255, 255, 255); }
+@media (max-width: 700px) {:is(.home-page, .services-page, .form-page, .work-page) .header { height: 100px; grid-template-columns: 56px minmax(0px, 1fr); gap: 12px; }
+:is(.home-page, .services-page, .form-page, .work-page) .header { --page-gutter: 16px; }
+:is(.home-page, .services-page, .form-page, .work-page) .header nav { justify-self: end; font-size: 12px; gap: 10px; }
+:is(.home-page, .services-page, .form-page, .work-page) .header nav a { min-width: 44px; justify-content: center; }}
+@media (hover: hover) and (pointer: fine) {html[data-cursor="circle"], html[data-cursor="circle"] * { cursor: url("assets/cursors/ring-dark.svg") 8 8, auto !important; }}
+.cover-title > .editorial-label { display: block; }
+@media (prefers-reduced-motion: reduce) {html { scroll-behavior: auto !important; }
+:is(.home-page, .services-page) *, :is(.home-page, .services-page) ::before, :is(.home-page, .services-page) ::after { animation: auto ease 0s 1 normal none running none !important; transition: none !important; }
+.cover-title-line, .cover-scroll, .services-hero h1 { opacity: 1; transform: none; }}
+.prospect-brand { display: block; min-width: 0px; margin-bottom: 30px; }
+.prospect-wordmark { display: block; font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -0.035em; overflow-wrap: anywhere; }
+.prospect-logo { display: block; max-width: 100%; width: auto; max-height: 100px; margin-inline: auto; object-fit: contain; filter: brightness(0) invert(1); }
+.prospect-brand [hidden] { display: none; }
+html.prospect-reveal-pending, html.prospect-reveal-pending body { overflow: hidden; }
+html.prospect-reveal-pending::before { content: ""; position: fixed; inset: 0px; z-index: 9998; background: rgb(240, 236, 227); pointer-events: none; }
+html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: none; }
+.prospect-curtain { position: fixed; inset: 0px; z-index: 9999; display: grid; place-items: center; padding: 24px; background: rgb(240, 236, 227); color: rgb(69, 64, 58); color-scheme: light; touch-action: none; }
+.prospect-curtain-content { width: min(100%, 500px); text-align: center; opacity: 0; }
+@media (hover: hover) and (pointer: fine) {html[data-cursor="circle"] .prospect-curtain, html[data-cursor="circle"] .prospect-curtain * { cursor: url("assets/cursors/ring-dark.svg") 8 8, auto !important; }}
+.prospect-curtain .prospect-brand { margin: 0px 0px 18px; }
+.prospect-curtain .prospect-logo { max-height: 110px; filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(631%) hue-rotate(351deg) brightness(94%) contrast(87%); }
+.prospect-curtain-content p { margin: 0px; font-family: var(--serif); font-size: clamp(1.125rem, 3vw, 1.5rem); line-height: 1.4; letter-spacing: 0px; }
+.prospect-curtain.is-ready { animation: 850ms cubic-bezier(0.76, 0, 0.24, 1) 4150ms 1 normal both running prospect-curtain-lift; }
+.prospect-reveal-shown :is(.cover-title-line, .services-hero h1) { animation: auto ease 0s 1 normal none running none; opacity: 1; transform: none; }
+@keyframes prospect-curtain-lift {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-100%); }
+}
+@media (prefers-reduced-motion: reduce) {.prospect-curtain.is-ready { animation: 180ms linear 0s 1 normal both running prospect-curtain-fade !important; }
+.prospect-curtain.is-ready .prospect-curtain-content { opacity: 1; animation: auto ease 0s 1 normal none running none !important; }}
+@keyframes prospect-curtain-fade {
+  100% { opacity: 0; }
+}
+@media (max-width: 767px) {.cover .prospect-brand, .services-hero .prospect-brand { display: none; }
+.home-page .cover { min-height: 100svh; }
+.home-page .cover-bottom { padding: 120px 16px 112px; }
+.home-page .cover-title { width: 100%; max-width: none; font-size: clamp(1rem, 7vw, 2.75rem); }
+.home-page .cover-title-line { overflow-wrap: normal; white-space: nowrap; }
+.home-page .cover-title .editorial-label { display: block; margin-bottom: 20px; font-size: 12px; line-height: 1.5; }}
+.customization { position: relative; display: inline-block; }
+.home-page .header > .customization { grid-column: 3; justify-self: end; font-size: 12px; line-height: 1.65; }
+.customization, .customization * { box-sizing: border-box; }
+#customization-toggle { padding: 8px 0px; min-height: 48px; cursor: pointer; border: 0px; background: transparent; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit; font-size: 12px; }
+#customization-toggle:hover { color: rgb(209, 203, 195); }
+#customization-panel { position: absolute; top: calc(100% + 12px); right: 0px; z-index: 100; width: min(300px, -48px + 100vw); max-height: calc(100dvh - 150px); overflow-y: auto; overscroll-behavior: contain; padding: 24px; border: 1px solid var(--color-line); background-color: rgba(39, 39, 39, 0.8); color: var(--ink); text-align: center; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.25) 0px 12px 30px; }
+#customization-panel[hidden] { display: none; }
+#customization-close { position: absolute; top: 4px; right: 4px; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0px; border: 0px; background: transparent; box-shadow: none; color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit; font-size: 24px; line-height: 1; cursor: pointer; }
+#customization-panel:has(#customization-close) { padding-top: 52px; }
+#customization-form { display: flex; flex-direction: column; gap: 20px; }
+#customization-title { margin: 0px; font-family: var(--serif); font-size: 30px; font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; }
+.business-control { display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--muted); }
+#customization-business { width: 100%; min-width: 0px; min-height: 44px; margin: 0px; padding: 10px 0px; border-top: 0px; border-right: 0px; border-left: 0px; border-image: none; border-bottom: 1px solid var(--color-line); border-radius: 0px; background: transparent; color: var(--ink); text-align: left; font-family: var(--sans); font-size: 16px; }
+#business-counter { margin-top: -12px; color: var(--muted); font-size: 11px; text-align: right; }
+.customization-confirm { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; padding: 10px 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; border-image: none; border-top: 1px solid var(--color-line); border-radius: 0px; background: transparent; color: var(--ink); font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit; font-size: 12px; text-align: left; }
+.customization-confirm:hover { color: var(--color-ink-hover); }
+#customization-error { margin: 0px; font-size: 12px; color: var(--muted); }
+#customization-error:empty { display: none; }
+.customization :focus-visible { outline: 2px solid var(--focus-color); outline-offset: 4px; }
+.customization[hidden], .has-prospect .customization { display: none; }
+@media (max-width: 700px) {.home-page .header { row-gap: 0px; }
+.home-page .header nav { grid-row: 1; }
+.home-page .cover > .customization { position: absolute; left: var(--page-gutter); bottom: var(--space-8); z-index: 2; font-size: 12px; line-height: 1.65; }
+#customization-toggle { min-height: 44px; padding-block: 4px; font-size: 12px; }
+#customization-panel { inset: auto auto calc(100% + 12px) 0px; }}
+@media (max-width: 700px) {:root .editorial-label { display: none; }}
+.prospect-brand .prospect-logo[src="logos/gezellig-logo.png"] { filter: none; clip-path: circle(48.2% at 50% 50%); }
+.prospect-brand .prospect-logo[src="logos/tweed-baby-outfitters-logo.png"] { filter: none; }
+.prospect-brand .prospect-logo[src="logos/escape-ministries-logo.jpg"] { filter: none; }
+.prospect-brand .prospect-logo[src="logos/don-lam-bees-logo.png"] { filter: none; }
+.prospect-brand .prospect-logo[src="logos/flowers-by-design-logo.png"] { filter: none; }
+  </style>
+  <!-- home-critical:end -->
+  <script src="prospect-reveal.js?v=10" defer></script>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&amp;display=swap">
-<link rel="stylesheet" href="styles.css?v=115">
-  <link rel="stylesheet" href="wishlist.css?v=2">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="styles.css?v=115" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="wishlist.css?v=2" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&amp;display=swap">
+    <link rel="stylesheet" href="styles.css?v=115">
+    <link rel="stylesheet" href="wishlist.css?v=2">
+  </noscript>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
-  <script src="prospects.js?v=19" defer></script>
+  <script src="prospects.js?v=20" defer></script>
   <script src="wishlist-catalog.js?v=1" defer></script>
   <script src="wishlist.js?v=11" defer></script>
   <script src="business-customization.js?v=4" defer></script>
@@ -27,7 +234,7 @@
   <script src="dictionary.js?v=5" defer></script>
   <script src="contact-navigation.js?v=1" defer></script>
   <script src="launch.js?v=3" defer></script>
-  <script src="inquiry.js?v=2" defer></script>
+  <script src="inquiry.js?v=3" defer></script>
   <script src="analytics-events.js?v=1" defer></script>
 
   <!-- production-seo:start -->
@@ -246,50 +453,50 @@
       <div class="concept-grid">
         <article class="concept project-preview-card" data-parallax-from="30" data-parallax-to="-30">
           <div class="project-preview">
-            <img class="project-screenshot" src="assets/optimized/ghc-after-1200.jpg" srcset="assets/optimized/ghc-after-600.jpg 600w, assets/optimized/ghc-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Glass House Creative Community website" width="1200" height="4971" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/ghc-after-1200.jpg" srcset="assets/optimized/ghc-after-600.jpg 600w, assets/optimized/ghc-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Glass House Creative Community website design, full-page screenshot" width="1200" height="4971" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="45" data-parallax-to="-35">
           <div class="project-preview">
-            <img class="project-screenshot" src="assets/optimized/dare-to-hope-admissions-after-1200.jpg" srcset="assets/optimized/dare-to-hope-admissions-after-600.jpg 600w, assets/optimized/dare-to-hope-admissions-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Dare to Hope admissions website" width="1200" height="1682" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/dare-to-hope-admissions-after-1200.jpg" srcset="assets/optimized/dare-to-hope-admissions-after-600.jpg 600w, assets/optimized/dare-to-hope-admissions-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Hope College Dare to Hope admissions website design screenshot" width="1200" height="1682" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="25" data-parallax-to="-55">
           <div class="project-preview">
-            <img class="project-screenshot" src="assets/optimized/basketball-after-1200.jpg" srcset="assets/optimized/basketball-after-600.jpg 600w, assets/optimized/basketball-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Hope College basketball website" width="1200" height="3309" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/basketball-after-1200.jpg" srcset="assets/optimized/basketball-after-600.jpg 600w, assets/optimized/basketball-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Hope College basketball ticket website redesign screenshot" width="1200" height="3309" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="40" data-parallax-to="-25">
           <div class="project-preview">
-            <img class="project-screenshot" src="assets/optimized/haworth-after-1200.jpg" srcset="assets/optimized/haworth-after-600.jpg 600w, assets/optimized/haworth-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Haworth Hotel website" width="1200" height="3574" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/haworth-after-1200.jpg" srcset="assets/optimized/haworth-after-600.jpg 600w, assets/optimized/haworth-after-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Haworth Hotel website design, full-page screenshot" width="1200" height="3574" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="35" data-parallax-to="-45">
           <div class="project-preview">
-            <img class="project-screenshot" src="assets/optimized/font-playground-index-1200.jpg" srcset="assets/optimized/font-playground-index-600.jpg 600w, assets/optimized/font-playground-index-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Font Playground website" width="1200" height="654" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/font-playground-index-1200.jpg" srcset="assets/optimized/font-playground-index-600.jpg 600w, assets/optimized/font-playground-index-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Font Playground website design screenshot" width="1200" height="654" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="20" data-parallax-to="-50">
           <div class="project-preview">
-            <img class="project-screenshot" src="assets/optimized/anchor-index-1200.jpg" srcset="assets/optimized/anchor-index-600.jpg 600w, assets/optimized/anchor-index-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Anchor website" width="1200" height="654" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/anchor-index-1200.jpg" srcset="assets/optimized/anchor-index-600.jpg 600w, assets/optimized/anchor-index-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Anchor website design screenshot" width="1200" height="654" loading="lazy" decoding="async">
 
           </div>
         </article>
 
         <article class="concept project-preview-card" data-parallax-from="35" data-parallax-to="-65">
           <div class="project-preview">
-            <img class="project-screenshot" src="assets/optimized/ghc-events-1200.jpg" srcset="assets/optimized/ghc-events-600.jpg 600w, assets/optimized/ghc-events-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="GHC Events website" width="1200" height="620" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/ghc-events-1200.jpg" srcset="assets/optimized/ghc-events-600.jpg 600w, assets/optimized/ghc-events-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Glass House Creative Community events website design screenshot" width="1200" height="620" loading="lazy" decoding="async">
 
           </div>
         </article>
         <article class="concept project-preview-card" data-parallax-from="25" data-parallax-to="-30">
           <div class="project-preview">
-            <img class="project-screenshot" src="assets/optimized/degree-program-cropped-1200.jpg" srcset="assets/optimized/degree-program-cropped-600.jpg 600w, assets/optimized/degree-program-cropped-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Degree program website" width="1200" height="885" loading="lazy" decoding="async">
+            <img class="project-screenshot" src="assets/optimized/degree-program-cropped-1200.jpg" srcset="assets/optimized/degree-program-cropped-600.jpg 600w, assets/optimized/degree-program-cropped-1200.jpg 1200w" sizes="(max-width: 767px) 74vw, (max-width: 1050px) 55vw, 600px" alt="Degree program website design screenshot" width="1200" height="885" loading="lazy" decoding="async">
           </div>
         </article>
       </div>
@@ -307,7 +514,7 @@
       <a class="wordmark studio-footer-logo" href="./" aria-label="17C Studio home"><img src="assets/optimized/17c-logo-224.png" alt="17C Studio" width="224" height="280" loading="lazy" decoding="async"></a>
       <div class="studio-footer-contact">
         <h2>Good businesses deserve to be known.</h2>
-        <a href="mailto:mariel@17c.studio">mariel@17c.studio</a>
+        <a href="form.html" data-email>Email me</a>
       </div>
     </div>
     <div class="studio-footer-navigation">

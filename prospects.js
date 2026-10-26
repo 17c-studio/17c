@@ -74,7 +74,7 @@ window.studioProspectReady = (async () => {
     window.studioProspectReveal?.cancel();
   }
 
-  const email = 'mariel@17c.studio';
+  const email = window.studioEmailAddress;
   document.querySelectorAll('.header .nav-cta').forEach(link => {
     link.setAttribute('href', '#contact');
   });
@@ -131,7 +131,7 @@ window.studioProspectReady = (async () => {
     const directContact = document.createElement('p');
     directContact.className = 'contact-note';
     const helloLink = document.createElement('a');
-    helloLink.href = 'mailto:mariel@17c.studio';
+    helloLink.href = `mailto:${email}`;
     helloLink.textContent = 'OR SAY HELLO DIRECTLY';
     const arrow = document.createElement('span');
     arrow.className = 'arrow-drift';

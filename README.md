@@ -16,7 +16,11 @@ Run `python3 tools/check_site.py` for local references, fragment targets, duplic
 
 Run `python3 tools/check_seo.py` for metadata, JSON-LD reference and sitemap checks. Read `SEO_AUDIT.md` for the current SEO audit, metadata table, setup steps and verification results. Earlier audit files describe historical implementations.
 
+The homepage inlines its first-viewport styles from `assets/home-critical.css` and loads the full stylesheets asynchronously, with ordinary stylesheet links inside `noscript` as a fallback. When changing shared theme, header, cover, or personalization styles, update the critical subset too, then run `python3 tools/inline_home_critical.py`. Run it with `--check` to verify that the inline copy is current. Check desktop and mobile with the full stylesheet unavailable before publishing changes to the critical subset.
+
 ## Contact delivery
+
+`email-links.js` builds email links from an encoded address after parsing. Mark links with `data-email`, use `data-email-subject` for an optional subject, and keep `href="form.html"` as the no-JavaScript fallback. This reduces basic static scraping; it is not encryption and cannot stop bots that execute JavaScript.
 
 The services and contact inquiry forms POST to `https://formspree.io/f/xoejkyvk`. `inquiry.js` shares validation, loading, success, and error handling. `wishlist.js` manages selections on the services and contact pages and provides optional submission content to the shared handler. HTML POST and native required-field validation work without JavaScript; wishlist inclusion requires JavaScript.
 

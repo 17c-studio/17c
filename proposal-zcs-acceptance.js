@@ -118,7 +118,7 @@
   async function buildRecord() {
     const selected = selection();
     if (!selected || !consent.checked) throw new Error('Choose your option and care plan, then check the acceptance box.');
-    if (!window.crypto?.subtle || !window.crypto.randomUUID) throw new Error('Please open this proposal over HTTPS in a current browser to sign, or email mariel@17c.studio.');
+    if (!window.crypto?.subtle || !window.crypto.randomUUID) throw new Error('Please open this proposal over HTTPS in a current browser to sign, or use the email link at the bottom of this proposal.');
     const tier = Number(option.value.slice(-1));
     const scope = Array.from({ length: tier }, (_, index) => textOf(`#opt${index + 1}`));
     const documentSnapshot = {
@@ -180,7 +180,7 @@
       : response.status === 429
         ? 'The form is receiving too many submissions. Please try again later.'
         : `The form service rejected the submission (HTTP ${response.status}).`;
-    return new Error(`${detail || fallback} Your details are still here. If this continues, please email mariel@17c.studio.`);
+    return new Error(`${detail || fallback} Your details are still here. If this continues, please use the email link at the bottom of this proposal.`);
   }
   form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -199,7 +199,7 @@
     status.textContent = 'Submitting your signed acceptance…';
     let timeout, requestStarted = false;
     try {
-      if (!window.jspdf?.jsPDF) throw new Error('The PDF tool hasn’t loaded. Please refresh this page and try again, or email mariel@17c.studio for help.');
+      if (!window.jspdf?.jsPDF) throw new Error('The PDF tool hasn’t loaded. Please refresh this page and try again, or use the email link at the bottom of this proposal for help.');
       cachedRecord ||= await buildRecord();
       const record = cachedRecord;
       cachedPDF ||= createPDF(record).output('blob');
@@ -233,7 +233,7 @@
       // An HTML error page or incomplete response must never be treated as acceptance.
       const result = await response.json().catch(() => null);
       if (!response.ok) throw submissionError(response, result);
-      if (result?.ok !== true) throw new Error('I couldn’t confirm your acceptance was received. Please contact mariel@17c.studio before submitting again.');
+      if (result?.ok !== true) throw new Error('I couldn’t confirm your acceptance was received. Please use the email link at the bottom of this proposal before submitting again.');
       accepted = true;
       confirmedRecord = record;
       confirmedPDF = cachedPDF;
@@ -244,9 +244,9 @@
       byId('download-acceptance-pdf').disabled = false;
     } catch (error) {
       status.textContent = requestStarted && (error.name === 'AbortError' || error instanceof TypeError)
-        ? 'I couldn’t confirm your acceptance was received. Your details are still here. Please contact mariel@17c.studio before submitting again.'
+        ? 'I couldn’t confirm your acceptance was received. Your details are still here. Please use the email link at the bottom of this proposal before submitting again.'
         : error instanceof TypeError
-          ? 'Your signed PDF could not be prepared. Nothing was submitted. Please refresh this page and try again, or email mariel@17c.studio.'
+          ? 'Your signed PDF could not be prepared. Nothing was submitted. Please refresh this page and try again, or use the email link at the bottom of this proposal.'
           : error.message;
       status.dataset.state = 'error';
     } finally {

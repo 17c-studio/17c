@@ -24,6 +24,7 @@
     root.classList.remove('prospect-reveal-pending');
     curtain?.remove();
     clearTimeout(failsafe);
+    clearTimeout(window.studioProspectRevealFailsafe);
     window.removeEventListener('wheel', preventScroll, true);
     window.removeEventListener('touchmove', preventScroll, true);
     window.removeEventListener('keydown', preventScrollKeys, true);

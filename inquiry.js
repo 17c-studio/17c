@@ -72,7 +72,7 @@
       status.textContent = 'Your inquiry was accepted. Thanks for sharing what you’re thinking about!';
       status.dataset.state = 'success';
     } catch {
-      status.textContent = 'I couldn’t confirm your inquiry was sent. Your message is still here. Please try again or email mariel@17c.studio.';
+      status.textContent = 'I couldn’t confirm your inquiry was sent. Your message is still here. Please try again or use the email link in the footer.';
       status.dataset.state = 'error';
     } finally {
       clearTimeout(timeout);
