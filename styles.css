@@ -63,7 +63,7 @@ html.lenis {
 }
 body {
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   background: var(--color-surface);
   color: var(--ink);
   font-family: var(--sans);
@@ -1990,19 +1990,13 @@ form .button {
   text-align: center;
   text-shadow: 0 2px 18px #0003;
 }
-.cover-title-line {
-  display: block;
+.cover-title-line { display: block; }
+.cover-title-line, #hero-title, .services-hero h1, #work-title, .form-page h1 {
   opacity: 0;
   transform: translateY(26px);
-  animation: cover-title-rise 5s cubic-bezier(0.2, 0.7, 0.25, 1) forwards;
+  animation: cover-title-rise 5s cubic-bezier(0.2, 0.7, 0.25, 1) 0.4s both;
 }
-.cover-title-line--first {
-  animation-delay: 0.4s;
-}
-.cover-title-line--second {
-  animation-name: cover-title-rise-emphasis;
-  animation-delay: 0.9s;
-}
+.cover-title-line--second { font-weight: 500; }
 .cover-scroll {
   position: absolute;
   right: var(--page-gutter);
@@ -2034,26 +2028,6 @@ form .button {
     transform: translateY(0);
   }
 }
-@keyframes cover-title-rise-emphasis {
-  0% {
-    opacity: 0;
-    color: rgb(246 245 241 / 68%);
-    font-weight: 400;
-    transform: translateY(26px);
-  }
-  72% {
-    opacity: 1;
-    color: var(--heading-text);
-    font-weight: 400;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 1;
-    color: var(--heading-text);
-    font-weight: 500;
-    transform: translateY(0);
-  }
-}
 @keyframes cover-arrow-reveal {
   from {
     opacity: 0;
@@ -2072,7 +2046,7 @@ form .button {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cover-title-line,
+  .cover-title-line, #hero-title, .services-hero h1, #work-title, .form-page h1,
   .cover-scroll,
   .cover-scroll span {
     opacity: 1;
@@ -3373,7 +3347,8 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
   padding-block: 8px;
 }
 :is(.home-page, .services-page, .form-page, .work-page) .header nav a:hover { color: #fff; }
-.header nav [aria-current="page"] { border-bottom: 1px solid var(--line); }
+.header nav a[aria-current="page"],
+.header-brand a[aria-current="page"] { border-bottom: 1px solid currentColor; }
 .form-page .header { position: relative; }
 @media (max-width: 700px) {
   :is(.home-page, .services-page, .form-page, .work-page) .header {
@@ -3391,9 +3366,6 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
     min-width: 44px;
     justify-content: center;
   }
-  .home-page .cover-title-line { animation-duration: 900ms; }
-  .home-page .cover-title-line--first { animation-delay: 100ms; }
-  .home-page .cover-title-line--second { animation-delay: 250ms; }
   :is(.home-page, .services-page) .footer a {
     display: inline-flex;
     align-items: center;
@@ -3582,7 +3554,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
     max-width: none;
     font-size: clamp(1rem, 7vw, 2.75rem);
   }
-  .home-page .cover-title-line { opacity: 1; transform: none; animation: none; overflow-wrap: normal; white-space: nowrap; }
+  .home-page .cover-title-line { overflow-wrap: normal; white-space: nowrap; }
   .home-page .cover-title-line[data-personalized] { white-space: normal; overflow-wrap: anywhere; }
   .home-page #hero-title {
     width: calc(100% + 2 * var(--page-gutter) - 32px);

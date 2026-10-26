@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&amp;display=swap">
-<link rel="stylesheet" href="styles.css?v=113">
+<link rel="stylesheet" href="styles.css?v=114">
   <link rel="stylesheet" href="wishlist.css?v=3">
   <style>
     .form-page { min-height: 100svh; }
@@ -28,8 +28,6 @@
   </style>
   <script src="prospects.js?v=19" defer></script>
   <script src="launch.js?v=3" defer></script>
-  <script src="wishlist-catalog.js?v=1" defer></script>
-  <script src="wishlist.js?v=11" defer></script>
   <script src="inquiry.js?v=2" defer></script>
   <script src="analytics-events.js?v=1" defer></script>
 
@@ -71,7 +69,6 @@
    <p>You’ve built something worth caring about.<br>Let’s help more people see it.</p>
    
 
-   <p class="wishlist-storage-note" id="wishlist-storage-note" role="status"></p>
   </div>
   <form id="wishlist-form" action="https://formspree.io/f/xoejkyvk" method="post" aria-describedby="wishlist-required-note">
    <label class="form-honeypot" aria-hidden="true">Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
@@ -85,22 +82,11 @@
    </div>
 
    
-   <div class="wishlist-inquiry-option">
-    <label class="wishlist-include-label"><input id="wishlist-include" name="includeWishlist" type="checkbox" checked aria-describedby="wishlist-option-note"><span>Include my wishlist <span class="wishlist-optional">(optional)</span></span></label>
-    <p id="wishlist-option-note" aria-live="polite">Choose services you’re interested in, then include them with your inquiry.</p>
-    <button id="wishlist-review" class="wishlist-text-button" type="button" aria-haspopup="dialog" aria-controls="wishlist-panel" hidden>Review wishlist</button>
-   </div>
    <div class="wishlist-send"><button class="wishlist-send-button" type="submit"><span id="wishlist-submit-label">Send inquiry</span><span aria-hidden="true">→</span></button></div>
    <p id="wishlist-form-status" role="status" aria-live="polite" tabindex="-1"></p>
   </form>
  </section>
   </main>
-  <button type="button" id="wishlist-floating" aria-haspopup="dialog" aria-controls="wishlist-panel" hidden>Your wishlist · 0 selected</button>
-  <dialog id="wishlist-panel" aria-labelledby="wishlist-panel-title" data-lenis-prevent>
-   <div class="wishlist-panel-heading"><h2 id="wishlist-panel-title">Your wishlist</h2><button type="button" id="wishlist-close" aria-label="Close wishlist">×</button></div>
-   <div id="wishlist-panel-summary" class="wishlist-summary"></div>
-   <a class="wishlist-text-button" id="wishlist-inquiry-link" href="#wishlist-inquiry">Let’s see what you have in mind →</a>
-  </dialog>
   <footer class="footer studio-footer wrap">
     <div class="studio-footer-top">
       <a class="wordmark studio-footer-logo" href="./" aria-label="17C Studio home"><img src="assets/optimized/17c-logo-224.png" alt="17C Studio" width="224" height="280" loading="lazy" decoding="async"></a>

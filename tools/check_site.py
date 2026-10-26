@@ -16,7 +16,7 @@ for name,page in pages.items():
  ids=[a['id'] for _,a in page.nodes if 'id' in a]
  for id,n in Counter(ids).items():
   if n>1:issues.append(f'{name}: duplicate ID {id}')
- if 'wishlist-form' in ids:
+ if any(tag=='script' and a.get('src','').split('?')[0]=='wishlist.js' for tag,a in page.nodes) and 'wishlist-form' in ids:
   for required in ['wishlist-form','wishlist-panel','wishlist-floating','wishlist-include','wishlist-review','wishlist-option-note','wishlist-storage-note','wishlist-close','wishlist-panel-summary','wishlist-inquiry-link']:
    if required not in ids:issues.append(f'{name}: missing wishlist control {required}')
  for tag,a in page.nodes:

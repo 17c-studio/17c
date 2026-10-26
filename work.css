@@ -5,16 +5,9 @@
 .work-page .skip-link { top: 8px; transform: translateY(calc(-100% - 16px)); background: var(--control-bg); color: var(--control-text); }
 .work-page .skip-link:focus { transform: none; }
 .work-page [hidden] { display: none !important; }
-.work-page .header [aria-current="page"] { border-bottom: 1px solid var(--line); }
 .work-page .eyebrow { text-transform: uppercase; }
 .work-hero { padding-block: var(--space-16) var(--section-space); text-align: center; }
 .work-hero h1 { margin-bottom: var(--space-6); }
-#work-title {
- opacity: 0;
- transform: translateY(26px);
- animation: cover-title-rise 5s cubic-bezier(0.2, 0.7, 0.25, 1) forwards;
- animation-delay: 0.4s;
-}
 .work-hero > p:not(.eyebrow) { max-width: 420px; color: var(--muted); margin-inline: auto; margin-bottom: var(--space-6); }
 .work-link { display: inline-flex; align-items: center; gap: var(--space-6); min-height: 44px; font-size: var(--text-meta); border-bottom: 1px solid var(--line); }
 .work-collection { margin-bottom: 48px; }

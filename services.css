@@ -28,12 +28,6 @@
 .services-hero .editorial-text-link:hover { color: #fff; }
 .services-hero h1 {    font-size: clamp(2.5rem, 5vw, 4.5rem);
     line-height: 1.02; letter-spacing: -1.5px; margin: 0; }
-.services-hero h1 {
-  opacity: 0;
-  transform: translateY(26px);
-  animation: cover-title-rise 5s cubic-bezier(0.2, 0.7, 0.25, 1) forwards;
-  animation-delay: 0.4s;
-}
 .hero-aside { padding-bottom: 6px; max-width: 350px; }
 .hero-aside p { color: var(--muted); margin: 0 0 24px; }
 
@@ -105,7 +99,7 @@
  .method-lead { margin-left: 0; }
  .method-lead .services-method::after { left: 16px; }
  .services-hero { min-height: max(600px, 85svh); padding: 100px var(--page-gutter); }
- .services-hero h1 { font-size: clamp(42px, 11vw, 64px); animation-duration: 900ms; animation-delay: 100ms; }
+ .services-hero h1 { font-size: clamp(42px, 11vw, 64px); }
  .hero-aside { max-width: 440px; }
  .editorial-body { display: block; }
  .service-index { display: none; }
@@ -189,3 +183,20 @@
 .wishlist-chapter .wishlist-intro-copy > p:empty { margin: 0; }
 .wishlist-example { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer; }
 .wishlist-example input { flex: 0 0 auto; width: 18px; height: 18px; margin: 0; accent-color: var(--chapter-accent); }
+
+/* Keep the inquiry copy and method marker in view on desktop. */
+@media (min-width: 701px) {
+ .services-page .wishlist-inquiry-intro { position: sticky; top: 24px; align-self: start; }
+ .services-method { display: grid; grid-template-columns: 0 minmax(0, 1fr); }
+ .services-method > * { grid-column: 2; }
+ .services-method::before {
+  position: sticky;
+  top: 40px;
+  left: auto;
+  grid-column: 1;
+  grid-row: 1 / span 4;
+  align-self: start;
+  margin-top: 8px;
+  margin-left: -74px;
+ }
+}
