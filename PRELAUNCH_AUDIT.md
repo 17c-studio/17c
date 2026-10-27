@@ -95,7 +95,7 @@ Project examples were retained. No project was relabeled with an invented relati
 | GHC Events | Confirm role, relationship, and permission |
 | Degree program | Confirm institution, scope/contribution, and publication permission |
 | “17C brought clarity…” attributed to Just Travis | Confirm exact quotation, speaker identity/display preference, authentic relationship, and publication consent |
-| Glass House, Haworth, Spring Sweet, Hope College logos | Confirm rights/permission and accurate relationship; “Client logos” currently implies a client relationship and requires owner verification |
+| Glass House, Haworth, Hope College logos | Confirm rights/permission and accurate relationship; “Client logos” currently implies a client relationship and requires owner verification |
 
 The existing examples and quote were not removed automatically. The project section now invites questions about contributions/collaborators without asserting that every example was independently produced through 17C. No results or testimonials were fabricated.
 

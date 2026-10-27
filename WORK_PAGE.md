@@ -16,7 +16,7 @@ Live links confirmed by the owner and checked during this refinement:
 - Haworth: https://haworthhotel.com/
 - Dare to Hope: https://hope.edu/admissions/landing/
 
-Glass House has a saved preview only; no live URL has been supplied. Authentic matched before images would be needed for a comparison feature. Spring Sweet remains outside the three-project collection pending content and imagery.
+Glass House has a saved preview only; no live URL has been supplied. Authentic matched before images would be needed for a comparison feature.
 
 ## Interactions
 

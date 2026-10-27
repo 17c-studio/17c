@@ -443,9 +443,6 @@ h2 em {
   height: 46px;
   filter: brightness(0) saturate(100%) invert(20%) sepia(18%) saturate(1015%) hue-rotate(112deg) brightness(93%) contrast(87%);
 }
-.business-logo-springsweet {
-  height: 42px;
-}
 .business-logo-hope {
   height: 54px;
 }
@@ -1657,10 +1654,6 @@ form .button {
   .business-logo-haworth {
     height: 36px;
     max-width: 145px;
-  }
-  .business-logo-springsweet {
-    height: 34px;
-    max-width: 135px;
   }
   .business-logo-hope {
     height: 45px;
