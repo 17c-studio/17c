@@ -1,6 +1,6 @@
 # 17C Studio
 
-A static website for an independent web design studio serving businesses across the United States. Plain HTML, CSS, and JavaScript; no package installation or build step.
+A static website for an independent web design studio based in Holland, Michigan, serving businesses across the United States. Plain HTML, CSS, and JavaScript; no package installation or build step.
 
 ## Pages
 
@@ -14,7 +14,7 @@ A static website for an independent web design studio serving businesses across 
 Run `python3 -m http.server 8000`, then open `http://localhost:8000/`.
 Run `python3 tools/check_site.py` for local references, fragment targets, duplicate IDs, image alt attributes, ARIA targets, and hardcoded development links in HTML.
 
-Run `python3 tools/check_seo.py` for metadata, JSON-LD reference and sitemap checks. Read `SEO_AUDIT.md` for the current SEO audit, metadata table, setup steps and verification results. Earlier audit files describe historical implementations.
+Run `python3 tools/check_seo.py` for metadata, JSON-LD reference and sitemap checks. Read `LOCAL_SEO_UPDATE.md` for the October 27, 2026 local business identity changes and verification limits. `SEO_AUDIT.md` records the earlier SEO audit, metadata table, setup steps and verification results. Earlier audit files describe historical implementations.
 
 The homepage inlines its first-viewport styles from `assets/home-critical.css` and loads the full stylesheets asynchronously, with ordinary stylesheet links inside `noscript` as a fallback. When changing shared theme, header, cover, or personalization styles, update the critical subset too, then run `python3 tools/inline_home_critical.py`. Run it with `--check` to verify that the inline copy is current. Check desktop and mobile with the full stylesheet unavailable before publishing changes to the critical subset.
 

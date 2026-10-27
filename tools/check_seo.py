@@ -25,8 +25,14 @@ class Page(HTMLParser):
 
 issues=[]; titles=[]; descriptions=[]; expected=[]; definitions={}; references=[]
 for path in sorted(ROOT.glob('*.html')):
-    page=Page(path.read_text()); titles.append(page.title)
+    source=path.read_text()
+    page=Page(source)
     metas={attrs.get('name',attrs.get('property')):attrs.get('content') for tag,attrs in page.nodes if tag=='meta'}
+    # Standalone proposals are intentionally excluded from the public SEO template.
+    if 'noindex' in metas.get('robots','') and '<!-- production-seo:start -->' not in source:
+        if page.schemas: issues.append(f'{path.name}: excluded page has schema')
+        continue
+    titles.append(page.title)
     description=metas.get('description'); descriptions.append(description)
     if not page.title or not description: issues.append(f'{path.name}: missing title/description')
     if sum(tag=='h1' for tag,_ in page.nodes)!=1: issues.append(f'{path.name}: expected one H1')
@@ -51,7 +57,7 @@ for path in sorted(ROOT.glob('*.html')):
                     if value['@id'] in definitions: issues.append('Duplicate schema definition '+value['@id'])
                     definitions[value['@id']]=value
                 else: references.append(value['@id'])
-            if '@type' in value and value['@type'] not in ['Organization','WebSite','WebPage','ContactPage','Service','Country']: issues.append('Unexpected schema type')
+            if '@type' in value and value['@type'] not in ['Organization','WebSite','WebPage','ContactPage','Service','Country','PostalAddress']: issues.append('Unexpected schema type')
             for key,item in value.items():
                 if key in ['url','logo','@id'] and not item.startswith(BASE): issues.append('Schema URL outside production')
                 walk(item)

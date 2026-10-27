@@ -51,6 +51,9 @@ def configure(base, root):
     urls = []
     for path in sorted(root.glob('*.html')):
         source = path.read_text()
+        # Standalone noindex proposals do not use the public site's SEO template.
+        if Metadata(source).noindex and '<!-- production-seo:start -->' not in source:
+            continue
         source = re.sub(r'\s*<!-- production-seo:start -->[\s\S]*?<!-- production-seo:end -->', '', source)
         # These tags are owned by the generated block to prevent duplicates.
         source = re.sub(r'^\s*<meta (?:property="og:[^"]+"|name="twitter:[^"]+")[^>]*>\s*$', '', source, flags=re.M)
@@ -80,7 +83,9 @@ def configure(base, root):
                 graph.extend([
                     {'@type': 'Organization', '@id': organization_id, 'name': '17C Studio',
                      'url': base, 'logo': urljoin(base, 'assets/optimized/17c-logo-224.png'),
-                     'description': 'Custom website design, development, redesigns and ongoing support for independent businesses.',
+                     'description': 'A web design business based in Holland, Michigan, creating custom websites, redesigns and ongoing support for independent businesses across the United States.',
+                     'address': {'@type': 'PostalAddress', 'addressLocality': 'Holland',
+                                 'addressRegion': 'Michigan', 'addressCountry': 'US'},
                      'areaServed': {'@type': 'Country', 'name': 'United States'}},
                     {'@type': 'WebSite', '@id': website_id, 'url': base, 'name': '17C Studio',
                      'publisher': {'@id': organization_id}, 'inLanguage': 'en-US'},
