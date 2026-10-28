@@ -2,6 +2,8 @@
 
 Recommendation and implementation date: October 27, 2026.
 
+Latest review: the production and redirect retest at the end of this document supersedes earlier statements about repository identity and deployment status.
+
 ## Scope and inspection
 
 The request confirms that 17C Studio is a web design business based in Holland, Michigan. The owner supplied the definitions of SEO-01 through SEO-04 after the first implementation. The follow-up review below maps the work to those definitions.
@@ -89,3 +91,24 @@ No Search Console or Business Profile account connector is available in this ses
 Account guidance: https://support.google.com/webmasters/answer/9012289?hl=en, https://support.google.com/business/answer/3038177, and https://support.google.com/business/answer/9157481?hl=en.
 
 Changed files across this task: index.html, services.html, form.html, work.html, tools/configure_seo.py, tools/check_seo.py, README.md, and this report. No dependencies, prices, additional location pages, commits, pushes, or deployments were added.
+
+## Production and redirect retest
+
+October 27, 2026, approximately 11:20 a.m. EDT. This review made no hosting or website-content changes.
+
+Production hosting is now confirmed through the signed-in GitHub Pages settings at https://github.com/17c-studio/17c/settings/pages:
+
+- Repository: 17c-studio/17c. The local origin still uses 17c-studio/skyfloor; GitHub redirects that old repository URL to 17c-studio/17c. The local origin was not changed.
+- Source: Deploy from a branch, main, / (root).
+- Custom domain: 17c.studio. DNS check successful.
+- Enforce HTTPS: unchecked.
+- Deployment: commit 6243c0905c79835bff415ded8950fa5d6c5ae182, successful on October 27 at 11:18:24 a.m. EDT. Public deployment status: https://api.github.com/repos/17c-studio/17c/deployments/7362440117/statuses.
+- The fetched production index.html, services.html, work.html, and form.html each exactly match the local files byte for byte. The local homepage also matches remote main. These changes are already live, superseding the earlier implementation-time statement that they were local only. The review itself did not commit, push, or deploy.
+
+Fresh GET requests reproduce the earlier server behavior: http://17c.studio/ returns 200 without a redirect; http://www.17c.studio/ redirects once to the HTTP apex and returns 200. HTTPS apex returns 200, and HTTPS www redirects to HTTPS apex. A second test with a unique query string and Cache-Control: no-cache returned the same HTTP behavior. GitHub.com response headers and the inspected Pages setting support this finding. Browser HTTPS-first behavior or a remembered browser upgrade could explain a different apparent result, but the specific cause of the previously observed browser behavior was not tested.
+
+Now that the actual production configuration is verified, enabling Enforce HTTPS in this repository is a supported recommendation. No domain removal, DNS edit, canonical change, or HTML redirect is indicated by this evidence. After any separately authorized setting change, retest both HTTP variants for a permanent redirect to HTTPS and confirm query strings and paths are preserved.
+
+Review results: SEO check passed (five template-managed pages, four sitemap URLs, twelve schema entities); site check passed (seven pages, 235 local references); critical CSS check passed; committed diff whitespace check passed. No source-level release blocker was identified in this review. Previous sampled responsive inspection and external schema validation remain as recorded above; they were not repeated in this read-only source and hosting review.
+
+Remaining items: HTTPS enforcement is the confirmed hosting issue. Search Console indexing and Business Profile details remain unverified owner checks, not established defects. Project employment/collaboration credits and business-profile ownership remain unverified, so no new attribution or sameAs claims should be added without evidence. The local Git remote's old repository name and earlier deployment notes are maintenance details, not production failures. No further deployment is needed to publish the reviewed HTML; only this updated report remains local.

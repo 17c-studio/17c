@@ -156,7 +156,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 .customization { position: relative; display: inline-block; }
 .home-page .header > .customization { grid-column: 3; justify-self: end; font-size: 12px; line-height: 1.65; }
 .customization, .customization * { box-sizing: border-box; }
-#customization-toggle { padding: 8px 0px; min-height: 48px; cursor: pointer; border: 0px; background: transparent; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit; font-size: 12px; }
+#customization-toggle { color: inherit; padding: 8px 0px; min-height: 48px; cursor: pointer; border: 0px; background: transparent; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit; font-size: 12px; }
 #customization-toggle:hover { color: rgb(209, 203, 195); }
 #customization-panel { position: absolute; top: calc(100% + 12px); right: 0px; z-index: 100; width: min(300px, -48px + 100vw); max-height: calc(100dvh - 150px); overflow-y: auto; overscroll-behavior: contain; padding: 24px; border: 1px solid var(--color-line); background-color: rgba(39, 39, 39, 0.8); color: var(--ink); text-align: center; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.25) 0px 12px 30px; }
 #customization-panel[hidden] { display: none; }

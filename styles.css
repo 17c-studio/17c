@@ -3790,6 +3790,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 .home-page .header > .customization { grid-column: 3; justify-self: end; font-size: 12px; line-height: 1.65; }
     .customization, .customization * { box-sizing: border-box; }
     #customization-toggle {
+      color: inherit;
       padding: 8px 0; min-height: 48px; cursor: pointer; border: 0; background: transparent; 
       font: inherit; font-size: 12px;
     }
