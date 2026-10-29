@@ -2,7 +2,7 @@
 
 `index.html`, `services.html`, and `form.html` POST to `https://formspree.io/f/xoejkyvk`. The public endpoint ID is configuration, not a secret API key.
 
-`inquiry.js` provides shared field validation, a pending state with inputs temporarily locked, field-level rejection messages, a 20-second timeout, and polite success/error status feedback. Required name, email, and project fields have stable accessible names. Organization is optional. A hidden `_gotcha` field is included in HTML and AJAX payloads for Formspree's honeypot filtering.
+`inquiry.js` provides shared field validation, a pending state with inputs temporarily locked, field-level rejection messages, a 20-second timeout, and polite success/error status feedback. Required name, email, and project fields have stable accessible names. Organization is optional. A hidden `_gotcha` field is included in HTML and AJAX payloads for Formspree's honeypot filtering. Its wrapper uses `hidden`, `inert`, and `display: none` rather than visual clipping, to reduce accidental browser autofill. Nonempty honeypot values are still sent unchanged for server-side filtering.
 
 `wishlist.js` manages selection IDs, the review dialog, inclusion choice, and optional readable wishlist content. Only selected IDs are stored under `17c-project-wishlist-v1`. Form contact data is not persisted. Failed requests leave inputs and selections in the current page. Successful acceptance resets the form and removes only selections included in that request. Acceptance is not proof of inbox delivery.
 

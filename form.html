@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&amp;display=swap">
 <link rel="stylesheet" href="styles.css?v=116">
-  <link rel="stylesheet" href="wishlist.css?v=3">
+  <link rel="stylesheet" href="wishlist.css?v=13">
   <style>
     .form-page { min-height: 100svh; }
     .form-page .wishlist-inquiry { padding: clamp(40px, 6vw, 80px) var(--page-gutter) 80px; }
@@ -81,7 +81,7 @@
 
   </div>
   <form id="wishlist-form" action="https://formspree.io/f/xoejkyvk" method="post" aria-describedby="wishlist-required-note">
-   <label class="form-honeypot" aria-hidden="true">Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+   <label class="form-honeypot" hidden inert aria-hidden="true">Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
    <input type="hidden" name="subject" value="17C — Project inquiry">
    <p id="wishlist-required-note" class="wishlist-required-note"><span aria-hidden="true">*</span> Required fields</p>
    <div class="wishlist-fields">
