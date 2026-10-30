@@ -34,6 +34,101 @@
       letter-spacing: -.025em;
     }
     .form-page :focus-visible { outline-color: var(--focus-color); }
+    .studio-approach {
+      --approach-thread: color-mix(in srgb, var(--color-ink) 23%, transparent);
+      padding: clamp(56px, 7vw, 96px) var(--page-gutter);
+      border-top: 1px solid var(--approach-thread);
+      scroll-margin-top: var(--space-8);
+    }
+    .studio-approach-inner { max-width: 1040px; margin-inline: auto; }
+    .studio-approach .approach-opening { text-align: center; }
+    .studio-approach .editorial-label { display: block; margin: 0 0 var(--space-6); }
+    .studio-approach h2, .studio-approach h3, .studio-approach .approach-statement {
+      font-family: var(--serif);
+      font-weight: 400;
+      letter-spacing: -.025em;
+      color: var(--ink);
+    }
+    .studio-approach h2 {
+      max-width: 20ch;
+      margin: 0 auto var(--space-6);
+      font-size: clamp(38px, 4.3vw, 64px);
+      line-height: 1.08;
+    }
+
+    .studio-approach .approach-lead {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin: 0 0 32px;
+    }
+    .studio-approach .approach-process { position: relative; margin-top: clamp(40px, 5vw, 64px); }
+    .studio-approach .approach-process::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--approach-thread);
+      pointer-events: none;
+    }
+    .studio-approach .approach-pricing { border-bottom: 1px solid var(--approach-thread); }
+    .studio-approach .approach-pricing summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+      padding-block: var(--space-6);
+      min-height: 44px;
+      cursor: pointer;
+      list-style: none;
+      color: var(--ink);
+    }
+    .studio-approach .approach-pricing summary::-webkit-details-marker { display: none; }
+    .studio-approach .approach-pricing summary:focus-visible { outline: 2px solid var(--focus-color); outline-offset: 4px; }
+    .studio-approach .approach-pricing h3 { margin: 0; }
+    .studio-approach .approach-pricing p { max-width: 68ch; padding-bottom: var(--space-6); }
+    .studio-approach .pricing-toggle { position: relative; flex: 0 0 24px; width: 24px; height: 24px; }
+    .studio-approach .pricing-toggle::before, .studio-approach .pricing-toggle::after { content: ''; position: absolute; background: currentColor; }
+    .studio-approach .pricing-toggle::before { width: 20px; height: 1px; left: 2px; top: 12px; }
+    .studio-approach .pricing-toggle::after { width: 1px; height: 20px; left: 12px; top: 2px; }
+    .studio-approach .approach-pricing[open] .pricing-toggle::after { display: none; }
+    .studio-approach h3 { margin: 0 0 var(--space-4); font-size: clamp(28px, 3vw, 36px); line-height: 1.15; }
+    .studio-approach .approach-step {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr);
+      gap: 0px 20px;
+      padding-block: 42px 48px;
+      position: relative;
+      border-top: 1px solid var(--approach-thread);
+    }
+    .studio-approach .approach-step:last-child { border-bottom: 1px solid var(--approach-thread); }
+    .studio-approach .approach-number {
+      display: block;
+      align-self: start;
+      justify-self: start;
+      position: relative;
+      background: var(--color-surface);
+      padding-block: 8px;
+      font-family: var(--serif);
+      font-size: 46px;
+      line-height: 1;
+      color: var(--chapter-accent);
+    }
+    .studio-approach .approach-step h3 { margin: 0; font-size: clamp(42px, 3vw, 78px); line-height: 1; }
+    .studio-approach .approach-step p { grid-column: 2;  font-size: 18px; line-height: 1.6; }
+    .studio-approach .approach-closing { padding-top: clamp(48px, 6vw, 80px); max-width: 720px; }
+    .studio-approach .approach-statement { margin-bottom: var(--space-4); font-size: clamp(32px, 3.5vw, 48px); line-height: 1.12; max-width: 26ch; }
+    .form-page .approach-link { display: inline-block; margin-top: var(--space-4); padding-block: var(--space-3); color: var(--ink); text-decoration: underline; text-underline-offset: 5px; text-decoration-color: var(--color-line); }
+    .form-page .approach-link:focus-visible { outline: 2px solid var(--focus-color); outline-offset: 4px; }
+    @media (max-width: 700px) {
+      .studio-approach .approach-number { font-size: 30px; }
+      .studio-approach .approach-process::before { display: none; }
+      .studio-approach .approach-step { grid-template-columns: 38px minmax(0, 1fr); gap: 24px 12px; padding-block: 32px; }
+      .studio-approach .approach-step h3 { font-size: clamp(34px, 7.7vw, 52px); }
+      .studio-approach .approach-step p { font-size: 16px; }
+    }
   </style>
   <script src="prospects.js?v=20" defer></script>
   <script src="launch.js?v=3" defer></script>
@@ -77,6 +172,7 @@
    <h1 id="wishlist-inquiry-title">Good businesses<br>deserve to be known.</h1>
    <p>You’ve built something worth caring about.<br>Let’s help more people see it.</p>
    <p>Based in Holland, Michigan. Working with independent businesses across the United States.</p>
+   <a class="approach-link" href="#studio-approach">See how we’ll work together <span aria-hidden="true">↓</span></a>
    
 
   </div>
@@ -96,6 +192,46 @@
    <p id="wishlist-form-status" role="status" aria-live="polite" tabindex="-1"></p>
   </form>
  </section>
+    <section class="studio-approach" id="studio-approach" tabindex="-1" aria-labelledby="approach-title">
+      <div class="studio-approach-inner">
+        <header class="approach-opening">
+          <p class="editorial-label">THE 17C APPROACH</p>
+          <h2 id="approach-title">What happens after you submit your inquiry?</h2>
+          <p class="approach-lead">Your business is one of a kind. Your website should be too.</p>
+        </header>
+
+        <div class="approach-process">
+          <section class="approach-step" aria-labelledby="approach-step-1">
+            <span class="approach-number">01</span>
+            <h3 id="approach-step-1">A conversation first</h3>
+            <p>Before we talk about a website, we’ll talk about your business. I want to hear what’s working, what feels overwhelming, and where you want to go. We’ll explore what meaningful progress looks like for you and whether I’m the right person to help.</p>
+          </section>
+          <section class="approach-step" aria-labelledby="approach-step-2">
+            <span class="approach-number">02</span>
+            <h3 id="approach-step-2">A plan built around you</h3>
+            <p>You’ll receive a personalized proposal with thoughtful recommendations, a clear scope, a timeline, and transparent pricing. Every recommendation will connect to your priorities, so you understand what you’re investing in and why.</p>
+          </section>
+          <section class="approach-step" aria-labelledby="approach-step-3">
+            <span class="approach-number">03</span>
+            <h3 id="approach-step-3">A partner beyond launch</h3>
+            <p>Your website should take work off your plate. I’ll help you feel comfortable managing it and outline the options for continued support, maintenance, and improvements. You’ll know what comes next and who to turn to as your business grows.</p>
+          </section>
+        </div>
+
+        <details class="approach-pricing">
+          <summary>
+            <h3 id="approach-pricing-title">Wondering about pricing?</h3>
+            <span class="pricing-toggle" aria-hidden="true"></span>
+          </summary>
+          <p>Every business comes with its own goals, challenges, and priorities. Our first conversation helps me understand yours, so I can recommend the right work and provide clear pricing for a plan built around your needs.</p>
+        </details>
+
+        <div class="approach-closing">
+          <p class="approach-statement">You’re a person building something that matters.</p>
+          <p>I’m here to care for the website side of things, so you have more room for the work you love.</p>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer studio-footer wrap">
     <div class="studio-footer-top">
