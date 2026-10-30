@@ -223,6 +223,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
       cursor: pointer;
     }
     #customization-panel:has(#customization-close) { padding-top: 52px; }
+    #customization-note { margin: 0; font-size: 12px; line-height: 1.6; color: var(--muted); }
     #customization-form { display: flex; flex-direction: column; gap: 24px; }
     #customization-title {
       margin: 0; font-family: var(--serif); font-size: 30px;
@@ -328,10 +329,11 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
       <a href="services.html">Services</a><a href="work.html">Work</a><a class="nav-cta" href="form.html">Connect <span class="arrow-drift" aria-hidden="true">→</span></a></nav>
     <div class="customization" hidden>
         <button id="customization-toggle" type="button" aria-expanded="false" aria-controls="customization-panel" aria-haspopup="dialog">psst... make it yours</button>
-        <div id="customization-panel" role="dialog" aria-labelledby="customization-title" hidden>
+        <div id="customization-panel" role="dialog" aria-labelledby="customization-title" aria-describedby="customization-note" hidden>
           <button id="customization-close" type="button" aria-label="Close personalization">×</button>
           <form id="customization-form">
             <h2 id="customization-title">A little more you.</h2>
+            <p id="customization-note">Don't worry, you aren't submitting anything. This is just a fun feature.</p>
             <label class="business-control" for="customization-business">Type your business
               <input id="customization-business" name="business" type="text" maxlength="20" aria-describedby="business-counter" autocomplete="off">
             </label>

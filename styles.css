@@ -3824,6 +3824,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
       cursor: pointer;
     }
     #customization-panel:has(#customization-close) { padding-top: 52px; }
+    #customization-note { margin: 0; font-size: 12px; line-height: 1.6; color: var(--muted); }
     #customization-form { display: flex; flex-direction: column; gap: 24px; }
     #customization-title {
       margin: 0; font-family: var(--serif); font-size: 30px;
