@@ -133,5 +133,14 @@
     "personalLine": "",
     "proposedTime": "",
     "logo": "logos/grand-rapids-comic-con-logo.png"
+  },
+  {
+    "slug": "nelis-dutch-village",
+    "businessName": "Nelis' Dutch Village",
+    "domain": "https://www.dutchvillage.com/",
+    "firstName": "",
+    "personalLine": "",
+    "proposedTime": "",
+    "logo": "logos/nelis-dutch-village-logo.png"
   }
 ]
