@@ -84,8 +84,7 @@ body { --chapter-accent: #c2bcb3;  }
 .wishlist-item i { color: var(--chapter-accent); padding-top: 4px; flex: 0 0 16px; font-size: 15px; }
 .wishlist-item:has(input:checked) { background: color-mix(in srgb, var(--chapter-accent) 10%, transparent); color: var(--ink); }
 .wishlist-item:focus-within { outline: 2px solid var(--chapter-accent); outline-offset: 3px; }
-#wishlist-floating { position: fixed; right: var(--page-gutter); bottom: 24px; z-index: 20; border: 1px solid var(--thread); border-radius: 30px; background: var(--color-surface-alt); color: var(--ink); padding: 14px 22px; box-shadow: 0 6px 24px rgb(0 0 0 / 15%); font-size: 12px; }
-#wishlist-floating[hidden], #wishlist-explanation[hidden] { display: none; }
+#wishlist-explanation[hidden] { display: none; }
 #wishlist-panel { color: var(--ink); background: var(--color-surface); border: 1px solid var(--thread); border-radius: 8px; width: min(520px, calc(100% - 32px)); max-height: 80svh; padding: 28px; overscroll-behavior: contain; }
 #wishlist-panel::backdrop { background: rgb(0 0 0 / 45%); }
 .wishlist-panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
@@ -126,14 +125,12 @@ body { --chapter-accent: #c2bcb3;  }
 #wishlist-form-status { margin: 20px 0 0; font-size: 13px; color: var(--muted); }
 #wishlist-form-status:empty { display: none; }
 #wishlist-form-status[data-state="error"] { color: var(--chapter-accent); }
-:is(.wishlist-inquiry, #wishlist-panel, #wishlist-floating, .wishlist-intro) :focus-visible { outline: 2px solid var(--chapter-accent); outline-offset: 4px; }
+:is(.wishlist-inquiry, #wishlist-panel, .wishlist-intro) :focus-visible { outline: 2px solid var(--chapter-accent); outline-offset: 4px; }
 .wishlist-send-button:disabled { opacity: .6; cursor: wait; }
 @media (max-width: 700px) {
  .wishlist-inquiry { grid-template-columns: 1fr; gap: 44px; padding: 60px var(--page-gutter) 80px; }
  .wishlist-inquiry h2 { font-size: clamp(44px, 8vw, 60px); }
  .wishlist-send { flex-direction: column; align-items: flex-start; gap: 12px; }
- #wishlist-floating { bottom: max(16px, env(safe-area-inset-bottom)); right: 16px; padding: 12px 18px; }
- body:has(#wishlist-floating:not([hidden])) .footer { padding-bottom: 90px; }
  .wishlist-fields input, .wishlist-fields textarea { font-size: 16px; }
  .services-page .service-explanation p, .services-page .service-deliverables li { font-size: 16px; }
  #wishlist-panel { padding: 20px; }
@@ -156,9 +153,6 @@ body { --chapter-accent: #c2bcb3;  }
 .wishlist-checkbox { appearance: none; border: 1px solid var(--chapter-accent); border-radius: 50%; background: transparent; }
 .wishlist-checkbox:checked { background: var(--chapter-accent); box-shadow: inset 0 0 0 3px var(--color-surface); }
 
-/* A floating wishlist must never obscure form, disclosure, or link controls. */
-#wishlist-floating { max-width: calc(100vw - 32px); }
-#wishlist-floating[data-obscured="true"] { visibility: hidden; pointer-events: none; }
 
 #wishlist-review[hidden] { display: none; }
 
@@ -166,7 +160,7 @@ body { --chapter-accent: #c2bcb3;  }
 .wishlist-browse { display: inline-block; padding: 8px 0; text-decoration: underline; }
 
 /* Prospect services invite a conversation directly instead of collecting an inquiry. */
-.services-page.has-prospect :is(.wishlist-intro, .wishlist-list-instruction, .wishlist-checkbox, .wishlist-item > i, #wishlist-floating, #wishlist-panel) { display: none; }
+.services-page.has-prospect :is(.wishlist-intro, .wishlist-list-instruction, .wishlist-checkbox, .wishlist-item > i, #wishlist-panel) { display: none; }
 .services-page.has-prospect .wishlist-item { cursor: default; }
 .services-page.has-prospect .wishlist-inquiry .prospect-actions { min-width: 0; width: 100%; }
 .services-page.has-prospect .wishlist-inquiry .contact-note { margin: 24px 0 0; text-align: center; }

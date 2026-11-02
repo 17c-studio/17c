@@ -12,7 +12,6 @@
   }));
   const selected = new Set();
   const panel = document.querySelector('#wishlist-panel');
-  const floating = document.querySelector('#wishlist-floating');
   const status = document.querySelector('#wishlist-form-status');
   const includeWishlist = document.querySelector('#wishlist-include');
   const review = document.querySelector('#wishlist-review');
@@ -25,24 +24,6 @@
   submitLabel.textContent = idleSubmitLabel;
   let sending = false;
   let returnFocus;
-  let overlapFrame;
-  const syncFloatingOverlap = () => {
-    overlapFrame = undefined;
-    if (floating.hidden || panel.open) return;
-    const rect = floating.getBoundingClientRect();
-    const obscuresControl = [...document.querySelectorAll('main a, main button, main label, main textarea, main summary, footer a')].some(control => {
-      const bounds = control.getBoundingClientRect();
-      return bounds.width > 0 && bounds.height > 0 && bounds.left < rect.right && bounds.right > rect.left && bounds.top < rect.bottom && bounds.bottom > rect.top;
-    });
-    floating.dataset.obscured = String(obscuresControl && document.activeElement !== floating);
-  };
-  const scheduleOverlap = () => {
-    if (!overlapFrame) overlapFrame = requestAnimationFrame(syncFloatingOverlap);
-  };
-  window.addEventListener('scroll', scheduleOverlap, { passive: true });
-  window.addEventListener('resize', scheduleOverlap);
-  document.addEventListener('focusin', scheduleOverlap);
-  document.querySelectorAll('.service-disclosure').forEach(detail => detail.addEventListener('toggle', scheduleOverlap));
   try {
     const saved = JSON.parse(localStorage.getItem(key) || '[]');
     if (Array.isArray(saved)) saved.forEach(id => { if (catalog.has(id)) selected.add(id); });
@@ -89,15 +70,12 @@
       box.checked = selected.has(box.value); box.disabled = sending;
       box.closest('label').querySelector('i').className = `fa-regular ${box.checked ? 'fa-circle-check' : 'fa-circle'}`;
     });
-    floating.hidden = !selected.size;
     review.hidden = !selected.size; review.disabled = sending;
-    floating.textContent = `Your wishlist · ${selected.size} selected`;
     summary(document.querySelector('#wishlist-panel-summary'));
     includeWishlist.disabled = sending;
     optionNote.textContent = selected.size
       ? `${selected.size} ${selected.size === 1 ? 'item' : 'items'} selected. ${includeWishlist.checked ? 'Your wishlist will be included with your inquiry.' : 'Your wishlist is saved and won’t be included with this inquiry.'}`
       : 'You can send an inquiry without a wishlist, or explore services to choose what interests you.';
-    scheduleOverlap();
   };
   const changed = () => { save(); render(); if (!sending) { status.textContent = ''; } };
   includeWishlist.addEventListener('change', () => { render(); status.textContent = ''; });
@@ -113,12 +91,11 @@
     toggle.setAttribute('aria-expanded', String(expanded));
     document.querySelector('#wishlist-explanation').hidden = !expanded;
   });
-  for (const opener of [floating, review]) opener.addEventListener('click', () => {
-    returnFocus = opener;
+  review.addEventListener('click', () => {
+    returnFocus = review;
     panel.showModal();
   });
   panel.addEventListener('close', () => {
-    syncFloatingOverlap();
     const target = returnFocus && !returnFocus.hidden && getComputedStyle(returnFocus).visibility !== 'hidden' ? returnFocus : (toggle || form.elements.name);
     target.focus();
     returnFocus = undefined;
