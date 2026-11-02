@@ -142,5 +142,23 @@
     "personalLine": "",
     "proposedTime": "",
     "logo": ""
+  },
+  {
+    "slug": "crane-orchards",
+    "businessName": "Crane Orchards",
+    "domain": "",
+    "firstName": "",
+    "personalLine": "",
+    "proposedTime": "",
+    "logo": ""
+  },
+  {
+    "slug": "lemonjellos-coffee",
+    "businessName": "Lemonjello's Coffee",
+    "domain": "https://lemonjellos.com/",
+    "firstName": "",
+    "personalLine": "",
+    "proposedTime": "",
+    "logo": "logos/lemonjellos-coffee-logo.png"
   }
 ]
