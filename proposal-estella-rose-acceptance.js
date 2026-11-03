@@ -10,7 +10,6 @@
   const status = byId('reply-status');
   const submit = byId('accept-submit');
   const option = byId('option');
-  const care = byId('care');
   const canvas = byId('signature-pad');
   let context;
   try { context = canvas?.getContext('2d'); } catch (_) { /* Typed signatures still work without canvas. */ }
@@ -21,32 +20,36 @@
   const textOf = selector => clean(document.querySelector(selector)?.textContent);
   const money = value => Number(value).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: Number.isInteger(Number(value)) ? 0 : 2, maximumFractionDigits: 2 });
   const carePlans = {
-    six: { label: '6-month care plan', monthly: 300, months: 6 },
-    twelve: { label: '12-month care plan', monthly: 250, months: 12 },
-    none: { label: 'No care plan', monthly: 0, months: 0 }
+    monthly: { label: 'Ongoing Shopify care', monthly: 500, months: 3,
+      renewal_monthly: 500, notice_days: 30,
+      start_condition: 'At audit handoff only after both sides confirm continuing. Either side may decline before care begins with no care fee due.' },
+    none: { label: 'Audit only, no care commitment', monthly: 0, months: 0 }
   };
   for (const item of option.options) {
     if (!item.value) continue;
     const card = byId(item.value);
     if (!card) continue;
-    const fee = Number(card.querySelector('.price').textContent.replace(/[^\d.]/g, ''));
+    const fee = Number(card.dataset.auditFee);
     const label = clean(card.querySelector('h3').textContent);
-    item.textContent = `Option ${item.value.slice(-1)}: ${label} (${money(fee)}${item.value === 'opt2' ? ', recommended' : ''})`;
+    item.textContent = `${label}: ${money(fee)} audit${item.value === 'opt2' ? ' + $500/month care (recommended)' : ''}`;
   }
   function selection() {
+    if (!['opt1', 'opt2'].includes(option.value)) return null;
     const card = byId(option.value);
-    const plan = carePlans[care.value];
-    if (!['opt1', 'opt2', 'opt3'].includes(option.value) || !card || !plan) return null;
-    const fee = Number(card.querySelector('.price').textContent.replace(/[^\d.]/g, ''));
+    const plan = option.value === 'opt2' ? carePlans.monthly : carePlans.none;
+    const fee = Number(card?.dataset.auditFee);
     if (!Number.isFinite(fee) || fee <= 0) return null;
     return { option: option.selectedOptions[0].textContent, fee, deposit: fee / 2,
+      refresh_included: false,
       care: { ...plan, total: plan.monthly * plan.months } };
   }
   function updateSummary() {
     const selected = selection();
     byId('acceptance-summary').textContent = selected
-      ? `Project fee: ${money(selected.fee)}\nInitial invoice: ${money(selected.deposit)} (50%). Final invoice at launch: ${money(selected.deposit)}. Both invoices are payable within 15 days of issue.\n` +
-        (selected.care.months ? `Care: ${money(selected.care.monthly)}/month for ${selected.care.months} months (${money(selected.care.total)} initial commitment), billed monthly from launch. Monthly billing does not make the initial commitment month to month.` : 'Ongoing care: none selected.')
+      ? `Audit & fix: ${money(selected.fee)} one-time fee.\nInitial invoice: ${money(selected.deposit)} (50%), sent the same day you accept. Work starts when paid and required access and content are ready.\nFinal audit invoice at handoff: ${money(selected.deposit)} (50%). Both audit invoices are payable within 15 days of issue.\n` +
+        (selected.care.months
+          ? `Care: $500/month if we both confirm continuing at audit handoff. Either side may decline before care starts with no care fee due. Once care begins, the three-month minimum is $1,500, billed monthly. After that, care continues month to month at $500, with 30 days’ notice to end care after the minimum term.\nAudit plus minimum care commitment if care begins: $3,000. This is not an upfront invoice.\nPage refreshes are not included and require a separate written quote and approval.`
+          : 'Audit only. No care commitment. Any later care or page refresh work requires a separate agreement.')
       : '';
   }
   function invalidate() {
@@ -126,41 +129,29 @@
 
   async function buildRecord() {
     const selected = selection();
-    if (!selected || !consent.checked) throw new Error('Choose your option and care plan, then check the acceptance box.');
+    if (!selected || !consent.checked) throw new Error('Choose how you’d like to start, then check the acceptance box.');
     if (!window.crypto?.subtle || !window.crypto.randomUUID) throw new Error('Please open this proposal over HTTPS in a current browser to sign, or use the email link at the bottom of this proposal.');
-    const tier = Number(option.value.slice(-1));
-    const scope = Array.from({ length: tier }, (_, index) => textOf(`#opt${index + 1}`));
+    const scopeIds = option.value === 'opt2' ? ['opt1', 'opt2'] : ['opt1'];
+    const scope = scopeIds.map(id => textOf(`#${id}`));
     const documentSnapshot = {
-      version: 'ERF-2026-11-02-esign-v2', title: document.title,
+      version: 'ERF-2026-11-03-care-v1', title: document.title,
       selected_project: selected, included_options: scope,
       scope_and_exclusions: textOf('#scope'), timeline: textOf('#timeline'),
       payment: textOf('#payment'), assumptions: textOf('#assumptions'), terms: textOf('#terms'),
       care_details: 'No care plan selected.'
     };
-    // Retain only the care subsection, not the surrounding investment options.
-    if (selected.care.months) {
-      const careText = [];
-      for (let node = byId('care-plan').nextElementSibling; node; node = node.nextElementSibling) careText.push(clean(node.textContent));
-      documentSnapshot.care_details = careText.join('\n\n');
-    }
+    if (selected.care.months) documentSnapshot.care_details = textOf('#care');
     documentSnapshot.readable_sections = {
-      included_options: Array.from({ length: tier }, (_, index) => ({
-        title: `Option ${index + 1}: ${textOf(`#opt${index + 1} h3`)}`,
-        blocks: captureBlocks(byId(`opt${index + 1}`))
+      included_options: scopeIds.map(id => ({
+        title: textOf(`#${id} h3`), blocks: captureBlocks(byId(id))
       })),
       scope_and_exclusions: captureBlocks(byId('scope')),
       timeline: captureBlocks(byId('timeline')),
       payment: captureBlocks(byId('payment')),
       assumptions: captureBlocks(byId('assumptions')),
       terms: captureBlocks(byId('terms')),
-      care_details: []
+      care_details: selected.care.months ? captureBlocks(byId('care')) : []
     };
-    if (selected.care.months) {
-      for (let node = byId('care-plan').nextElementSibling; node; node = node.nextElementSibling) {
-        // The selected rate is already stated in the investment summary.
-        if (!node.matches('.care-options')) documentSnapshot.readable_sections.care_details.push(...captureBlocks(node));
-      }
-    }
     const record = {
       acceptance_id: 'ERF-' + window.crypto.randomUUID(),
       signed_at_browser_utc: new Date().toISOString(),
@@ -225,10 +216,12 @@
       payload.append('note', record.signer_note);
       payload.append('organization', record.organization);
       payload.append('acceptance_id', record.acceptance_id);
-      payload.append('project_fee', money(record.selected.fee));
+      payload.append('audit_fee', money(record.selected.fee));
       payload.append('initial_invoice', money(record.selected.deposit));
-      payload.append('launch_invoice', money(record.selected.deposit));
+      payload.append('handoff_invoice', money(record.selected.deposit));
       payload.append('care_initial_commitment', money(record.selected.care.total));
+      payload.append('care_start_condition', record.selected.care.start_condition || 'No care selected');
+      payload.append('page_refreshes', 'Not included; separately quoted after audit');
       payload.append('document_version', record.document.version);
       payload.append('evidence_sha256', record.evidence_sha256);
       const { signature_png, ...textRecord } = record;
@@ -258,7 +251,7 @@
       accepted = true;
       confirmedRecord = record;
       confirmedPDF = cachedPDF;
-      status.textContent = 'Thank you. Your signed acceptance was received. I’ll send the initial invoice and get in touch about kickoff.';
+      status.textContent = 'Thank you. Your signed acceptance was received. I’ll send the $750 deposit invoice the same day and get in touch about kickoff.';
       status.dataset.state = 'success';
       byId('acceptance-reference').textContent = `Reference: ${record.acceptance_id}. Signed ${new Date(record.signed_at_browser_utc).toLocaleString()}.`;
       byId('acceptance-receipt').hidden = false;
@@ -398,13 +391,14 @@
     keyValue('Date signed', stamp(record.signed_at_browser_utc));
     sectionHeading('Your investment');
     keyValue('Selected project', record.selected.option);
-    keyValue('Fixed project fee', money(record.selected.fee));
+    keyValue('Fixed audit fee', money(record.selected.fee));
     keyValue('Initial payment (50%)', money(record.selected.deposit));
-    keyValue('At launch (50%)', money(record.selected.deposit));
+    keyValue('At audit handoff (50%)', money(record.selected.deposit));
     const plan = record.selected.care;
     keyValue('Ongoing care', plan.months
-      ? `${plan.label}: ${money(plan.monthly)}/month. Initial commitment: ${money(plan.total)}. Starts at launch.`
+      ? `${plan.label}: ${money(plan.monthly)}/month. Three-month minimum: ${money(plan.total)}, billed monthly. Begins at audit handoff only after mutual confirmation; either side may decline before care begins. After the minimum, month to month at $500, with 30 days notice.`
       : 'No care plan selected.');
+    keyValue('Page refreshes', 'Not included. Separate written scope and price after audit.');
     sectionHeading('Electronic signature');
     paragraph(record.electronic_consent, { size: 10, after: 14 });
     ensure(record.signature_png ? 122 : 64);

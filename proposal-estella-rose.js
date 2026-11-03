@@ -9,7 +9,10 @@
     if (!motion.matches && !document.hidden) {
       timer = setInterval(() => {
         current = (current + 1) % slides.length;
-        slides.forEach((slide, index) => slide.classList.toggle('is-active', index === current));
+        slides.forEach((slide, index) => {
+          slide.classList.toggle('is-active', index === current);
+          slide.setAttribute('aria-hidden', String(index !== current));
+        });
       }, 6000);
     }
   };
@@ -98,41 +101,13 @@ if (draftPrint) {
   draftPrint.addEventListener('click', () => window.print());
 }
 
-/* Highlight reading progress only, not a claim about completed project work. */
-(function(){
-  var timeline=document.querySelector('.project-timeline');
-  if(!timeline) return;
-  var phases=Array.from(timeline.querySelectorAll('.timeline-phase'));
-  var motion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  var queued=false;
-  function update(){
-    queued=false;
-    var rect=timeline.getBoundingClientRect();
-    var centers=phases.map(function(phase){
-      var dot=phase.querySelector('.timeline-dot').getBoundingClientRect();
-      return dot.top+dot.height/2;
-    });
-    var first=centers[0];
-    var height=Math.max(0,centers[centers.length-1]-first);
-    var readingLine=window.innerHeight*.45;
-    var fill=motion.matches ? 0 : Math.min(height,Math.max(0,readingLine-first));
-    timeline.style.setProperty('--timeline-start',(first-rect.top)+'px');
-    timeline.style.setProperty('--timeline-height',height+'px');
-    timeline.style.setProperty('--timeline-fill',fill+'px');
-    var active=-1;
-    centers.forEach(function(center,index){if(center<=readingLine) active=index;});
-    phases.forEach(function(phase,index){
-      phase.classList.toggle('is-reached',!motion.matches && index<=active);
-      phase.classList.toggle('is-current',!motion.matches && index===active);
-    });
-  }
-  function schedule(){if(!queued){queued=true;requestAnimationFrame(update);}}
-  window.addEventListener('scroll',schedule,{passive:true});
-  window.addEventListener('resize',schedule);
-  window.addEventListener('load',schedule);
-  document.querySelectorAll('details.question').forEach(function(question){question.addEventListener('toggle',schedule);});
-  if(motion.addEventListener) motion.addEventListener('change',schedule);
-  if(document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
-  update();
-})();
 
+// Expose the supporting terms when a link points inside the closed disclosure.
+(() => {
+  const details = document.querySelector('#proposal-details');
+  if (!details) return;
+  document.querySelectorAll('a[href="#proposal-details"], [data-open-details]').forEach(link => {
+    link.addEventListener('click', () => { details.open = true; });
+  });
+  if (['#proposal-details','#scope','#timeline','#payment','#assumptions','#terms'].includes(location.hash)) details.open = true;
+})();
