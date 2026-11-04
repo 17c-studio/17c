@@ -136,7 +136,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 .prospect-curtain .prospect-brand { margin: 0px 0px 18px; }
 .prospect-curtain .prospect-logo { max-height: 110px; filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(631%) hue-rotate(351deg) brightness(94%) contrast(87%); }
 .prospect-curtain-content p { margin: 0px; font-family: var(--serif); font-size: clamp(1.125rem, 3vw, 1.5rem); line-height: 1.4; letter-spacing: 0px; }
-.prospect-curtain.is-ready { animation: 850ms cubic-bezier(0.76, 0, 0.24, 1) 4150ms 1 normal both running prospect-curtain-lift; }
+.prospect-curtain.is-ready { animation: 850ms cubic-bezier(0.76, 0, 0.24, 1) 3150ms 1 normal both running prospect-curtain-lift; }
 .prospect-reveal-shown :is(.cover-title-line, .services-hero h1) { animation: auto ease 0s 1 normal none running none; opacity: 1; transform: none; }
 @keyframes prospect-curtain-lift {
   0% { transform: translateY(0px); }
