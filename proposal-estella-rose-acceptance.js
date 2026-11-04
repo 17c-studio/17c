@@ -20,8 +20,8 @@
   const textOf = selector => clean(document.querySelector(selector)?.textContent);
   const money = value => Number(value).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: Number.isInteger(Number(value)) ? 0 : 2, maximumFractionDigits: 2 });
   const carePlans = {
-    monthly: { label: 'Ongoing Shopify care', monthly: 500, months: 3,
-      renewal_monthly: 500, notice_days: 30,
+    monthly: { label: 'Ongoing Shopify care', monthly: 300, months: 3,
+      renewal_monthly: 300, notice_days: 30,
       start_condition: 'At audit handoff only after both sides confirm continuing. Either side may decline before care begins with no care fee due.' },
     none: { label: 'Audit only, no care commitment', monthly: 0, months: 0 }
   };
@@ -31,7 +31,7 @@
     if (!card) continue;
     const fee = Number(card.dataset.auditFee);
     const label = clean(card.querySelector('h3').textContent);
-    item.textContent = `${label}: ${money(fee)} audit${item.value === 'opt2' ? ' + $500/month care (recommended)' : ''}`;
+    item.textContent = `${label}: ${money(fee)} audit${item.value === 'opt2' ? ' + $300/month care (recommended)' : ''}`;
   }
   function selection() {
     if (!['opt1', 'opt2'].includes(option.value)) return null;
@@ -46,9 +46,9 @@
   function updateSummary() {
     const selected = selection();
     byId('acceptance-summary').textContent = selected
-      ? `Audit & fix: ${money(selected.fee)} one-time fee.\nInitial invoice: ${money(selected.deposit)} (50%), sent the same day you accept. Work starts when paid and required access and content are ready.\nFinal audit invoice at handoff: ${money(selected.deposit)} (50%). Both audit invoices are payable within 15 days of issue.\n` +
+      ? `Audit & fix: ${money(selected.fee)} one-time fee.\nInitial invoice: ${money(selected.deposit)} (50%), sent the same day you accept. Work starts when paid and required access and content are ready.\nFinal audit invoice at handoff: ${money(selected.deposit)} (50%). Both audit invoices are payable within 7 days of issue.\n` +
         (selected.care.months
-          ? `Care: $500/month if we both confirm continuing at audit handoff. Either side may decline before care starts with no care fee due. Once care begins, the three-month minimum is $1,500, billed monthly. After that, care continues month to month at $500, with 30 days’ notice to end care after the minimum term.\nAudit plus minimum care commitment if care begins: $3,000. This is not an upfront invoice.\nPage refreshes are not included and require a separate written quote and approval.`
+          ? `Care: $300/month if we both confirm continuing at audit handoff. Either side may decline before care starts with no care fee due. Once care begins, the three-month minimum is $900, billed monthly. After that, care continues month to month at $300, with 30 days’ notice to end care after the minimum term.\nAudit plus minimum care commitment if care begins: $2,400. This is not an upfront invoice.\nPage refreshes are not included and require a separate written quote and approval.`
           : 'Audit only. No care commitment. Any later care or page refresh work requires a separate agreement.')
       : '';
   }
@@ -134,7 +134,7 @@
     const scopeIds = option.value === 'opt2' ? ['opt1', 'opt2'] : ['opt1'];
     const scope = scopeIds.map(id => textOf(`#${id}`));
     const documentSnapshot = {
-      version: 'ERF-2026-11-03-care-v1', title: document.title,
+      version: 'ERF-2026-11-03-care-v2', title: document.title,
       selected_project: selected, included_options: scope,
       scope_and_exclusions: textOf('#scope'), timeline: textOf('#timeline'),
       payment: textOf('#payment'), assumptions: textOf('#assumptions'), terms: textOf('#terms'),
@@ -396,7 +396,7 @@
     keyValue('At audit handoff (50%)', money(record.selected.deposit));
     const plan = record.selected.care;
     keyValue('Ongoing care', plan.months
-      ? `${plan.label}: ${money(plan.monthly)}/month. Three-month minimum: ${money(plan.total)}, billed monthly. Begins at audit handoff only after mutual confirmation; either side may decline before care begins. After the minimum, month to month at $500, with 30 days notice.`
+      ? `${plan.label}: ${money(plan.monthly)}/month. Three-month minimum: ${money(plan.total)}, billed monthly. Begins at audit handoff only after mutual confirmation; either side may decline before care begins. After the minimum, month to month at $300, with 30 days notice.`
       : 'No care plan selected.');
     keyValue('Page refreshes', 'Not included. Separate written scope and price after audit.');
     sectionHeading('Electronic signature');
