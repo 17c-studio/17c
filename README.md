@@ -40,6 +40,10 @@ Original images remain in place. The About portrait and project imagery use smal
 
 Use `index.html?for=the-sky-floor` or `services.html?for=the-sky-floor`. Add entries to the array in `prospects.json`; use relative local logo paths. Optional meeting copy is used only when supplied. Context carries to the contact page, where the organization field is prefilled.
 
+Outreach email links are maintained manually in email drafts; there is no link generator or copy interface in this project. For email outreach, use `utm_source=outreach`, `utm_medium=email`, and `utm_campaign=local_business_outreach`. Follow the URL-building recipe in [Personal-Links-for-Prospects.md](Personal-Links-for-Prospects.md#outreach-email-links) to preserve existing query parameters and nonempty campaign values. These defaults apply only when preparing an outreach email, never on page load or internal navigation.
+
+Example email link: https://17c.studio/?for=tweed-baby-outfitters&utm_source=outreach&utm_medium=email&utm_campaign=local_business_outreach
+
 The JSON and logos are public assets. Include only information authorized for public access, never confidential proposals, private contact details, or secrets. A sessionStorage flag remembers the welcome animation. Tab or Escape can dismiss the entrance. Email links open drafts for visitors to send themselves.
 
 ## Before deployment

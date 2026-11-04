@@ -21,8 +21,43 @@ It says the same thing your walk-in does, without you in the room: *I care about
 
 1. Walk in, or meet them, and have the real conversation.
 2. Add them to your prospects file (business name, website, owner's first name, a line about what you love, a proposed time).
-3. Send a short email or text with the brief attached and their personal link.
+3. Send a short email or text with the brief attached and their personal link. For email, prepare the tagged link using the recipe below; text messages keep the ordinary personal link.
 4. Follow up in person or by phone with the same specific ask.
+
+## Outreach email links
+
+The current workflow maintains personal links manually in outgoing email drafts. There is no outreach URL generator or copy button in the site. Keep the campaign defaults and construction recipe here, with a pointer in `README.md`; keep business slugs in `prospects.json`. No new interface is needed.
+
+Use this JavaScript recipe only while preparing a link for an outreach email. It is documentation for draft preparation, not a script to load on the website:
+
+```js
+function outreachEmailLink(existingLink) {
+  const url = new URL(existingLink, 'https://17c.studio/');
+  const params = new URLSearchParams(url.search);
+  const defaults = {
+    utm_source: 'outreach',
+    utm_medium: 'email',
+    utm_campaign: 'local_business_outreach'
+  };
+  for (const [key, fallback] of Object.entries(defaults)) {
+    // Keep an existing nonempty value, even if an earlier duplicate is empty.
+    const existing = params.getAll(key).find(value => value.trim());
+    params.set(key, existing ?? fallback);
+  }
+  url.search = params.toString();
+  return url.href;
+}
+
+outreachEmailLink('https://17c.studio/?for=tweed-baby-outfitters');
+```
+
+Finished email link:
+
+https://17c.studio/?for=tweed-baby-outfitters&utm_source=outreach&utm_medium=email&utm_campaign=local_business_outreach
+
+The recipe preserves the `for` slug, unrelated query parameters, and fragments. It fills missing or blank campaign values and keeps the first nonempty value when duplicate campaign keys already exist, producing one of each default UTM key. Running it again gives the same URL. Keep any other existing campaign tags, such as `utm_content`, as supplied.
+
+Paste the resulting URL into the outreach email. Do not apply these defaults to text messages, ordinary visits, or internal navigation, and do not include private contact information in tracking parameters. The website continues to read only `for` for personalization and does not add these UTM defaults itself.
 
 ## How it works (the short version)
 
