@@ -41,7 +41,7 @@ window.studioProspectReady = (async () => {
   });
 
   // On the dedicated contact page, only carry context and prefill organization.
-  if (document.body.classList.contains('form-page')) return;
+  if (document.body.classList.contains('form-page')) return business ? prospect.slug : undefined;
   const main = document.querySelector('main');
   if (!main) return;
   const coverLabel = document.querySelector('.cover-title > .editorial-label, .services-hero .hero-heading > .editorial-label');
@@ -162,4 +162,6 @@ window.studioProspectReady = (async () => {
     widgetScript.async = true;
     document.body.append(widgetScript);
   }
+  // Resolve with only the recognized slug after the personalized DOM is installed.
+  return prospect.slug;
 })();
