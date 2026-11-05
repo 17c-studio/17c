@@ -3924,7 +3924,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 }
 .about-name-story > summary::-webkit-details-marker { display: none; }
 .about-name-story strong { font-weight: 600; }
-.about-name-icon { position: relative; flex: 0 0 16px; width: 16px; height: 16px; }
+.about-name-icon { position: relative; flex: 0 0 16px; width: 16px; height: 16px; margin-right: 16px; }
 .about-name-icon::before, .about-name-icon::after {
   content: ""; position: absolute; background: currentColor;
 }
