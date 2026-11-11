@@ -477,6 +477,16 @@ html.is-opening{overflow:hidden}
 #details .detail-group{padding-top:8px}
 #details .detail-group+.detail-group{border-top:1px solid var(--line);padding-top:28px}
 #details .detail-group>h3{margin:0 0 24px;font-size:32px}
+.care-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:28px 0}
+.care-card{min-width:0;padding:24px 20px;border:1px solid var(--line);background:var(--paper)}
+.proposal-chapters .care-card h4{margin:0 0 20px;font:400 28px/1.2 var(--serif)}
+.care-price{display:flex;flex-direction:column;gap:8px;min-height:104px;margin-bottom:20px;font:400 34px/1.2 var(--serif)}
+.care-price small{font:400 12px/1.6 var(--sans);color:var(--muted)}
+.care-price>span{display:block}
+.care-card p{font-size:14px;color:var(--muted)}
+.care-card p:last-child{margin-bottom:0}
+@media(max-width:760px){.care-grid{grid-template-columns:1fr}.care-price{min-height:0}}
+@media print{.care-grid{grid-template-columns:1fr}.care-card{break-inside:avoid}.care-price{min-height:0}}
 </style>
 </head><body>
 <div id="opening-screen" class="opening-screen" role="status" aria-label="Welcome to the Mr Rebuild proposal" hidden>
@@ -637,14 +647,25 @@ html.is-opening{overflow:hidden}
   <aside class="panel care-add-on" aria-labelledby="care-plan">
     <h3 class="subheading" id="care-plan">Optional add-on · Ongoing care</h3>
     <p>Choose the support that fits after launch. Care is separate from the project fee.</p>
-    <table aria-labelledby="care-plan">
-      <thead><tr><th scope="col">Care plan</th><th scope="col">Monthly price</th><th scope="col">What’s included</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">Base Care</th><td><strong>$175</strong> Wix<br><strong>$225</strong> WordPress</td><td>Routine website upkeep and support when something goes wrong.</td></tr>
-        <tr><th scope="row">Growth Care</th><td><strong>$425</strong></td><td>Base Care, one planned improvement per month, and a one-page Google Analytics report. We’ll review kitchen and bathroom inquiries alongside site activity and adjust the site accordingly.</td></tr>
-        <tr><th scope="row">Full Care</th><td><strong>$1,100</strong></td><td>Growth Care plus a Facebook content calendar, up to two posts per week, and a monthly Facebook report. You approve content and promotions before publishing.</td></tr>
-      </tbody>
-    </table>
+    <div class="care-grid">
+      <article class="care-card" aria-labelledby="base-care-title">
+        <h4 id="base-care-title">Base Care</h4>
+        <div class="care-price"><span>$175 <small>/ month · Wix</small></span><span>$225 <small>/ month · WordPress</small></span></div>
+        <p>Routine website upkeep and support when something goes wrong.</p>
+      </article>
+      <article class="care-card" aria-labelledby="growth-care-title">
+        <h4 id="growth-care-title">Growth Care</h4>
+        <div class="care-price"><span>$425 <small>/ month</small></span></div>
+        <p>Base Care, one planned improvement per month, and a one-page Google Analytics report.</p>
+        <p>We’ll review kitchen and bathroom inquiries alongside site activity and adjust the site accordingly.</p>
+      </article>
+      <article class="care-card" aria-labelledby="full-care-title">
+        <h4 id="full-care-title">Full Care</h4>
+        <div class="care-price"><span>$1,100 <small>/ month</small></span></div>
+        <p>Growth Care plus a Facebook content calendar, up to two posts per week, and a monthly Facebook report.</p>
+        <p>You approve content and promotions before publishing.</p>
+      </article>
+    </div>
     <p class="draft-label">We’ll agree on the start date, minimum term, and support response times before acceptance. Client portal maintenance is scoped separately.</p>
   </aside>
 </div></section>
