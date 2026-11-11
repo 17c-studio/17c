@@ -464,7 +464,7 @@ html.is-opening{overflow:hidden}
 .preview-fields :disabled{opacity:.7;cursor:not-allowed}
 .hero-line{display:block}
 .opening-brand{font:400 clamp(28px,4vw,48px)/1.2 var(--serif);margin:0}
-/* Main reading destinations; supporting information opens within Details. */
+/* Main reading destinations and openly displayed supporting information. */
 #details .detail-content{padding:0 0 28px;color:var(--muted)}
 #details .detail-content>p:last-child,#details .detail-content>ul:last-child{margin-bottom:0}
 #details .detail-content .project-timeline{margin-top:24px}
@@ -474,6 +474,11 @@ html.is-opening{overflow:hidden}
   .service-index a{padding:8px 0;border-left:0;border-bottom:1px solid transparent}
   .service-index a[aria-current]{border-bottom-color:var(--ink)}
 }
+#details .detail-group{padding-top:8px}
+#details .detail-group+.detail-group{border-top:1px solid var(--line);padding-top:28px}
+#details .detail-group>h3{margin:0 0 24px;font-size:32px}
+#questions article.question{padding-top:24px}
+#questions article.question .subheading{margin:0 0 16px}
 </style>
 </head><body>
 <div id="opening-screen" class="opening-screen" role="status" aria-label="Welcome to the Mr Rebuild proposal" hidden>
@@ -527,9 +532,9 @@ html.is-opening{overflow:hidden}
     <a href="#overview">Overview</a>
     <a href="#about">How I work</a>
     <a href="#investment">Options</a>
+    <a href="#details">Details</a>
     <a href="#questions">Questions</a>
     <a href="#accept-section">Next Step</a>
-    <a href="#details">Details</a>
   </nav>
   <div class="proposal-chapters">
 <section id="overview"><div class="wrap">
@@ -646,32 +651,29 @@ html.is-opening{overflow:hidden}
   </aside>
 </div></section>
 <hr class="rule">
+<section id="details"><div class="wrap">
+<p class="eyebrow">Details</p>
+<h2>The practical details.</h2>
+<div class="detail-group" id="payment"><h3>Payment</h3><div class="detail-content">
+<table><caption class="audit-sr-only">Draft payment schedule</caption><thead><tr><th scope="col">When</th><th scope="col">Amount</th><th scope="col">What it covers</th></tr></thead><tbody><tr><td>The same day you sign</td><td>To be confirmed</td><td>I’ll send the initial invoice. Deposit amount to be confirmed.</td></tr><tr><td>To be confirmed</td><td>To be confirmed</td><td>Remaining project payment milestones.</td></tr><tr><td>Monthly; start date to be agreed</td><td>Selected care-plan rate</td><td>Optional ongoing care, separate from the project fee. Portal maintenance quoted separately.</td></tr></tbody></table><p>Project fees are listed above; the portal starts at $17,000 and needs further scoping. We’ll confirm deposits, payment milestones, care terms, and the final scope before acceptance is available.</p>
+</div></div>
+<div class="detail-group" id="assumptions"><h3>Access and materials</h3><div class="detail-content">
+<ul><li>Wix collaborator access from you or your site admin.</li><li>Confirmation of the Wix renewal date, subscriptions, and domain setup. We’ll review provider costs before approving changes.</li><li>Your approved new logo, before-and-after project photos, service list, review excerpts, and a verified link to your full Google reviews.</li><li>Your approval before any platform move or hosting and domain changes.</li></ul>
+</div></div>
+</div></section>
+<hr class="rule">
 <section id="questions"><div class="wrap">
 <p class="eyebrow">Questions</p>
 <h2>A couple of things to clear up.</h2>
-<details class="question"><summary>Do I need to renew Wix?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Please confirm your renewal date and which subscriptions it covers. We’ll review the timing together before changing hosting or domain settings so the site and quote requests stay live.</p></div></details><details class="question"><summary>Can I keep getting quote requests by email?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. Every option preserves email quote requests. I’ll test that the inquiry and callback number arrive in the email itself, without needing to log into Wix or WordPress. The complimentary Wix phone-field update above is separate from the paid work.</p></div></details>
-<details class="question"><summary>Can my mom keep updating the website?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. The Wix refresh keeps your current editor. The custom website includes training so she can make everyday text and photo updates in WordPress. Your domain and accounts stay in your name.</p></div></details>
-<details class="question"><summary>Would a client portal help my business?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>How do you manage client updates, quotes, and proposals today? If you already use a tool, we’ll look at what it does well and where it falls short before deciding what a portal should do. The starting estimate becomes a fixed quote only after that scope is agreed.</p></div></details>
+<article class="question"><h3 class="subheading">Do I need to renew Wix?</h3><div class="question-answer"><p>Please confirm your renewal date and which subscriptions it covers. We’ll review the timing together before changing hosting or domain settings so the site and quote requests stay live.</p></div></article><article class="question"><h3 class="subheading">Can I keep getting quote requests by email?</h3><div class="question-answer"><p>Yes. Every option preserves email quote requests. I’ll test that the inquiry and callback number arrive in the email itself, without needing to log into Wix or WordPress. The complimentary Wix phone-field update above is separate from the paid work.</p></div></article>
+<article class="question"><h3 class="subheading">Can my mom keep updating the website?</h3><div class="question-answer"><p>Yes. The Wix refresh keeps your current editor. The custom website includes training so she can make everyday text and photo updates in WordPress. Your domain and accounts stay in your name.</p></div></article>
+<article class="question"><h3 class="subheading">Would a client portal help my business?</h3><div class="question-answer"><p>How do you manage client updates, quotes, and proposals today? If you already use a tool, we’ll look at what it does well and where it falls short before deciding what a portal should do. The starting estimate becomes a fixed quote only after that scope is agreed.</p></div></article>
 </div></section>
 <hr class="rule">
 <section id="accept-section"><div class="wrap">
 <p class="eyebrow">Next step</p>
 <h2>Let’s choose what fits.</h2>
 <p>Review the options and send me any questions. Once the page and project allowances, terms, and submission destination are confirmed, I’ll make acceptance available. I’ll send the initial invoice the same day you sign.</p><p><a href="form.html" data-email data-email-subject="Mr Rebuild website proposal">Email me about the proposal</a></p><form id="reply" class="accept" aria-describedby="preview-note"><p id="preview-note"><strong>Preview only.</strong> Acceptance is disabled while the proposal details are being finalized.</p><fieldset class="preview-fields" disabled><legend>Acceptance preview</legend><label for="name">Your full name</label><input id="name" type="text" placeholder="Jordan" autocomplete="name"><label for="email">Your email</label><input id="email" type="email" autocomplete="email"><label for="option">Project option</label><select id="option"><option>Choose an option when the proposal is finalized</option><option>Option 1 · Refresh the current Wix site · $2,250</option><option>Option 2 · Custom WordPress website · $6,500 · Recommended</option><option>Option 3 · Custom website + client portal · From $17,000</option></select><label for="care">Ongoing care</label><select id="care"><option>Choose an optional care plan</option><option>Base Care · Wix · $175/month</option><option>Base Care · WordPress · $225/month</option><option>Growth Care · $425/month</option><option>Full Care · $1,100/month</option><option>No care plan for now</option></select><button class="go" id="accept-submit" type="button" disabled>Acceptance unavailable in preview</button></fieldset><p class="acceptance-help">This draft does not submit an acceptance or create a signed PDF.</p></form><p class="signature">Mariel</p>
-</div></section>
-<hr class="rule">
-<section id="details"><div class="wrap">
-<p class="eyebrow">Details</p>
-<h2>The practical details.</h2>
-<details class="question project-detail" id="payment"><summary>Payment<span class="question-icon" aria-hidden="true"></span></summary><div class="detail-content">
-<table><caption class="audit-sr-only">Draft payment schedule</caption><thead><tr><th scope="col">When</th><th scope="col">Amount</th><th scope="col">What it covers</th></tr></thead><tbody><tr><td>The same day you sign</td><td>To be confirmed</td><td>I’ll send the initial invoice. Deposit amount to be confirmed.</td></tr><tr><td>To be confirmed</td><td>To be confirmed</td><td>Remaining project payment milestones.</td></tr><tr><td>Monthly; start date to be agreed</td><td>Selected care-plan rate</td><td>Optional ongoing care, separate from the project fee. Portal maintenance quoted separately.</td></tr></tbody></table><p>Project fees are listed above; the portal starts at $17,000 and needs further scoping. We’ll confirm deposits, payment milestones, care terms, and the final scope before acceptance is available.</p>
-</div></details>
-<details class="question project-detail" id="assumptions"><summary>Access and materials<span class="question-icon" aria-hidden="true"></span></summary><div class="detail-content">
-<ul><li>Wix collaborator access from you or your site admin.</li><li>Confirmation of the Wix renewal date, subscriptions, and domain setup. We’ll review provider costs before approving changes.</li><li>Your approved new logo, before-and-after project photos, service list, review excerpts, and a verified link to your full Google reviews.</li><li>Your approval before any platform move or hosting and domain changes.</li></ul>
-</div></details>
-<details class="question project-detail" id="terms"><summary>Short terms<span class="question-icon" aria-hidden="true"></span></summary><div class="detail-content">
-<p class="draft-label">Draft terms · Client-specific payment and contract terms are pending review.</p><div class="reading-groups"><div class="reading-group"><h3 class="subheading">Selected scope.</h3><p>The final agreement will describe the option, agreed pages, and deliverables you choose. Google Analytics shows how people use your site. Search basics improve service wording, page titles, and site structure to help Google understand what Mr Rebuild offers. Rankings, lead volume, and AI search placement are outcomes to monitor.</p></div><div class="reading-group"><h3 class="subheading">Account ownership.</h3><p>You retain ownership of your domain, hosting, and accounts. I’ll work through collaborator access.</p></div><div class="reading-group"><h3 class="subheading">Extra work.</h3><p>I’ll explain and quote work outside the agreed scope, and get your approval before starting.</p></div></div>
-</div></details>
 </div></section>
 </div></div></main><footer>Mariel Whitney · 17C Studio LLC · <a href="form.html" data-email>Let’s connect</a><br><small>Prepared for Jordan at Mr Rebuild. Local draft for review. This page asks search engines not to index it.</small></footer><script>
 /* Follow the proposal section crossing the upper third of the viewport. */
