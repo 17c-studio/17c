@@ -663,9 +663,6 @@ html.is-opening{overflow:hidden}
 <section id="details"><div class="wrap">
 <p class="eyebrow">Details</p>
 <h2>The practical details.</h2>
-<details class="question project-detail" id="timeline"><summary>Timeline<span class="question-icon" aria-hidden="true"></span></summary><div class="detail-content">
-<ol class="project-timeline" aria-label="Project phases"><li class="timeline-phase"><span class="timeline-dot" aria-hidden="true"></span><div class="phase-meta"><p class="phase-week">Phase 01</p><p class="phase-options">All options</p></div><div class="phase-content"><h3>Access and materials</h3><p>You invite me to Wix and send your approved logo, project photos, and service list. We’ll confirm renewals, domain details, and the selected scope. For a portal, we’ll first review how you manage clients, quotes, and proposals.</p></div></li><li class="timeline-phase"><span class="timeline-dot" aria-hidden="true"></span><div class="phase-meta"><p class="phase-week">Phase 02</p><p class="phase-options">All options</p></div><div class="phase-content"><h3>Updates or design</h3><p>I’ll make the agreed Wix updates or build the custom website, organize your content, and set up Google Analytics. Any portal work follows the scope we agree together.</p></div></li><li class="timeline-phase"><span class="timeline-dot" aria-hidden="true"></span><div class="phase-meta"><p class="phase-week">Phase 03</p><p class="phase-options">All options</p></div><div class="phase-content"><h3>Review and launch</h3><p>We’ll review the work together, test the quote path and email delivery, and approve the site for launch. The custom website includes training for your mom. We’ll also confirm any ongoing care.</p></div></li></ol><p>We’ll agree on timing once access, materials, and scope are confirmed.</p>
-</div></details>
 <details class="question project-detail" id="payment"><summary>Payment<span class="question-icon" aria-hidden="true"></span></summary><div class="detail-content">
 <table><caption class="audit-sr-only">Draft payment schedule</caption><thead><tr><th scope="col">When</th><th scope="col">Amount</th><th scope="col">What it covers</th></tr></thead><tbody><tr><td>The same day you sign</td><td>To be confirmed</td><td>I’ll send the initial invoice. Deposit amount to be confirmed.</td></tr><tr><td>To be confirmed</td><td>To be confirmed</td><td>Remaining project payment milestones.</td></tr><tr><td>Monthly; start date to be agreed</td><td>Selected care-plan rate</td><td>Optional ongoing care, separate from the project fee. Portal maintenance quoted separately.</td></tr></tbody></table><p>Project fees are listed above; the portal starts at $17,000 and needs further scoping. We’ll confirm deposits, payment milestones, care terms, and the final scope before acceptance is available.</p>
 </div></details>
@@ -748,45 +745,6 @@ document.addEventListener('DOMContentLoaded',function(){
     questions.forEach(function(question,index){question.open=previous[index];});
     previous=undefined;
   });
-})();
-</script>
-<script>
-/* Highlight reading progress only, not a claim about completed project work. */
-(function(){
-  var timeline=document.querySelector('.project-timeline');
-  if(!timeline) return;
-  var phases=Array.from(timeline.querySelectorAll('.timeline-phase'));
-  var motion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  var queued=false;
-  function update(){
-    queued=false;
-    var rect=timeline.getBoundingClientRect();
-    var centers=phases.map(function(phase){
-      var dot=phase.querySelector('.timeline-dot').getBoundingClientRect();
-      return dot.top+dot.height/2;
-    });
-    var first=centers[0];
-    var height=Math.max(0,centers[centers.length-1]-first);
-    var readingLine=window.innerHeight*.45;
-    var fill=motion.matches ? 0 : Math.min(height,Math.max(0,readingLine-first));
-    timeline.style.setProperty('--timeline-start',(first-rect.top)+'px');
-    timeline.style.setProperty('--timeline-height',height+'px');
-    timeline.style.setProperty('--timeline-fill',fill+'px');
-    var active=-1;
-    centers.forEach(function(center,index){if(center<=readingLine) active=index;});
-    phases.forEach(function(phase,index){
-      phase.classList.toggle('is-reached',!motion.matches && index<=active);
-      phase.classList.toggle('is-current',!motion.matches && index===active);
-    });
-  }
-  function schedule(){if(!queued){queued=true;requestAnimationFrame(update);}}
-  window.addEventListener('scroll',schedule,{passive:true});
-  window.addEventListener('resize',schedule);
-  window.addEventListener('load',schedule);
-  document.querySelectorAll('details.question').forEach(function(question){question.addEventListener('toggle',schedule);});
-  if(motion.addEventListener) motion.addEventListener('change',schedule);
-  if(document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
-  update();
 })();
 </script>
 </body>
