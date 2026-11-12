@@ -1,6 +1,6 @@
 # Work page
 
-`work.html` uses the existing static-site stack and shared studio fonts, color tokens, header, footer, and buttons. Page-specific layout and interactions live in `work.css` and `work.js`. This refinement changes only those three files and this note.
+`work.html` uses the existing static-site stack and shared studio fonts, color tokens, header, footer, and buttons. Page-specific layout and interactions live in `studio/css/work.css` and `studio/js/work.js`. This refinement changes only those three files and this note.
 
 ## Presentation
 

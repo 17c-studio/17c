@@ -47,10 +47,10 @@ The original portrait is preserved. Browser-decoded JPEG variants are 79,795 byt
 | `services.html` | Distinct service intent metadata, canonical/social/service schema, semantic closing slogan, updated references and home links. |
 | `form.html` | Contact intent metadata, canonical/social/ContactPage schema and restored wishlist controls. |
 | `proposal.html` | Unique proposal metadata and social preview while retaining noindex. |
-| `services.css` | Preserve the former H4 slogan's appearance after converting it to a paragraph. |
-| `prospects.js` | Preserve personalized home navigation when homepage links use `./`. |
-| `inquiry.js` | Emit an integration event only after confirmed form success, including selected service IDs without form values. |
-| `analytics-events.js` | New local-only click event hooks for inquiry, email and direct Calendly links. |
+| `studio/css/services.css` | Preserve the former H4 slogan's appearance after converting it to a paragraph. |
+| `prospects/prospects.js` | Preserve personalized home navigation when homepage links use `./`. |
+| `shared/js/inquiry.js` | Emit an integration event only after confirmed form success, including selected service IDs without form values. |
+| `shared/js/analytics-events.js` | New local-only click event hooks for inquiry, email and direct Calendly links. |
 | `assets/optimized/mariel-mat-600.jpg` | New smaller portrait variant. |
 | `assets/optimized/mariel-mat-1200.jpg` | New larger portrait variant. |
 | `robots.txt` | Add the production sitemap reference while allowing crawling. |
@@ -59,7 +59,7 @@ The original portrait is preserved. Browser-decoded JPEG variants are 79,795 byt
 | `tools/check_site.py` | Correct obsolete form assumptions and validate directory homepage links. |
 | `tools/check_seo.py` | New checks for unique metadata, H1 count, canonical/social URLs, JSON-LD entities/references and sitemap membership. |
 | `README.md` | Correct the documented page inventory, SEO commands, image behavior and deployment steps. |
-| `SEO_AUDIT.md` | Baseline findings, final metadata, implementation notes and remaining setup. |
+| `docs/audits/SEO_AUDIT.md` | Baseline findings, final metadata, implementation notes and remaining setup. |
 
 ## Technical SEO checklist
 

@@ -7,7 +7,7 @@ window.studioProspectReady = (async () => {
   const text = value => typeof value === 'string' ? value.trim() : '';
   let prospect;
   try {
-    const response = await fetch('prospects.json', { signal: controller.signal });
+    const response = await fetch('prospects/prospects.json', { signal: controller.signal });
     if (!response.ok) return;
     const entries = await response.json();
     if (!Array.isArray(entries)) return;

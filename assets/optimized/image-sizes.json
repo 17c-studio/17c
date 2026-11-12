@@ -1,6 +1,6 @@
 [
   {
-    "source": "17c-cover.png",
+    "source": "assets/images/studio/17c-cover.png",
     "originalBytes": 407692,
     "variants": [
       {
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "source": "ghc-after.png",
+    "source": "assets/images/work/ghc-after.png",
     "originalBytes": 9353027,
     "variants": [
       {
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "source": "dare-to-hope-admissions-after.png",
+    "source": "assets/images/work/dare-to-hope-admissions-after.png",
     "originalBytes": 1231838,
     "variants": [
       {
@@ -72,7 +72,7 @@
     ]
   },
   {
-    "source": "basketball-after.png",
+    "source": "assets/images/work/basketball-after.png",
     "originalBytes": 1934934,
     "variants": [
       {
@@ -90,7 +90,7 @@
     ]
   },
   {
-    "source": "haworth-after.png",
+    "source": "assets/images/work/haworth-after.png",
     "originalBytes": 4957154,
     "variants": [
       {
@@ -108,7 +108,7 @@
     ]
   },
   {
-    "source": "font-playground-index.png",
+    "source": "assets/images/work/font-playground-index.png",
     "originalBytes": 157670,
     "variants": [
       {
@@ -126,7 +126,7 @@
     ]
   },
   {
-    "source": "anchor-index.png",
+    "source": "assets/images/work/anchor-index.png",
     "originalBytes": 3445781,
     "variants": [
       {
@@ -144,7 +144,7 @@
     ]
   },
   {
-    "source": "ghc-events.png",
+    "source": "assets/images/work/ghc-events.png",
     "originalBytes": 3078786,
     "variants": [
       {
@@ -162,7 +162,7 @@
     ]
   },
   {
-    "source": "degree-program-cropped.png",
+    "source": "assets/images/work/degree-program-cropped.png",
     "originalBytes": 2966100,
     "variants": [
       {

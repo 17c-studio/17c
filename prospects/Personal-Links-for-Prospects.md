@@ -26,7 +26,7 @@ It says the same thing your walk-in does, without you in the room: *I care about
 
 ## Outreach email links
 
-The current workflow maintains personal links manually in outgoing email drafts. There is no outreach URL generator or copy button in the site. Keep the campaign defaults and construction recipe here, with a pointer in `README.md`; keep business slugs in `prospects.json`. No new interface is needed.
+The current workflow maintains personal links manually in outgoing email drafts. There is no outreach URL generator or copy button in the site. Keep the campaign defaults and construction recipe here, with a pointer in `README.md`; keep business slugs in `prospects/prospects.json`. No new interface is needed.
 
 Use this JavaScript recipe only while preparing a link for an outreach email. It is documentation for draft preparation, not a script to load on the website:
 

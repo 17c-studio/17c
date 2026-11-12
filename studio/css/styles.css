@@ -3377,7 +3377,7 @@ html[data-theme="dark"] .home-page [aria-invalid="true"] { border-color: #ffb5a8
 /* Fixed circle cursor; touch devices retain their normal cursor behavior. */
 @media (hover: hover) and (pointer: fine) {
   html[data-cursor="circle"], html[data-cursor="circle"] * {
-    cursor: url("assets/cursors/ring-dark.svg") 8 8, auto !important;
+    cursor: url("../../assets/cursors/ring-dark.svg") 8 8, auto !important;
   }
 }
 
@@ -3509,7 +3509,7 @@ html.prospect-reveal-pending:has(.prospect-curtain.is-ready)::before { display: 
 @media (hover: hover) and (pointer: fine) {
   html[data-cursor="circle"] .prospect-curtain,
   html[data-cursor="circle"] .prospect-curtain * {
-    cursor: url("assets/cursors/ring-dark.svg") 8 8, auto !important;
+    cursor: url("../../assets/cursors/ring-dark.svg") 8 8, auto !important;
   }
 }
 .prospect-curtain .prospect-brand { margin: 0 0 18px; }

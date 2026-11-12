@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Embed the homepage's critical CSS; --check detects a stale inline copy.
 
-Keep assets/home-critical.css in sync when changing header, cover, personalization,
-or shared theme styles. Other page styles remain in styles.css.
+Keep studio/css/home-critical.css in sync when changing header, cover, personalization,
+or shared theme styles. Other page styles remain in studio/css/styles.css.
 """
 from pathlib import Path
 import argparse
@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--check', action='store_true')
 args = parser.parse_args()
 page = ROOT / 'index.html'
-source = (ROOT / 'assets/home-critical.css').read_text()
+source = (ROOT / 'studio/css/home-critical.css').read_text()
 css = re.sub(r'/\*.*?\*/', '', source, flags=re.S).strip()
 block = '<!-- home-critical:start -->\n  <style id="home-critical">\n' + css + '\n  </style>\n  <!-- home-critical:end -->'
 html = page.read_text()

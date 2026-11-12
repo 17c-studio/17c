@@ -6,7 +6,7 @@
     "firstName": "Joel",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/sky-floor-logo.png"
+    "logo": "prospects/logos/sky-floor-logo.png"
   },
   {
     "slug": "fris-supply-shop",
@@ -15,7 +15,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/fris-logo-clear.png"
+    "logo": "prospects/logos/fris-logo-clear.png"
   },
   {
     "slug": "bearded-dutchman-meats",
@@ -24,7 +24,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/BDM-logo.png"
+    "logo": "prospects/logos/BDM-logo.png"
   },
   {
     "slug": "leon-footwear",
@@ -33,7 +33,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/Leon_logo_wordmark_white.avif"
+    "logo": "prospects/logos/Leon_logo_wordmark_white.avif"
   },
   {
     "slug": "cultured-kombucha",
@@ -42,7 +42,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/CKco_horizontal_logos.avif"
+    "logo": "prospects/logos/CKco_horizontal_logos.avif"
   },
   {
     "slug": "estella-rose-fashion",
@@ -60,7 +60,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/engedi-salon-logo-brown.svg"
+    "logo": "prospects/logos/engedi-salon-logo-brown.svg"
   },
   {
     "slug": "gezellig",
@@ -69,7 +69,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/gezellig-logo.png"
+    "logo": "prospects/logos/gezellig-logo.png"
   },
   {
     "slug": "tweed-baby-outfitters",
@@ -78,7 +78,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/tweed-baby-outfitters-logo.png"
+    "logo": "prospects/logos/tweed-baby-outfitters-logo.png"
   },
   {
     "slug": "escape-ministries",
@@ -87,7 +87,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/escape-ministries-logo.jpg"
+    "logo": "prospects/logos/escape-ministries-logo.jpg"
   },
   {
     "slug": "don-lam-bees",
@@ -96,7 +96,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/don-lam-bees-logo.png"
+    "logo": "prospects/logos/don-lam-bees-logo.png"
   },
   {
     "slug": "flowers-by-design",
@@ -105,7 +105,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/flowers-by-design-logo.png"
+    "logo": "prospects/logos/flowers-by-design-logo.png"
   },
   {
     "slug": "cottonwood-inn",
@@ -123,7 +123,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/east-saugatuck-crc-logo.png"
+    "logo": "prospects/logos/east-saugatuck-crc-logo.png"
   },
   {
     "slug": "grand-rapids-comic-con",
@@ -132,7 +132,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/grand-rapids-comic-con-logo.png"
+    "logo": "prospects/logos/grand-rapids-comic-con-logo.png"
   },
   {
     "slug": "nelis-dutch-village",
@@ -159,7 +159,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/lemonjellos-coffee-logo.png"
+    "logo": "prospects/logos/lemonjellos-coffee-logo.png"
   },
   {
     "slug": "mr-rebuild",
@@ -195,7 +195,7 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/lulu-cadieux-logo.png"
+    "logo": "prospects/logos/lulu-cadieux-logo.png"
   },
   {
     "slug": "mi-crystal-clear",
@@ -213,6 +213,6 @@
     "firstName": "",
     "personalLine": "",
     "proposedTime": "",
-    "logo": "logos/stay-at-home-daughter-club-logo.png"
+    "logo": "prospects/logos/stay-at-home-daughter-club-logo.png"
   }
 ]
