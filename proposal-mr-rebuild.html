@@ -456,10 +456,6 @@ html.is-opening{overflow:hidden}
 .price.pending{font-size:clamp(30px,3vw,40px);line-height:1.2;letter-spacing:-.02em}
 .audit-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 .draft-label{color:var(--muted);font-size:13px}
-.preview-fields{border:0;padding:0;margin:0;min-width:0}
-.preview-fields legend{font-size:14px;padding:0;margin-bottom:20px}
-.preview-fields label:first-of-type{margin-top:0}
-.preview-fields :disabled{opacity:.7;cursor:not-allowed}
 .hero-line{display:block}
 .opening-brand{font:400 clamp(28px,4vw,48px)/1.2 var(--serif);margin:0}
 /* Main reading destinations and openly displayed supporting information. */
@@ -487,7 +483,14 @@ html.is-opening{overflow:hidden}
 @media print{.care-grid{grid-template-columns:1fr}.care-card{break-inside:avoid}.care-price{min-height:0}}
 /* Keep keyword emphasis within the sentence flow. */
 #investment .card li>strong:first-child{display:inline;margin-bottom:0}
+.proposal-details{margin:16px 0;font-size:14px}
+.proposal-details>.question-answer{padding:0 0 24px;max-width:none}
+.agreement-details>div{margin:28px 0}
+.agreement-details h3{font:500 26px/1.4 var(--serif);margin:24px 0 12px}
+.agreement-details p,.agreement-details li{font-size:14px;line-height:1.8}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js" defer></script>
+<script src="proposal-mr-rebuild-acceptance.js?v=1" defer></script>
 </head><body>
 <div id="opening-screen" class="opening-screen" role="status" aria-label="Welcome to the Mr Rebuild proposal" hidden>
   <p class="opening-brand">Mr Rebuild</p>
@@ -528,7 +531,7 @@ html.is-opening{overflow:hidden}
     </nav>
   </header>
 
-<main id="main"><section id="top"><figure class="fig hero" aria-hidden="true"><img src="proposal/MR-Rebuild/cover.jpg" width="694" height="527" alt="" fetchpriority="high" decoding="async"></figure><div class="wrap"><p class="eyebrow">Mr Rebuild Website Proposal</p><h1><span class="hero-line">Show the work you’re proud of.</span></h1><p class="draft-label">Prepared for Jordan · Local draft for review</p></div></section><section id="introduction" aria-label="A note for Jordan"><div class="intro-copy"><p class="lede">Hi Jordan,</p><p>Thanks for walking me through your website. It’s already bringing in quote requests. You told me you can’t sleep at night if you haven’t done a good job. That says a lot about how you treat the people who trust you with their homes. I’d love to help your website show that same care through your projects and the words of your customers.</p>
+<main id="main"><section id="top"><figure class="fig hero" aria-hidden="true"><img src="proposal/MR-Rebuild/cover.jpg" width="694" height="527" alt="" fetchpriority="high" decoding="async"></figure><div class="wrap"><p class="eyebrow">Mr Rebuild Website Proposal</p><h1><span class="hero-line">Show the work you’re proud of.</span></h1><p class="draft-label">Prepared for Jordan</p></div></section><section id="introduction" aria-label="A note for Jordan"><div class="intro-copy"><p class="lede">Hi Jordan,</p><p>Thanks for walking me through your website. It’s already bringing in quote requests. You told me you can’t sleep at night if you haven’t done a good job. That says a lot about how you treat the people who trust you with their homes. I’d love to help your website show that same care through your projects and the words of your customers.</p>
 <p>As offered, I’ll make the Wix phone-field update before paid work begins at no charge. Once you or your site admin invites me to Wix, I’ll check the form, require a phone number if the setup allows it, and test that the inquiry and callback number arrive in the email itself.</p>
 </div></section><div class="proposal-body">
   <nav class="service-index" aria-label="Proposal sections" data-lenis-prevent>
@@ -589,7 +592,7 @@ html.is-opening{overflow:hidden}
   <p class="eyebrow">Options</p>
   <h2>Choose the level that fits.</h2>
   <p>Start with the Wix site you have, build the custom website you described, or bring your client process into it too. Each option includes Google Analytics so we can see how people use the site.</p>
-  <p class="draft-label">Local draft · Project allowances, payment terms, and care terms still need to be finalized.</p>
+  <p class="draft-label">We’ll confirm the page and project list and care start date together before kickoff. The portal option requires a separate fixed quote.</p>
   <div class="cards">
     <article class="card" id="opt1">
       <span class="tier">Option 1</span>
@@ -604,7 +607,7 @@ html.is-opening{overflow:hidden}
         <li><strong>Google Analytics setup</strong>, with quote-form conversion tracking where supported, and improvements to agreed page titles and service wording.</li>
         <li>A quote form that asks for the project type and a short description, then emails you the inquiry and callback number. Include a hiring inquiry form and a simple way to ask happy customers for reviews.</li>
       </ul>
-      <p class="draft-label"><strong>Scope to finalize:</strong> Name the existing pages to update and the number of featured projects before acceptance.</p>
+      <p class="draft-label"><strong>Scope to finalize:</strong> Name the existing pages to update and the number of featured projects before kickoff.</p>
       <p class="best"><strong>Best for:</strong> Practical improvements within the current Wix layout and its available features.</p>
     </article>
     <article class="card rec" id="opt2">
@@ -618,9 +621,9 @@ html.is-opening{overflow:hidden}
         <li>A custom design with your new logo, the <strong>full service list</strong>, and <strong>dedicated kitchen and bathroom remodeling pages</strong>. Page titles and search descriptions will emphasize these remodels to help shift the focus from roofing and exterior inquiries.</li>
         <li><strong>Kitchens / Bathrooms / Other Projects</strong> galleries, with approved <strong>Google review excerpts</strong> paired with matching projects where possible and a verified link to full reviews.</li>
         <li><strong>Google Analytics</strong>, clearer page titles and service wording, quote-form conversion tracking where supported, and <strong>training for occasional text and photo edits</strong>.</li>
-        <li>The site also includes a <strong>“What makes us different” section</strong> and a <strong>team section</strong>. If you approve featuring <strong>Anytime Fitness</strong>, I’ll include that project as an example of your work.</li>
+        <li>The site also includes a <strong>“What makes us different” section</strong> and a <strong>team section</strong>. If you approve featuring Anytime Fitness and other impressive clients, I’ll include that project as an example of your work.</li>
       </ul>
-      <p class="draft-label"><strong>Scope to finalize:</strong> Name the service pages, number of featured projects, and review-request workflow before acceptance.</p>
+      <p class="draft-label"><strong>Scope to finalize:</strong> Name the service pages, number of featured projects, and review-request workflow before kickoff.</p>
       <p class="best"><strong>Best for:</strong> The full website you described, with room to grow, ongoing care available from me, and quick edits still in your hands.</p>
     </article>
     <article class="card" id="opt3">
@@ -677,13 +680,34 @@ html.is-opening{overflow:hidden}
 <hr class="rule">
 <section id="details"><div class="wrap">
 <p class="eyebrow">Details</p>
-<h2>The practical details.</h2>
-<div class="detail-group" id="payment"><h3>Payment</h3><div class="detail-content">
-<table><caption class="audit-sr-only">Draft payment schedule</caption><thead><tr><th scope="col">When</th><th scope="col">Amount</th><th scope="col">What it covers</th></tr></thead><tbody><tr><td>The same day you sign</td><td>To be confirmed</td><td>I’ll send the initial invoice. Deposit amount to be confirmed.</td></tr><tr><td>To be confirmed</td><td>To be confirmed</td><td>Remaining project payment milestones.</td></tr><tr><td>Monthly; start date to be agreed</td><td>Selected care-plan rate</td><td>Optional ongoing care with a three-month minimum, separate from the project fee. Hosting and software at cost; portal maintenance quoted separately.</td></tr></tbody></table><p>Project fees are listed above; the portal starts at $17,000 and needs further scoping. We’ll confirm deposits, payment milestones, care terms, and the final scope before acceptance is available.</p>
-</div></div>
-<div class="detail-group" id="assumptions"><h3>Access and materials</h3><div class="detail-content">
+<details class="question proposal-details" id="proposal-details">
+  <summary>Details: scope, payment, and terms <span class="question-icon" aria-hidden="true"></span></summary>
+  <div class="question-answer agreement-details">
+    <div id="scope"><h3>Project scope</h3>
+      <p><strong>Option 1 · $2,250:</strong> Refresh the existing Wix site with the service wording, projects, reviews, quote path, Analytics, and hiring inquiry form listed above. The complimentary Wix phone-field update remains separate and is not charged in this fee.</p>
+      <p><strong>Option 2 · $6,500:</strong> A custom self-hosted WordPress website with the service pages, galleries, review content, business and team sections, Analytics, and occasional-edit training listed above. The final page list, featured-project count, forms, and review-request workflow will be confirmed in writing before work starts; additions beyond the selected scope need a separate quote and approval.</p>
+      <p><strong>Option 3 · From $17,000:</strong> The custom website plus a proposed private client area for updates, quotes, proposals, and review requests. This is a starting estimate. Selecting it requests a scoping conversation; it does not accept a fixed portal price or authorize an undefined build.</p>
+      <p>The selected option covers the work listed in its card and two rounds of consolidated feedback. We’ll confirm the exact page list and featured-project count before kickoff. Extra pages, features, projects, and work outside that agreed list need a separate written quote and your approval. Analytics shows site activity; search rankings, lead volume, and placement in AI search are outcomes to monitor, not guarantees.</p>
+    </div>
+    <div id="payment"><h3>Payment</h3>
+      <p>For Option 1 ($2,250), I’ll invoice $1,125 when you accept and $1,125 at handoff. For Option 2 ($6,500), I’ll invoice $3,250 when you accept and $3,250 at handoff. I’ll send the initial invoice the same day you sign. Both invoices are due within 7 days of issue. Work starts after the initial payment, required access, and approved materials are ready. Option 3 is a scoping request only; its fixed quote and payment schedule require a separate written agreement.</p>
+      <p>Optional care is billed monthly from the agreed start date, with a <strong>three-month minimum</strong>: Base Care is $175/month for Wix ($525 minimum) or $225/month for WordPress ($675 minimum); Growth Care is $425/month ($1,275 minimum); Full Care is $1,100/month ($3,300 minimum). Hosting and software pass through at cost, without markup, with your approval. Portal maintenance is scoped separately.</p>
+      <p>Facebook work may start during the build on an agreed Full Care start date. We’ll confirm which website tasks apply before launch. After the three-month minimum, care continues month to month at the selected rate; either of us can end care with 30 days’ notice after that minimum. Monthly billing does not remove the three-month commitment.</p>
+    </div>
+<div id="assumptions"><h3>Access and materials</h3><div class="detail-content">
 <ul><li>Wix collaborator access from you or your site admin.</li><li>Confirmation of the Wix renewal date, subscriptions, and domain setup. Hosting and software are charged at cost, with no markup; we’ll agree on provider costs before changes.</li><li>Your approved new logo, before-and-after project photos, service list, review excerpts, and a verified link to your full Google reviews.</li><li>Your approval before any platform move or hosting and domain changes.</li></ul>
 </div></div>
+    <div id="terms"><h3>Terms and ownership</h3>
+      <p>You keep ownership of your domain, hosting, and connected accounts. Your mom can retain access for occasional edits. I’ll work through collaborator access and the selected care arrangement.</p>
+      <p>Care covers the platform tasks listed above. Full Care checks occur once each business day; support responses are within one business day. Restoring service depends on the issue and any host or platform work. Promotions need your written approval before publishing.</p>
+      <p><strong>Payment and delays:</strong> Project invoices are due within 7 days. Work pauses if an invoice remains unpaid more than 30 days after its due date. Timing assumes timely access, approved content, and consolidated feedback. Delays move the schedule; a project stalled for more than 30 days pauses, with payment due for work completed.</p>
+      <p><strong>Your work:</strong> When the final project payment is made, the agreed finished deliverables are yours. You retain your accounts, content, and photos. I keep my general tools and know-how and may show the work in my portfolio. Third-party themes, plugins, fonts, and software remain under their own licenses.</p>
+      <p><strong>Professional work and privacy:</strong> I’ll do the work professionally and correct included project work that doesn’t function as described at no charge for 30 days after handoff. We each keep the other’s non-public information private. Sales, rankings, traffic, and recommendations by AI tools are not guaranteed. Care response times are acknowledgment and next steps, not a guaranteed repair deadline; around-the-clock support and major new features are excluded.</p>
+      <p><strong>What signing here means:</strong> For Option 1 or 2, your signature accepts the selected project scope, fixed fee, payment schedule, responsibilities, and terms here, plus the selected care plan and three-month minimum if chosen. Care begins on the start date we agree. Option 3 records a request to scope the website and portal, not acceptance of a fixed $17,000 build or a care commitment.</p>
+      <p>Your typed name and consent form your electronic signature. An optional drawing is included in your downloadable copy. I’ll use the submitted details to manage this project; do not include customer information, passwords, or account credentials in your note.</p>
+    </div>
+  </div>
+</details>
 </div></section>
 <hr class="rule">
 <section id="questions"><div class="wrap">
@@ -703,9 +727,57 @@ html.is-opening{overflow:hidden}
 <section id="accept-section"><div class="wrap">
 <p class="eyebrow">Next step</p>
 <h2>Let’s choose what fits.</h2>
-<p>Review the options and send me any questions. Once the page and project allowances, terms, and submission destination are confirmed, I’ll make acceptance available. I’ll send the initial invoice the same day you sign.</p><p><a href="form.html" data-email data-email-subject="Mr Rebuild website proposal">Email me about the proposal</a></p><form id="reply" class="accept" aria-describedby="preview-note"><p id="preview-note"><strong>Preview only.</strong> Acceptance is disabled while the proposal details are being finalized.</p><fieldset class="preview-fields" disabled><legend>Acceptance preview</legend><label for="name">Your full name</label><input id="name" type="text" placeholder="Jordan" autocomplete="name"><label for="email">Your email</label><input id="email" type="email" autocomplete="email"><label for="option">Project option</label><select id="option"><option>Choose an option when the proposal is finalized</option><option>Option 1 · Refresh the current Wix site · $2,250</option><option>Option 2 · Custom WordPress website · $6,500 · Recommended</option><option>Option 3 · Custom website + client portal · From $17,000</option></select><label for="care">Ongoing care</label><select id="care"><option>Choose an optional care plan</option><option>Base Care · Wix · $175/month</option><option>Base Care · WordPress · $225/month</option><option>Growth Care · $425/month</option><option>Full Care · $1,100/month</option><option>No care plan for now</option></select><button class="go" id="accept-submit" type="button" disabled>Acceptance unavailable in preview</button></fieldset><p class="acceptance-help">This draft does not submit an acceptance or create a signed PDF.</p></form><p class="signature">Mariel</p>
+<p>Choose Option 1 or 2 and any ongoing care, then sign below to accept. I’ll send the initial invoice the same day. We’ll confirm the page and project list before kickoff. Option 3 starts with a signed request for a scoping conversation, not a fixed-price acceptance.</p>
+<p><a href="#proposal-details" data-open-details>Read Details: scope, payment, and terms</a> before signing, or <a href="form.html" data-email data-email-subject="Mr Rebuild website proposal">email me</a> with a question.</p>
+<form id="reply" class="accept" action="https://formspree.io/f/xjygqoja" method="POST" enctype="multipart/form-data">
+  <label for="name">Your full name (electronic signature)</label>
+  <input id="name" name="name" type="text" autocomplete="name" maxlength="150" required>
+  <label for="email">Your email</label>
+  <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+  <label for="signer-title">Your role at Mr Rebuild (optional)</label>
+  <input id="signer-title" name="title" type="text" autocomplete="organization-title" maxlength="150">
+  <label for="option">Choose your project</label>
+  <select id="option" name="option" required aria-describedby="selection-help">
+    <option value="">Choose one</option>
+    <option value="opt1">Option 1 · Refresh the current Wix site · $2,250</option>
+    <option value="opt2">Option 2 · Custom WordPress website · $6,500 · Recommended</option>
+    <option value="opt3">Option 3 · Custom website + client portal · From $17,000 · Scope first</option>
+  </select>
+  <label for="care">Optional ongoing care</label>
+  <select id="care" name="care" required>
+    <option value="">Choose one</option>
+    <option value="base">Base Care · Choose a project to see the platform rate</option>
+    <option value="growth">Growth Care · $425/month</option>
+    <option value="full">Full Care · $1,100/month</option>
+    <option value="none">No care plan for now</option>
+  </select>
+  <p id="selection-help" class="acceptance-help">Options 1 and 2 are project agreements with 50% upfront and 50% at handoff, due within 7 days. Optional care has a three-month minimum from the agreed start date. Option 3 requests scoping only; portal maintenance is quoted separately.</p>
+  <div id="acceptance-summary" class="acceptance-summary" aria-live="polite"></div>
+  <label for="questions-text">A note for me (optional)</label>
+  <textarea data-lenis-prevent id="questions-text" name="questions" rows="3" maxlength="2000"></textarea>
+  <details class="question signature-disclosure">
+    <summary>Add a handwritten signature <span class="question-icon" aria-hidden="true"></span></summary>
+    <p id="signature-help">Your typed name and consent are enough. If you’d like, draw your signature below with a mouse, finger, or stylus.</p>
+    <canvas id="signature-pad" width="1200" height="320" data-lenis-prevent aria-label="Optional signature drawing area" aria-describedby="signature-help"></canvas>
+    <button class="signature-clear" id="signature-clear" type="button">Clear signature</button>
+  </details>
+  <label class="acceptance-consent" for="accept-consent">
+    <input id="accept-consent" name="consent" type="checkbox" value="accepted" required>
+    <span id="consent-wording">I am authorized to sign for Mr Rebuild. For Option 1 or 2, I accept the selected project scope, fixed fee, 50% initial payment and 50% at handoff, invoices due within 7 days, and the responsibilities and terms in Details. If I select care, I accept its monthly rate and three-month minimum from our agreed start date, then month to month at the same rate with 30 days’ notice to end care after the minimum. For Option 3, I am requesting scoping only; a separate fixed quote and agreement are required before work or care begins. By clicking the signing button, I intend my full name and this submission to be my electronic signature and consent to keeping this record electronically.</span>
+  </label>
+  <p class="acceptance-help">After receipt is confirmed, you can download a signed PDF copy. The optional drawing stays in that download; your typed signature, consent, and selection are sent to Formspree.</p>
+  <button class="go" id="accept-submit" type="submit" disabled>Sign &amp; accept proposal</button>
+  <noscript><p>Please enable JavaScript to sign, or <a href="form.html" data-email>email me</a> for help.</p></noscript>
+  <p id="reply-status" role="status" aria-live="polite" tabindex="-1"></p>
+  <div id="acceptance-receipt" hidden>
+    <h3>Your signed copy</h3><p id="acceptance-reference"></p>
+    <div class="acceptance-downloads"><button class="go" id="download-acceptance-pdf" type="button" disabled>Download signed PDF</button></div>
+    <p id="acceptance-download-status" role="status" aria-live="polite"></p>
+  </div>
+</form>
+<p class="signature">Mariel</p>
 </div></section>
-</div></div></main><footer>Mariel Whitney · 17C Studio LLC · <a href="form.html" data-email>Let’s connect</a><br><small>Prepared for Jordan at Mr Rebuild. Local draft for review. This page asks search engines not to index it.</small></footer><script>
+</div></div></main><footer>Mariel Whitney · 17C Studio LLC · <a href="form.html" data-email>Let’s connect</a><br><small>Prepared for Jordan at Mr Rebuild. This page asks search engines not to index it.</small></footer><script>
 /* Follow the proposal section crossing the upper third of the viewport. */
 (function(){
   var links=Array.from(document.querySelectorAll('.service-index a'));
