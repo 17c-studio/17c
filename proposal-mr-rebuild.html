@@ -471,16 +471,18 @@ html.is-opening{overflow:hidden}
 #details .detail-group{padding-top:8px}
 #details .detail-group+.detail-group{border-top:1px solid var(--line);padding-top:28px}
 #details .detail-group>h3{margin:0 0 24px;font-size:32px}
-.care-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:28px 0}
-.care-card{min-width:0;padding:24px 20px;border:1px solid var(--line);background:var(--paper)}
+.care-grid{display:grid;grid-template-columns:1fr;gap:20px;margin:28px 0}
+.care-card{display:grid;grid-template-columns:minmax(180px,230px) minmax(0,1fr);gap:28px;min-width:0;padding:28px 24px;border:1px solid var(--line);background:var(--paper)}
+.care-summary,.care-description{min-width:0}
 .proposal-chapters .care-card h4{margin:0 0 20px;font:400 28px/1.2 var(--serif)}
-.care-price{display:flex;flex-direction:column;gap:8px;min-height:104px;margin-bottom:20px;font:400 34px/1.2 var(--serif)}
+.care-price{display:flex;flex-direction:column;gap:8px;margin:0;font:400 34px/1.2 var(--serif)}
 .care-price small{font:400 12px/1.6 var(--sans);color:var(--muted)}
 .care-price>span{display:block}
+.care-description{border-left:1px solid var(--line);padding-left:28px}
 .care-card p{font-size:14px;color:var(--muted)}
 .care-card p:last-child{margin-bottom:0}
-@media(max-width:760px){.care-grid{grid-template-columns:1fr}.care-price{min-height:0}}
-@media print{.care-grid{grid-template-columns:1fr}.care-card{break-inside:avoid}.care-price{min-height:0}}
+@media(max-width:760px){.care-card{grid-template-columns:1fr;gap:24px;padding:24px 20px}.care-description{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}}
+@media print{.care-card{grid-template-columns:1fr;break-inside:avoid}.care-description{border-left:0;border-top:1px solid var(--line);padding:20px 0 0}}
 /* Keep keyword emphasis within the sentence flow. */
 #investment .card li>strong:first-child{display:inline;margin-bottom:0}
 .proposal-details{margin:16px 0;font-size:14px}
@@ -492,7 +494,7 @@ html.is-opening{overflow:hidden}
 #questions .question-group>h3{margin:0 0 20px}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js" defer></script>
-<script src="proposal-mr-rebuild-acceptance.js?v=3" defer></script>
+<script src="proposal-mr-rebuild-acceptance.js?v=4" defer></script>
 </head><body>
 <div id="opening-screen" class="opening-screen" role="status" aria-label="Welcome to the Mr Rebuild proposal" hidden>
   <p class="opening-brand">Mr Rebuild</p>
@@ -629,25 +631,37 @@ html.is-opening{overflow:hidden}
     <p>Choose ongoing support for your site and, with Full Care, your Facebook presence. Care is separate from the project fee.</p>
     <div class="care-grid">
       <article class="care-card" aria-labelledby="base-care-title">
-        <h4 id="base-care-title">Base Care</h4>
-        <div class="care-price"><span>$175 <small>/ month · Wix</small></span><span>$225 <small>/ month · WordPress</small></span></div>
-        <p><strong>Wix:</strong> Monthly checks of key pages, links, the quote form, email delivery, and account access. Wix handles platform updates; I’ll investigate website issues and coordinate with Wix support when needed.</p>
+        <div class="care-summary">
+          <h4 id="base-care-title">Base Care</h4>
+          <div class="care-price"><span>$175 <small>/ month · Wix</small></span><span>$225 <small>/ month · WordPress</small></span></div>
+        </div>
+        <div class="care-description">
+          <p><strong>Wix:</strong> Monthly checks of key pages, links, the quote form, email delivery, and account access. Wix handles platform updates; I’ll investigate website issues and coordinate with Wix support when needed.</p>
         <p><strong>WordPress:</strong> Monthly WordPress, theme, and plugin updates, backups before updates, security checks, and tests of key pages and quote delivery.</p>
         <p><strong>If the site goes down:</strong> I’ll investigate, work with the host or platform, and help restore the site, using a backup where appropriate.</p>
+        </div>
       </article>
       <article class="care-card" aria-labelledby="growth-care-title">
-        <h4 id="growth-care-title">Growth Care</h4>
-        <div class="care-price"><span>$425 <small>/ month</small></span></div>
-        <p>Base Care, one planned improvement per month, and a one-page Google Analytics report.</p>
+        <div class="care-summary">
+          <h4 id="growth-care-title">Growth Care</h4>
+          <div class="care-price"><span>$425 <small>/ month</small></span></div>
+        </div>
+        <div class="care-description">
+          <p>Base Care, one planned improvement per month, and a one-page Google Analytics report.</p>
         <p>Each month, we’ll review the inquiries coming in with you: kitchens, bathrooms, other remodels, and roofing or exterior work. What we see, alongside website activity, will guide the month’s planned improvement to service pages, search wording, or quote-form questions.</p>
+        </div>
       </article>
       <article class="care-card" aria-labelledby="full-care-title">
-        <h4 id="full-care-title">Full Care</h4>
-        <div class="care-price"><span>$815 <small>/ month</small></span></div>
-        <p>Growth Care plus a Facebook content calendar, up to two posts per week, and a monthly Facebook report.</p>
+        <div class="care-summary">
+          <h4 id="full-care-title">Full Care</h4>
+          <div class="care-price"><span>$815 <small>/ month</small></span></div>
+        </div>
+        <div class="care-description">
+          <p>Growth Care plus a Facebook content calendar, up to two posts per week, and a monthly Facebook report.</p>
         <p><strong>Daily checks:</strong> Once each business day, I’ll check that the homepage loads and the quote form opens, and review available website security and error alerts.</p>
         <p>You approve Facebook content before publishing. <strong>Promotions require your written approval.</strong></p>
         <p>Facebook support can start during the build. We’ll agree on the Full Care start date and which website care tasks apply before launch.</p>
+        </div>
       </article>
     </div>
     <p><strong>Care terms:</strong> All plans have a three-month minimum and are billed monthly from the agreed start date. Hosting and software are charged at cost, with no markup, and approved with you first.</p>

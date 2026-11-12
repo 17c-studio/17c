@@ -158,7 +158,7 @@
     const careIds = selected.care.id === 'full' ? ['base-care-title','growth-care-title','full-care-title']
       : selected.care.id === 'growth' ? ['base-care-title','growth-care-title']
       : selected.care.id === 'base' ? ['base-care-title'] : [];
-    const careCards = careIds.map(id => byId(id).parentElement);
+    const careCards = careIds.map(id => byId(id).closest('.care-card'));
     const careCommon = Array.from(document.querySelector('.care-add-on').children).filter(node => node.tagName === 'P');
     if (selected.care.months) documentSnapshot.care_details =
       [...careCards, ...careCommon].map(node => clean(node.textContent)).join('\n\n');
