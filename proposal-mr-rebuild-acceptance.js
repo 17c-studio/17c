@@ -36,9 +36,9 @@
     return {
       option: option.selectedOptions[0].textContent, project_id: option.value,
       ...project, deposit: project.fee === null ? null : project.fee / 2,
-      agreement_type: option.value === 'opt3' ? 'Portal scoping request; separate fixed quote required' : 'Project and selected care agreement',
+      agreement_type: option.value === 'opt3' ? 'Scoping call request; no project or care acceptance' : 'Project and selected care agreement',
       care: { id: care.value, label, monthly, months: monthly ? 3 : 0, total: monthly * 3,
-        start_condition: 'Begins on the agreed start date, with a three-month minimum, then month to month at the selected rate and 30 days notice to end after the minimum.' }
+        start_condition: monthly ? 'Begins on the agreed start date, with a three-month minimum, then month to month at the selected rate and 30 days notice to end after the minimum.' : 'No care commitment.' }
     };
   }
   function updateSummary() {
@@ -46,7 +46,10 @@
     for (const item of care.options) {
       if (['base','growth','full'].includes(item.value)) item.disabled = portal;
       if (item.value === 'base') item.textContent = option.value === 'opt1'
-        ? 'Base Care · Wix · $175/month' : 'Base Care · WordPress · $225/month';
+        ? 'Base Care · Wix · $175/month' : option.value === 'opt2'
+          ? 'Base Care · WordPress · $225/month' : portal
+            ? 'Base Care · Portal maintenance quoted separately'
+            : 'Base Care · Choose a project to see the platform rate';
     }
     if (portal) care.value = 'none';
     const selected = selection();
@@ -59,7 +62,7 @@
           : 'No care plan selected.\n') +
         (selected.fee === null ? 'This signs a scoping request only. No fixed portal price or care commitment is accepted.' : 'Your signature accepts the selected project and care terms in Details. We’ll confirm page/project allowances and any care start date before kickoff. Payment is by invoice, not through this form.')
       : '';
-    if (!pending && !accepted) submit.textContent = portal ? 'Sign & request scoping' : 'Sign & accept proposal';
+    if (!pending && !accepted) submit.textContent = portal ? 'Request a scoping call' : 'Sign & accept proposal';
   }
   document.querySelectorAll('[data-open-details]').forEach(link => link.addEventListener('click', () => {
     byId('proposal-details').open = true;
@@ -146,7 +149,7 @@
     const scopeIds = option.value === 'opt3' ? ['opt2', 'opt3'] : [option.value];
     const scope = scopeIds.map(id => textOf(`#${id}`));
     const documentSnapshot = {
-      version: 'MRB-2026-11-11-agreement-v2', title: document.title,
+      version: 'MRB-2026-11-11-agreement-v3', title: document.title,
       selected_project: selected, included_options: scope,
       scope_and_exclusions: textOf('#scope'), 
       payment: textOf('#payment'), assumptions: textOf('#assumptions'), terms: textOf('#terms'),
@@ -215,8 +218,8 @@
     const disabled = controls.map(control => control.disabled);
     controls.forEach(control => { control.disabled = true; });
     form.setAttribute('aria-busy', 'true');
-    submit.textContent = 'Recording acceptance…';
-    status.textContent = 'Submitting your signed acceptance…';
+    submit.textContent = option.value === 'opt3' ? 'Sending scoping request…' : 'Recording acceptance…';
+    status.textContent = option.value === 'opt3' ? 'Sending your request for a scoping call…' : 'Submitting your signed acceptance…';
     let timeout, requestStarted = false;
     try {
       if (!window.jspdf?.jsPDF) throw new Error('The PDF tool hasn’t loaded. Please refresh this page and try again, or use the email link at the bottom of this proposal for help.');
@@ -271,7 +274,7 @@
       confirmedRecord = record;
       confirmedPDF = cachedPDF;
       status.textContent = record.selected.fee === null
-        ? 'Thank you. Your signed scoping request was received. I’ll get in touch to review the website and portal requirements before quoting the build.'
+        ? 'Thank you. Your scoping call request was received. I’ll get in touch to review the website and portal requirements before quoting the build. No project or care commitment has been made.'
         : 'Thank you. Your signed acceptance was received. I’ll send the initial invoice the same day and get in touch about kickoff.';
       status.dataset.state = 'success';
       byId('acceptance-reference').textContent = `Reference: ${record.acceptance_id}. Signed ${new Date(record.signed_at_browser_utc).toLocaleString()}.`;
@@ -289,7 +292,7 @@
       controls.forEach((control, index) => {
         if (!accepted) control.disabled = disabled[index];
       });
-      submit.textContent = accepted ? 'Signature recorded' : option.value === 'opt3' ? 'Sign & request scoping' : 'Sign & accept proposal';
+      submit.textContent = accepted ? 'Signature recorded' : option.value === 'opt3' ? 'Request a scoping call' : 'Sign & accept proposal';
       status.focus({ preventScroll: true });
     }
   });
