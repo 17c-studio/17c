@@ -365,9 +365,32 @@ html.is-opening{overflow:hidden}
 .agreement-details p,.agreement-details li{font-size:14px;line-height:1.8}
 #questions .question-group+.question-group{margin-top:48px}
 #questions .question-group>h3{margin:0 0 20px}
+
+/* The larger concept gets room for the story and two illustrative screens. */
+.portal-story,.portal-option{grid-column:1/-1}
+.portal-story{max-width:68ch;color:var(--muted)}
+.portal-story h3{margin-top:0}
+.portal-story p:last-child{margin-bottom:0}
+.portal-previews{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:28px 0}
+.portal-preview{margin:0;min-width:0;background:#f6f3ec;color:#24372f;border:1px solid #a5ada7}
+.preview-bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:16px;background:#24372f;color:#fff;font-size:10px;letter-spacing:.06em}
+.preview-body{padding:24px}
+.card .preview-kicker{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#4c6055;margin-bottom:12px}
+.portal-preview h4{margin:0 0 16px;font:400 28px/1.2 var(--serif);color:#24372f}
+.card .preview-status{font-size:12px;color:#435b4b}
+.preview-note{padding:18px;background:#fff;border:1px solid #c7cfc8;font-size:13px}
+.preview-note strong,.preview-next strong{color:#24372f}
+.card .preview-note p{font-size:13px;margin:10px 0 0}
+.preview-next{display:grid;gap:4px;margin-top:20px;padding-top:16px;border-top:1px solid #c7cfc8;font-size:13px}
+.preview-next span{font-size:11px;color:#4c6055}
+.card .preview-foot{font-size:12px;color:#4c6055;margin:20px 0 0}
+.portal-preview figcaption{padding:14px 24px;border-top:1px solid #c7cfc8;font-size:11px;color:#4c6055}
+@media(min-width:1280px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.portal-previews{grid-template-columns:1fr}.preview-body{padding:20px}}
+@media print{.portal-option{break-inside:auto}.portal-preview{break-inside:avoid}.portal-previews{grid-template-columns:1fr}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js" defer></script>
-<script src="proposals/mr-rebuild/acceptance.js?v=4" defer></script>
+<script src="proposals/mr-rebuild/acceptance.js?v=5" defer></script>
 </head><body>
 <div id="opening-screen" class="opening-screen" role="status" aria-label="Welcome to the Mr Rebuild proposal" hidden>
   <p class="opening-brand">Mr Rebuild</p>
@@ -409,7 +432,7 @@ html.is-opening{overflow:hidden}
   </header>
 
 <main id="main"><section id="top"><figure class="fig hero" aria-hidden="true"><img src="proposals/mr-rebuild/assets/cover.jpg" width="694" height="527" alt="" fetchpriority="high" decoding="async"></figure><div class="wrap"><p class="eyebrow">Mr Rebuild Website Proposal</p><h1><span class="hero-line">Show the work you’re proud of.</span></h1><p class="draft-label">Prepared for Jordan</p></div></section><section id="introduction" aria-label="A note for Jordan"><div class="intro-copy"><p class="lede">Hi Jordan,</p><p>Thanks for walking me through your website. It’s already bringing in quote requests. What stuck with me was how much it matters to you to do right by the people who trust you with their homes. I’d love for your website to show that through your work and your customers’ own words.</p>
-<p>As offered, I’ll make the Wix phone-field update before paid work begins at no charge. Once you or your site admin invites me to Wix, I’ll check the form, require a phone number if the setup allows it, and test that the inquiry and callback number arrive in the email itself.</p>
+<p>As offered, I’ll make the Wix phone-field update before paid work begins at no charge. Once you or your site admin invites me to Wix, I’ll add the required phone field and test that the inquiry and callback number arrive in the email itself. During that same visit, I’ll set up Google Analytics at no charge so we can start gathering a baseline now, whichever option you choose.</p>
 </div></section><div class="proposal-body">
   <nav class="service-index" aria-label="Proposal sections" data-lenis-prevent>
     <img class="index-logo" src="assets/optimized/17c-logo-112.png" width="40" height="50" alt="17C Studio">
@@ -424,7 +447,7 @@ html.is-opening{overflow:hidden}
 <section id="overview"><div class="wrap">
   <p class="eyebrow">Overview</p>
   <h2>Show the work. Make the next step clear.</h2>
-  <p>Once you choose a project and give me Wix access, I’ll set up tracking on the current site so we have a starting point to compare website activity after the changes. I’m aiming to have the site ready for the <strong>spring 2027 remodeling season</strong>; we’ll confirm the schedule once I have access and your approved materials.</p>
+  <p>I’ll set up Google Analytics during the complimentary Wix form fix, before you choose a project, so we have a starting point to compare website activity after the changes. I’m aiming to have the site ready for the <strong>spring 2027 remodeling season</strong>; we’ll confirm the schedule once I have access and your approved materials.</p>
   <p>I’ll lead with kitchens, bathrooms, and other remodels, while keeping roofing and siding on your service list. The quote form will ask what kind of project someone has in mind and send you their request and callback number in one email. That gives you what you need to call back without another message asking for a phone number. With Growth Care, we’ll review the inquiries coming in each month and adjust based on what we see.</p>
   <ul>
     <li>Show your custom remodeling and general contracting work through before-and-afters organized by project type, your updated logo, and real Google reviews.</li>
@@ -443,22 +466,21 @@ html.is-opening{overflow:hidden}
 <section id="investment"><div class="wide">
   <p class="eyebrow">Options</p>
   <h2>Choose the level that fits.</h2>
-  <p>Start with the Wix site you have, build the custom website you described, or bring your client process into it too. Each option includes Google Analytics so we can see how people use the site.</p>
+  <p>Start with the Wix site you have, build the custom website you described, or bring your client process into it too. The complimentary Analytics setup gives us a baseline now; each option carries that tracking forward so we can see what changes.</p>
   <p class="draft-label">We’ll confirm the page and project list and care start date together before kickoff. The portal option requires a separate fixed quote.</p>
   <div class="cards">
     <article class="card" id="opt1">
       <span class="tier">Option 1</span>
       <h3>Refresh the current Wix site</h3>
       <div class="price">$2,250</div>
-      <p class="when">Show more of your work within the Wix site you already have.</p>
+      <p class="when">Help homeowners see the remodels you do and send a complete inquiry, so you spend less time chasing missing details.</p>
       <h5>What’s included</h5>
       <ul>
-        <li>Clearer wording on the agreed <strong>Wix service pages and page titles</strong>, leading with kitchens, bathrooms, and other remodels while keeping roofing and siding visible on your service list, plus your approved new logo.</li>
-        <li>An agreed set of <strong>before-and-after projects</strong> with approved <strong>Google review excerpts</strong> alongside matching work where possible, plus a verified link to the full reviews.</li>
-        <li>A clearer quote path, with the <strong>form as the main action</strong> and calling as a secondary option. Ask for the project type and a short description, with the request and <strong>callback number together in one email</strong>.</li>
-        <li><strong>Google Analytics setup</strong>, with quote-form conversion tracking where supported, and improvements to agreed page titles and service wording.</li>
+        <li>Clearer <strong>Wix service pages and page titles</strong>, plus your new logo, so kitchens, bathrooms, and other remodels lead the story. Roofing and siding stay on your service list.</li>
+        <li><strong>Before-and-after projects and Google review excerpts</strong>, with a link to the full reviews, so homeowners can see the work and hear from people who have trusted you with their homes.</li>
+        <li>A clearer quote path, with the <strong>form as the main action</strong> and calling as a secondary option. The project type, description, and <strong>callback number arrive together in one email</strong>, so you can call back ready to talk about the job.</li>
+        <li><strong>Google Analytics and quote-form tracking</strong>, so we can see which services people explore and whether they take the next step toward an inquiry.</li>
       </ul>
-      <p class="draft-label"><strong>Scope to finalize:</strong> Name the existing pages to update and the number of featured projects before kickoff.</p>
       <p class="best"><strong>Best for:</strong> Practical improvements within the current Wix layout and its available features.</p>
     </article>
     <article class="card rec" id="opt2">
@@ -466,19 +488,23 @@ html.is-opening{overflow:hidden}
       <span class="tier">Option 2</span>
       <h3>Custom WordPress website</h3>
       <div class="price">$6,500</div>
-      <p class="when">A full redesign on self-hosted WordPress, with support available from me and access for quick edits whenever you or your mom want to make one.</p>
+      <p class="when">A custom website that shows what sets Mr Rebuild apart, so more of the homeowners looking for your kind of remodel can see why they should call you.</p>
       <h5>What’s included</h5>
       <ul>
-        <li>A custom design with your new logo, the <strong>full service list</strong>, and <strong>dedicated kitchen and bathroom remodeling pages</strong>. Page titles and search descriptions will lead with remodeling, while roofing and siding remain visible on your full service list.</li>
-        <li><strong>Kitchens / Bathrooms / Other Projects</strong> galleries, with approved <strong>Google review excerpts</strong> paired with matching projects where possible and a verified link to full reviews.</li>
-        <li><strong>Google Analytics</strong>, clearer page titles and service wording, quote-form conversion tracking where supported, and <strong>training for occasional text and photo edits</strong>.</li>
-        <li>The site also includes a <strong>“What makes us different” section</strong> and a <strong>team section</strong>. If you approve featuring Anytime Fitness and other impressive clients, I’ll include that project as an example of your work.</li>
-        <li>A <strong>quote form</strong> for the project type and a short description, with the request and callback number sent together in one email; a separate <strong>hiring inquiry form</strong>; and a <strong>customer review-request workflow</strong> to ask happy customers for reviews.</li>
+        <li>A custom design with your new logo, the <strong>full service list</strong>, and <strong>dedicated kitchen and bathroom remodeling pages</strong>. Page titles and search descriptions emphasize remodeling so people and search engines understand the work you want more of.</li>
+        <li><strong>Kitchens / Bathrooms / Other Projects</strong> galleries, with <strong>Google review excerpts</strong> and a link to full reviews, so customers can picture what you could do for their home.</li>
+        <li><strong>Google Analytics and quote-form tracking</strong>, so we can connect website activity to inquiries, plus <strong>training for text and photo edits</strong>, so you and your mom can keep the site current.</li>
+        <li>A <strong>“What makes us different” section</strong> that carries your commitment to honest advice, doing the job right, and doing right by the people who trust you with their homes. A <strong>team section</strong> puts faces to that promise, so homeowners know who they’re inviting in.</li>
+        <li>A <strong>quote form</strong> that sends the project details and callback number together, so you can follow up without chasing another message; a separate <strong>hiring inquiry form</strong>; and a <strong>customer review-request workflow</strong>, so more happy customers can help the next homeowner choose you.</li>
       </ul>
-      <p class="draft-label"><strong>Scope to finalize:</strong> Name the service pages, number of featured projects, and review-request workflow before kickoff.</p>
       <p class="best"><strong>Best for:</strong> The full website you described, with room to grow, ongoing care available from me, and quick edits still in your hands.</p>
     </article>
-    <article class="card" id="opt3">
+    <div class="portal-story">
+      <h3>How I got to the bigger picture.</h3>
+      <p>As we talked, I started imagining what a really robust custom website and a client management portal could do for you if they worked together. You love your business, care about your customers, and want to run it with integrity. I saw a way to carry that through the whole customer experience, from the first look at your work to knowing what happens next in their own home.</p>
+      <p>That’s why the options range from a $2,250 Wix refresh to a website and portal starting at $17,000. The portal is a big project, but I believe it has the potential for the highest long-term return: less time repeating updates and chasing details, and a level of care and clarity that helps you stand out from the next contractor down the street.</p>
+    </div>
+    <article class="card portal-option" id="opt3">
       <span class="tier">Option 3</span>
       <h3>Custom website + client portal</h3>
       <div class="price"><span style="font:500 14px/1.5 var(--sans);letter-spacing:0">From </span>$17,000</div>
@@ -490,18 +516,44 @@ html.is-opening{overflow:hidden}
         <li>The <strong>website features in Option 2</strong>, including project galleries, service pages, forms, Analytics, and training.</li>
         <li>A <strong>private client area</strong> for project updates, so customers have one place to see what’s happening.</li>
         <li><strong>Quotes and proposals</strong> connected to the client process, with <strong>email notifications</strong> to guide customers to the next step.</li>
-        <li>A workflow designed around how you manage jobs today, including <strong>review requests</strong> where useful.</li>
+        <li>A workflow designed around how you manage jobs today, including <strong>review requests</strong> after a completed job, so the care you put into each project can help bring in the next one.</li>
       </ul>
+      <div class="portal-previews" role="group" aria-label="Illustrative client portal screens">
+        <figure class="portal-preview">
+          <div class="preview-bar"><strong>MR REBUILD</strong><span>Client portal · Example</span></div>
+          <div class="preview-body">
+            <p class="preview-kicker">Your home. Your project.</p>
+            <h4>Kitchen remodel</h4>
+            <p class="preview-status">In progress · Cabinet installation</p>
+            <div class="preview-note"><strong>Your latest update</strong><p>The base cabinets are in. Next, we’ll fit the upper cabinets and confirm the countertop measurements with you.</p></div>
+            <div class="preview-next"><span>Up next</span><strong>Countertop measurements</strong></div>
+            <p class="preview-foot">One place to see the latest, without searching your texts.</p>
+          </div>
+          <figcaption>Example 1 · A clear update and the next step.</figcaption>
+        </figure>
+        <figure class="portal-preview">
+          <div class="preview-bar"><strong>MR REBUILD</strong><span>Client portal · Example</span></div>
+          <div class="preview-body">
+            <p class="preview-kicker">Clear before we begin.</p>
+            <h4>Your project proposal</h4>
+            <p class="preview-status">Kitchen remodel · Ready to review</p>
+            <div class="preview-note"><strong>What’s included</strong><p>Cabinet installation, countertops, backsplash, and finish details, with the scope and payment schedule together.</p></div>
+            <div class="preview-next"><span>Your next step</span><strong>Review your proposal</strong></div>
+            <p class="preview-foot">Know what’s included and what to expect before work starts.</p>
+          </div>
+          <figcaption>Example 2 · The proposal, with a clear next step.</figcaption>
+        </figure>
+      </div>
+      <p class="draft-label">These are illustrative screens with sample project details, not a finished portal. We’d work together to make the design and workflow exactly what you need.</p>
       <p class="draft-label"><strong>Starting estimate:</strong> We’ll review your current tools, client process, and portal requirements before agreeing on a fixed scope and price.</p>
       <p class="best"><strong>Best for:</strong> Bringing the website and your client process together, now or as a later phase.</p>
     </article>
   </div>
   <p><strong>Why I recommend Option 2:</strong> This is the site you described: projects people can browse by type, services that emphasize the remodels you want, and your own story. I can take day-to-day website upkeep off your plate through the care plan you choose. Your mom can still get in for a quick edit whenever she wants, and quote requests still come straight to your email.</p>
-  <p>The complimentary Wix phone-field update above is separate from all three project fees.</p>
-  <p>The range reflects how much we take on: updates to your current site, a full custom website, or a website that also supports your day-to-day client process.</p>
+  <p>The complimentary Wix phone-field update and initial Analytics setup are separate from all three project fees.</p>
   <aside class="panel care-add-on" aria-labelledby="care-plan">
-    <h3 class="subheading" id="care-plan">Optional add-on · Ongoing care</h3>
-    <p>Choose ongoing support for your site and, with Full Care, your Facebook presence. Care is separate from the project fee.</p>
+    <h3 class="subheading" id="care-plan">Ongoing care</h3>
+    <p>Your website is a living part of your business. Search changes, your services evolve, and the roofing calls coming in today may not be the remodeling calls you want tomorrow. Ongoing tuning helps the site keep up, show the work you want more of, and turn interest into useful inquiries. That’s what makes a website powerful: it can keep getting better as your business grows. Care is separate from the project fee.</p>
     <div class="care-grid">
       <article class="care-card" aria-labelledby="base-care-title">
         <div class="care-summary">
@@ -527,10 +579,11 @@ html.is-opening{overflow:hidden}
       <article class="care-card" aria-labelledby="full-care-title">
         <div class="care-summary">
           <h4 id="full-care-title">Full Care</h4>
-          <div class="care-price"><span>$815 <small>/ month</small></span></div>
+          <div class="care-price"><span>$850 <small>/ month</small></span></div>
         </div>
         <div class="care-description">
           <p>Growth Care plus a Facebook content calendar, up to two posts per week, and a monthly Facebook report.</p>
+        <p><a href="https://sproutsocial.com/insights/social-media-management-cost/">Social media management alone</a> can run $500–$1,000 a month, depending on scope. Full Care bundles Facebook support with website care and ongoing improvements for $850/month, with one person keeping it all connected.</p>
         <p><strong>Daily checks:</strong> Once each business day, I’ll check that the homepage loads and the quote form opens, and review available website security and error alerts.</p>
         <p>You approve Facebook content before publishing. <strong>Promotions require your written approval.</strong></p>
         <p>Facebook support can start during the build. We’ll agree on the Full Care start date and which website care tasks apply before launch.</p>
@@ -548,7 +601,7 @@ html.is-opening{overflow:hidden}
 <h2>A few things worth explaining.</h2>
 <div class="question-group" role="group" aria-labelledby="general-questions-title">
   <h3 class="subheading" id="general-questions-title">General questions</h3>
-<details class="question"><summary>Do I need to renew Wix?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Please confirm your renewal date and which subscriptions it covers. We’ll review the timing together before changing hosting or domain settings so the site and quote requests stay live.</p></div></details>
+<details class="question"><summary>Do I need to renew Wix?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I recommend holding off on a long Wix renewal while we decide on the website. If you’re not already month to month, we’ll check whether <a href="https://support.wix.com/en/article/changing-your-premium-plan-4954690">Wix offers a monthly plan</a> for your setup and move to that at renewal, even if the monthly price is a little higher. That keeps you flexible if we move to WordPress. Send me the renewal date and subscriptions so I can check the timing and keep your site and quote requests live. Your domain renewal is separate; we’ll keep that active.</p></div></details>
 <details class="question"><summary>Can I keep getting quote requests by email?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. Every option preserves email quote requests. I’ll test that the inquiry and callback number arrive in the email itself, without needing to log into Wix or WordPress. The complimentary Wix phone-field update above is separate from the paid work.</p></div></details>
 <details class="question"><summary>Can you handle the website while my mom still has access?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. I can take the day-to-day website work off your plate through the care plan you choose. Your mom can still sign in and make a quick text or photo edit whenever she wants. The Wix refresh keeps the current editor, and the WordPress option includes training for those occasional edits. Your domain, hosting, and accounts stay in your name.</p></div></details>
 <details class="question"><summary>Would a client portal help my business?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>A client portal is a private part of your website where customers can view their quotes, proposals, and project updates in one place. It could save you from repeating updates across email and text. How do you manage those things today? If you already use a tool, we’ll look at what it does well and where it falls short before deciding what a portal should do. The starting estimate becomes a fixed quote only after that scope is agreed.</p></div></details>
@@ -556,7 +609,7 @@ html.is-opening{overflow:hidden}
 <div class="question-group" role="group" aria-labelledby="technical-questions-title">
   <h3 class="subheading" id="technical-questions-title">Technical questions</h3>
 <details class="question"><summary>What is WordPress, and why would I use it?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>WordPress is software for building and updating a website. In Option 2, I’ll use it to create your custom site, with galleries and service pages organized around your business. I can handle ongoing upkeep through your chosen care plan, while you and your mom keep access for occasional text and photo edits after training. “Self-hosted” means it runs with a hosting provider in an account you own. If you prefer to keep Wix, Option 1 works with the site you have.</p></div></details>
-<details class="question"><summary>What is Google Analytics, and what will it tell me?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Google Analytics helps show how people find and use your website, including which pages they visit. It can help us see whether people are looking at kitchens, bathrooms, or other services, so we have something to work from when improving the site. It’s included in every project option. We’ll review it alongside your actual inquiries; website visits alone don’t tell us which jobs you win.</p></div></details>
+<details class="question"><summary>What is Google Analytics, and what will it tell me?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Google Analytics helps show how people find and use your website, including which pages they visit. It can help us see whether people are looking at kitchens, bathrooms, or other services, so we have something to work from when improving the site. I’ll set it up at no charge during the complimentary Wix form fix, before you choose a project, so we start with a real baseline. Each project option carries that tracking forward. We’ll review it alongside your actual inquiries; website visits alone don’t tell us which jobs you win.</p></div></details>
 <details class="question"><summary>What are search basics or SEO?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>SEO means search engine optimization: making your website easier for search engines such as Google to understand. I’ll clarify service wording, page titles, and page organization so your kitchen and bathroom remodeling work is described clearly. That helps connect the site to the services people are looking for. Search positions and inquiry numbers can change, so we’ll monitor them rather than promise a particular ranking.</p></div></details>
 <details class="question"><summary>What is quote-form conversion tracking?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>It means measuring whether a visit leads to a completed quote request, where the form supports that tracking. A click on a quote button and a submitted inquiry are different steps. This helps us see where people may be stopping and what to improve. You’ll still receive the inquiry and callback number by email.</p></div></details>
 <details class="question"><summary>What are a domain and hosting, and why do I need them?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Your domain is your website address, such as mrrebuild.com. Hosting is the service that keeps the website available online. Wix brings the website tools and hosting together; a self-hosted WordPress site uses a separate hosting provider. We’ll review your existing domain and subscriptions before changing anything. The accounts stay in your name, and hosting and software are charged at cost with your approval.</p></div></details>
@@ -587,7 +640,7 @@ html.is-opening{overflow:hidden}
     <option value="">Choose one</option>
     <option value="base">Base Care · Choose a project to see the platform rate</option>
     <option value="growth">Growth Care · $425/month</option>
-    <option value="full">Full Care · $815/month</option>
+    <option value="full">Full Care · $850/month</option>
     <option value="none">No care plan for now</option>
   </select>
   <p id="selection-help" class="acceptance-help">Options 1 and 2 are project agreements with 50% upfront and 50% at handoff, due within 7 days. Optional care has a three-month minimum from the agreed start date. Option 3 requests scoping only; portal maintenance is quoted separately.</p>
@@ -620,19 +673,19 @@ html.is-opening{overflow:hidden}
   <summary>Details: scope, payment, and terms <span class="question-icon" aria-hidden="true"></span></summary>
   <div class="question-answer agreement-details">
     <div id="scope"><h3>Project scope</h3>
-      <p><strong>Tracking and timing:</strong> Once you choose a project and provide Wix access, I’ll set up tracking on the current site to establish a baseline for comparing activity after the updates or new website. We’re aiming for the spring 2027 remodeling season, with the schedule confirmed once access and approved materials are ready. For Option 3, the portal scope and schedule are agreed separately.</p>
-      <p><strong>Option 1 · $2,250:</strong> Refresh the existing Wix site with the service wording, projects, review excerpts, quote path, and Analytics listed above. The complimentary Wix phone-field update remains separate and is not charged in this fee.</p>
+      <p><strong>Tracking and timing:</strong> With Wix and Google Analytics access, I’ll set up Analytics during the complimentary phone-field fix, before project acceptance, at no charge. That establishes a baseline for comparing activity after the updates or new website, whichever option you choose. Quote-form submission tracking depends on the form’s available integration; I’ll verify that setup and distinguish completed submissions from button clicks. We’re aiming for the spring 2027 remodeling season, with the schedule confirmed once access and approved materials are ready. For Option 3, the portal scope and schedule are agreed separately.</p>
+      <p><strong>Option 1 · $2,250:</strong> Refresh the existing Wix site with the service wording, projects, review excerpts, quote path, and Analytics listed above. The complimentary Wix phone-field update and initial Analytics setup remain separate and are not charged in this fee.</p>
       <p><strong>Option 2 · $6,500:</strong> A custom self-hosted WordPress website with the service pages, galleries, review content, business and team sections, quote form with email notifications, hiring inquiry form, customer review-request workflow, Analytics, and occasional-edit training listed above. The final page list, featured-project count, forms, and review-request workflow will be confirmed in writing before work starts; additions beyond the selected scope need a separate quote and approval.</p>
       <p><strong>Option 3 · From $17,000:</strong> The custom website plus a proposed private client area for updates, quotes, proposals, and review requests. This is a starting estimate. Selecting it requests a scoping conversation; it does not accept a fixed portal price or authorize an undefined build.</p>
       <p>The selected option covers the work listed in its card and two rounds of consolidated feedback. We’ll confirm the exact page list and featured-project count before kickoff. Extra pages, features, projects, and work outside that agreed list need a separate written quote and your approval. Analytics shows site activity; search rankings, lead volume, and placement in AI search are outcomes to monitor, not guarantees.</p>
     </div>
     <div id="payment"><h3>Payment</h3>
       <p>For Option 1 ($2,250), I’ll invoice $1,125 when you accept and $1,125 at handoff. For Option 2 ($6,500), I’ll invoice $3,250 when you accept and $3,250 at handoff. I’ll send the initial invoice the same day you sign. Both invoices are due within 7 days of issue. Work starts after the initial payment, required access, and approved materials are ready. Option 3 is a scoping request only; its fixed quote and payment schedule require a separate written agreement.</p>
-      <p>Optional care is billed monthly from the agreed start date, with a <strong>three-month minimum</strong>: Base Care is $175/month for Wix ($525 minimum) or $225/month for WordPress ($675 minimum); Growth Care is $425/month ($1,275 minimum); Full Care is $815/month ($2,445 minimum). Hosting and software pass through at cost, without markup, with your approval. Portal maintenance is scoped separately.</p>
+      <p>Optional care is billed monthly from the agreed start date, with a <strong>three-month minimum</strong>: Base Care is $175/month for Wix ($525 minimum) or $225/month for WordPress ($675 minimum); Growth Care is $425/month ($1,275 minimum); Full Care is $850/month ($2,550 minimum). Hosting and software pass through at cost, without markup, with your approval. Portal maintenance is scoped separately.</p>
       <p>Facebook work may start during the build on an agreed Full Care start date. We’ll confirm which website tasks apply before launch. After the three-month minimum, care continues month to month at the selected rate; either of us can end care with 30 days’ notice after that minimum. Monthly billing does not remove the three-month commitment.</p>
     </div>
 <div id="assumptions"><h3>Access and materials</h3><div class="detail-content">
-<ul><li>Wix collaborator access from you or your site admin.</li><li>Confirmation of the Wix renewal date, subscriptions, and domain setup. Hosting and software are charged at cost, with no markup; we’ll agree on provider costs before changes.</li><li>Your approved new logo, before-and-after project photos, service list, review excerpts, and a verified link to your full Google reviews.</li><li>Your approval before any platform move or hosting and domain changes.</li></ul>
+<ul><li>Wix collaborator access from you or your site admin, plus access to a Google Analytics property in an account you own. I’ll confirm that the Wix plan supports the integration and coordinate any consent settings before enabling tracking. Any plan change or extra cost needs your approval.</li><li>Confirmation of the Wix renewal date, subscriptions, and domain setup. Hosting and software are charged at cost, with no markup; we’ll agree on provider costs before changes.</li><li>Your approved new logo, before-and-after project photos, service list, review excerpts, and a verified link to your full Google reviews. We’ll pair reviews with relevant projects where the available material supports it and confirm permission before featuring named clients such as Anytime Fitness.</li><li>Your approval before any platform move or hosting and domain changes.</li></ul>
 </div></div>
     <div id="terms"><h3>Terms and ownership</h3>
       <p>You keep ownership of your domain, hosting, and connected accounts. Your mom can retain access for occasional edits. I’ll work through collaborator access and the selected care arrangement.</p>

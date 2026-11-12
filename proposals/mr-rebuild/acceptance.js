@@ -31,7 +31,7 @@
     // Portal care requires its own scope; do not silently apply website-only rates.
     if (option.value === 'opt3' && care.value !== 'none') return null;
     const monthly = care.value === 'base' ? (option.value === 'opt1' ? 175 : 225)
-      : care.value === 'growth' ? 425 : care.value === 'full' ? 815 : 0;
+      : care.value === 'growth' ? 425 : care.value === 'full' ? 850 : 0;
     const label = {base:'Base Care',growth:'Growth Care',full:'Full Care',none:'No care plan for now'}[care.value];
     return {
       option: option.selectedOptions[0].textContent, project_id: option.value,
