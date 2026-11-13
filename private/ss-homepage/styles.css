@@ -274,6 +274,7 @@ img{display:block;width:100%;height:auto}
   .ss-hero-description{font-size:14px}
   .ss-hero-actions{flex-direction:column;align-items:stretch;gap:12px;margin-top:20px}
   .ss-hero-actions a{flex:1 1 auto;padding-inline:12px}
+  .ss-primary-link{justify-content:center;text-align:center}
   .ss-hero-paths{grid-template-columns:1fr;grid-template-rows:auto;gap:12px}
   .ss-hero-card{min-height:280px}
   .ss-hero-card-copy{padding:16px 12px}
