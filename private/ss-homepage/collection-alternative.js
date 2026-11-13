@@ -6,6 +6,14 @@
   const panels = [...section.querySelectorAll('[data-ss-alt-panel]')];
   const viewAll = section.querySelector('[data-ss-alt-view-all]');
   const status = section.querySelector('[data-ss-alt-status]');
+  const categoryNav = section.querySelector('[data-ss-alt-tabs]');
+  const mobileLayout = window.matchMedia('(max-width: 700px)');
+  const positionViewAll = () => {
+    if (mobileLayout.matches) status.before(viewAll);
+    else categoryNav.append(viewAll);
+  };
+  mobileLayout.addEventListener('change', positionViewAll);
+  positionViewAll();
   const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
   const imageURL = source => {
     const url = new URL(source, 'https://springsweet.com');
