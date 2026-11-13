@@ -381,7 +381,7 @@ img{display:block;width:100%;height:auto}
  .ss-alternative-add,.ss-alternative-fallback{font-size:10px;letter-spacing:.07em}
 }
 @media(max-width:700px),(hover:none){
- .ss-alternative-card{display:grid;grid-template-columns:minmax(0,1fr);align-content:start}
+ .ss-alternative-card{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-content:start}
  .ss-alternative-media{display:contents}
  .ss-alternative-image-frame{grid-column:1/-1;grid-row:1;overflow:hidden}
  .ss-alternative-product-copy{grid-column:1;grid-row:2}
@@ -391,13 +391,11 @@ img{display:block;width:100%;height:auto}
  .ss-alternative-image-controls button{width:44px;height:44px;background:radial-gradient(circle,#FBF8F5e8 13px,transparent 14px)}
  .ss-alternative-image-controls svg{width:16px;height:16px}
  .ss-alternative-quick-add [data-ss-alt-form]{display:contents}
- .ss-alternative-toggle{display:flex;grid-column:1;grid-row:3;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:44px;padding:8px 0;border:0;border-bottom:1px solid var(--line);background:transparent;font-size:24px;line-height:1}
- .ss-alternative-toggle>span[aria-hidden]{order:2}
- .ss-alternative-toggle-label{font-size:12px;line-height:1.5}
+ .ss-alternative-toggle{display:flex;grid-column:2;grid-row:2;align-items:center;justify-content:center;align-self:start;width:44px;min-height:44px;padding:0;border:0;background:transparent;font-size:24px;line-height:1}
  .ss-alternative-toggle:hover{background:var(--cream)}
- .ss-alternative-options{grid-column:1/-1;grid-row:4}
- .ss-alternative-quick-add .ss-alternative-add{display:none;grid-column:1/-1;grid-row:5}
- .ss-alternative-quick-add .ss-alternative-fallback{grid-column:1;grid-row:3;align-self:start;justify-content:space-between;min-height:44px;font-size:12px;letter-spacing:0;text-transform:none;border-bottom:1px solid var(--line)}
+ .ss-alternative-options{grid-column:1/-1;grid-row:3}
+ .ss-alternative-quick-add .ss-alternative-add{display:none;grid-column:1/-1;grid-row:4}
+ .ss-alternative-quick-add .ss-alternative-fallback{grid-column:2;grid-row:2;align-self:start;min-height:44px;font-size:0;letter-spacing:0;border:0}
  .ss-alternative-fallback>span{display:none}
  .ss-alternative-fallback::after{content:"+";font-size:24px;line-height:1}
  .ss-alternative-quick-add .is-open .ss-alternative-options{grid-template-rows:1fr;opacity:1;visibility:visible;transform:none;transition-delay:0s}
