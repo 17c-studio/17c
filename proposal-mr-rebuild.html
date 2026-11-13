@@ -366,28 +366,38 @@ html.is-opening{overflow:hidden}
 #questions .question-group+.question-group{margin-top:48px}
 #questions .question-group>h3{margin:0 0 20px}
 
-/* The larger concept gets room for the story and two illustrative screens. */
+/* Show the business workflow in Jordan’s brand, within the proposal. */
 .portal-story,.portal-option{grid-column:1/-1}
 .portal-story{max-width:68ch;color:var(--muted)}
 .portal-story h3{margin-top:0}
 .portal-story p:last-child{margin-bottom:0}
-.portal-previews{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:28px 0}
-.portal-preview{margin:0;min-width:0;background:#f6f3ec;color:#24372f;border:1px solid #a5ada7}
-.preview-bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:16px;background:#24372f;color:#fff;font-size:10px;letter-spacing:.06em}
-.preview-body{padding:24px}
-.card .preview-kicker{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#4c6055;margin-bottom:12px}
-.portal-preview h4{margin:0 0 16px;font:400 28px/1.2 var(--serif);color:#24372f}
-.card .preview-status{font-size:12px;color:#435b4b}
-.preview-note{padding:18px;background:#fff;border:1px solid #c7cfc8;font-size:13px}
-.preview-note strong,.preview-next strong{color:#24372f}
-.card .preview-note p{font-size:13px;margin:10px 0 0}
-.preview-next{display:grid;gap:4px;margin-top:20px;padding-top:16px;border-top:1px solid #c7cfc8;font-size:13px}
-.preview-next span{font-size:11px;color:#4c6055}
-.card .preview-foot{font-size:12px;color:#4c6055;margin:20px 0 0}
-.portal-preview figcaption{padding:14px 24px;border-top:1px solid #c7cfc8;font-size:11px;color:#4c6055}
+.portal-previews{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:28px 0;align-items:start}
+.portal-preview{margin:0;min-width:0;background:#e9e6e1;color:#151515;border:1px solid #77716a}
+.portal-preview-dashboard{grid-column:1/-1}
+.portal-preview a{display:block;color:inherit}
+.portal-preview img{display:block;width:100%;height:auto}
+.portal-preview figcaption{padding:20px 24px;font-size:13px;line-height:1.65}
+.portal-preview figcaption strong{display:block;color:#151515;font-size:16px;margin-bottom:6px}
+.portal-preview figcaption span{display:block;margin-top:10px;font-size:11px;text-decoration:underline;text-underline-offset:3px}
 @media(min-width:1280px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.portal-previews{grid-template-columns:1fr}.preview-body{padding:20px}}
-@media print{.portal-option{break-inside:auto}.portal-preview{break-inside:avoid}.portal-previews{grid-template-columns:1fr}}
+@media(max-width:760px){.portal-previews{grid-template-columns:1fr}.portal-preview figcaption{padding:18px 20px}}
+@media print{.portal-option{break-inside:auto}.portal-preview{break-inside:avoid}.portal-previews{grid-template-columns:1fr}.portal-preview-dashboard{grid-column:auto}}
+
+/* Full-screen mockup viewer keeps navigation and close controls in reach. */
+.portal-viewer{position:fixed;inset:0;width:100%;max-width:none;height:100%;height:100dvh;max-height:none;margin:0;padding:0;border:0;background:#111;color:#fff;overflow:hidden}
+.portal-viewer::backdrop{background:rgb(0 0 0 / 85%)}
+.portal-viewer[open]{display:grid;grid-template-rows:72px minmax(0,1fr)}
+.portal-viewer-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;border-bottom:1px solid #555}
+.portal-viewer-title{margin:0;font:500 14px/1.4 var(--sans)}
+.portal-viewer button{display:grid;place-items:center;flex-shrink:0;width:48px;height:48px;padding:0;border:1px solid #777;background:#171614;color:#fff;font:400 32px/1 var(--sans);cursor:pointer}
+.portal-viewer button:hover{background:#38332d}
+.portal-viewer-stage{min-height:0;overflow:auto;overscroll-behavior:contain;padding:20px 76px}
+.portal-viewer-stage img{display:block;width:auto;max-width:100%;height:auto;max-height:100%;margin:0 auto;object-fit:contain}
+.portal-viewer-prev,.portal-viewer-next{position:absolute;top:50%;transform:translateY(-50%)}
+.portal-viewer-prev{left:12px}.portal-viewer-next{right:12px}
+html.portal-viewer-open{overflow:hidden}
+@media(max-width:600px){.portal-viewer-header{padding-inline:12px}.portal-viewer-stage{padding:12px 56px}.portal-viewer-prev{left:4px}.portal-viewer-next{right:4px}}
+@media print{.portal-viewer[open]{display:none}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js" defer></script>
 <script src="proposals/mr-rebuild/acceptance.js?v=5" defer></script>
@@ -500,53 +510,42 @@ html.is-opening{overflow:hidden}
       <p class="best"><strong>Best for:</strong> The full website you described, with room to grow, ongoing care available from me, and quick edits still in your hands.</p>
     </article>
     <div class="portal-story">
-      <h3>How I got to the bigger picture.</h3>
-      <p>As we talked, I started imagining what a really robust custom website and a client management portal could do for you if they worked together. You love your business, care about your customers, and want to run it with integrity. I saw a way to carry that through the whole customer experience, from the first look at your work to knowing what happens next in their own home.</p>
-      <p>That’s why the options range from a $2,250 Wix refresh to a website and portal starting at $17,000. The portal is a big project, but I believe it has the potential for the highest long-term return: less time repeating updates and chasing details, and a level of care and clarity that helps you stand out from the next contractor down the street.</p>
+      <h3>I kept thinking about your day on the job.</h3>
+      <p>After we talked, I kept picturing what this could do for you between the actual building: checking the week ahead, following up on a quote, answering a homeowner, and finding the detail you know is somewhere in your texts. You care about doing the work well and keeping your word. I’d love to build something that makes all the work around that easier, too.</p>
+      <p>That’s where this bigger option came from. A website can bring in the next job. A portal could help you run the jobs you already have: an update posted from the site in under a minute, a question answered once and saved, and one place to see what needs you next. I’ve started imagining how that could fit your day. Here’s what I mean.</p>
     </div>
     <article class="card portal-option" id="opt3">
       <span class="tier">Option 3</span>
-      <h3>Custom website + client portal</h3>
+      <h3>Custom website + your job desk</h3>
       <div class="price"><span style="font:500 14px/1.5 var(--sans);letter-spacing:0">From </span>$17,000</div>
-      <p class="when">The custom website plus a place to keep <strong>client updates, quotes, and proposals</strong> together.</p>
-      <h5>What this could look like</h5>
-      <p>A homeowner opens your quote through a link in an email. They return to that same private space to review the proposal and, once the job begins, check the latest project updates. You post an update in one place, and they know where to look for what’s happening next. That could mean less time piecing together email and text threads, and fewer calls asking for an update.</p>
+      <p class="when">A website that brings in the work, plus a portal that <strong>helps you run it</strong>. Your week, active jobs, quotes, and questions together, with less chasing and repeating yourself.</p>
+      <h5>Picture a day with this</h5>
+      <p>You open your dashboard and see today’s jobs, three quotes waiting on a yes, and one homeowner question. At the job site, you check off what got done, add a couple of photos and one line, then post. The homeowner gets a text and can see the update and what’s next. Answer their question once and it stays on the job alongside the quote, changes, and approvals. When a job wraps up, one tap sends a thank-you with your Google review link.</p>
       <h5>What we’d plan together</h5>
       <ul>
         <li>The <strong>website features in Option 2</strong>, including project galleries, service pages, forms, Analytics, and training.</li>
-        <li>A <strong>private client area</strong> for project updates, so customers have one place to see what’s happening.</li>
-        <li><strong>Quotes and proposals</strong> connected to the client process, with <strong>email notifications</strong> to guide customers to the next step.</li>
-        <li>A workflow designed around how you manage jobs today, including <strong>review requests</strong> after a completed job, so the care you put into each project can help bring in the next one.</li>
+        <li><strong>Your dashboard:</strong> the week at a glance, jobs in progress, quotes waiting on a decision, questions that need an answer, and completed jobs ready for a review request.</li>
+        <li><strong>Updates from the job site in under a minute:</strong> check off tasks, add photos, write a line, and post, with a text notification to the homeowner. That’s the workflow I’d design toward with you.</li>
+        <li><strong>One record for each job:</strong> questions answered once and saved with quotes, proposals, changes, and approvals, so you can find the detail without digging through texts.</li>
+        <li><strong>The homeowner’s view:</strong> progress, the latest update, what’s next, questions, and documents. They know where things stand, which means fewer calls for you to catch up on.</li>
       </ul>
-      <div class="portal-previews" role="group" aria-label="Illustrative client portal screens">
-        <figure class="portal-preview">
-          <div class="preview-bar"><strong>MR REBUILD</strong><span>Client portal · Example</span></div>
-          <div class="preview-body">
-            <p class="preview-kicker">Your home. Your project.</p>
-            <h4>Kitchen remodel</h4>
-            <p class="preview-status">In progress · Cabinet installation</p>
-            <div class="preview-note"><strong>Your latest update</strong><p>The base cabinets are in. Next, we’ll fit the upper cabinets and confirm the countertop measurements with you.</p></div>
-            <div class="preview-next"><span>Up next</span><strong>Countertop measurements</strong></div>
-            <p class="preview-foot">One place to see the latest, without searching your texts.</p>
-          </div>
-          <figcaption>Example 1 · A clear update and the next step.</figcaption>
+      <div class="portal-previews" role="group" aria-label="Illustrative job desk, job-site update, and homeowner screens">
+        <figure class="portal-preview portal-preview-dashboard">
+          <figcaption><strong>1. Your morning, in one place.</strong>Your week, jobs in progress, quotes waiting on a yes, the question to answer, and a review request ready to send.<span>Open the dashboard mockup</span></figcaption>
+          <a href="proposals/mr-rebuild/assets/portal-dashboard.png" aria-label="Open Jordan’s dashboard mockup"><img src="proposals/mr-rebuild/assets/portal-dashboard.png" width="2560" height="2452" loading="lazy" alt="Sample Mr ReBuild job desk for Jordan: weekly schedule, three active jobs, one question, three quotes waiting, and a review request."></a>
         </figure>
         <figure class="portal-preview">
-          <div class="preview-bar"><strong>MR REBUILD</strong><span>Client portal · Example</span></div>
-          <div class="preview-body">
-            <p class="preview-kicker">Clear before we begin.</p>
-            <h4>Your project proposal</h4>
-            <p class="preview-status">Kitchen remodel · Ready to review</p>
-            <div class="preview-note"><strong>What’s included</strong><p>Cabinet installation, countertops, backsplash, and finish details, with the scope and payment schedule together.</p></div>
-            <div class="preview-next"><span>Your next step</span><strong>Review your proposal</strong></div>
-            <p class="preview-foot">Know what’s included and what to expect before work starts.</p>
-          </div>
-          <figcaption>Example 2 · The proposal, with a clear next step.</figcaption>
+          <figcaption><strong>2. Done before you leave the site.</strong>Check off the work, add photos and a line, then post. The update is saved to the job and the homeowner gets a text.<span>Open the job-site mockup</span></figcaption>
+          <a href="proposals/mr-rebuild/assets/portal-on-site.png" aria-label="Open the job-site update mockup"><img src="proposals/mr-rebuild/assets/portal-on-site.png" width="780" height="1688" loading="lazy" alt="Sample mobile update for the Van Dyke kitchen: two completed tasks, job photos, a one-line update, homeowner text notification, and Post update action."></a>
+        </figure>
+        <figure class="portal-preview">
+          <figcaption><strong>3. They know what’s next.</strong>The homeowner sees progress, your latest update, the next visit, their questions, and documents together. Less for you to repeat.<span>Open the homeowner mockup</span></figcaption>
+          <a href="proposals/mr-rebuild/assets/portal-homeowner.png" aria-label="Open the homeowner project mockup"><img src="proposals/mr-rebuild/assets/portal-homeowner.png" width="780" height="1688" loading="lazy" alt="Sample homeowner kitchen page with cabinet-stage progress, Jordan’s latest update, the next countertop visit, saved questions, and proposal, change, and payment documents."></a>
         </figure>
       </div>
-      <p class="draft-label">These are illustrative screens with sample project details, not a finished portal. We’d work together to make the design and workflow exactly what you need.</p>
-      <p class="draft-label"><strong>Starting estimate:</strong> We’ll review your current tools, client process, and portal requirements before agreeing on a fixed scope and price.</p>
-      <p class="best"><strong>Best for:</strong> Bringing the website and your client process together, now or as a later phase.</p>
+      <p class="draft-label">These mockups use sample jobs to show what we could build together. We’d shape the screens and workflow around the way you actually work.</p>
+      <p class="draft-label"><strong>Starting estimate:</strong> We’ll review your current tools, how you manage jobs, and the features and notifications you need before agreeing on a fixed scope and price.</p>
+      <p class="best"><strong>Best for:</strong> Making the business easier to run as it grows, with fewer repeated updates and the next step clear for you and your customers. We can plan it now or as a later phase.</p>
     </article>
   </div>
   <p><strong>Why I recommend Option 2:</strong> This is the site you described: projects people can browse by type, services that emphasize the remodels you want, and your own story. I can take day-to-day website upkeep off your plate through the care plan you choose. Your mom can still get in for a quick edit whenever she wants, and quote requests still come straight to your email.</p>
@@ -604,7 +603,7 @@ html.is-opening{overflow:hidden}
 <details class="question"><summary>Do I need to renew Wix?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I recommend holding off on a long Wix renewal while we decide on the website. If you’re not already month to month, we’ll check whether <a href="https://support.wix.com/en/article/changing-your-premium-plan-4954690">Wix offers a monthly plan</a> for your setup and move to that at renewal, even if the monthly price is a little higher. That keeps you flexible if we move to WordPress. Send me the renewal date and subscriptions so I can check the timing and keep your site and quote requests live. Your domain renewal is separate; we’ll keep that active.</p></div></details>
 <details class="question"><summary>Can I keep getting quote requests by email?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. Every option preserves email quote requests. I’ll test that the inquiry and callback number arrive in the email itself, without needing to log into Wix or WordPress. The complimentary Wix phone-field update above is separate from the paid work.</p></div></details>
 <details class="question"><summary>Can you handle the website while my mom still has access?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. I can take the day-to-day website work off your plate through the care plan you choose. Your mom can still sign in and make a quick text or photo edit whenever she wants. The Wix refresh keeps the current editor, and the WordPress option includes training for those occasional edits. Your domain, hosting, and accounts stay in your name.</p></div></details>
-<details class="question"><summary>Would a client portal help my business?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>A client portal is a private part of your website where customers can view their quotes, proposals, and project updates in one place. It could save you from repeating updates across email and text. How do you manage those things today? If you already use a tool, we’ll look at what it does well and where it falls short before deciding what a portal should do. The starting estimate becomes a fixed quote only after that scope is agreed.</p></div></details>
+<details class="question"><summary>Would a client portal help my business?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>It’s the part of your website that runs the job with you. You post an update from the job site in under a minute, answer each question once, and every quote, change and approval is saved on the job. Your customers always know what’s next, so the phone rings less and you spend more time building and less time repeating yourself. If you already use a tool for this, we’ll look at what it does well before deciding what yours should do.</p><p>That’s the workflow we’d plan toward together. The starting estimate becomes a fixed quote once we’ve agreed on the features and scope.</p></div></details>
 </div>
 <div class="question-group" role="group" aria-labelledby="technical-questions-title">
   <h3 class="subheading" id="technical-questions-title">Technical questions</h3>
@@ -635,7 +634,7 @@ html.is-opening{overflow:hidden}
     <option value="opt2">Option 2 · Custom WordPress website · $6,500</option>
     <option value="opt3">Option 3 · Custom website + client portal · From $17,000 · Scope first</option>
   </select>
-  <label for="care">Optional ongoing care</label>
+  <label for="care">Ongoing care</label>
   <select id="care" name="care" required>
     <option value="">Choose one</option>
     <option value="base">Base Care · Choose a project to see the platform rate</option>
@@ -676,7 +675,7 @@ html.is-opening{overflow:hidden}
       <p><strong>Tracking and timing:</strong> With Wix and Google Analytics access, I’ll set up Analytics during the complimentary phone-field fix, before project acceptance, at no charge. That establishes a baseline for comparing activity after the updates or new website, whichever option you choose. Quote-form submission tracking depends on the form’s available integration; I’ll verify that setup and distinguish completed submissions from button clicks. We’re aiming for the spring 2027 remodeling season, with the schedule confirmed once access and approved materials are ready. For Option 3, the portal scope and schedule are agreed separately.</p>
       <p><strong>Option 1 · $2,250:</strong> Refresh the existing Wix site with the service wording, projects, review excerpts, quote path, and Analytics listed above. The complimentary Wix phone-field update and initial Analytics setup remain separate and are not charged in this fee.</p>
       <p><strong>Option 2 · $6,500:</strong> A custom self-hosted WordPress website with the service pages, galleries, review content, business and team sections, quote form with email notifications, hiring inquiry form, customer review-request workflow, Analytics, and occasional-edit training listed above. The final page list, featured-project count, forms, and review-request workflow will be confirmed in writing before work starts; additions beyond the selected scope need a separate quote and approval.</p>
-      <p><strong>Option 3 · From $17,000:</strong> The custom website plus a proposed private client area for updates, quotes, proposals, and review requests. This is a starting estimate. Selecting it requests a scoping conversation; it does not accept a fixed portal price or authorize an undefined build.</p>
+      <p><strong>Option 3 · From $17,000:</strong> The custom website plus a proposed job dashboard and portal for your schedule, job-site updates, homeowner questions, quotes, changes, approvals, and review requests. This is a starting estimate. Selecting it requests a scoping conversation; it does not accept a fixed portal price or authorize an undefined build.</p>
       <p>The selected option covers the work listed in its card and two rounds of consolidated feedback. We’ll confirm the exact page list and featured-project count before kickoff. Extra pages, features, projects, and work outside that agreed list need a separate written quote and your approval. Analytics shows site activity; search rankings, lead volume, and placement in AI search are outcomes to monitor, not guarantees.</p>
     </div>
     <div id="payment"><h3>Payment</h3>
@@ -775,5 +774,15 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 })();
 </script>
+<dialog class="portal-viewer" aria-labelledby="portal-viewer-title" data-lenis-prevent>
+  <div class="portal-viewer-header">
+    <p class="portal-viewer-title" id="portal-viewer-title" aria-live="polite"></p>
+    <button type="button" class="portal-viewer-close" aria-label="Close mockup viewer" autofocus>×</button>
+  </div>
+  <div class="portal-viewer-stage"><img alt=""></div>
+  <button type="button" class="portal-viewer-prev" aria-label="Previous mockup">‹</button>
+  <button type="button" class="portal-viewer-next" aria-label="Next mockup">›</button>
+</dialog>
+<script src="proposals/mr-rebuild/portal-viewer.js?v=1"></script>
 </body>
 </html>
