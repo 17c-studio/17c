@@ -19,6 +19,7 @@
     const image = card.querySelector('[data-ss-alt-image]');
     const imageControls = card.querySelector('[data-ss-alt-image-controls]');
     const form = card.querySelector('[data-ss-alt-form]');
+    const toggle = card.querySelector('[data-ss-alt-toggle]');
     const select = card.querySelector('[data-ss-alt-variant]');
     const fallback = card.querySelector('[data-ss-alt-fallback]');
     const price = card.querySelector('[data-ss-alt-price]');
@@ -74,7 +75,20 @@
         select.value = String(available[0].id);
         select.hidden = true;
         card.querySelector('.ss-alternative-variant-label').hidden = true;
+        toggle.setAttribute('aria-label', `Add ${product.title} to your bag`);
       }
+      toggle.addEventListener('click', () => {
+        const open = form.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.querySelector('span').textContent = open ? '−' : '+';
+      });
+      form.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+        form.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.querySelector('span').textContent = '+';
+        toggle.focus();
+      });
       select.addEventListener('change', () => {
         const variant = available.find(item => String(item.id) === select.value);
         if (!variant) return;
