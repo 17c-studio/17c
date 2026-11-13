@@ -272,7 +272,7 @@ img{display:block;width:100%;height:auto}
   .ss-hero-image{object-position:65% 30%}
   .ss-hero-copy{padding:24px;max-width:100%}
   .ss-hero-description{font-size:14px}
-  .ss-hero-actions{gap:12px;margin-top:20px}
+  .ss-hero-actions{flex-direction:column;align-items:stretch;gap:12px;margin-top:20px}
   .ss-hero-actions a{flex:1 1 auto;padding-inline:12px}
   .ss-hero-paths{grid-template-columns:1fr;grid-template-rows:auto;gap:12px}
   .ss-hero-card{min-height:280px}
@@ -315,6 +315,10 @@ img{display:block;width:100%;height:auto}
   :root{--shell-gutter:16px}
   .ss-header .ss-wordmark{width:128px}
   .ss-menu-icon{display:none}
+}
+@media(max-width:380px){
+ .ss-hero-bridal{min-height:520px;padding:16px}
+ .ss-hero-copy{padding:20px}
 }
 /* Client-review alternative: category navigation above a quiet product gallery. */
 .ss-collections-alternative{padding-top:0;padding-bottom:var(--section-space)}
@@ -376,19 +380,23 @@ img{display:block;width:100%;height:auto}
  .ss-alternative-add,.ss-alternative-fallback{font-size:10px;letter-spacing:.07em}
 }
 @media(max-width:700px),(hover:none){
- .ss-alternative-card{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-content:start}
+ .ss-alternative-card{display:grid;grid-template-columns:minmax(0,1fr);align-content:start}
  .ss-alternative-media{display:contents}
  .ss-alternative-image-frame{grid-column:1/-1;grid-row:1;overflow:hidden}
  .ss-alternative-product-copy{grid-column:1;grid-row:2}
  .ss-alternative-quick-add{pointer-events:auto}
  .ss-alternative-quick-add{display:contents;opacity:1;transform:none}
  .ss-alternative-image-controls{opacity:1}
+ .ss-alternative-image-controls button{width:44px;height:44px;background:radial-gradient(circle,#FBF8F5e8 13px,transparent 14px)}
+ .ss-alternative-image-controls svg{width:16px;height:16px}
  .ss-alternative-quick-add [data-ss-alt-form]{display:contents}
- .ss-alternative-toggle{display:flex;grid-column:2;grid-row:2;align-items:center;justify-content:center;align-self:start;width:44px;min-height:44px;padding:0;border:0;background:transparent;font-size:24px;line-height:1}
+ .ss-alternative-toggle{display:flex;grid-column:1;grid-row:3;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:44px;padding:8px 0;border:0;border-bottom:1px solid var(--line);background:transparent;font-size:24px;line-height:1}
+ .ss-alternative-toggle>span[aria-hidden]{order:2}
+ .ss-alternative-toggle-label{font-size:12px;line-height:1.5}
  .ss-alternative-toggle:hover{background:var(--cream)}
- .ss-alternative-options{grid-column:1/-1;grid-row:3}
- .ss-alternative-quick-add .ss-alternative-add{display:none;grid-column:1/-1;grid-row:4}
- .ss-alternative-quick-add .ss-alternative-fallback{grid-column:2;grid-row:2;align-self:start;min-height:44px;font-size:0}
+ .ss-alternative-options{grid-column:1/-1;grid-row:4}
+ .ss-alternative-quick-add .ss-alternative-add{display:none;grid-column:1/-1;grid-row:5}
+ .ss-alternative-quick-add .ss-alternative-fallback{grid-column:1;grid-row:3;align-self:start;justify-content:space-between;min-height:44px;font-size:12px;letter-spacing:0;text-transform:none;border-bottom:1px solid var(--line)}
  .ss-alternative-fallback>span{display:none}
  .ss-alternative-fallback::after{content:"+";font-size:24px;line-height:1}
  .ss-alternative-quick-add .is-open .ss-alternative-options{grid-template-rows:1fr;opacity:1;visibility:visible;transform:none;transition-delay:0s}
@@ -488,6 +496,10 @@ img{display:block;width:100%;height:auto}
 }
 
 @media(max-width:700px){
+ .ss-bridal-section{row-gap:8px}
+ .ss-bridal-copy .ss-bridal-testimonial+ .ss-bridal-testimonial{margin-top:24px;padding-top:24px}
+ .ss-bridal-copy .ss-bridal-testimonial figcaption{padding-top:12px}
+ .ss-bridal-collage{margin-top:0}
  .ss-floral-section{--floral-overlap:40px;padding:0 20px 24px;row-gap:0}
  .ss-floral-section .ss-floral-photo{width:100%;height:auto;aspect-ratio:4/5}
  .ss-floral-section .ss-floral-copy{padding:32px 4px 8px}
