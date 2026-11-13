@@ -23,7 +23,7 @@
   --paper:#171614;
   --ink:#f6f5f1; --muted:#c2bcb3;
   --soft:#24221f; --line:#77716a;
-  --yellow-line:rgb(200 179 102 / 32%);
+  --portal-orange:#e8742f;
   --focus:#c8b366;
   --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
   --sans:"DM Sans",Arial,sans-serif;
@@ -78,7 +78,7 @@ li{margin-bottom:10px}
 strong{font-weight:600}
 .wrap>p:not(.eyebrow),.wrap>ul{color:var(--muted)}
 .wrap strong{color:var(--ink)}
-hr.rule{border:0;border-top:1px solid var(--line);max-width:calc(1280px - var(--gutter)*2);margin:0 auto}
+hr.rule{border:0;border-top:1px solid var(--portal-orange);max-width:calc(1280px - var(--gutter)*2);margin:0 auto}
 .lede{font-size:18px;line-height:1.7;color:var(--muted);max-width:720px}
 .panel{background:var(--soft);border:1px solid var(--line);padding:clamp(24px,3vw,40px);margin:32px 0}
 .panel p:last-child,.panel ul:last-child{margin-bottom:0}
@@ -179,9 +179,9 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
 .proposal-chapters hr.rule{max-width:none;margin-block:0}
 
 @media print{.proposal-body{display:block;padding:0}.service-index{display:none!important}}
-/* Yellow is reserved for chapter dividers; other borders use the shared gray. */
+/* Dashboard orange ties the opening screen and chapter dividers together. */
 #introduction{border-block:1px solid var(--line)}
-.proposal-chapters hr.rule{border-color:var(--yellow-line)}
+.proposal-chapters hr.rule{border-color:var(--portal-orange)}
 /* A restrained lift and surface change for the proposal cards. */
 @media screen and (hover:hover) and (pointer:fine){
   .card{transition:transform .22s ease,background-color .22s ease,box-shadow .22s ease}
@@ -193,10 +193,10 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
 }
 /* Dismissible opening welcome. */
 html.is-opening{overflow:hidden}
-.opening-screen{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:32px;background:#0c2444;color:#fff;text-align:center;opacity:1;transition:opacity .45s ease}
+.opening-screen{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:32px;background:var(--portal-orange);color:#111;text-align:center;opacity:1;transition:opacity .45s ease}
 .opening-screen.is-leaving{opacity:0;pointer-events:none}
 
-.opening-message{margin:0;max-width:880px;color:#fff;font:400 clamp(32px,4.8vw,64px)/1.12 var(--serif);letter-spacing:-.02em;text-wrap:balance}
+.opening-message{margin:0;max-width:880px;color:#111;font:400 clamp(32px,4.8vw,64px)/1.12 var(--serif);letter-spacing:-.02em;text-wrap:balance}
 .opening-message span{display:block}
 @media(prefers-reduced-motion:reduce){.opening-screen{transition:none}}
 @media print{.opening-screen{display:none!important}html.is-opening{overflow:visible}}
@@ -332,7 +332,7 @@ html.is-opening{overflow:hidden}
 
 .draft-label{color:var(--muted);font-size:13px}
 .hero-line{display:block}
-.opening-brand{font:400 clamp(28px,4vw,48px)/1.2 var(--serif);margin:0}
+.opening-brand{color:#111;font:400 clamp(28px,4vw,48px)/1.2 var(--serif);margin:0}
 /* Compact navigation for smaller screens. */
 #details .detail-content{padding:0 0 28px;color:var(--muted)}
 #details .detail-content>p:last-child,#details .detail-content>ul:last-child{margin-bottom:0}
