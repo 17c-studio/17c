@@ -79,6 +79,10 @@ h2 { font-size: clamp(2.6rem, 5vw, 4.6rem); line-height: 1.05; letter-spacing: -
 .scripture-inner { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; gap: clamp(2rem, 7vw, 6rem); }
 .scripture-heading { position: sticky; top: 2rem; }
 .scripture h2 { margin-top: 1rem; }
+.scripture-intro { margin-top: 1.5rem; color: var(--muted); }
+.scripture-intro p + p { margin-top: .75rem; }
+.scripture-intro p:first-child { margin-bottom: 1.5rem; }
+.scripture-intro strong { color: var(--cream); }
 blockquote { font: italic clamp(1.45rem, 2.8vw, 2rem)/1.5 var(--serif); margin: 0 0 1rem; max-width: 35ch; }
 .translation { color: var(--muted); font-size: .75rem; }
 .reflection-question { margin: 2rem 0 0; max-width: 35ch; color: var(--accent); font-size: 1.1rem; }
