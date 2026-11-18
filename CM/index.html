@@ -6,7 +6,6 @@
   <meta name="description" content="An interactive Hope College Campus Ministries concept inspired by Psalm 1.">
   <title>Rooted at Hope | Campus Ministries</title>
   <style>
-
 :root {
   color-scheme: dark;
   --paper: #111c18;
@@ -68,17 +67,23 @@ h1 em { color: var(--accent); font-weight: 400; }
 .section-heading { margin-bottom: 2.8rem; }
 h2 { font-size: clamp(2.6rem, 5vw, 4.6rem); line-height: 1.05; letter-spacing: -.045em; }
 .path-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
-.path-links a { padding-block: 1.4rem; display: flex; flex-direction: column; gap: .5rem; border-top: 1px solid var(--line); text-decoration: none; }
-.path-links a:hover { border-color: var(--accent); }
-.path-links a[aria-selected="true"] { border-color: var(--accent); color: var(--accent); }
+.path-links a[id] { padding-block: 1.4rem; display: flex; flex-direction: column; gap: .5rem; border-top: 1px solid var(--line); text-decoration: none; }
+.path-links a[id]:hover { border-color: var(--accent); }
+.path-links a[id][aria-selected="true"] { border-color: var(--accent); color: var(--accent); }
 .path-name { font: 400 clamp(1.35rem, 2.8vw, 2.3rem)/1.15 var(--serif); letter-spacing: -.035em; }
 .path-caption { font-size: .85rem; color: var(--muted); }
-.path-panel { padding: 2.5rem; background: #192a22; margin-top: 1.5rem; }
+.path-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .65fr); align-items: center; gap: 2.5rem; padding: 2.5rem; background: #192a22; margin-top: 1.5rem; }
+.path-wallpaper { position: relative; display: block; width: min(100%, 18rem); aspect-ratio: 1; justify-self: center; overflow: hidden; border-radius: .4rem; text-decoration: none; }
+.path-wallpaper img { height: 100%; object-fit: cover; }
+.path-wallpaper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(12 21 17 / .95), rgb(12 21 17 / .4) 45%, rgb(12 21 17 / .1)); }
+.wallpaper-label { position: absolute; z-index: 1; inset: auto 0 0; display: flex; justify-content: center; align-items: center; gap: .6rem; padding: 1.25rem; text-align: center; color: var(--cream); font-size: .88rem; font-weight: 600; }
+.path-wallpaper:hover .wallpaper-label { color: var(--accent); }
 .path-panel h3 { font-size: clamp(1.8rem, 3.5vw, 2.7rem); letter-spacing: -.035em; line-height: 1.1; margin-bottom: .8rem; }
 .path-panel p { color: var(--muted); }
 .path-panel .text-link { margin-top: 1rem; }
 
-.scripture { border-top: 1px solid var(--line); padding-block: 6rem; background: linear-gradient(180deg, #111c18, #0c1511); }
+
+.scripture { padding-block: 6rem; background: linear-gradient(to bottom, #111c18 0%, rgb(17 28 24 / .93) 12%, rgb(17 28 24 / .64) 36%, rgb(17 28 24 / .45) 65%, #0c1511 100%), url("psalm-background.jpg") center / cover no-repeat; }
 .scripture-inner { max-width: 48rem; text-align: center; }
 .scripture h2 { margin-top: 1rem; }
 blockquote { font: italic clamp(1.45rem, 2.8vw, 2rem)/1.5 var(--serif); margin: 2rem auto 1rem; max-width: 35ch; }
@@ -118,9 +123,10 @@ summary { cursor: pointer; width: fit-content; margin-inline: auto; padding-bloc
   .explore, .scripture { padding-block: 3.5rem; }
   .section-heading { margin-bottom: 2rem; }
   .path-links { grid-template-columns: 1fr; gap: 0; }
-  .path-links a { padding-block: 1rem; }
+  .path-links a[id] { padding-block: 1rem; }
   .path-name { font-size: 1.55rem; }
   .path-panel { padding: 1.5rem; margin-top: 1rem; }
+  .path-panel { grid-template-columns: 1fr; gap: 2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -165,18 +171,24 @@ summary { cursor: pointer; width: fit-content; margin-inline: auto; padding-bloc
         </div>
 
         <div class="path-links" aria-label="Christian aspirations">
-          <a id="path-faithful" href="#faithful">
-            <span class="path-name">Faithful</span>
-            <span class="path-caption">Make room for God</span>
-          </a>
-          <a id="path-welcoming" href="#welcoming">
-            <span class="path-name">Welcoming</span>
-            <span class="path-caption">Find people to grow with</span>
-          </a>
-          <a id="path-transformational" href="#transformational">
-            <span class="path-name">Transformational</span>
-            <span class="path-caption">Let faith shape your life</span>
-          </a>
+          <div class="path-option">
+            <a id="path-faithful" href="#faithful">
+              <span class="path-name">Faithful</span>
+              <span class="path-caption">Make room for God</span>
+            </a>
+          </div>
+          <div class="path-option">
+            <a id="path-welcoming" href="#welcoming">
+              <span class="path-name">Welcoming</span>
+              <span class="path-caption">Find people to grow with</span>
+            </a>
+          </div>
+          <div class="path-option">
+            <a id="path-transformational" href="#transformational">
+              <span class="path-name">Transformational</span>
+              <span class="path-caption">Let faith shape your life</span>
+            </a>
+          </div>
         </div>
 
         <div class="path-panels">
@@ -186,6 +198,10 @@ summary { cursor: pointer; width: fit-content; margin-inline: auto; padding-bloc
               <p>Pray, sing, and hear Scripture in Dimnent Chapel.</p>
               <a class="text-link" href="https://hope.edu/offices/campus-ministries/worship/">See Chapel times <span aria-hidden="true">↗</span></a>
             </div>
+            <a class="path-wallpaper wallpaper-download" href="anchor.png" download="Hope-Faithful-wallpaper.png" aria-label="Download Faithful mobile wallpaper">
+              <img src="anchor.png" alt="" width="941" height="1672" loading="lazy">
+              <span class="wallpaper-label">Download wallpaper <span aria-hidden="true">↓</span></span>
+            </a>
           </section>
           <section class="path-panel welcoming" id="welcoming">
             <div>
@@ -193,6 +209,10 @@ summary { cursor: pointer; width: fit-content; margin-inline: auto; padding-bloc
               <p>Bring your questions to a student-led Bible study.</p>
               <a class="text-link" href="https://hope.edu/offices/campus-ministries/discipleship/">Explore small groups <span aria-hidden="true">↗</span></a>
             </div>
+            <a class="path-wallpaper wallpaper-download" href="welcoming-chapel.png" download="Hope-Welcoming-wallpaper.png" aria-label="Download Welcoming mobile wallpaper">
+              <img src="welcoming-chapel.png" alt="" width="941" height="1672" loading="lazy">
+              <span class="wallpaper-label">Download wallpaper <span aria-hidden="true">↓</span></span>
+            </a>
           </section>
           <section class="path-panel transformational" id="transformational">
             <div>
@@ -200,6 +220,10 @@ summary { cursor: pointer; width: fit-content; margin-inline: auto; padding-bloc
               <p>Find a ministry team and a place to serve.</p>
               <a class="text-link" href="https://hope.edu/offices/campus-ministries/ministry-opportunities.html">Find ministry opportunities <span aria-hidden="true">↗</span></a>
             </div>
+            <a class="path-wallpaper wallpaper-download" href="Transformational-1.png" download="Hope-Transformational-wallpaper.png" aria-label="Download Transformational mobile wallpaper">
+              <img src="Transformational-1.png" alt="" width="941" height="1672" loading="lazy">
+              <span class="wallpaper-label">Download wallpaper <span aria-hidden="true">↓</span></span>
+            </a>
           </section>
         </div>
       </div>
@@ -237,7 +261,7 @@ summary { cursor: pointer; width: fit-content; margin-inline: auto; padding-bloc
   </footer>
   <script>
 const pathLinks = document.querySelector(".path-links");
-const tabs = Array.from(pathLinks.querySelectorAll("a"));
+const tabs = Array.from(pathLinks.querySelectorAll('a[id^="path-"]'));
 const panels = tabs.map((tab) => document.querySelector(tab.hash));
 
 pathLinks.setAttribute("role", "tablist");

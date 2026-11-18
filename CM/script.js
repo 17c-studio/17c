@@ -1,5 +1,5 @@
 const pathLinks = document.querySelector(".path-links");
-const tabs = Array.from(pathLinks.querySelectorAll("a"));
+const tabs = Array.from(pathLinks.querySelectorAll('a[id^="path-"]'));
 const panels = tabs.map((tab) => document.querySelector(tab.hash));
 
 pathLinks.setAttribute("role", "tablist");
