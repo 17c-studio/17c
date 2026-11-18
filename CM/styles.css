@@ -76,19 +76,22 @@ h2 { font-size: clamp(2.6rem, 5vw, 4.6rem); line-height: 1.05; letter-spacing: -
 
 
 .scripture { padding-block: 6rem; background: linear-gradient(to bottom, #111c18 0%, rgb(17 28 24 / .93) 12%, rgb(17 28 24 / .64) 36%, rgb(17 28 24 / .45) 65%, #0c1511 100%), url("psalm-background.jpg") center / cover no-repeat; }
-.scripture-inner { max-width: 48rem; text-align: center; }
+.scripture-inner { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; gap: clamp(2rem, 7vw, 6rem); }
+.scripture-heading { position: sticky; top: 2rem; }
 .scripture h2 { margin-top: 1rem; }
-blockquote { font: italic clamp(1.45rem, 2.8vw, 2rem)/1.5 var(--serif); margin: 2rem auto 1rem; max-width: 35ch; }
+blockquote { font: italic clamp(1.45rem, 2.8vw, 2rem)/1.5 var(--serif); margin: 0 0 1rem; max-width: 35ch; }
 .translation { color: var(--muted); font-size: .75rem; }
-.reflection-question { margin: 2rem auto 0; max-width: 35ch; color: var(--accent); font-size: 1.1rem; }
+.reflection-question { margin: 2rem 0 0; max-width: 35ch; color: var(--accent); font-size: 1.1rem; }
 details { margin-top: 1.5rem; }
-summary { cursor: pointer; width: fit-content; margin-inline: auto; padding-block: .65rem; font-size: .85rem; }
+summary { cursor: pointer; width: fit-content; padding-block: .65rem; font-size: .85rem; }
 .verses { padding-left: 1.4rem; text-align: left; color: var(--muted); }
 .verses li + li { margin-top: 1rem; }
 .site-footer { padding-block: 1.5rem; border-top: 1px solid var(--line); background: #0c1511; font-size: .75rem; color: var(--muted); }
 .footer-inner a { text-underline-offset: .2em; display: inline-flex; gap: .35em; align-items: center; min-height: 44px; }
 
 @media (max-width: 760px) {
+  .scripture-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .scripture-heading { position: static; }
   .container { width: calc(100% - 3rem); }
   .header-inner { min-height: 6rem; }
   nav { gap: 1.5rem; }
