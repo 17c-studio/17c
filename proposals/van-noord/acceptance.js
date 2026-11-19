@@ -20,6 +20,14 @@
   const textOf = selector => clean(document.querySelector(selector)?.textContent);
   const money = value => Number(value).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: Number.isInteger(Number(value)) ? 0 : 2, maximumFractionDigits: 2 });
   const care = byId('accept-care');
+  const trackerUpkeep = byId('accept-tracker-upkeep');
+  function syncTrackerUpkeep() {
+    const eligible = option.value === 'opt3' && ['base', 'growth'].includes(care.value);
+    if (!eligible) trackerUpkeep.checked = false;
+    trackerUpkeep.disabled = !eligible;
+    byId('tracker-upkeep-choice').hidden = !eligible;
+    byId('tracker-upkeep-included').hidden = !(option.value === 'opt3' && care.value === 'full');
+  }
   const projects = {
     opt1: { fee: 2500, platform: 'WordPress' },
     opt2: { fee: 4250, platform: 'WordPress' },
@@ -28,17 +36,23 @@
   function selection() {
     const project = projects[option.value];
     if (!project || !['base','growth','full','none'].includes(care.value)) return null;
-    const monthly = { base: 225, growth: 425, full: 950, none: 0 }[care.value];
-    const label = {base:'Base Care',growth:'Growth Care',full:'Full Care',none:'No care plan for now'}[care.value];
+    const baseMonthly = { base: 225, growth: 425, full: 950, none: 0 }[care.value];
+    const trackerAddon = option.value === 'opt3' && ['base', 'growth'].includes(care.value) && trackerUpkeep.checked;
+    const trackerIncluded = option.value === 'opt3' && care.value === 'full';
+    const monthly = baseMonthly + (trackerAddon ? 300 : 0);
+    const label = {base:'Base Care',growth:'Growth Care',full:'Full Care',none:'No care plan for now'}[care.value]
+      + (trackerAddon ? ' + Tracker Upkeep' : trackerIncluded ? ' (Tracker Upkeep included)' : '');
     return {
       option: option.selectedOptions[0].textContent, project_id: option.value,
       ...project, deposit: project.fee / 2,
       agreement_type: 'Project and selected care agreement',
-      care: { id: care.value, label, monthly, months: monthly ? 3 : 0, total: monthly * 3,
+      care: { id: care.value, label, monthly, base_monthly: baseMonthly,
+        tracker_upkeep: { selected: trackerAddon, included: trackerIncluded, covered: trackerAddon || trackerIncluded, monthly: trackerAddon ? 300 : 0 }, months: monthly ? 3 : 0, total: monthly * 3,
         start_condition: monthly ? 'Begins on the agreed start date, with a three-month minimum, then month to month at the selected rate. Either party can cancel by email, effective 30 calendar days after receipt or at the end of the minimum, whichever is later. Partial billing months after the minimum are prorated.' : 'No care commitment.' }
     };
   }
   function updateSummary() {
+    syncTrackerUpkeep();
     const selected = selection();
     byId('acceptance-summary').textContent = selected
       ? `Selected project: ${selected.option}\nProject fee: ${money(selected.fee)}. Initial invoice: ${money(selected.deposit)} (50%). Final invoice before launch: ${money(selected.deposit)} (50%). Both due within 7 days of issue.\n` +
@@ -49,7 +63,7 @@
       : '';
     if (!pending && !accepted) submit.textContent = 'Sign & accept proposal';
   }
-  [option, care].forEach(control => control.addEventListener('change', () => {
+  [option, care, trackerUpkeep].forEach(control => control.addEventListener('change', () => {
     if (!pending && !accepted) consent.checked = false;
   }));
   document.querySelectorAll('[data-open-details]').forEach(link => link.addEventListener('click', () => {
@@ -137,7 +151,7 @@
     const scopeIds = Array.from({ length: Number(option.value.slice(-1)) }, (_, index) => `opt${index + 1}`);
     const scope = scopeIds.map(id => textOf(`#${id}`));
     const documentSnapshot = {
-      version: 'VAN-NOORD-2026-11-18-agreement-v1', title: document.title,
+      version: 'VAN-NOORD-2026-11-19-agreement-v2', title: document.title,
       selected_project: selected, included_options: scope,
       scope_and_exclusions: textOf('#scope'), 
       payment: textOf('#payment'), assumptions: textOf('#assumptions'), terms: textOf('#terms'),
@@ -147,6 +161,7 @@
       : selected.care.id === 'growth' ? ['base-care-title','growth-care-title']
       : selected.care.id === 'base' ? ['base-care-title'] : [];
     const careCards = careIds.map(id => byId(id).closest('.care-card'));
+    if (selected.care.tracker_upkeep.covered) careCards.push(byId('tracker-upkeep'));
     const careCommon = Array.from(document.querySelector('#care > .wrap').children).filter(node => node.tagName === 'P');
     if (selected.care.months) documentSnapshot.care_details =
       [...careCards, ...careCommon].map(node => clean(node.textContent)).join('\n\n');
@@ -229,6 +244,9 @@
       payload.append('project_fee', money(record.selected.fee));
       payload.append('initial_invoice', money(record.selected.deposit));
       payload.append('final_invoice_before_launch', money(record.selected.deposit));
+      payload.append('tracker_upkeep', record.selected.care.tracker_upkeep.selected ? 'Selected add-on' : record.selected.care.tracker_upkeep.included ? 'Included in Full Care' : 'Not selected');
+      payload.append('tracker_upkeep_monthly_addon', money(record.selected.care.tracker_upkeep.monthly));
+      payload.append('care_monthly_total', money(record.selected.care.monthly));
       payload.append('care_initial_commitment', money(record.selected.care.total));
       payload.append('care_start_condition', record.selected.care.start_condition || 'No care selected');
       payload.append('document_version', record.document.version);
@@ -262,7 +280,7 @@
       confirmedPDF = cachedPDF;
       status.textContent = 'Thank you. Your signed acceptance was received. I’ll send the initial invoice and get in touch about kickoff.';
       status.dataset.state = 'success';
-      byId('acceptance-reference').textContent = `Reference: ${record.acceptance_id}. Signed ${new Date(record.signed_at_browser_utc).toLocaleString()}.`;
+      byId('acceptance-reference').textContent = `Reference: ${record.acceptance_id}. Signed ${new Date(record.signed_at_browser_utc).toLocaleString()}. Project fee: ${money(record.selected.fee)}. ` + (record.selected.care.months ? `${record.selected.care.label}: ${money(record.selected.care.monthly)}/month; ${money(record.selected.care.total)} for the first three months.` : 'No care plan selected.');
       byId('acceptance-receipt').hidden = false;
       byId('download-acceptance-pdf').disabled = false;
     } catch (error) {

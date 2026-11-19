@@ -388,3 +388,9 @@ html.is-opening{overflow:hidden}
 #acceptance-receipt h3{font-size:28px;margin:0 0 12px}
 #acceptance-reference{font-size:13px;overflow-wrap:anywhere}
 @media(max-width:480px){.acceptance-downloads{align-items:stretch;flex-direction:column}.acceptance-downloads button{width:100%}}
+
+/* Keep section labels and the recommendation badge with their printed content. */
+@media print{
+  .eyebrow{break-after:avoid}
+  .cards .card.rec .badge{position:static;display:table;margin-bottom:12px;max-width:100%}
+}
