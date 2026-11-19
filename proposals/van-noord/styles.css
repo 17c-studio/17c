@@ -6,8 +6,8 @@
   --paper:#171614;
   --ink:#f6f5f1; --muted:#c2bcb3;
   --soft:#24221f; --line:#77716a;
-  --portal-orange:#e8742f;
-  --focus:#c8b366;
+  --portal-orange:#4682b4;
+  --focus:#79baec;
   --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
   --sans:"DM Sans",Arial,sans-serif;
   --gutter:clamp(24px,4vw,64px); --section-space:clamp(64px,7vw,96px);
