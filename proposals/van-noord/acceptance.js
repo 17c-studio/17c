@@ -28,7 +28,7 @@
   function selection() {
     const project = projects[option.value];
     if (!project || !['base','growth','full','none'].includes(care.value)) return null;
-    const monthly = { base: 225, growth: 425, full: 800, none: 0 }[care.value];
+    const monthly = { base: 225, growth: 425, full: 950, none: 0 }[care.value];
     const label = {base:'Base Care',growth:'Growth Care',full:'Full Care',none:'No care plan for now'}[care.value];
     return {
       option: option.selectedOptions[0].textContent, project_id: option.value,
