@@ -169,10 +169,6 @@ table{width:100%;border-collapse:collapse;margin:32px 0;font-size:13px}
 th,td{text-align:left;padding:18px 16px;border-bottom:1px solid var(--line);vertical-align:top}
 th{background:var(--soft)}
 td{color:var(--muted)}
-.steps{list-style:none;padding:0;counter-reset:step}
-.steps li{counter-increment:step;position:relative;padding:24px 0 24px 56px;margin:0;border-top:1px solid var(--line)}
-.steps li::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:27px;color:var(--muted);font:12px/1.8 var(--sans)}
-.steps strong{display:block;margin-bottom:10px}
 .fig{margin:32px 0;min-width:0}
 .fig img{display:block;width:100%;height:auto}
 .fig figcaption{font-size:12px;line-height:1.8;color:var(--muted);margin-top:16px}
@@ -191,7 +187,6 @@ td{color:var(--muted)}
 .quote>p{font:italic 32px/1.3 var(--serif)}
 .who{display:flex;align-items:center;gap:16px;font-size:12px;color:var(--muted)}
 .av{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--line);flex:none}
-.terms h4{margin:24px 0 8px}
 .terms p{font-size:14px}
 form.accept{padding:clamp(24px,4vw,48px);background:var(--soft);border:1px solid var(--line);margin:32px 0}
 label{display:block;font-size:12px;font-weight:500;margin:24px 0 10px}
@@ -279,7 +274,7 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
 html.is-opening{overflow:hidden}
 .opening-screen{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:32px;background:#0c2444;color:#fff;text-align:center;opacity:1;transition:opacity .45s ease}
 .opening-screen.is-leaving{opacity:0;pointer-events:none}
-.opening-logo{display:block;width:clamp(130px,18vw,180px);max-width:55vw;height:auto;max-height:140px;object-fit:contain}
+.opening-screen[hidden]{display:none}
 .opening-message{margin:0;max-width:880px;color:#fff;font:400 clamp(32px,4.8vw,64px)/1.12 var(--serif);letter-spacing:-.02em;text-wrap:balance}
 .opening-message span{display:block}
 @media(prefers-reduced-motion:reduce){.opening-screen{transition:none}}
@@ -338,10 +333,6 @@ html.is-opening{overflow:hidden}
   .finding-list li{padding:24px 0;line-height:1.8}
   .finding-list strong{display:block;margin-bottom:8px;color:var(--ink)}
   .question-answer{max-width:70ch;line-height:1.85}
-  .steps li{line-height:1.8;padding-block:28px}
-  .steps strong{font-size:16px;line-height:1.5;margin-bottom:12px}
-  #assumptions>.wrap>ul{max-width:72ch}
-  #assumptions li{margin-bottom:20px}
   #reply{max-width:760px}
   #reply label{font-size:14px;line-height:1.5}
 }
@@ -407,10 +398,8 @@ html.is-opening{overflow:hidden}
   .question-answer{padding-right:0}
   .proposal-chapters a[href],footer a[href]{display:inline-block;max-width:100%;min-height:44px;padding-block:8px;overflow-wrap:anywhere}
   .cards .card.rec .badge{max-width:calc(100% - 48px);overflow-wrap:anywhere}
-  #payment table{table-layout:fixed}
-  #payment th,#payment td{overflow-wrap:anywhere;hyphens:auto}
   .opening-screen{overflow-y:auto}
-  .opening-logo,.opening-message{flex-shrink:0}
+  .opening-message{flex-shrink:0}
 }
 @media screen and (max-width:1279px){
   .cards{grid-template-columns:1fr;gap:48px}
@@ -432,7 +421,6 @@ html.is-opening{overflow:hidden}
   .price{font-size:clamp(46px,11vw,64px)}
   .card h3{font-size:32px}
   form.accept{padding:24px 20px}
-  #payment th,#payment td{padding:14px 8px;font-size:12px}
   .timeline-durations{gap:12px}
 }
 @media screen and (max-width:380px){
@@ -446,54 +434,9 @@ html.is-opening{overflow:hidden}
 }
 @media screen and (max-height:500px){
   .opening-screen{gap:16px;padding:20px}
-  .opening-logo{max-height:64px}
   .opening-message{font-size:clamp(26px,4vw,36px)}
 }
 #introduction :focus-visible{outline-color:#45403a}
-/* Initial Findings only: uncropped evidence with a clear observation/action hierarchy. */
-#noticed .audit-findings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin:48px 0 64px}
-#noticed .audit-finding{--audit-blue:#0c2444;--audit-heading:var(--ink);--audit-text:var(--muted);--audit-muted:var(--muted);min-width:0;overflow:visible;background:var(--soft);color:var(--audit-text);border:1px solid var(--line);border-radius:4px;box-shadow:none;padding:24px}
-#noticed .audit-heading{display:flex;align-items:center;gap:16px;min-height:78px;padding:0;margin-bottom:24px;border:0}
-#noticed .audit-number{flex:0 0 36px;width:36px;height:36px;display:grid;place-items:center;background:#c8b366;color:var(--audit-blue);border-radius:50%;font:600 12px/1 var(--sans);letter-spacing:.04em}
-#noticed .audit-title{margin:0;color:var(--audit-heading);font:500 clamp(26px,2.6vw,34px)/1.15 var(--serif);letter-spacing:-.01em;text-wrap:balance;overflow-wrap:anywhere}
-#noticed .audit-body{padding:0;min-width:0}
-#noticed .audit-evidence{margin:0;min-width:0}
-#noticed .audit-image-link{display:block;min-height:0;aspect-ratio:4/3;padding:0;max-width:100%;border:1px solid #77716a;border-radius:4px;box-shadow:0 2px 10px rgb(12 36 68 / 10%);background:var(--paper);line-height:0}
-#noticed .audit-image-link img{display:block;width:100%;max-width:100%;height:100%;object-fit:contain;border-radius:3px;filter:none}
-#noticed .audit-evidence figcaption{font:400 12px/1.65 var(--sans);color:var(--audit-muted);margin-top:12px;max-width:75ch}
-#noticed .audit-evidence figcaption a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:6px 0;color:var(--audit-heading);text-decoration:underline;text-underline-offset:4px}
-#noticed .audit-evidence a:hover{color:var(--ink)}
-#noticed .audit-finding :focus-visible{outline:3px solid var(--focus);outline-offset:4px}
-#noticed .audit-explanation{display:grid;grid-template-columns:1fr;gap:28px;margin-top:28px}
-#noticed .audit-note{min-width:0}
-#noticed .audit-note h4{font:600 12px/1.5 var(--sans);letter-spacing:.06em;color:var(--audit-heading);margin:0 0 10px}
-#noticed .audit-note p{font:400 15px/1.8 var(--sans);color:var(--audit-text);margin:0;max-width:62ch;overflow-wrap:anywhere}
-#noticed .audit-finding--mobile .audit-evidence{width:100%;margin-inline:0}
-#noticed .audit-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
-
-@media screen and (max-width:760px){
-  #noticed .audit-findings{grid-template-columns:1fr;gap:24px;margin-block:32px 48px}
-  #noticed .audit-finding{padding:20px}
-      #noticed .audit-heading{gap:12px;min-height:0;padding:0;margin-bottom:20px}
-  #noticed .audit-body{padding:0}
-  #noticed .audit-explanation{grid-template-columns:1fr;gap:24px;margin-top:24px}
-  #noticed .audit-finding--mobile .audit-evidence{width:100%}
-}
-@media print{
-  #noticed .audit-findings{grid-template-columns:1fr}
-  #noticed .audit-image-link{aspect-ratio:auto}
-  #noticed .audit-image-link img{height:auto}
-  #noticed .audit-finding{break-inside:auto;background:transparent}
-  #noticed .audit-heading{break-after:avoid}
-  #noticed .audit-body{display:block}
-  #noticed .audit-evidence{break-inside:avoid}
-  #noticed .audit-image-link{box-shadow:none}
-  #noticed .audit-image-link img{max-height:150mm;width:auto;max-width:100%;margin-inline:auto}
-  #noticed .audit-finding--mobile .audit-image-link img{max-height:110mm}
-  #noticed .audit-evidence figcaption a{display:none}
-  #noticed .audit-explanation{display:block;margin-top:20px}
-  #noticed .audit-note{break-inside:avoid;margin:0 0 16px}
-}
 .care-rate{margin-bottom:28px;border-bottom:1px solid var(--line)}
 /* Low-friction electronic acceptance and optional signature pad. */
 .acceptance-summary:empty{display:none}
@@ -511,13 +454,12 @@ html.is-opening{overflow:hidden}
 @media(max-width:480px){.acceptance-downloads{align-items:stretch;flex-direction:column}.acceptance-downloads button{width:100%}}
 
 /* Draft-specific content within the existing proposal layout. */
-.opening-screen{background:var(--paper)}.opening-logo{filter:brightness(0) invert(1)}
+.opening-screen{background:var(--paper)}
 #top .hero img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
 .hero-line{max-width:850px}.draft-label{font-size:14px;line-height:1.7}
 .price{font:500 19px/1.5 var(--sans);letter-spacing:0;overflow-wrap:anywhere}
 .card .when,.card ul,.card .best{font-size:14px}.card .when{min-height:0}
 .evidence-placeholder{display:flex;align-items:center;justify-content:center;min-height:160px;padding:24px;border:1px dashed var(--line);color:var(--muted);font-size:14px;text-align:center}
-#noticed .audit-evidence figcaption a{margin-right:20px}
 #reply-status[data-state="error"]{border-left:3px solid var(--focus);padding-left:16px}
 .care-rate{padding-bottom:24px}.care-rate .price{font-size:24px}
 @media(max-width:900px){.service-index{display:flex;position:static;flex-direction:row;flex-wrap:wrap;max-height:none;gap:8px 16px;padding:24px 0;border-bottom:1px solid var(--line)}.service-index .index-logo{display:none}.service-index a{min-height:44px}.service-index .index-number{display:none}}
@@ -526,11 +468,10 @@ html.is-opening{overflow:hidden}
 </style>
 </head><body>
 <div id="opening-screen" class="opening-screen" role="status" aria-label="Welcome to the Spring Sweet proposal" hidden>
-<img class="opening-logo" src="assets/optimized/17c-logo-224.png" alt="17C Studio" decoding="async">
 <p class="opening-message"><span>A first look at everything Spring Sweet</span></p>
 </div>
 <script>
-/* Always reveal the page on a timer; never wait for the video or remote logo. */
+/* Reveal the proposal on a timer, independently of asset loading. */
 (function(){
   var screen=document.getElementById('opening-screen');
   var root=document.documentElement;
@@ -569,22 +510,16 @@ html.is-opening{overflow:hidden}
 <p>Thank you for walking me through the mockup and showing me what felt right to each of you. I loved hearing how you want the website to feel like walking into Spring Sweet. You can come in for one thing and discover something else you love.</p>
 <p>The new homepage can give people that same sense of discovery. Someone coming to shop can find what’s new, and a bride who’s never been in before can see right away that there’s a bridal loft upstairs and know how to book. Florals can have their own clear place, too. The warmth and little details you liked in the mockup can carry through once people choose where to go.</p>
 <p>I put the proposal on a page so you can compare the three options together and come back to it as you decide what feels right for this first phase.</p>
-<p>Warmly,<br><span class="signature">Mariel</span></p>
 </div></section>
 <div class="proposal-body">
 <nav class="service-index" aria-label="Proposal sections" data-lenis-prevent>
     <img class="index-logo" src="assets/optimized/17c-logo-112.png" width="40" height="50" alt="17C Studio">
     <a href="#overview"><span class="index-number" aria-hidden="true">01</span><span class="index-name">Overview</span></a>
-    <a href="#noticed"><span class="index-number" aria-hidden="true">02</span><span class="index-name">What I noticed</span></a>
-    <a href="#scope"><span class="index-number" aria-hidden="true">03</span><span class="index-name">What I’ll do</span></a>
-    <a href="#questions"><span class="index-number" aria-hidden="true">04</span><span class="index-name">Questions</span></a>
-    <a href="#timeline"><span class="index-number" aria-hidden="true">05</span><span class="index-name">Timeline</span></a>
-    <a href="#about"><span class="index-number" aria-hidden="true">06</span><span class="index-name">How we work</span></a>
-    <a href="#investment"><span class="index-number" aria-hidden="true">07</span><span class="index-name">Investment</span></a>
-    <a href="#payment"><span class="index-number" aria-hidden="true">08</span><span class="index-name">Payment</span></a>
-    <a href="#assumptions"><span class="index-number" aria-hidden="true">09</span><span class="index-name">Assumptions</span></a>
-    <a href="#terms"><span class="index-number" aria-hidden="true">10</span><span class="index-name">Short terms</span></a>
-    <a href="#accept-section"><span class="index-number" aria-hidden="true">11</span><span class="index-name">Next step</span></a>
+    <a href="#questions"><span class="index-number" aria-hidden="true">02</span><span class="index-name">Questions</span></a>
+    <a href="#timeline"><span class="index-number" aria-hidden="true">03</span><span class="index-name">Timeline</span></a>
+    <a href="#investment"><span class="index-number" aria-hidden="true">04</span><span class="index-name">Investment</span></a>
+    <a href="#details"><span class="index-number" aria-hidden="true">05</span><span class="index-name">Details</span></a>
+    <a href="#accept-section"><span class="index-number" aria-hidden="true">06</span><span class="index-name">Next step</span></a>
   </nav>
 <div class="proposal-chapters">
 <section id="overview"><div class="wrap"><p class="eyebrow">Overview</p><h2>One Spring Sweet. Three places to explore.</h2>
@@ -596,24 +531,12 @@ html.is-opening{overflow:hidden}
 <div class="reading-groups"><div class="reading-group"><h3 class="subheading">A simple first choice</h3><p>Your team asked to “keep it simple for them to decide where they want to go on our website.” We’ll start with the working labels Shop, Bridal, Floral, and About, then agree the final wording and mobile menu behavior together.</p></div><div class="reading-group"><h3 class="subheading">The warmth carries through</h3><p>The homepage direction you shared in the walkthrough will guide this phase. We’ll carry the warm background, useful buttons, and small editorial moments into the pages in your chosen option. We’ll review the photo arrangement, count, crops, and phone layout together before building them.</p></div></div>
 </div></section>
 <hr class="rule">
-<section id="noticed"><div class="wide"><p class="eyebrow">What I noticed</p><h2>A few places to make the next step clearer.</h2>
-<p class="lede">There are useful routes and bridal information to build on. These are the places I’d start.</p><div class="audit-findings"><article class="audit-finding audit-finding--mobile" aria-labelledby="finding-mobile-title"><header class="audit-heading"><span class="audit-number" aria-label="Finding 1">01</span><h3 class="audit-title" id="finding-mobile-title">Store hours tell two different stories.</h3></header><div class="audit-body"><figure class="audit-evidence"><div class="evidence-placeholder">[Capture homepage footer and Contact-page hours side by side]</div><figcaption><a href="https://springsweet.com/" target="_blank" rel="noopener">Homepage</a> <a href="https://springsweet.com/pages/contact" target="_blank" rel="noopener">Contact</a></figcaption></figure><div class="audit-explanation"><div class="audit-note"><h4>What I noticed</h4><p>The homepage footer lists boutique hours as Mon–Sat 10–6. Contact lists Mon–Fri 10–8 and Sat 10–6.</p></div><div class="audit-note audit-recommendation"><h4>What I’d improve</h4><p>Confirm your regular and holiday hours, then use the approved information consistently so people can plan a visit.</p></div></div></div></article><article class="audit-finding audit-finding--buttons" aria-labelledby="finding-buttons-title"><header class="audit-heading"><span class="audit-number" aria-label="Finding 2">02</span><h3 class="audit-title" id="finding-buttons-title">Keep the first choice easy.</h3></header><div class="audit-body"><figure class="audit-evidence"><div class="evidence-placeholder">[Capture homepage routes and expanded navigation]</div><figcaption><a href="https://springsweet.com/" target="_blank" rel="noopener">Homepage</a></figcaption></figure><div class="audit-explanation"><div class="audit-note"><h4>What I noticed</h4><p>The homepage already links to Shop, Bridal, and Floral. The navigation also exposes shop categories, designers, and other destinations across several levels.</p></div><div class="audit-note audit-recommendation"><h4>What I’d improve</h4><p>Keep those three direct routes and give detailed categories a home after someone chooses where to go. We’ll agree the desktop and mobile treatment together.</p></div></div></div></article><article class="audit-finding audit-finding--program" aria-labelledby="finding-program-title"><header class="audit-heading"><span class="audit-number" aria-label="Finding 3">03</span><h3 class="audit-title" id="finding-program-title">Build on the bridal routes already there.</h3></header><div class="audit-body"><figure class="audit-evidence"><div class="evidence-placeholder">[Capture Bridal Home with designer and appointment links]</div><figcaption><a href="https://springsweet.com/pages/bridal-home" target="_blank" rel="noopener">Bridal Home</a></figcaption></figure><div class="audit-explanation"><div class="audit-note"><h4>What I noticed</h4><p>Bridal Home already has separate links for designers and appointments.</p></div><div class="audit-note audit-recommendation"><h4>What I’d improve</h4><p>Build on those routes with clearer first steps for someone shopping for a gown for the first time. I’ll test the destinations before preserving them in the refresh.</p></div></div></div></article><article class="audit-finding audit-finding--social" aria-labelledby="finding-social-title"><header class="audit-heading"><span class="audit-number" aria-label="Finding 4">04</span><h3 class="audit-title" id="finding-social-title">Help people understand which dresses you carry.</h3></header><div class="audit-body"><figure class="audit-evidence"><div class="evidence-placeholder">[Capture the Bridal FAQ wedding-gowns clarification]</div><figcaption><a href="https://springsweet.com/pages/bridal-faq" target="_blank" rel="noopener">Bridal FAQ</a></figcaption></figure><div class="audit-explanation"><div class="audit-note"><h4>What I noticed</h4><p>The Bridal FAQ already says the collection is exclusively wedding gowns. Your team reports calls about bridesmaid and mother-of-the-bride dresses.</p></div><div class="audit-note audit-recommendation"><h4>What I’d improve</h4><p>Preserve the useful clarification and investigate where those searches lead. Option 3 adds a focused search review. We’ll check the evidence before deciding which wording to change.</p></div></div></div></article></div>
-</div></section>
-<hr class="rule">
-<section id="scope"><div class="wrap"><p class="eyebrow">What I’ll do</p><h2>Bring the welcome together on Shopify.</h2>
-<div class="reading-groups"><div class="reading-group"><h3 class="subheading">Keep the store you use</h3><p>The plan keeps your Shopify catalog, checkout, useful bridal information, and working forms and integrations. I’ll check the current theme, app dependencies, booking provider, newsletter setup, collections, domain and redirects, and analytics coverage after access is granted.</p></div><div class="reading-group"><h3 class="subheading">Build where you can review it</h3><p>I’ll work in an unpublished Shopify theme. You’ll see the desktop and mobile layouts, labels, photo crops, and editable sections before the approved theme is published.</p></div><div class="reading-group"><h3 class="subheading">Make regular updates manageable</h3><p>Every option includes an editor walkthrough for Holly and the team, plus a short PDF guide for the agreed updates. Option 2 adds an editable featured collection on Shop and category browsing using a theme pattern Holly can maintain.</p></div><div class="reading-group"><h3 class="subheading">Keep the bridal path welcoming</h3><p>I’ll review the existing appointment link, designers, and FAQ and clarify the scoped bridal copy so first-time visitors understand what to expect. Existing destinations will be tested before launch.</p></div><div class="reading-group"><h3 class="subheading">Measure the agreed next steps</h3><p>Option 2 checks the analytics baseline and documents what can be measured. Option 3 adds agreed event setup, a reporting view, and a post-launch review. Confirmed bookings can be reported only where the booking provider supports reliable measurement.</p></div><div class="reading-group"><h3 class="subheading">Agree changes before starting</h3><p>Photo production, major catalog reorganization, additional templates, a booking system replacement, and paid campaign management need separate scope. I’ll quote additions for your written approval before starting.</p></div></div><p>The options below define the proposed deliverables. [Confirm final page lists and scope caps before acceptance]</p>
-</div></section>
-<hr class="rule">
 <section id="questions"><div class="wrap"><p class="eyebrow">Questions answered up front</p><h2>What you might be wondering.</h2>
 <details class="question"><summary>Can we keep everything on Shopify, and will Holly be able to update it?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes, this plan keeps the site in your Shopify store. I’ll use editable sections for the agreed updates and show Holly how to make them during a walkthrough with a short PDF guide.</p></div></details><details class="question"><summary>Will the collage feel busy or hide the menu on a phone?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>We’ll review desktop and mobile layouts together before committing to the image crop and placement. We’ll keep a readable menu, a curated set of mobile images, and clearly labeled paths to each section.</p></div></details><details class="question"><summary>Can Shop have its own categories while the homepage stays simple?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>The plan gives shoppers a clear way to browse categories inside Shop. I’ll test the theme with your actual menus before we choose between an editable category section, secondary navigation, or another approach that’s easy to maintain. This work is included in Options 2 and 3.</p></div></details><details class="question"><summary>What if our new photos take longer?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>We can approve direction with temporary images and work in small batches every week or two. We’ll agree on a launch window once we know when the final images, copy, and approvals will be ready.</p></div></details><details class="question"><summary>Can a video fit without slowing the page down?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>If you want to add video, I’ll check the format, size, and placement on mobile before we agree to include it. A lightweight still image can serve as the video’s preview.</p></div></details><details class="question"><summary>Can you help us understand what people do on the site?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. We’ll check which data is already collecting. The reporting work in Option 3 focuses on agreed actions, such as clicks to book a bridal appointment, and can report confirmed bookings only where the booking provider supports it. Ongoing summaries are available through optional care when measurement is in place.</p></div></details><details class="question"><summary>Can you help us show up for wedding gowns and get fewer calls for dresses we don’t sell?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I can review the website and available search data for sources of confusion, clarify the bridal language, and make relevant updates within the chosen scope. Search visibility changes over time. Google Ads setup, management, and spend would be scoped separately.</p></div></details><details class="question"><summary>Can we simplify the apps and the email signup?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>In Options 2 and 3, I’ll document what the agreed apps do before recommending changes. We can review a small footer signup with your current email platform and check what the popup is doing before deciding how the two should work together.</p></div></details>
 </div></section>
 <hr class="rule">
 <section id="timeline"><div class="wrap"><p class="eyebrow">Timeline</p><h2>Small steps, with room for your feedback.</h2>
 <p>There’s no fixed launch deadline. We’ll choose the window together once the deposit, access, final assets, and feedback schedule are in place.</p><ul class="timeline-durations" aria-label="Proposed project windows"><li><strong>Option 1</strong><span>[Confirm duration and launch window for Option 1]</span></li><li><strong>Option 2</strong><span>[Confirm duration and launch window for Option 2]</span></li><li><strong>Option 3</strong><span>[Confirm duration and launch window for Option 3]</span></li></ul><p><strong>Proposal walkthrough</strong><br>[Confirm proposal walkthrough date and time, Eastern]</p><ol class="project-timeline" aria-label="Project phases"><li class="timeline-phase"><span class="timeline-dot" aria-hidden="true"></span><div class="phase-meta"><p class="phase-week">Kickoff</p><p class="phase-options">[Confirm kickoff date]</p></div><div class="phase-content"><h3>Access and decisions</h3><p>Spring confirms the decision maker and review cadence. Your team invites me to Shopify and available Google tools. We confirm the apps, pages, emails, and booking functions the store relies on.</p></div></li><li class="timeline-phase"><span class="timeline-dot" aria-hidden="true"></span><div class="phase-meta"><p class="phase-week">Design review</p><p class="phase-options">[Confirm design input date]</p></div><div class="phase-content"><h3>Agree the direction</h3><p>Share your Canva photo arrangement and bridal inspiration. We’ll agree a photo shot list, working labels, and how the desktop and mobile homepage should work.</p></div></li><li class="timeline-phase"><span class="timeline-dot" aria-hidden="true"></span><div class="phase-meta"><p class="phase-week">Content</p><p class="phase-options">[Confirm asset and copy date]</p></div><div class="phase-content"><h3>Gather what makes it yours</h3><p>You supply individual, permission-cleared final photos, a short homepage introduction, approved store details, featured collection choices, bridal information, and any in-scope floral content. Holly confirms Shopify needs and Karri reviews the visual direction.</p></div></li><li class="timeline-phase"><span class="timeline-dot" aria-hidden="true"></span><div class="phase-meta"><p class="phase-week">Build</p><p class="phase-options">Weekly or biweekly batches, as agreed</p></div><div class="phase-content"><h3>Review as it takes shape</h3><p>I’ll build in an unpublished Shopify theme. Together we’ll resolve mobile navigation, contrast over photos, image crops, feature updates, and the booking handoff before final approval.</p></div></li><li class="timeline-phase"><span class="timeline-dot" aria-hidden="true"></span><div class="phase-meta"><p class="phase-week">Preview</p><p class="phase-options">After content and layout are ready</p></div><div class="phase-content"><h3>Check the whole route</h3><p>We’ll test navigation, checkout, booking links, forms, and agreed tracking. Your team checks that it can update the sections in scope and signs off on the draft theme.</p></div></li><li class="timeline-phase"><span class="timeline-dot" aria-hidden="true"></span><div class="phase-meta"><p class="phase-week">Launch</p><p class="phase-options">[Confirm agreed launch date and time]</p></div><div class="phase-content"><h3>Publish and hand over</h3><p>I’ll publish the approved theme at the agreed time, walk Holly and the team through regular edits, and deliver the short PDF guide. We’ll review support needs after launch.</p></div></li></ol><p>Each window depends on the deposit, access, final photos and copy, and consolidated feedback. If those move, we’ll agree a revised launch window.</p>
-</div></section>
-<hr class="rule">
-<section id="about"><div class="wrap"><p class="eyebrow">How we work</p><h2>You’ll see it take shape.</h2>
-<p class="lede">I’ll work in small steps so you can see how the site is taking shape and weigh in before I build it. I’ll design the site around the way your customers use it and make the regular updates easy for your team.</p><div class="reading-groups"><div class="reading-group"><h3 class="subheading">Work directly with me</h3><p>You’ll have one person to contact from design review through launch. We’ll gather feedback in one place and work in weekly or biweekly batches, as agreed.</p></div><div class="reading-group"><h3 class="subheading">Bring the right people into each review</h3><p>Spring coordinates the conversation, Karri reviews the look and feel, and Holly reviews Shopify updates and usability. [Confirm final approval owner and review cadence]</p></div><div class="reading-group"><h3 class="subheading">Keep the keys</h3><p>Your Shopify store, domain, accounts, and content stay in your control. You keep owner access, and I work through collaborator permissions. At handoff, the approved theme and editable sections are available to your team in your Shopify store.</p></div><div class="reading-group"><h3 class="subheading">Know what you’re approving</h3><p>Each option describes the work and its outcome. We’ll confirm the open prices, caps, and terms before acceptance. Added work gets a separate quote and your written approval.</p></div></div><h3>My process</h3><ol class="steps"><li><strong>Listen and confirm</strong> We’ll review the proposal, choose the scope, and confirm who approves it.</li><li><strong>Get set up</strong> Invite me through Shopify collaborator access and separate role-based access to GA4, Google Tag Manager, and Search Console where applicable.</li><li><strong>Design, build, review</strong> We’ll approve the direction, build in a draft theme, and review the agreed pages in small batches.</li><li><strong>Launch and hand over</strong> We’ll test the important routes, publish the approved theme together, and finish the walkthrough and guide.</li></ol>
 </div></section>
 <hr class="rule">
 <section id="investment"><div class="wide"><p class="eyebrow">Investment</p><h2>Three ways to bring it together.</h2>
@@ -625,17 +548,73 @@ html.is-opening{overflow:hidden}
 </section>
 </div></section>
 <hr class="rule">
-<section id="payment"><div class="wrap"><p class="eyebrow">Payment</p><h2>A clear start, with costs agreed first.</h2>
-<ul><li><strong>Proposed project payments</strong><br>50% to start and 50% at launch. Work starts after written acceptance, deposit, and access.</li><li><strong>Option 1</strong><br>[Confirm Option 1 price and 50% payment amounts]</li><li><strong>Option 2</strong><br>[Confirm Option 2 price and 50% payment amounts]</li><li><strong>Option 3</strong><br>[Confirm Option 3 price and 50% payment amounts]</li><li><strong>Invoice and launch details</strong><br>[Confirm any remaining payment or short terms, including invoice due dates and final-payment timing relative to publishing]</li></ul>
-<h3>Pass-through costs</h3><p>[Confirm Shopify theme or paid app costs, if any]<br>[Confirm optional reporting-tool or other third-party costs, if any]</p><p>You approve added costs before purchase. Confirmed costs are passed through at cost. Your Shopify subscription, existing app charges, and any separately agreed advertising spend are listed separately.</p><p>Additions to the project scope need a quote and your written approval before work starts.</p>
-</div></section>
-<hr class="rule">
-<section id="assumptions"><div class="wrap"><p class="eyebrow">Assumptions</p><h2>What we’ll need from each other.</h2>
-<ul><li>You supply approved photos and copy, including individual, permission-cleared images, final service details, store hours, collection choices, and any in-scope floral content.</li><li>Spring coordinates the conversation, Karri reviews visual direction, and Holly reviews usability and Shopify needs. [Confirm final approval owner]</li><li>Provide Shopify collaborator access and separate role-based access to GA4, Google Tag Manager, and Search Console where applicable.</li><li>The existing Shopify catalog, checkout, useful bridal content, and working forms and integrations are carried forward. We’ll confirm theme capabilities and app dependencies before changing them. App removals need your approval.</li><li>The four working labels are Shop, Bridal, Floral, and About. Final labels, photo arrangement and count, mobile imagery, menu behavior, overlays, sticky navigation, and video need design approval and theme feasibility checks.</li><li>We’ll confirm regular and holiday boutique hours before publishing. The bridal FAQ already clarifies the assortment. The source of the reported search confusion needs investigation.</li><li>Booking completion tracking depends on the provider. We’ll report the agreed measurable actions and check the data before drawing conclusions.</li><li>Photo production, major catalog reorganization, additional templates, a booking system replacement, and paid campaign management require separate scope.</li><li>We’ll agree a launch window after deposit, access, asset readiness, and feedback timing are confirmed. [Confirm final page lists, numeric caps, and revision rounds]</li></ul>
-</div></section>
-<hr class="rule">
-<section id="terms"><div class="wrap terms"><p class="eyebrow">Short terms</p><h2>The details we’ll agree before starting.</h2>
-<p>These are proposed terms for your selected project and optional care. [Confirm any remaining payment or short terms]</p><div class="reading-groups"><div class="reading-group"><h3 class="subheading">Payment and scope</h3><p>Proposed payments are 50% to start and 50% at launch, with invoice timing confirmed in Payment. The project begins after written acceptance, deposit, and access. Additional work needs a separate quote and written approval.</p></div><div class="reading-group"><h3 class="subheading">Content and timing</h3><p>You supply approved assets, copy, and consolidated feedback. We’ll work in the agreed review batches and confirm a revised launch window if access, content, or approvals move.</p></div><div class="reading-group"><h3 class="subheading">Revisions</h3><p>[Confirm Option 1 revision cap]<br>[Confirm Option 2 revision cap]<br>[Confirm Option 3 revision cap]</p></div><div class="reading-group"><h3 class="subheading">Your accounts and content</h3><p>Your Shopify store, domain, accounts, and content stay in your control. You keep owner access, and I work through collaborator permissions. At handoff, the approved theme and editable sections are available to your team in your Shopify store.</p></div><div class="reading-group"><h3 class="subheading">Third-party licenses</h3><p>Themes, apps, fonts, and other third-party materials follow their own licenses. [Confirm Shopify theme or paid app costs, if any] and [Confirm optional reporting-tool or other third-party costs, if any]. You approve added costs first.</p></div><div class="reading-group"><h3 class="subheading">Optional care</h3><p>The proposed starting term is three months, then month to month with 30 days’ notice. [Confirm care start date, cancellation effective date, response expectations, and final terms]. Larger requests are quoted before starting.</p></div><div class="reading-group"><h3 class="subheading">Launch support</h3><p>We’ll test the routes and tracking in scope, then provide the editor walkthrough and short PDF guide. [Confirm post-launch support or warranty terms]</p></div><div class="reading-group"><h3 class="subheading">Search and reporting</h3><p>I’ll use available evidence to clarify the bridal information within the selected scope. Search visibility changes over time. Booking completion reporting depends on the provider’s capabilities. Analytics will use aggregate information and agreed actions.</p></div></div>
+<section id="details"><div class="wrap"><h2>Details</h2>
+<p>These are proposed terms for your selected project and optional care.</p>
+<div class="reading-groups terms">
+  <div class="reading-group">
+    <h3 class="subheading">1. Scope &amp; Existing Shopify Features</h3>
+    <p>The existing Shopify catalog, checkout, useful bridal content, and working forms and integrations are carried forward. We’ll confirm theme capabilities and app dependencies before changing them. App removals need your approval.</p>
+    <p>Photo production, major catalog reorganization, additional templates, a booking system replacement, and paid campaign management require separate scope.</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">2. Content &amp; Assets</h3>
+    <p>You supply approved assets and copy, including individual, permission-cleared photos, final service details, store hours, collection choices, and any in-scope floral content, along with consolidated feedback.</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">3. Communication &amp; Approvals</h3>
+    <p>Spring coordinates the conversation, Karri reviews visual direction, and Holly reviews usability and Shopify needs. [Confirm final approval owner]</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">4. Design &amp; Navigation</h3>
+    <p>The four working labels are Shop, Bridal, Floral, and About. Final labels, photo arrangement and count, mobile imagery, menu behavior, overlays, sticky navigation, and video need design approval and theme feasibility checks.</p>
+    <p>[Confirm final page lists and numeric caps]</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">5. Store Information &amp; Search</h3>
+    <p>We’ll confirm regular and holiday boutique hours before publishing. The bridal FAQ already clarifies the assortment, but the source of the reported search confusion needs investigation. I’ll use available evidence to clarify the bridal information within the selected scope. Search visibility changes over time.</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">6. Access &amp; Ownership</h3>
+    <p>Provide Shopify collaborator access and separate role-based access to GA4, Google Tag Manager, and Search Console where applicable.</p>
+    <p>Your Shopify store, domain, accounts, and content stay in your control. You keep owner access, and I work through collaborator permissions. At handoff, the approved theme and editable sections are available to your team in your Shopify store.</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">7. Payment &amp; Additional Work</h3>
+    <p>Proposed payments are 50% to start and 50% at launch. Invoice timing will be confirmed before acceptance. The project begins after written acceptance, deposit, and access. Additional work needs a separate quote and written approval.</p>
+    <p>[Confirm any remaining payment or short terms]</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">8. Timeline &amp; Launch Window</h3>
+    <p>We’ll agree a launch window after deposit, access, asset readiness, and feedback timing are confirmed.</p>
+    <p>We’ll work in the agreed review batches and confirm a revised launch window if access, content, or approvals move.</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">9. Revisions</h3>
+    <p>[Confirm Option 1 revision cap]<br>[Confirm Option 2 revision cap]<br>[Confirm Option 3 revision cap]</p>
+    <p>[Confirm revision rounds]</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">10. Third-Party Licenses &amp; Costs</h3>
+    <p>Themes, apps, fonts, and other third-party materials follow their own licenses.</p>
+    <p>[Confirm Shopify theme or paid app costs, if any] and [Confirm optional reporting-tool or other third-party costs, if any]</p>
+    <p>You approve added costs first.</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">11. Tracking &amp; Reporting</h3>
+    <p>Booking completion tracking and reporting depend on the provider’s capabilities. Analytics will use aggregate information, and we’ll report the agreed measurable actions and check the data before drawing conclusions.</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">12. Launch Support &amp; Handoff</h3>
+    <p>We’ll test the routes and tracking in scope, then provide the editor walkthrough and short PDF guide.</p>
+    <p>[Confirm post-launch support or warranty terms]</p>
+  </div>
+  <div class="reading-group">
+    <h3 class="subheading">13. Optional Care</h3>
+    <p>The proposed starting term is three months, then month to month with 30 days’ notice.</p>
+    <p>[Confirm care start date, cancellation effective date, response expectations, and final terms]</p>
+    <p>Larger requests are quoted before starting.</p>
+  </div>
+</div>
 </div></section>
 <hr class="rule">
 <section id="accept-section">
