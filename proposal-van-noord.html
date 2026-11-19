@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="proposals/van-noord/styles.css">
 <script src="proposals/van-noord/script.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js" defer></script>
+<script src="proposals/van-noord/acceptance.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -204,53 +206,71 @@
 </div></section>
 <hr class="rule">
 <section id="next-step"><div class="wrap">
-  <p class="eyebrow">Next step</p><h2>Monday, November 23 at 9am.</h2>
-  <p>Kyle and Sara, could we walk through the options on <time datetime="2026-11-23T09:00:00-05:00">Monday, November 23, 2026 at 9am Eastern</time>? We can choose how much the site should cover at launch and who should look after it afterward. Reply to confirm, or suggest another time.</p>
-  <p><a class="walkthrough" href="mailto:mariel@17c.studio?subject=Van%20Noord%20walkthrough%20-%20Monday%20November%2023%20at%209am&amp;body=Hi%20Mariel%2C%0A%0AMonday%2C%20November%2023%20at%209am%20Eastern%20works%20for%20us.">Confirm Monday at 9am <span aria-hidden="true">→</span></a></p>
+  <p class="eyebrow">Next step</p><h2>Let’s choose what fits.</h2>
   <p>I recommend Option 2 as a practical starting point. When you’re ready, select your build and optional care plan below. I’ll follow up with the initial invoice and we’ll agree on a kickoff date. Option 3 is a fixed $11,000 for the expanded website and version-one tracker described above. Full Care includes its ongoing upkeep. We’ll agree on the kickoff date once the initial payment, access, and approved materials are ready.</p>
   <p><a href="#proposal-details" data-open-details>Read Details: scope, payment, and terms</a> before submitting.</p>
-  <form id="reply" class="accept" action="https://formspree.io/f/xjygqoja" method="POST">
-    <input type="hidden" name="_subject" value="Van Noord website proposal acceptance">
-    <input type="hidden" name="proposal" value="Van Noord Home Entertainment · Custom WordPress website">
-    <input type="hidden" id="accepted-at" name="accepted_at" value="">
-    <input type="hidden" id="accepted-terms" name="accepted_terms" value="">
-    <label for="accept-name">Your full name (electronic signature)</label>
-    <input id="accept-name" name="name" type="text" autocomplete="name" maxlength="150" required>
-    <label for="accept-email">Your email</label>
-    <input id="accept-email" name="email" type="email" autocomplete="email" maxlength="254" required>
-    <label for="accept-option">Choose your project option</label>
-    <select id="accept-option" name="option" required>
-      <option value="">Choose one</option>
-      <option value="Option 1 · $2,500 · $1,250 at acceptance and before launch">Option 1: Get Van Noord online · $2,500</option>
-      <option value="Option 2 · $4,250 · $2,125 at acceptance and before launch">Option 2: Give customers a closer look · $4,250 (recommended)</option>
-      <option value="Option 3 · $11,000 fixed · $5,500 at acceptance and before launch">Option 3: Website + install tracker · $11,000</option>
-    </select>
-    <label for="accept-care">Choose optional ongoing care</label>
-    <select id="accept-care" name="care" required>
-      <option value="">Choose one</option>
-      <option value="No care plan">No care plan</option>
-      <option id="base-care-choice" value="WordPress Base Care · $225/month · 3-month minimum $675">WordPress Base Care · $225/month · $675 minimum</option>
-      <option value="Growth Care · $425/month · 3-month minimum $1,275">Growth Care · $425/month · $1,275 minimum</option>
-      <option value="Full Care · $800/month · tracker upkeep included · 3-month minimum $2,400">Full Care · $800/month · tracker upkeep included · $2,400 minimum</option>
-    </select>
-    <label for="accept-note">A note for me (optional)</label>
-    <textarea id="accept-note" name="note" rows="3" maxlength="2000"></textarea>
-    <label class="acceptance-consent" for="accept-consent"><input id="accept-consent" type="checkbox" name="consent" value="accepted" required><span id="consent-wording">I am authorized to accept this proposal for Van Noord. I accept the selected scope, project fee, payment terms, assumptions, timeline, revisions, ownership, warranty, and care terms, including the three-month minimum if care is selected. By submitting, I intend my typed full name to be my electronic signature.</span></label>
-    <p>Please keep a copy of this proposal for your records. Do not include passwords or customer information in your note.</p>
-    <button id="accept-submit" class="go" type="submit">Sign &amp; accept proposal</button>
-  </form>
+  <form id="reply" class="accept" action="https://formspree.io/f/xjygqoja" method="POST" enctype="multipart/form-data">
+  <label for="name">Your full name (electronic signature)</label>
+  <input id="name" name="name" type="text" autocomplete="name" maxlength="150" required>
+  <label for="email">Your email</label>
+  <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required>
+  <label for="signer-title">Your role at Van Noord (optional)</label>
+  <input id="signer-title" name="title" type="text" autocomplete="organization-title" maxlength="150">
+  <label for="option">Choose your project</label>
+  <select id="option" name="option" required aria-describedby="selection-help">
+    <option value="">Choose one</option>
+    <option value="opt1">Option 1 · Get Van Noord online · $2,500</option>
+    <option value="opt2">Option 2 · Give customers a closer look · $4,250</option>
+    <option value="opt3">Option 3 · Website + install tracker · $11,000</option>
+  </select>
+  <label for="accept-care">Ongoing care</label>
+  <select id="accept-care" name="care" required>
+    <option value="">Choose one</option>
+    <option value="base">Base Care · WordPress · $225/month</option>
+    <option value="growth">Growth Care · $425/month</option>
+    <option value="full">Full Care · $800/month</option>
+    <option value="none">No care plan for now</option>
+  </select>
+  <p id="selection-help" class="acceptance-help">All three options are fixed-price project agreements with 50% upfront and 50% before launch, due within 7 days of each invoice. Optional care has a three-month minimum from the agreed start date, then continues month to month at the selected rate. Either of us can cancel by email, effective 30 calendar days after receipt or at the end of the minimum, whichever is later.</p>
+  <div id="acceptance-summary" class="acceptance-summary" aria-live="polite"></div>
+  <label for="questions-text">A note for me (optional)</label>
+  <textarea data-lenis-prevent id="questions-text" name="questions" rows="3" maxlength="2000"></textarea>
+  <details class="question signature-disclosure">
+    <summary>Add a handwritten signature <span class="question-icon" aria-hidden="true"></span></summary>
+    <p id="signature-help">Your typed name and consent are enough. If you’d like, draw your signature below with a mouse, finger, or stylus.</p>
+    <canvas id="signature-pad" width="1200" height="320" data-lenis-prevent aria-label="Optional signature drawing area" aria-describedby="signature-help"></canvas>
+    <button class="signature-clear" id="signature-clear" type="button">Clear signature</button>
+  </details>
+  <label class="acceptance-consent" for="accept-consent">
+    <input id="accept-consent" name="consent" type="checkbox" value="accepted" required>
+    <span id="consent-wording">I am authorized to sign for Van Noord. I accept the selected project scope, fixed fee, 50% initial payment and 50% before launch, invoices due within 7 days, and the responsibilities and terms in Details. If I select care, I accept its monthly rate and three-month minimum from our agreed start date, then month to month at the same rate. Either of us can cancel by email, effective 30 calendar days after receipt or at the end of the minimum, whichever is later. By clicking the signing button, I intend my full name and this submission to be my electronic signature and consent to keeping this record electronically.</span>
+  </label>
+  <p class="acceptance-help">After receipt is confirmed, you can download a signed PDF copy. The optional drawing stays in that download; your typed signature, consent, and selection are sent to Formspree.</p>
+  <button class="go" id="accept-submit" type="submit" disabled>Sign &amp; accept proposal</button>
+  <noscript><p>Please enable JavaScript to sign, or <a href="form.html" data-email>email me</a> for help.</p></noscript>
+  <p id="reply-status" role="status" aria-live="polite" tabindex="-1"></p>
+  <div id="acceptance-receipt" hidden>
+    <h3>Your signed copy</h3><p id="acceptance-reference"></p>
+    <div class="acceptance-downloads"><button class="go" id="download-acceptance-pdf" type="button" disabled>Download signed PDF</button></div>
+    <p id="acceptance-download-status" role="status" aria-live="polite"></p>
+  </div>
+</form>
   <p class="signature">Mariel</p>
   <div id="terms">
   <details class="question proposal-details" id="proposal-details">
     <summary>Details: scope, payment, and terms <span class="question-icon" aria-hidden="true"></span></summary>
     <div class="question-answer agreement-details">
+      <div id="scope">
       <h3 class="subheading">Project scope</h3>
       <p><strong>Option 1 · $2,500:</strong> A custom one-page WordPress redesign with updated typography, colors, approved photography, and a layout for phones and computers. Includes a short shop introduction, the service categories we prioritize together, approved project photos, and easy-to-find phone, email, location, hours, and directions. Local SEO basics cover a descriptive page title, search description, clear service wording, and a Google Business Profile check. Includes a basic editing walkthrough for your chosen team member, full WordPress administrator access at handoff, analytics setup, and the one-time 60-day analytics check-in.</p>
       <p><strong>Option 2 · $4,250:</strong> Everything in Option 1, with a complete redesign comprising a custom homepage and dedicated pages for up to four service categories you choose, for up to five pages total. Includes up to three featured installations using approved photos or videos, service-specific SEO and answers to common questions, and direct links Haley can use for the service featured in her posts. A simple inquiry form sends the service interest, project details, and callback number together in one email. Google Analytics is connected through a WordPress plugin, with inquiry-form and click-to-call tracking and the one-time 60-day analytics check-in. The basic editing walkthrough and administrator access from Option 1 are included.</p>
       <p><strong>Option 3 · $11,000 fixed:</strong> Everything in Option 2, with a six-page website comprising the homepage, four agreed service-category pages including home automation, and a Projects page with up to six installations total and shareable links to project sections. Includes the basic editing walkthrough from Option 1 and a live project-editing handoff. The price also includes the version-one install tracker defined below, its staff handoff, and launch checks.</p>
       <p>We’ll agree the service categories before building. Option 2’s page titles, descriptions, service wording, and answers to common questions will reflect those categories and how customers search for them locally. The categories can include TV price matching and installation, motorized shades, golf simulators, or home automation for new builds.</p>
+      </div>
+      <div id="assumptions">
       <h3 class="subheading">Access and materials</h3>
       <p>Van Noord supplies approved photos or videos and confirms service details, including price matching, delivery and installation areas, and contact information. I’ll organize those details into website copy for your review. We’ll work with Todd to confirm domain ownership, Weebly access, subscriptions, and any hosting or platform changes before launch. We’ll review whether to keep the current domain or recommend a new one that better fits the shop’s name and goals. An unfamiliar domain alone does not determine search performance. Changes to providers, subscriptions, or the domain need your approval first. We’ll also confirm the preferred business name before launch.</p>
+      </div>
   <div id="payment">
     <h3 class="subheading">Payment terms</h3>
   <ul>
