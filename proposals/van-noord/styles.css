@@ -6,8 +6,8 @@
   --paper:#171614;
   --ink:#f6f5f1; --muted:#c2bcb3;
   --soft:#24221f; --line:#77716a;
-  --portal-orange:#e8742f;
-  --focus:#c8b366;
+  --portal-orange:#4682b4;
+  --focus:#79baec;
   --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
   --sans:"DM Sans",Arial,sans-serif;
   --gutter:clamp(24px,4vw,64px); --section-space:clamp(64px,7vw,96px);
@@ -373,3 +373,18 @@ html.is-opening{overflow:hidden}
 .price-prefix{font:500 14px/1.5 var(--sans);letter-spacing:0}
 #investment .card li>strong:first-child{display:inline;margin-bottom:0}
 @media print{.tracker-option{break-inside:auto}}
+
+/* Acceptance form styling shared with the Mr Rebuild proposal. */
+.acceptance-summary:empty{display:none}
+.acceptance-summary{padding:20px;margin-top:24px;border:1px solid var(--line);font-size:14px;line-height:1.8;background:var(--paper);white-space:pre-line}
+#signature-pad{display:block;width:100%;height:160px;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:0;touch-action:none}
+.signature-clear{min-height:44px;padding:10px 14px;margin-top:12px;border:1px solid var(--line);background:transparent;color:var(--ink);font:500 12px/1.6 var(--sans);cursor:pointer}
+.signature-disclosure{margin-top:28px}
+.signature-disclosure p,.acceptance-help{font-size:13px;line-height:1.7;color:var(--muted)}
+.acceptance-consent{display:flex;align-items:flex-start;gap:12px;font-size:14px!important;font-weight:400;line-height:1.75!important;cursor:pointer;min-height:44px}
+.acceptance-consent input{flex:0 0 20px;width:20px;height:20px;margin:3px 0 0;accent-color:var(--ink)}
+.acceptance-downloads{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#acceptance-receipt{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+#acceptance-receipt h3{font-size:28px;margin:0 0 12px}
+#acceptance-reference{font-size:13px;overflow-wrap:anywhere}
+@media(max-width:480px){.acceptance-downloads{align-items:stretch;flex-direction:column}.acceptance-downloads button{width:100%}}

@@ -24,28 +24,6 @@
   update();
 })();
 
-/* Changing a selection requires fresh consent to the selected terms. */
-(function(){
-  ['accept-option','accept-care'].forEach(function(id){
-    var select=document.getElementById(id);
-    if(select) select.addEventListener('change',function(){
-      document.getElementById('accept-consent').checked=false;
-    });
-  });
-})();
-
-/* Record the selected agreement with the acceptance sent through the form. */
-(function(){
-  var form=document.getElementById('reply');
-  if(!form) return;
-  form.addEventListener('submit',function(){
-    document.getElementById('accepted-at').value=new Date().toISOString();
-    document.getElementById('accepted-terms').value=['investment','payment','care','terms','questions'].map(function(id){
-      return document.getElementById(id).textContent.trim();
-    }).join('\n\n');
-  });
-})();
-
 /* Open the agreement before following its navigation or a deep link. */
 (function(){
   var details=document.getElementById('proposal-details');
