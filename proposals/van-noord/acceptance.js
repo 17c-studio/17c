@@ -41,7 +41,7 @@
   function updateSummary() {
     const selected = selection();
     byId('acceptance-summary').textContent = selected
-      ? `Selected project: ${selected.option}\nFixed project fee: ${money(selected.fee)}. Initial invoice: ${money(selected.deposit)} (50%). Final invoice before launch: ${money(selected.deposit)} (50%). Both due within 7 days of issue.\n` +
+      ? `Selected project: ${selected.option}\nProject fee: ${money(selected.fee)}. Initial invoice: ${money(selected.deposit)} (50%). Final invoice before launch: ${money(selected.deposit)} (50%). Both due within 7 days of issue.\n` +
         (selected.care.months
           ? `Selected care: ${selected.care.label}, ${money(selected.care.monthly)}/month. Three-month minimum: ${money(selected.care.total)}, billed monthly from the agreed start date. Then month to month at the same rate. Cancellation by email takes effect 30 calendar days after receipt or at the end of the minimum, whichever is later.\n`
           : 'No care plan selected.\n') +
