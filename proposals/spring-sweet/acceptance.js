@@ -18,8 +18,9 @@
   const clean = text => String(text || '').replace(/\s+/g, ' ').trim();
   const textOf = selector => clean(document.querySelector(selector)?.textContent);
   const carePlans = {
-    monthly: { label: 'Optional monthly care · [Confirm monthly care price]', months: 3 },
-    none: { label: 'No care plan for now', months: 0 }
+    site: { label: 'Site Care · $300/month', monthly: 300, months: 3, total: 900, renewal: 'Then month to month with 30 days’ notice.' },
+    growth: { label: 'Growth Care · $600/month', monthly: 600, months: 6, total: 3600, renewal: 'Then month to month. Cancellation terms will be confirmed before acceptance is enabled.' },
+    none: { label: 'No care plan for now', monthly: 0, months: 0, total: 0 }
   };
   function selection() {
     const card = byId(option.value);
@@ -32,7 +33,7 @@
     const selected = selection();
     byId('acceptance-summary').textContent = selected
       ? `Selected project: ${selected.option}\nProject investment: ${selected.fee}\nProposed payments: 50% to start and 50% at launch.\n` +
-        (selected.care.months ? `Care: ${selected.care.label}. Proposed three-month minimum, then month to month with 30 days’ notice.` : 'Ongoing care: none selected.') +
+        (selected.care.months ? `Care: ${selected.care.label}. ${selected.care.months}-month minimum: $${selected.care.total.toLocaleString('en-US')}, billed monthly from the agreed start date. ${selected.care.renewal}` : 'Ongoing care: none selected.') +
         '\nPrivate draft. Acceptance is disconnected.'
       : '';
   }
@@ -123,7 +124,7 @@
       payment: textOf('#payment'), assumptions: textOf('#assumptions'), terms: textOf('#terms'),
       care_details: 'No care plan selected.'
     };
-    if (selected.care.months) documentSnapshot.care_details = textOf('#ongoing-care');
+    if (selected.care.months) documentSnapshot.care_details = textOf(selected.care.months === 6 ? '#growth-care' : '#site-care');
     documentSnapshot.readable_sections = {
       included_options: Array.from({ length: tier }, (_, index) => ({
         title: `Option ${index + 1}: ${textOf(`#opt${index + 1} h3`)}`,
@@ -138,8 +139,9 @@
     };
     if (selected.care.months) {
       for (let node = byId('care-plan').nextElementSibling; node; node = node.nextElementSibling) {
-        // The selected rate is already stated in the investment summary.
-        if (!node.matches('.two')) documentSnapshot.readable_sections.care_details.push(...captureBlocks(node));
+        // Capture the chosen care plan and common care notes.
+        if (node.matches('.two')) documentSnapshot.readable_sections.care_details.push(...captureBlocks(byId(selected.care.months === 6 ? 'growth-care' : 'site-care')));
+        else documentSnapshot.readable_sections.care_details.push(...captureBlocks(node));
       }
     }
     const record = {
@@ -182,7 +184,7 @@
     }
     const unresolved = /\[Confirm [^\]]+\]/.test(textOf('main'));
     if (form.dataset.draft === 'true' || unresolved || !/^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(form.getAttribute('action') || '')) {
-      status.textContent = 'This private draft cannot be accepted yet. Pricing, scope, terms, and the Spring Sweet Formspree endpoint need confirmation. Nothing was sent.';
+      status.textContent = 'This private draft cannot be accepted yet. The remaining scope, terms, and the Spring Sweet Formspree endpoint need confirmation. Nothing was sent.';
       status.dataset.state = 'error';
       status.focus({ preventScroll: true });
       return;
@@ -206,6 +208,9 @@
       payload.append('monthly_option', record.selected.care.months
         ? record.selected.care.label
         : record.selected.care.label);
+      payload.append('care_monthly_total', String(record.selected.care.monthly));
+      payload.append('care_minimum_months', String(record.selected.care.months));
+      payload.append('care_initial_commitment', String(record.selected.care.total));
       payload.append('note', record.signer_note);
       payload.append('signature', `${record.signer_name}\nSigned (browser UTC): ${record.signed_at_browser_utc}\n${record.electronic_consent}`);
       const controller = new AbortController();
