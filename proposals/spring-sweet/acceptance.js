@@ -111,6 +111,22 @@
     return blocks;
   }
 
+  function careBlocks(selected) {
+    if (!selected.care.months) return [];
+    const blocks = [{ type: 'heading', text: selected.care.label, level: 4 }];
+    byId('care-comparison').querySelectorAll('tbody tr').forEach(row => {
+      const label = clean(row.querySelector('th').textContent);
+      let value = clean(row.querySelector(`[data-care="${selected.care.id}"]`).textContent);
+      if (selected.care.id === 'growth' && label === 'Shopify upkeep') {
+        value = clean(row.querySelector('[data-care="site"]').textContent);
+      }
+      blocks.push({ type: 'paragraph', text: `${label}: ${value}` });
+    });
+    Array.from(byId('ongoing-care').children).filter(node => node.tagName === 'P')
+      .forEach(node => blocks.push(...captureBlocks(node)));
+    return blocks;
+  }
+
   async function buildRecord() {
     const selected = selection();
     if (!selected || !consent.checked) throw new Error('Choose your option and care plan, then check the acceptance box.');
@@ -124,7 +140,8 @@
       payment: textOf('#payment'), assumptions: textOf('#assumptions'), terms: textOf('#terms'),
       care_details: 'No care plan selected.'
     };
-    if (selected.care.months) documentSnapshot.care_details = textOf(selected.care.id === 'growth' ? '#growth-care' : '#site-care');
+    const selectedCareBlocks = careBlocks(selected);
+    if (selected.care.months) documentSnapshot.care_details = selectedCareBlocks.map(block => block.text).join('\n\n');
     documentSnapshot.readable_sections = {
       included_options: Array.from({ length: tier }, (_, index) => ({
         title: `Option ${index + 1}: ${textOf(`#opt${index + 1} h3`)}`,
@@ -137,13 +154,7 @@
       terms: captureBlocks(byId('terms')),
       care_details: []
     };
-    if (selected.care.months) {
-      for (let node = byId('care-plan').nextElementSibling; node; node = node.nextElementSibling) {
-        // Capture the chosen care plan and common care notes.
-        if (node.matches('.two')) documentSnapshot.readable_sections.care_details.push(...captureBlocks(byId(selected.care.id === 'growth' ? 'growth-care' : 'site-care')));
-        else documentSnapshot.readable_sections.care_details.push(...captureBlocks(node));
-      }
-    }
+    documentSnapshot.readable_sections.care_details = selectedCareBlocks;
     const record = {
       acceptance_id: 'SPRING-SWEET-' + window.crypto.randomUUID(),
       signed_at_browser_utc: new Date().toISOString(),
