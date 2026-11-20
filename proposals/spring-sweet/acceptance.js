@@ -19,7 +19,7 @@
   const textOf = selector => clean(document.querySelector(selector)?.textContent);
   const carePlans = {
     site: { label: 'Site Care · $300/month', monthly: 300, months: 3, total: 900, renewal: 'Then month to month with 30 days’ notice.' },
-    growth: { label: 'Growth Care · $600/month', monthly: 600, months: 6, total: 3600, renewal: 'Then month to month. Cancellation terms will be confirmed before acceptance is enabled.' },
+    growth: { label: 'Growth Care · $600/month', monthly: 600, months: 3, total: 1800, renewal: 'Then month to month. Cancellation terms will be confirmed before acceptance is enabled.' },
     none: { label: 'No care plan for now', monthly: 0, months: 0, total: 0 }
   };
   function selection() {
@@ -27,7 +27,7 @@
     const plan = carePlans[care.value];
     if (!card || !plan) return null;
     return { option: option.selectedOptions[0].textContent,
-      fee: clean(card.querySelector('.price').textContent), care: { ...plan } };
+      fee: clean(card.querySelector('.price').textContent), care: { id: care.value, ...plan } };
   }
   function updateSummary() {
     const selected = selection();
@@ -124,7 +124,7 @@
       payment: textOf('#payment'), assumptions: textOf('#assumptions'), terms: textOf('#terms'),
       care_details: 'No care plan selected.'
     };
-    if (selected.care.months) documentSnapshot.care_details = textOf(selected.care.months === 6 ? '#growth-care' : '#site-care');
+    if (selected.care.months) documentSnapshot.care_details = textOf(selected.care.id === 'growth' ? '#growth-care' : '#site-care');
     documentSnapshot.readable_sections = {
       included_options: Array.from({ length: tier }, (_, index) => ({
         title: `Option ${index + 1}: ${textOf(`#opt${index + 1} h3`)}`,
@@ -140,7 +140,7 @@
     if (selected.care.months) {
       for (let node = byId('care-plan').nextElementSibling; node; node = node.nextElementSibling) {
         // Capture the chosen care plan and common care notes.
-        if (node.matches('.two')) documentSnapshot.readable_sections.care_details.push(...captureBlocks(byId(selected.care.months === 6 ? 'growth-care' : 'site-care')));
+        if (node.matches('.two')) documentSnapshot.readable_sections.care_details.push(...captureBlocks(byId(selected.care.id === 'growth' ? 'growth-care' : 'site-care')));
         else documentSnapshot.readable_sections.care_details.push(...captureBlocks(node));
       }
     }
