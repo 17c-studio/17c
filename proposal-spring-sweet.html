@@ -486,6 +486,27 @@ html.is-opening{overflow:hidden}
 .agreement-details p,.agreement-details li{font-size:14px;line-height:1.8}
 .agreement-details p{margin:0 0 16px}
 @media print{.proposal-details{break-inside:auto}}
+/* A seamless photo collage of the boutique, bridal loft, and florals. */
+@media screen{
+  #top{min-height:720px;display:flex;align-items:center;padding-block:170px 110px}
+  #top::before{background:linear-gradient(90deg,rgb(23 22 20 / 76%),rgb(23 22 20 / 48%) 58%,rgb(23 22 20 / 18%)),linear-gradient(0deg,rgb(23 22 20 / 65%),transparent 45%)}
+  #top>.hero-collage{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border:0}
+  .hero-collage-column{display:grid;grid-template-rows:54% 46%;min-width:0;min-height:0;overflow:hidden}
+  .hero-collage-column:nth-child(2){grid-template-rows:65% 35%}
+  .hero-collage-column:nth-child(3){grid-template-rows:46% 54%}
+  .hero-collage-column:nth-child(4){grid-template-rows:60% 40%}
+  .hero-collage-column:nth-child(5){grid-template-rows:43% 57%}
+  #top .hero-collage img{display:block;width:100%;height:100%;min-height:0;object-fit:cover;object-position:center}
+  #top .hero-collage-column:nth-child(2)>img:first-child{object-position:58% 38%}
+  #top .hero-collage-column:nth-child(3)>img:first-child{object-position:center 62%}
+  #top .hero-collage-column:nth-child(4)>img:first-child{object-position:center 70%}
+}
+@media screen and (max-width:760px){
+  #top{min-height:740px;padding-block:150px 100px}
+  #top>.hero-collage{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hero-collage-column:nth-child(n+4){display:none}
+  #top::before{background:linear-gradient(90deg,rgb(23 22 20 / 65%),rgb(23 22 20 / 42%)),linear-gradient(0deg,rgb(23 22 20 / 65%),transparent 50%)}
+}
 </style>
   <script src="shared/js/proposal-analytics.js" data-proposal-id="p004" data-enabled="false" data-options-selector="#investment" defer></script>
 </head><body>
@@ -525,7 +546,28 @@ html.is-opening{overflow:hidden}
 </header>
 <main id="main">
 <section id="top">
-<figure class="fig hero"><img src="private/ss-homepage/assets/loft.jpg" width="1067" height="1600" alt="" fetchpriority="high" aria-hidden="true"></figure>
+<figure class="fig hero hero-collage" aria-hidden="true">
+  <div class="hero-collage-column">
+    <img src="proposals/spring-sweet/assets/hero-boutique.jpg" alt="" decoding="async">
+    <img src="private/ss-homepage/assets/candle.jpg" alt="" decoding="async">
+  </div>
+  <div class="hero-collage-column">
+    <img src="proposals/spring-sweet/assets/hero-bridal.jpg" alt="" decoding="async" fetchpriority="high">
+    <img src="private/ss-homepage/assets/bridal-candlelit.jpg" alt="" decoding="async">
+  </div>
+  <div class="hero-collage-column">
+    <img src="proposals/spring-sweet/assets/hero-florals.jpg" alt="" decoding="async">
+    <img src="private/ss-homepage/assets/sweater.jpg" alt="" decoding="async">
+  </div>
+  <div class="hero-collage-column">
+    <img src="private/ss-homepage/assets/loft.jpg" alt="" decoding="async">
+    <img src="private/ss-homepage/assets/paper-goods.jpg" alt="" decoding="async">
+  </div>
+  <div class="hero-collage-column">
+    <img src="private/ss-homepage/assets/bridal-accessories.jpg" alt="" decoding="async">
+    <img src="private/ss-homepage/assets/vase.jpg" alt="" decoding="async">
+  </div>
+</figure>
 <div class="wrap"><p class="eyebrow">Spring Sweet website proposal</p><h1 class="hero-line">A first look at everything Spring Sweet</h1><p class="hero-quote">“It’s all a part of who we are.”</p><p class="draft-label">drafted for Spring Sweet</p></div>
 </section>
 <section id="introduction" aria-label="A note for Spring, Karri, and Holly"><div class="intro-copy">
@@ -539,9 +581,9 @@ html.is-opening{overflow:hidden}
 <nav class="service-index" aria-label="Proposal sections" data-lenis-prevent>
     <img class="index-logo" src="assets/optimized/17c-logo-112.png" width="40" height="50" alt="17C Studio">
     <a href="#overview"><span class="index-number" aria-hidden="true">01</span><span class="index-name">Overview</span></a>
-    <a href="#questions"><span class="index-number" aria-hidden="true">02</span><span class="index-name">Questions</span></a>
-    <a href="#timeline"><span class="index-number" aria-hidden="true">03</span><span class="index-name">Timeline</span></a>
-    <a href="#investment"><span class="index-number" aria-hidden="true">04</span><span class="index-name">Investment</span></a>
+    <a href="#timeline"><span class="index-number" aria-hidden="true">02</span><span class="index-name">Timeline</span></a>
+    <a href="#investment"><span class="index-number" aria-hidden="true">03</span><span class="index-name">Investment</span></a>
+    <a href="#questions"><span class="index-number" aria-hidden="true">04</span><span class="index-name">Questions</span></a>
     <a href="#accept-section"><span class="index-number" aria-hidden="true">05</span><span class="index-name">Next step</span></a>
     <a href="#details"><span class="index-number" aria-hidden="true">06</span><span class="index-name">Details</span></a>
   </nav>
@@ -550,16 +592,9 @@ html.is-opening{overflow:hidden}
 
 <p class="lede">You called Spring Sweet “a really, really unique business model,” and said you’d rather keep the shop, bridal loft, and florals together than split them up. The website can give each a clear place while keeping the warmth of Spring Sweet together on one Shopify site.</p>
 <p>Your team hears visitors say, “we didn't know you had bridal.” You also said, “my goal is to grow bridal as much as we can.” Bridal should be easy to see from the first visit, with a welcoming route through the process, designers, and appointments. As your team put it, “They've never been brides before”. Clear information can help someone feel ready to book.</p>
-<ul><li><strong>See all three sides of Spring Sweet.</strong> A simple, photo-led homepage introduces the shop, bridal loft, and florals, with a short welcome and readable footer.</li><li><strong>Find what’s new in Shop.</strong> Option 2 adds a featured collection Holly can rotate, with category browsing inside Shop.</li><li><strong>Give florals a clear path.</strong> Lead visitors to approved existing floral content and the agreed gallery or inquiry destination.</li><li><strong>Make the next step obvious on a phone.</strong> You said, “we are phone creatures.” Visitors need visible labels and clear routes they can use by touch and keyboard.</li></ul>
+<ul><li><strong>See all three sides of Spring Sweet.</strong> A simple, photo-led homepage introduces the shop, bridal loft, and florals, with a short welcome and readable footer.</li><li><strong>Give brides a clear path to book.</strong> Make it easy to discover the bridal loft, explore designers, and know what to expect before booking an appointment.</li><li><strong>Make the next step obvious on a phone.</strong> You said, “we are phone creatures.” Visitors need visible labels and clear routes they can use by touch and keyboard.</li></ul>
 
 <div class="reading-groups"><div class="reading-group"><h3 class="subheading">A simple first choice</h3><p>Your team asked to “keep it simple for them to decide where they want to go on our website.” We’ll start with the working labels Shop, Bridal, Floral, and About, then agree the final wording and mobile menu behavior together.</p></div><div class="reading-group"><h3 class="subheading">The warmth carries through</h3><p>The homepage direction you shared in the walkthrough will guide this phase. We’ll carry the warm background, useful buttons, and small editorial moments into the pages in your chosen option. We’ll review the photo arrangement, count, crops, and phone layout together before building them.</p></div></div>
-</div></section>
-<hr class="rule">
-<section id="questions"><div class="wrap"><p class="eyebrow">Questions answered up front</p><h2>What you might be wondering.</h2>
-<details class="question"><summary>Will I have to log into Shopify or make changes myself?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>You can review the site and tell me what feels right over email or on a call. I’ll make the agreed changes in Shopify, test them in a preview theme, and handle launch once your team approves it. After launch, Holly can make the updates she’s comfortable with. If you choose a monthly care plan, I’ll handle the upkeep and updates covered by your plan. If something on the site needs attention, just send me a note, and I’ll take it from there.</p></div></details>
-
-<details class="question"><summary>Can we keep everything on Shopify, and will Holly be able to update it?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes, this plan keeps the site in your Shopify store. I’ll use editable sections for the agreed updates and show Holly how to make them during a walkthrough with a short PDF guide.</p></div></details><details class="question"><summary>Will the collage feel busy or hide the menu on a phone?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>We’ll review desktop and mobile layouts together before committing to the image crop and placement. We’ll keep a readable menu, a curated set of mobile images, and clearly labeled paths to each section.</p></div></details><details class="question"><summary>Can Shop have its own categories while the homepage stays simple?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>The plan gives shoppers a clear way to browse categories inside Shop. I’ll test the theme with your actual menus before we choose between an editable category section, secondary navigation, or another approach that’s easy to maintain. This work is included in Options 2 and 3.</p></div></details><details class="question"><summary>What if our new photos take longer?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>We can approve direction with temporary images and work in small batches every week or two. We’ll agree on a launch window once we know when the final images, copy, and approvals will be ready.</p></div></details><details class="question"><summary>Can a video fit without slowing the page down?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>If you want to add video, I’ll check the format, size, and placement on mobile before we agree to include it. A lightweight still image can serve as the video’s preview.</p></div></details><details class="question"><summary>Can you help us understand what people do on the site?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. Option 2 includes a dashboard and tracking for up to eight agreed actions. You’ll be able to see how visitors find you, what sells online, and whether people click to book a bridal appointment or send a floral inquiry. We’ll show confirmed appointments if your booking provider supports it. Option 3 also includes a pre-launch baseline where existing data is available, a homepage test, and reviews at 30, 60, and 90 days.</p></div></details><details class="question"><summary>Can you help us show up for wedding gowns and get fewer calls about dresses we don’t sell?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I’ll make it clear on the refreshed Bridal page that you carry wedding gowns and help first-time brides understand what to expect. In Options 2 and 3, I’ll also look at available search data and the pages or listings we agree to review for clues about the bridesmaid and mother-of-the-bride searches. We’ll use what we find to decide what to update.</p></div></details><details class="question"><summary>Can we simplify the apps and the email signup?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>In Options 2 and 3, I’ll review up to 10 apps, remove the ones you approve, and review how your email popup and proposed footer signup could work together. Option 3 also includes recommendations, setup, and testing for up to 3 approved Shopify apps. You’ll see any app fees before you decide.</p></div></details>
-<details class="question"><summary>What does priority launch mean if our photos take longer?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Option 3 reserves build time for Spring Sweet and includes weekly previews. We’ll agree on dates for photos, copy, and feedback at kickoff. If some content needs more time, we can agree to launch the homepage and Bridal first and set a separate date for Shop and Floral.</p></div></details>
 </div></section>
 <hr class="rule">
 <section id="timeline">
@@ -600,7 +635,7 @@ html.is-opening{overflow:hidden}
     </ol>
     <p>Allow about 4 weeks for Option 1, 12 weeks for Option 2, and 8 weeks for Option 3. These are planning estimates from our agreed kickoff date, after acceptance and the first payment, with timely access, approved photos and copy, and consolidated feedback. We’ll confirm the kickoff and launch dates together. If content, access, feedback, or outside-provider work moves, I’ll keep you informed and we’ll agree on a revised window.</p>
     <p>If you choose a care plan, it begins on the start date we agree.</p>
-    <p><strong>Proposal walkthrough</strong><br>[Confirm proposal walkthrough date and time, Eastern]</p>
+    <p><strong>Proposal walkthrough</strong><br>I understand next week is Thanksgiving, so let’s plan on Tuesday, December 1, 2026, at 10:30 a.m. Eastern.</p>
   </div>
 </section>
 <hr class="rule">
@@ -679,11 +714,18 @@ html.is-opening{overflow:hidden}
 </section>
 </div></section>
 <hr class="rule">
+<section id="questions"><div class="wrap"><p class="eyebrow">Questions answered up front</p><h2>What you might be wondering.</h2>
+<details class="question"><summary>Will I have to log into Shopify or make changes myself?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>You can review the site and tell me what feels right over email or on a call. I’ll make the agreed changes in Shopify, test them in a preview theme, and handle launch once your team approves it. After launch, Holly can make the updates she’s comfortable with. If you choose a monthly care plan, I’ll handle the upkeep and updates covered by your plan. If something on the site needs attention, just send me a note, and I’ll take it from there.</p></div></details>
+
+<details class="question"><summary>Can we keep everything on Shopify, and will Holly be able to update it?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes, this plan keeps the site in your Shopify store. I’ll use editable sections for the agreed updates and show Holly how to make them during a walkthrough with a short PDF guide.</p></div></details><details class="question"><summary>Will the collage feel busy or hide the menu on a phone?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>We’ll review desktop and mobile layouts together before committing to the image crop and placement. We’ll keep a readable menu, a curated set of mobile images, and clearly labeled paths to each section.</p></div></details><details class="question"><summary>Can Shop have its own categories while the homepage stays simple?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>The plan gives shoppers a clear way to browse categories inside Shop. I’ll test the theme with your actual menus before we choose between an editable category section, secondary navigation, or another approach that’s easy to maintain. This work is included in Options 2 and 3.</p></div></details><details class="question"><summary>What if our new photos take longer?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>We can approve direction with temporary images and work in small batches every week or two. We’ll agree on a launch window once we know when the final images, copy, and approvals will be ready.</p></div></details><details class="question"><summary>Can a video fit without slowing the page down?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>If you want to add video, I’ll check the format, size, and placement on mobile before we agree to include it. A lightweight still image can serve as the video’s preview.</p></div></details><details class="question"><summary>Can you help us understand what people do on the site?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. Option 2 includes a dashboard and tracking for up to eight agreed actions. You’ll be able to see how visitors find you, what sells online, and whether people click to book a bridal appointment or send a floral inquiry. We’ll show confirmed appointments if your booking provider supports it. Option 3 also includes a pre-launch baseline where existing data is available, a homepage test, and reviews at 30, 60, and 90 days.</p></div></details><details class="question"><summary>Can you help us show up for wedding gowns and get fewer calls about dresses we don’t sell?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I’ll make it clear on the refreshed Bridal page that you carry wedding gowns and help first-time brides understand what to expect. In Options 2 and 3, I’ll also look at available search data and the pages or listings we agree to review for clues about the bridesmaid and mother-of-the-bride searches. We’ll use what we find to decide what to update.</p></div></details><details class="question"><summary>Can we simplify the apps and the email signup?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>In Options 2 and 3, I’ll review up to 10 apps, remove the ones you approve, and review how your email popup and proposed footer signup could work together. Option 3 also includes recommendations, setup, and testing for up to 3 approved Shopify apps. You’ll see any app fees before you decide.</p></div></details>
+<details class="question"><summary>What does priority launch mean if our photos take longer?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Option 3 reserves build time for Spring Sweet and includes weekly previews. We’ll agree on dates for photos, copy, and feedback at kickoff. If some content needs more time, we can agree to launch the homepage and Bridal first and set a separate date for Shop and Floral.</p></div></details>
+</div></section>
+<hr class="rule">
 <section id="accept-section">
   <div class="wrap">
     <p class="eyebrow">Next step</p>
     <h2>Let’s review the first phase together.</h2>
-    <p>We’ll compare the options and confirm the open details before acceptance. [Confirm proposal walkthrough date and time, Eastern]</p><p class="draft-label">Private draft. Acceptance is disconnected while the remaining scope and terms are being confirmed.</p>
+    <p>We’ll compare the options and confirm the open details before acceptance. I understand next week is Thanksgiving, so let’s plan on Tuesday, December 1, 2026, at 10:30 a.m. Eastern.</p><p class="draft-label">Private draft. Acceptance is disconnected while the remaining scope and terms are being confirmed.</p>
     <p><a href="#proposal-details" data-open-details>Read Details: scope, payment, and terms</a> before signing.</p>
     <p>If you’d like to talk anything through first, <a href="form.html" data-email data-email-subject="Spring Sweet website proposal">email me</a>. I’m happy to help.</p>
     <form id="reply" class="accept" action="#accept-section" data-draft="true" data-endpoint-placeholder="[Confirm Spring Sweet Formspree endpoint]" method="POST" enctype="multipart/form-data">
