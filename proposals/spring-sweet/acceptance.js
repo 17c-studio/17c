@@ -19,7 +19,7 @@
   const textOf = selector => clean(document.querySelector(selector)?.textContent);
   const carePlans = {
     site: { label: 'Site Care · $300/month', monthly: 300, months: 3, total: 900, renewal: 'Then month to month with 30 days’ notice.' },
-    growth: { label: 'Growth Care · $600/month', monthly: 600, months: 3, total: 1800, renewal: 'Then month to month. Cancellation terms will be confirmed before acceptance is enabled.' },
+    growth: { label: 'Growth Care · $600/month', monthly: 600, months: 3, total: 1800, renewal: 'Then month to month with 30 days’ notice.' },
     none: { label: 'No care plan for now', monthly: 0, months: 0, total: 0 }
   };
   function selection() {
@@ -137,7 +137,7 @@
       version: 'SPRING-SWEET-PRIVATE-DRAFT-v1', title: document.title,
       selected_project: selected, included_options: scope,
       scope_and_exclusions: textOf('#scope'), timeline: textOf('#timeline'),
-      payment: textOf('#payment'), assumptions: textOf('#assumptions'), terms: textOf('#terms'),
+      payment: textOf('#payment'), assumptions: textOf('#assumptions'), terms: textOf('#proposal-details'),
       care_details: 'No care plan selected.'
     };
     const selectedCareBlocks = careBlocks(selected);
@@ -151,7 +151,7 @@
       timeline: captureBlocks(byId('timeline')),
       payment: captureBlocks(byId('payment')),
       assumptions: captureBlocks(byId('assumptions')),
-      terms: captureBlocks(byId('terms')),
+      terms: captureBlocks(byId('proposal-details')),
       care_details: []
     };
     documentSnapshot.readable_sections.care_details = selectedCareBlocks;
