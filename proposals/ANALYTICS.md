@@ -9,7 +9,7 @@ One shared implementation, `shared/js/proposal-analytics.js`, uses GA4 measureme
 | MR Rebuild | p001 | Yes | Active acceptance, no unresolved draft placeholders |
 | Van Noord | p002 | Yes | Active acceptance, no unresolved draft placeholders |
 | Estella Rose (current) | p003 | Yes | Active acceptance, fixed scope and prices; replaces legacy draft |
-| Spring Sweet | p004 | No | Explicit private draft, unresolved scope/terms/dates, disconnected acceptance |
+| Spring Sweet | p004 | No | Acceptance enabled; analytics remains explicitly off pending final tracking review |
 | ZCS | p005 | No | Internal TODO register requires confirmation of pricing, terms, scope and evidence |
 | Estella Rose legacy (`proposal-erf.html`) | p006 | No | Explicit draft with contractual details still to confirm |
 | Sample (`proposal.html`) | p007 | No | Illustrative example, not a client proposal |
