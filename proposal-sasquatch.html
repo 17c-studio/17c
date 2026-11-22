@@ -131,9 +131,9 @@ td{color:var(--muted)}
 .av{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--line);flex:none}
 .terms h4{margin:24px 0 8px}
 .terms p{font-size:14px}
-form.accept{padding:clamp(24px,4vw,48px);background:var(--soft);border:1px solid var(--line);margin:32px 0}
+.package-preview{padding:clamp(24px,4vw,48px);background:var(--soft);border:1px solid var(--line);margin:32px 0}
 label{display:block;font-size:12px;font-weight:500;margin:24px 0 10px}
-form.accept>label:first-child{margin-top:0}
+.package-preview>label:first-child{margin-top:0}
 input[type=text],input[type=email],select,textarea{width:100%;min-height:48px;padding:12px 14px;font:inherit;border:1px solid var(--line);border-radius:0;background:var(--paper);color:var(--ink)}
 textarea{resize:vertical}
 .signature{font:italic 40px/1.3 var(--serif);margin:32px 0 0}
@@ -166,7 +166,7 @@ footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px 
   @page{margin:18mm}
   :root{color-scheme:light;--paper:#fff;--soft:#fff;--ink:#171614;--muted:#45403a;--soft:#f0efeb;--line:#77716a;--gutter:0px;--section-space:24px}
   body{font-size:10pt;line-height:1.5}
-  .top,form.accept,.skip{display:none!important}
+  .top,.package-preview,.skip{display:none!important}
   #top{padding:24px 0;background:transparent}
   #top::before,#top>.hero,#top .hero-credit{display:none!important}
   #top .wrap>p:not(.eyebrow),#top .eyebrow{color:var(--ink)}
@@ -369,7 +369,7 @@ html.is-opening{overflow:hidden}
   .finding-card{min-height:360px}
   .price{font-size:clamp(46px,11vw,64px)}
   .card h3{font-size:32px}
-  form.accept{padding:24px 20px}
+  .package-preview{padding:24px 20px}
   #payment th,#payment td{padding:14px 8px;font-size:12px}
   .timeline-durations{gap:12px}
 }
@@ -473,9 +473,11 @@ html.is-opening{overflow:hidden}
   #investment .card{margin:0 0 20px;break-inside:avoid;padding:16px}
   #investment .price{font-size:17pt}
   #investment .badge{position:static;display:block;margin-bottom:12px}
+  #investment .card h5{margin:20px 0 10px}
+  #investment .card .best{padding-top:16px;break-inside:avoid}
   #proposal-details{display:block;break-inside:auto}
-  form.accept{display:block!important;border:0;padding:0;background:transparent}
-  form.accept>label,form.accept>select,form.accept>input,form.accept>button,form.accept>.acceptance-consent,form.accept>.draft-note,#reply-status{display:none!important}
+  .package-preview{display:block!important;border:0;padding:0;background:transparent}
+  .package-preview>label,.package-preview>select,.package-preview>input,.package-preview>button,.package-preview>.acceptance-consent,.package-preview>.draft-note,#reply-status{display:none!important}
   #proposal-details summary{color:var(--ink)}
   .eyebrow{break-after:avoid}
 }
@@ -492,7 +494,7 @@ html.is-opening{overflow:hidden}
     <p class="eyebrow">17C Studio subcontractor proposal</p>
     <h1 id="proposal-title">Social media support for the Unblind trilogy</h1>
     <p>Prepared for Chris Marlink · Sasquatch Ventures</p>
-    <p>You mentioned giving each platform a clear job. I’ll help turn Bailey’s footage into posts that introduce readers to Unblind and give them a reason to follow along.</p>
+    <p>You wanted to ‘define the goal and the job of each of these platforms and profiles.’ I’ll turn Bailey’s footage into posts that give readers a reason to follow Unblind.</p>
   </div></section>
   <section id="introduction" aria-label="A note for Chris"><div class="intro-copy">
     <p>Hi Chris, thanks for thinking of me for Bailey’s launch. I’d love to help you and Chandler turn the footage you capture with her into posts that sound like her and give readers a reason to follow along.</p>
@@ -515,7 +517,7 @@ html.is-opening{overflow:hidden}
           <li>Editing short-form video, adapting each video for Meta, TikTok, and YouTube Shorts (format, length, captions), and scheduling in Buffer.</li>
           <li>Suggesting which posts to boost and setting up approved boosts, plus community replies and reshares.</li>
           <li>Sending Sasquatch monthly metrics plus anecdotal highlights for its report to Bailey.</li>
-          <li>With Package 2, shaping the outreach plan with Sasquatch from its influencer list, then carrying it out, including requests for honest Book 2 reviews supporting the 50-review goal.</li>
+          <li>With Package 2, shaping the outreach plan with Sasquatch from its influencer list, then carrying it out, including requests for honest Book 2 reviews supporting Sasquatch’s 50-review campaign goal.</li>
         </ul>
         <h4>Stays with Sasquatch</h4>
         <ul>
@@ -528,10 +530,10 @@ html.is-opening{overflow:hidden}
       <section id="scope"><div class="wrap">
         <p class="eyebrow">What I’ll do</p><h2>From your footage to posts readers can follow.</h2>
         <ul>
-          <li>At kickoff, I’ll ask Bailey to share a couple of posts she’d be excited to put her name on. We’ll use those to agree on a creative direction before editing the first batch. One idea to explore is a short video about how her legal background shaped a rule or conflict in the Unblind world. Up to 3 hours of workshop time is included in the first month’s fee.</li>
+          <li>At kickoff, I’ll ask Bailey to share a couple of posts she’d be excited to put her name on. We’ll use those to agree on a creative direction before editing the first batch. One idea to explore is a short video about how her legal background shaped a rule or conflict in the Unblind world. One kickoff workshop is included in the first month’s fee. Additional strategy sessions can be scoped separately.</li>
           <li>Edit up to 12 original short videos each month from footage Sasquatch supplies, with 1 consolidated revision round per batch. I’ll write captions and adapt and schedule those edits in Buffer for up to 12 publishing placements each on Instagram, TikTok, and YouTube Shorts. Facebook mirrors approved Instagram posts. The 12 core videos become about 36 platform-specific pieces. These monthly caps also apply in 5-week months.</li>
           <li>Comments, messages, and mentions checked every business day, plus one weekend check. I can provide 7-day coverage for an additional $100/month. I’ll handle routine replies and reshares and pass sensitive questions to Sasquatch.</li>
-          <li>With Package 2, I’ll shape the outreach plan with Sasquatch from its influencer list, then carry out personalized pitches, follow-ups, and requests for honest Book 2 reviews supporting the 50-review goal. Includes up to 20 new reviewers per month, up to 2 follow-ups each, a shared tracker, and monthly results.</li>
+          <li>With Package 2, I’ll shape the outreach plan with Sasquatch from its influencer list, then carry out personalized pitches, follow-ups, and requests for honest Book 2 reviews supporting Sasquatch’s 50-review campaign goal. Includes up to 20 new reviewers per month, up to 2 follow-ups each, a shared tracker, and monthly results.</li>
           <li>Each month, I’ll send you a short recap of what went live, social reach, engagement, audience growth, and what readers responded to. I’ll include a recommendation for what to post or boost next. With Package 2, I’ll also share who I contacted, who replied, and who’s interested in a review copy, plus a plain-English dashboard and monthly insight note.</li>
         </ul>
       </div></section>
@@ -550,7 +552,7 @@ html.is-opening{overflow:hidden}
               <li>Up to 12 publishing placements each on Instagram, TikTok, and YouTube Shorts per month; Facebook mirrors approved Instagram posts. The 12 core videos become about 36 platform-specific pieces. These caps apply in 5-week months.</li>
               <li>Comments, messages, and mentions checked every business day, plus one weekend check. I can provide 7-day coverage for an additional $100/month.</li>
               <li>I’ll send a short monthly summary.</li>
-              <li>Up to 3 hours of kickoff workshop time is included in the first month’s fee. I propose approval or comments within 1 business day of receiving a batch.</li>
+              <li>One kickoff workshop is included in the first month’s fee. I propose approval or comments within 1 business day of receiving a batch.</li>
               <li>YouTube coverage is Shorts. Long-form YouTube videos are not included.</li>
             </ul>
             <p class="best"><strong>Best for:</strong><br>Keeping Bailey’s channels active while I handle editing, publishing, and reader engagement.</p>
@@ -558,45 +560,46 @@ html.is-opening{overflow:hidden}
           <article class="card rec" id="package2">
             <span class="badge">Recommended with outreach</span>
             <span class="tier">Package 2</span><h3>Social media + BookTok outreach + insights</h3>
-            <div class="price" data-package-price>$1,700 / month</div>
+            <div class="price" data-package-price>$1,700/month</div>
             <p><strong>Goal:</strong> Keep that same publishing rhythm and get Unblind in front of more potential reviewers through direct BookTok outreach.</p>
             <h5>What’s Included:</h5>
             <div class="package-scope">
             <ul>
               <li>Everything in Package 1.</li>
-              <li>Work with Sasquatch to shape the outreach plan from Sasquatch's influencer list, then carry it out: personalized pitches, follow-ups, and requests for honest Book 2 reviews (supporting the 50-review goal), with results reported monthly. Up to 20 new reviewers per month, with up to 2 follow-ups each.</li>
+              <li>Work with Sasquatch to shape the outreach plan from Sasquatch's influencer list, then carry it out: personalized pitches, follow-ups, and requests for honest Book 2 reviews (supporting Sasquatch’s 50-review campaign goal), with results reported monthly. Up to 20 new reviewers per month, with up to 2 follow-ups each.</li>
               <li>A shared outreach tracker.</li>
             </ul>
               <h5>Analytics and insight</h5>
               <ul>
-                <li>A plain-English dashboard, updated monthly: reach, views, engagement, and follower growth per platform; top posts; link clicks and boost results; reviewer outreach (pitched → replied → agreed → posted); and progress toward the 50-review goal for Book 2. Every chart has a one-line explanation of what it means.</li>
-                <li>Once Sasquatch's website analytics are in place, the dashboard also shows visits to baileyvos.com from social and email signups.</li>
+                <li>A plain-English dashboard, updated monthly using available data: reach, views, engagement, and follower growth per platform; top posts; link clicks and boost results; reviewer outreach (pitched → replied → agreed → posted); and progress toward Sasquatch’s 50-review campaign goal for Book 2. Every chart has a one-line explanation of what it means.</li>
+                <li>I’ll update the dashboard monthly with the social and outreach results. Once your website tracking is live, I’ll add the website visits and email sign-up figures your team shares so you can fold them into Bailey’s report.</li>
                 <li>A monthly insight note: three takeaways and one test for next month (for example, a new content format or hook).</li>
                 <li>Reviewer outreach prioritizes smaller, highly engaged BookTok accounts (generally under 20k followers), where a new author's book gets more attention and readers trust the recommendation.</li>
                 <li>Built for Sasquatch to use in its report to Bailey. It can be shared with Bailey under Sasquatch's name.</li>
               </ul>
-              <p>Phase 3 ARC-list growth and hype-team coordination are not included in either package and can be scoped separately in June 2027. Review counts are not guaranteed.</p>
+              <p>Phase 3 ARC-list growth and hype-team coordination are not included in either package and can be scoped separately in June 2027.</p>
             </div>
             <p class="best"><strong>Best for:</strong><br>Keeping that same rhythm while I help Sasquatch reach potential Book 2 reviewers and turn the results into clear next steps.</p>
           </article>
         </div>
-        <p>I’ll invoice Sasquatch on the 1st of each month for that month’s work. I propose net 25 from the invoice date, independent of Bailey’s payment, subject to Chris’s agreement. The working ad budget of about $150/month is separate from either package fee. I’ll suggest boosts and set them up after Sasquatch approves the posts and spending. We’ll confirm who pays for ads directly and who handles monitoring.</p>
+        <p>I’ll invoice Sasquatch on the first of each month. I’m proposing payment within 25 days of the invoice date, regardless of when Bailey pays Sasquatch. We’ll confirm the due date together before signing. The working ad budget of about $150/month is separate from either package fee. I’ll suggest boosts and set them up after Sasquatch approves the posts and spending. I’ll confirm with Chris who pays for ads, monitors boosts, supplies boost results, and sends review copies.</p>
       </div></section>
       <hr class="rule">
       <section id="questions"><div class="wrap">
         <p class="eyebrow">FAQ</p><h2>A few questions you might have.</h2>
         <details class="question"><summary>Who handles filming and approvals?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Sasquatch coordinates filming with Bailey and reviews posts before I publish. Your team will pull the full report together for Bailey and add website traffic and other trackable results when available. My quoted scope doesn’t include website analytics setup or maintenance, website updates, email reporting, or sales or preorder tracking.</p></div></details>
-        <details class="question"><summary>How will we choose what to boost?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>We’ll choose together based on campaign goals and which posts are getting a response. Sasquatch approves the spending before a boost goes live. I’ll handle setup after Sasquatch approves the posts and spending. We’ll confirm who handles monitoring before including that work.</p></div></details>
+        <details class="question"><summary>How will the Package 2 dashboard support your report?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I’ll update the dashboard monthly with the social and outreach results. Once your website tracking is live, I’ll add the website visits and email sign-up figures your team shares so you can fold them into Bailey’s report. I’ll use the data available each month; Sasquatch handles website tracking setup and the final report to Bailey.</p></div></details>
+        <details class="question"><summary>How will we choose what to boost?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>We’ll choose together based on campaign goals and which posts are getting a response. Sasquatch approves the spending before a boost goes live. I’ll handle setup after Sasquatch approves the posts and spending. I’ll confirm with Chris who monitors boosts and supplies the boost results before including those results in the dashboard.</p></div></details>
         <details class="question"><summary>Can we add Pinterest in the spring?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>We can scope and price Pinterest separately once approved character artwork is ready.</p></div></details>
       </div></section>
       <hr class="rule">
       <section id="assumptions"><div class="wrap">
         <p class="eyebrow">What I’m assuming</p><h2>The footage and feedback come from your team.</h2>
-        <p>Sasquatch will provide Buffer and platform access and approved assets. I propose approval or comments within 1 business day of receiving a batch. If footage or approvals are delayed, we’ll adjust the schedule or use approved material we already have. Each monthly filming session with Bailey (about 3 hours) provides the footage for that month's 12 videos. If she supplies less, I'll use approved existing material and the fee stays the same.</p>
+        <p>Sasquatch will provide Buffer and platform access and approved assets. I propose approval or comments within 1 business day of receiving a batch. If footage or approvals are delayed, we’ll adjust the schedule or use approved material we already have. Sasquatch coordinates one monthly filming session with Bailey to capture footage for up to 12 short videos. If she supplies less, I'll use approved existing material and the fee stays the same.</p>
         <p>I’ll confirm who owns each social and ad account before naming an owner. The existing owners retain control and provide 17C the access needed for this work.</p>
         <p>Approved character art can be used in posts once available; creating art or graphics is not included.</p>
         <p>Phase 3 ARC-list growth and hype-team coordination are not included in either package and can be scoped separately in June 2027.</p>
-        <p>Sasquatch configures website analytics and conversion tracking during setup, as outlined in its workshop plan. The dashboard reads from those sources and supports Sasquatch's reporting; it does not replace it.</p>
+        <p>Sasquatch configures website analytics and conversion tracking during setup and prepares the final report to Bailey. I’ll update the dashboard monthly using the available social and outreach data and the website figures your team shares.</p>
         <p>Dashboard setup is included. 17C keeps the underlying dashboard template; Sasquatch and Bailey keep access to their own data.</p>
       </div></section>
       <hr class="rule">
@@ -606,114 +609,63 @@ html.is-opening{overflow:hidden}
         <details class="question"><summary>Does the price reflect the full monthly volume?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. Three posts per platform per week across Meta (Instagram + Facebook), TikTok, and YouTube Shorts is 12 core videos a month, adapted into about 36 platform-specific pieces, plus community replies, reporting, and boost suggestions. Repurposing keeps this efficient, and the fee is priced on the full 36.</p></div></details>
         <details class="question"><summary>Daily or business-day engagement checks?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Your scope says daily. I've proposed every business day plus one weekend check, which covers BookTok's weekend activity. If you'd like true 7-day coverage, it's +$100 / month.</p></div></details>
         <details class="question"><summary>What's the approval turnaround?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I'm proposing that Sasquatch approves or comments within 1 business day of receiving a batch. If an approval comes in later, the publishing schedule shifts to match.</p></div></details>
-        <details class="question"><summary>Is the kickoff workshop included?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Yes. Up to 3 hours of workshop time is included in the first month's fee. Additional strategy sessions can be scheduled at an agreed rate.</p></div></details>
-        <details class="question"><summary>How much outreach does Package 2 include?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Up to 20 new BookTok reviewers contacted per month, with up to 2 follow-ups each. More reviewers can be added if the response is strong.</p></div></details>
+        <details class="question"><summary>Is the kickoff workshop included?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>One kickoff workshop is included in the first month’s fee. Additional strategy sessions can be scoped separately.</p></div></details>
+        <details class="question"><summary>How much outreach does Package 2 include?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Package 2 includes outreach to up to 20 new reviewers per month, with up to two follow-ups each. We can agree on a separate scope if you’d like to contact more.</p></div></details>
         <details class="question"><summary>What happens if we add Pinterest?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Pinterest is a scope change, so it gets its own monthly price. I'll quote it once approved character art is ready.</p></div></details>
         <details class="question"><summary>Who adapts assets for each platform?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Your scope lists adapting assets under Sasquatch's filming role. I've assumed I handle the platform adaptation (about 36 pieces a month) as part of editing, and the fee reflects that. Can you confirm?</p></div></details>
-        <details class="question"><summary>Would a plain-English dashboard help your reporting to Bailey?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Package 2 includes one that pulls social, outreach, and (once tracking is live) website numbers into one page with short explanations. It's meant to make your monthly report faster to put together, not to replace it. Would you rather it stay internal, or be shared with Bailey under Sasquatch's name?</p></div></details>
+        <details class="question"><summary>Would a plain-English dashboard help your reporting to Bailey?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I’ll update the dashboard monthly with the social and outreach results. Once your website tracking is live, I’ll add the website visits and email sign-up figures your team shares so you can fold them into Bailey’s report. It uses the data available each month and supports your final report. Would you rather it stay internal, or be shared with Bailey under Sasquatch’s name?</p></div></details>
       </div></section>
       <hr class="rule">
       <section id="next-step"><div class="wrap">
         <p class="eyebrow">Next steps</p><h2>Choose what fits the campaign.</h2>
-        <p>Reply with the package that fits what you’re putting together for Bailey. You can start with social media support and we can discuss adding reviewer outreach and insights later if that fits the launch schedule better. We’ll confirm the scope, payment terms, and kickoff together.</p>
-        <form id="reply" class="accept" action="#next-step" method="POST" data-draft="true" data-endpoint-confirmed="false">
-          <label for="package">Choose your package</label>
-          <select id="package" name="package" required>
-            <option value="">Choose a package</option>
+        <p>Reply with the package you’d like to discuss, and we’ll confirm the scope, payment terms, and kickoff together.</p>
+        <div id="reply" class="accept package-preview" role="group" aria-label="Package preview" data-draft="true">
+          <label for="package">Preview a package</label>
+          <select id="package">
+            <option value="">Choose a package to preview</option>
             <option value="package1">Package 1 · Social media support · $1,250/month</option>
-            <option value="package2">Package 2 · Social media + BookTok outreach + insights · $1,700 / month</option>
+            <option value="package2">Package 2 · Social media + BookTok outreach + insights · $1,700/month</option>
           </select>
-          <label for="name">Your full name (electronic signature)</label>
-          <input id="name" name="name" type="text" autocomplete="name" maxlength="150" required>
           <details class="question proposal-details" id="proposal-details">
             <summary>Proposal details <span class="question-icon" aria-hidden="true"></span></summary>
             <div class="question-answer">
               <div id="acceptance-summary" class="acceptance-summary" aria-live="polite">Choose a package above to see its monthly fee and scope.</div>
               <h4>Term</h4><p>I propose a 3-month initial commitment, subject to Bailey’s matching commitment, then month to month. Before finalizing, I’ll review the start date and notice terms.</p>
-              <h4>Payment</h4><p>I’ll invoice Sasquatch on the 1st of each month for that month’s work. I propose net 25 from the invoice date, independent of when Sasquatch receives payment from Bailey. This term needs Chris’s agreement before acceptance is enabled.</p>
-              <h4>Content</h4><p>I propose up to 12 original short-video edits per month from footage Sasquatch supplies, with 1 consolidated revision round per batch. I’ll use those edits for up to 12 publishing placements each on Instagram, TikTok, and YouTube Shorts per month. Facebook mirrors approved Instagram posts. The 12 core videos become about 36 platform-specific pieces. These caps apply in 5-week months. Comments, messages, and mentions checked every business day, plus one weekend check. I can provide 7-day coverage for an additional $100/month. YouTube coverage is Shorts. Long-form YouTube videos are not included. Approved character art can be used in posts once available; creating art or graphics is not included. I propose approval or comments within 1 business day of receiving a batch; later approvals shift the publishing schedule. Up to 3 hours of kickoff workshop time is included in the first month’s fee. Additional strategy sessions can be scheduled at an agreed rate.</p>
-              <h4>Outreach and boosts</h4><p>For Package 2, I’ll work with Sasquatch to shape the outreach plan from its influencer list, then carry out personalized pitches, follow-ups, and requests for honest Book 2 reviews supporting the 50-review goal. Includes up to 20 new reviewers per month, up to 2 follow-ups each, a shared tracker, and monthly results. Phase 3 ARC-list growth and hype-team coordination are not included in either package and can be scoped separately in June 2027. Review counts are not guaranteed. The working ad budget is about $150/month, separate from both fees. I’ll suggest boosts and handle setup after Sasquatch approves the posts and spending. I’ll confirm the final budget, who pays for ads directly, and who handles monitoring.</p>
-              <h4>Analytics and insight · Package 2</h4><p>I’ll set up and update the plain-English dashboard monthly, with a short explanation for each chart and a monthly note with 3 takeaways and 1 test for next month. It covers per-platform reach, views, engagement and follower growth, top posts, link clicks and boost results, reviewer outreach from pitched to posted, and progress toward the 50-review goal. Once Sasquatch’s website analytics and conversion tracking are in place, I’ll include visits to baileyvos.com from social and email signups. I’ll prioritize smaller, highly engaged BookTok accounts, generally under 20k followers. Sasquatch can use the dashboard in its report to Bailey or share it under its own name. Dashboard setup is included; I keep the underlying template, and Sasquatch and Bailey keep access to their own data. The dashboard supports Sasquatch’s reporting and does not replace it.</p>
+              <h4>Payment</h4><p>I’ll invoice Sasquatch on the first of each month. I’m proposing payment within 25 days of the invoice date, regardless of when Bailey pays Sasquatch. We’ll confirm the due date together before signing.</p>
+              <h4>Content</h4><p>I propose up to 12 original short-video edits per month from footage Sasquatch supplies, with 1 consolidated revision round per batch. I’ll use those edits for up to 12 publishing placements each on Instagram, TikTok, and YouTube Shorts per month. Facebook mirrors approved Instagram posts. The 12 core videos become about 36 platform-specific pieces. These caps apply in 5-week months. Comments, messages, and mentions checked every business day, plus one weekend check. I can provide 7-day coverage for an additional $100/month. YouTube coverage is Shorts. Long-form YouTube videos are not included. Approved character art can be used in posts once available; creating art or graphics is not included. I propose approval or comments within 1 business day of receiving a batch; later approvals shift the publishing schedule. One kickoff workshop is included in the first month’s fee. Additional strategy sessions can be scoped separately at an agreed rate.</p>
+              <h4>Outreach and boosts</h4><p>For Package 2, I’ll work with Sasquatch to shape the outreach plan from its influencer list, then carry out personalized pitches, follow-ups, and requests for honest Book 2 reviews supporting Sasquatch’s 50-review campaign goal. Includes up to 20 new reviewers per month, up to 2 follow-ups each, a shared tracker, and monthly results. Phase 3 ARC-list growth and hype-team coordination are not included in either package and can be scoped separately in June 2027. Review counts are not guaranteed. The working ad budget is about $150/month, separate from both fees. I’ll suggest boosts and handle setup after Sasquatch approves the posts and spending. I’ll confirm with Chris the final budget, who pays for ads, monitors boosts, supplies boost results, and sends review copies.</p>
+              <h4>Analytics and insight · Package 2</h4><p>I’ll set up a plain-English dashboard with a short explanation for each chart and a monthly note with 3 takeaways and 1 test for next month. I’ll use the data available each month. It covers per-platform reach, views, engagement and follower growth, top posts, link clicks and boost results, reviewer outreach from pitched to posted, and progress toward Sasquatch’s 50-review campaign goal. I’ll update the dashboard monthly with the social and outreach results. Once your website tracking is live, I’ll add the website visits and email sign-up figures your team shares so you can fold them into Bailey’s report. I’ll prioritize smaller, highly engaged BookTok accounts, generally under 20k followers. Sasquatch can use the dashboard in its report to Bailey or share it under its own name. Dashboard setup is included; I keep the underlying template, and Sasquatch and Bailey keep access to their own data. The dashboard supports Sasquatch’s reporting and does not replace it.</p>
               <h4>Portfolio and future work</h4><p>Both teams can show the content they create in their portfolios. I’ll let Sasquatch know if Bailey approaches me about work outside this project. I’ll confirm whether separate referral terms apply before finalizing.</p>
             </div>
           </details>
-          <label class="acceptance-consent" for="accept-consent"><input id="accept-consent" name="consent" type="checkbox" value="accepted" required><span id="consent-wording">I am authorized to sign for Sasquatch Ventures and accept the selected package, monthly fee, scope, and proposal terms once they are finalized. My typed name and submission are intended as my electronic signature.</span></label>
-          <button class="go" id="accept-submit" type="submit">Review selection (draft)</button>
-          <p class="draft-note">This draft cannot send or record acceptance. I’ll review the proposed fees and scope, start date, notice terms, the proposed 1-business-day approval turnaround, included 3-hour kickoff workshop, and boost monitoring with you before finalizing. Chris also needs to agree to the payment terms. I’ll confirm the submission destination and verify receipt of an authorized test before enabling acceptance.</p>
-          <p id="reply-status" role="status" aria-live="polite" tabindex="-1"></p>
-          <noscript><p class="acceptance-help">This draft is disconnected. JavaScript is needed to preview the selected package; it cannot be accepted yet.</p></noscript>
-        </form>
+          <p class="draft-note">This is a package preview for discussion. I’ll confirm the start date, notice terms, approval turnaround, kickoff arrangements, and payment terms with you. I’ll also confirm boost monitoring, who supplies boost results, and who sends review copies.</p>
+          <noscript><p class="acceptance-help">JavaScript is needed to update the package preview. The prices and scope are listed in the cards above.</p></noscript>
+        </div>
       </div></section>
     </div>
   </div>
 </main>
 <script>
-/* Draft acceptance is local only. Never enable it by copying another proposal’s endpoint. */
+/* Local package preview only; no signature collection or submission. */
 (() => {
   'use strict';
-  const form = document.getElementById('reply');
+  const preview = document.getElementById('reply');
   const packages = document.getElementById('package');
-  const name = document.getElementById('name');
-  const consent = document.getElementById('accept-consent');
   const summary = document.getElementById('acceptance-summary');
-  const status = document.getElementById('reply-status');
-  const submit = document.getElementById('accept-submit');
-  let pending = false, accepted = false;
   const clean = text => String(text || '').replace(/\s+/g, ' ').trim();
-  function selection() {
-    const card = ['package1', 'package2'].includes(packages.value) && document.getElementById(packages.value);
-    return card ? { id: card.id, label: `${clean(card.querySelector('.tier').textContent)} · ${clean(card.querySelector('h3').textContent)}`, monthly_fee: clean(card.querySelector('[data-package-price]').textContent), scope: clean((card.id === 'package2' ? document.querySelector('#package1 .package-scope').textContent + ' ' : '') + card.querySelector('.package-scope').textContent) } : null;
-  }
   function update() {
-    const selected = selection();
-    summary.textContent = selected ? `${selected.label}\nProposed monthly fee: ${selected.monthly_fee}\n${selected.scope}\nAd budget: about $150/month, separate. Boost suggestions and setup after Sasquatch approval; monitoring to be confirmed.` : 'Choose a package above to see its monthly fee and scope.';
+    const card = ['package1', 'package2'].includes(packages.value) && document.getElementById(packages.value);
+    if (!card) { summary.textContent = 'Choose a package above to preview its monthly fee and scope.'; return; }
+    const label = `${clean(card.querySelector('.tier').textContent)} · ${clean(card.querySelector('h3').textContent)}`;
+    const fee = clean(card.querySelector('[data-package-price]').textContent);
+    const scope = clean((card.id === 'package2' ? document.querySelector('#package1 .package-scope').textContent + ' ' : '') + card.querySelector('.package-scope').textContent);
+    summary.textContent = `${label}\nProposed monthly fee: ${fee}\n${scope}\nAd budget: about $150/month, separate. Boost suggestions and setup after Sasquatch approval. To confirm with Chris: boost monitoring, who supplies boost results, and who sends review copies.`;
   }
   ['package1', 'package2'].forEach(id => {
     const card = document.getElementById(id);
-    form.querySelector(`option[value="${id}"]`).textContent = `${clean(card.querySelector('.tier').textContent)} · ${clean(card.querySelector('h3').textContent)} · ${clean(card.querySelector('[data-package-price]').textContent)}`;
+    preview.querySelector(`option[value="${id}"]`).textContent = `${clean(card.querySelector('.tier').textContent)} · ${clean(card.querySelector('h3').textContent)} · ${clean(card.querySelector('[data-package-price]').textContent)}`;
   });
-  form.addEventListener('input', () => {
-    if (pending || accepted) return;
-    name.setCustomValidity(''); status.textContent = ''; status.dataset.state = '';
-    update();
-  });
-  [packages, name].forEach(control => control.addEventListener('change', () => {
-    if (!pending && !accepted) consent.checked = false;
-    update();
-  }));
-  form.addEventListener('submit', async event => {
-    event.preventDefault();
-    if (pending || accepted || !form.reportValidity()) return;
-    if (!name.value.trim()) { name.setCustomValidity('Please enter your full name.'); name.reportValidity(); return; }
-    const selected = selection();
-    if (!selected || !consent.checked) return;
-    const unresolved = /\[Confirm[^\]]*\]/.test(document.getElementById('main').textContent) || Boolean(document.querySelector('[data-open-terms]'));
-    const endpoint = form.getAttribute('action') || '';
-    if (form.dataset.draft !== 'false' || form.dataset.endpointConfirmed !== 'true' || unresolved || !/^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(endpoint)) {
-      status.dataset.state = 'error';
-      status.textContent = 'This draft cannot be accepted yet. The monthly fees, open terms, and proposal-specific submission connection need confirmation. Nothing was sent.';
-      status.focus({ preventScroll: true }); return;
-    }
-    const record = { organization: 'Sasquatch Ventures', project: 'Unblind trilogy', signer_name: name.value.trim(), selected, consent: document.getElementById('consent-wording').textContent, scope: clean(document.getElementById('scope').textContent), assumptions: clean(document.getElementById('assumptions').textContent), terms: clean(document.getElementById('proposal-details').textContent), signed_at_browser_utc: new Date().toISOString() };
-    const payload = new FormData();
-    payload.append('name', record.signer_name); payload.append('package', selected.label); payload.append('monthly_fee', selected.monthly_fee); payload.append('acceptance_record', JSON.stringify(record));
-    const controls = [...form.querySelectorAll('input,select,button')];
-    pending = true; controls.forEach(control => control.disabled = true);
-    status.textContent = 'Submitting your acceptance…';
-    const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 35000);
-    try {
-      const response = await fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: payload, signal: controller.signal });
-      const result = await response.json().catch(() => null);
-      if (!response.ok || result?.ok !== true) throw new Error('I couldn’t confirm your acceptance was received. Your details are still here. Please contact Mariel before trying again.');
-      accepted = true; status.dataset.state = 'success'; status.textContent = 'Thank you. Your signed acceptance was received. I’ll follow up about kickoff and the first batch of footage.';
-      submit.textContent = 'Acceptance recorded';
-    } catch (error) {
-      status.dataset.state = 'error'; status.textContent = error.name === 'AbortError' ? 'I couldn’t confirm delivery before the connection timed out. Please contact Mariel before trying again.' : error.message;
-    } finally {
-      clearTimeout(timeout); pending = false; if (!accepted) controls.forEach(control => control.disabled = false);
-      status.focus({ preventScroll: true });
-    }
-  });
+  packages.addEventListener('change', update);
   update();
 })();
 /* Include the closed proposal details and FAQ answers in print, then restore them. */
