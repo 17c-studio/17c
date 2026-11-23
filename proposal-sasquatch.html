@@ -142,7 +142,7 @@ textarea{resize:vertical}
 button.go{min-height:48px;padding:16px 24px;margin-top:16px;border:1px solid var(--line);border-radius:0;background:var(--ink);color:var(--paper);font:500 12px/1.5 var(--sans);letter-spacing:.04em;cursor:pointer}
 button.go:hover{background:#d1cbc3}
 button.go:disabled{opacity:.65;cursor:default}
-#reply[aria-busy="true"] #accept-submit{cursor:wait}
+#reply[aria-busy="true"] #inquiry-submit{cursor:wait}
 #reply-status{margin:16px 0 0;font-size:14px}
 #reply-status:empty{display:none}
 .hp{position:absolute;left:-9999px}
@@ -481,7 +481,7 @@ html.is-opening{overflow:hidden}
   #investment .card .best{padding-top:16px;break-inside:avoid}
   #proposal-details{display:block;break-inside:auto}
   .package-preview{display:block!important;border:0;padding:0;background:transparent}
-  .package-preview>label,.package-preview>select,.package-preview>input,.package-preview>button,.package-preview>.acceptance-consent,.package-preview>.draft-note,#signing-unavailable,#reply-status{display:none!important}
+  .package-preview>label,.package-preview>select,.package-preview>input,.package-preview>textarea,.package-preview>button,.package-preview>.acceptance-consent,.package-preview>.draft-note,#inquiry-help,#reply-status{display:none!important}
   #proposal-details summary{color:var(--ink)}
   .eyebrow{break-after:avoid}
 }
@@ -602,6 +602,7 @@ html.is-opening{overflow:hidden}
         <p class="eyebrow">What I’m assuming</p><h2>Keeping Bailey's time light.</h2>
         <ul><li>One batched filming session a month is all we need from Bailey.</li></ul>
         <p>Sasquatch will provide Buffer and platform access and approved assets. I propose approval or comments within 1 business day of receiving a batch. If footage or approvals are delayed, we’ll adjust the schedule or use approved material we already have. Sasquatch coordinates one monthly filming session with Bailey to capture footage for up to 12 short videos. If she supplies less, I'll use approved existing material and the fee stays the same.</p>
+        <p>The kickoff workshop (up to 3 hours) is included in the first month's fee, even if it happens before the start date. I'll contribute to the social strategy; website, analytics, and tool setup stay with Sasquatch.</p>
         <p>I’ll confirm who owns each social and ad account before naming an owner. The existing owners retain control and provide 17C the access needed for this work.</p>
         <p>Approved character art can be used in posts once available; creating art or graphics is not included.</p>
         <p>Phase 3 ARC-list growth and hype-team coordination are not included in either package and can be scoped separately in June 2027.</p>
@@ -626,18 +627,21 @@ html.is-opening{overflow:hidden}
       <hr class="rule">
       <section id="next-step"><div class="wrap">
         <p class="eyebrow">Next steps</p><h2>Choose what fits Bailey's goals.</h2>
-        <p>Reply with the package you think fits Bailey best, and we’ll confirm the scope, payment terms, and kickoff together.</p>
-        <form id="reply" class="accept package-preview" action="#next-step" method="POST" data-terms-approved="false" data-endpoint-confirmed="false" data-submission-url="https://formspree.io/f/xjygqoja">
-          <label for="package">Preview a package</label>
-          <select id="package" name="package" required>
-            <option value="">Choose a package to preview</option>
+        <p>Preview a package and send me your questions or thoughts below. This is a chance to talk through the options, not a commitment to a package or an agreement to start work. I’ll respond by email.</p>
+        <form id="reply" class="accept package-preview" action="https://formspree.io/f/xjygqoja" method="POST" aria-describedby="inquiry-help">
+          <input type="hidden" name="_subject" value="Sasquatch proposal discussion">
+          <input type="hidden" name="submission_type" value="proposal_discussion">
+          <input type="hidden" name="no_commitment" value="Discussion only; this is not proposal acceptance.">
+          <label for="package">Package you’d like to discuss (optional)</label>
+          <select id="package" name="package">
+            <option value="">I’d like to talk through the options</option>
             <option value="package1">Package 1 · Social media support · $1,250/month</option>
             <option value="package2">Package 2 · Social media + BookTok outreach + insights · $1,700/month</option>
           </select>
-          <label for="signer-email" data-signing-control hidden>Your email</label>
-          <input id="signer-email" data-signing-control hidden disabled name="email" type="email" autocomplete="email" maxlength="254" required>
-          <label for="signer-name" data-signing-control hidden>Your full name (electronic signature)</label>
-          <input id="signer-name" data-signing-control hidden disabled name="name" type="text" autocomplete="name" maxlength="150" required>
+          <label for="contact-email">Your email</label>
+          <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+          <label for="contact-name">Your name</label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="150" required>
           <details class="question proposal-details" id="proposal-details">
             <summary>Proposal details <span class="question-icon" aria-hidden="true"></span></summary>
             <div class="question-answer">
@@ -650,23 +654,22 @@ html.is-opening{overflow:hidden}
               <h4>Portfolio and future work</h4><p>Both teams can show the content they create in their portfolios. I’ll let Sasquatch know if Bailey approaches me about work outside this project. Referral terms: see Questions for you.</p>
             </div>
           </details>
-          <label class="acceptance-consent" for="accept-consent" data-signing-control hidden><input id="accept-consent" disabled name="consent" type="checkbox" value="accepted" required><span id="consent-wording">I am authorized to sign for Sasquatch Ventures. I accept the selected package, monthly fee, scope, and Proposal details as written, including any items stated as subject to later confirmation. Those items will be agreed in writing before work begins. By clicking “Sign proposal,” I intend my typed full name and this submission to be my electronic signature and consent to keeping this record electronically.</span></label>
+          <label for="referral-answer">How should we handle referrals?</label>
+          <textarea id="referral-answer" name="referral_answer" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea>
+          <label for="invoice-payment-answer">When are my invoices paid?</label>
+          <textarea id="invoice-payment-answer" name="invoice_payment_answer" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea>
+          <label for="message">Your message to me (optional)</label>
+          <textarea id="message" name="message" rows="5" maxlength="5000" placeholder="Questions, changes, or what you’d like to talk through."></textarea>
           <div class="hp" aria-hidden="true"><label for="company-website">Leave this field empty</label><input id="company-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
-          <p id="signing-unavailable" class="acceptance-help">Signing is not available while the terms and submission destination are being confirmed. You can still preview either package.</p>
-          <button class="go" id="accept-submit" type="submit" data-signing-control hidden disabled>Sign proposal</button>
+          <p id="inquiry-help" class="acceptance-help">Answer either question, add a message, or both. I’ll respond by email. Sending this message doesn’t commit you to a package or accept the proposal terms.</p>
+          <button class="go" id="inquiry-submit" type="submit">Send message</button>
           <p id="reply-status" role="status" aria-live="polite" tabindex="-1"></p>
-          <div id="acceptance-receipt" hidden>
-            <h3>Your signed record</h3>
-            <p id="acceptance-reference"></p>
-            <button class="go" id="download-record" type="button">Download signed record</button>
-          </div>
-          <noscript><p class="acceptance-help">Please enable JavaScript to sign this proposal. The prices and scope are listed above.</p></noscript>
         </form>
       </div></section>
     </div>
   </div>
 </main>
-<script src="proposals/sasquatch/acceptance.js?v=1" defer></script>
+<script src="proposals/sasquatch/inquiry.js?v=1" defer></script>
 <script>
 /* Include the closed proposal details and FAQ answers in print, then restore them. */
 (() => {
