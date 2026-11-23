@@ -11,6 +11,7 @@
   const platformAnswer = document.getElementById('platform-adaptation-answer');
   const checkinAnswer = document.getElementById('two-month-checkin-answer');
   const answers = [platformAnswer, invoiceAnswer, referralAnswer, checkinAnswer];
+  const setupFee = document.querySelector('[data-setup-fee]');
   const summary = document.getElementById('acceptance-summary');
   const status = document.getElementById('reply-status');
   const submit = document.getElementById('inquiry-submit');
@@ -32,13 +33,14 @@
       label: `${clean(card.querySelector('.tier').textContent)} · ${clean(card.querySelector('h3').textContent)}`,
       monthly_fee: fee,
       monthly_fee_usd: Number(fee.replace(/[^\d.]/g, '')),
+      setup_fee: clean(setupFee.textContent),
       scope: clean((card.id === 'package2' ? scopeText(document.getElementById('package1')) + ' ' : '') + scopeText(card))
     };
   }
 
   function update() {
     const selected = selection();
-    summary.textContent = selected ? `${selected.label}\nMonthly fee: ${selected.monthly_fee}\n${selected.scope}\nAd budget: about $150/month, separate. This is a package preview for discussion, not acceptance.` : 'You can preview either package above, or send a message to talk through both options. No package selection is required.';
+    summary.textContent = selected ? `${selected.label}\nMonthly fee: ${selected.monthly_fee}\nOne-time setup fee on the first invoice: ${selected.setup_fee}\n${selected.scope}\nAd budget: about $150/month, separate. This is a package preview for discussion, not acceptance.` : 'You can preview either package above, or send a message to talk through both options. No package selection is required.';
   }
   ['package1', 'package2'].forEach(id => {
     const card = document.getElementById(id);
@@ -60,7 +62,7 @@
     if (pending || sent) return;
     name.setCustomValidity(name.value.trim() ? '' : 'Please enter your name.');
     const hasResponse = [message, ...answers].some(field => field.value.trim());
-    message.setCustomValidity(hasResponse ? '' : 'Please answer one of the questions or add a short message.');
+    message.setCustomValidity(hasResponse ? '' : 'Please leave a comment on the working terms or add a short message.');
     if (!form.reportValidity()) return;
     const details = {
       name: name.value.trim(), email: email.value.trim(), message: message.value.trim(),
@@ -87,6 +89,7 @@
     payload.set('package', details.selected?.label || 'Talk through the options');
     payload.set('package_id', details.selected?.id || 'undecided');
     payload.set('monthly_fee', details.selected?.monthly_fee || 'No package selected');
+    payload.set('setup_fee', details.selected?.setup_fee || clean(setupFee.textContent));
     payload.set('scope_preview', details.selected?.scope || 'Discuss both packages');
     payload.set('inquiry_id', cached.id);
     payload.set('submitted_at_browser_utc', cached.submitted_at_browser_utc);
