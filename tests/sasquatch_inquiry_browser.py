@@ -86,13 +86,15 @@ for missing in ['name', 'email', 'invalid_email', 'message', 'spaces_name', 'spa
         'spaces_message': "document.getElementById('message').value='   '",
     }
     js(expressions[missing]);submit();assert js('window.__requests.length')==0,missing
-report.append({'validation':'name and email required; at least one question answer or message required; whitespace rejected'})
-for package,fee in [('', 'No package selected'),('package1','$1,250/month'),('package2','$1,700/month')]:
+report.append({'validation':'name and email required; at least one comment on the working terms or message required; whitespace rejected'})
+for package,fee in [('', 'No package selected'),('package1','$1,250/month'),('package2','$2,050/month')]:
     load();fill(package)
     js("document.getElementById('referral-answer').value='TEST ONLY referral reply';document.getElementById('invoice-payment-answer').value='TEST ONLY invoice reply';document.getElementById('platform-adaptation-answer').value='TEST ONLY platform reply';document.getElementById('two-month-checkin-answer').value='TEST ONLY checkin reply'")
     assert js("document.querySelectorAll('#reply input[type=checkbox],#signer-name,#accept-submit').length")==0
     assert not js("document.getElementById('package').required")
-    if package:assert fee in js("document.getElementById('acceptance-summary').textContent")
+    if package:
+        preview = js("document.getElementById('acceptance-summary').textContent")
+        assert fee in preview and 'One-time setup fee on the first invoice: $400' in preview
     if package=='package2':js("document.querySelector('.sample-dashboard-disclosure').open=true")
     js('window.__delay=350');submit()
     assert js("document.getElementById('reply').getAttribute('aria-busy')")=='true'
@@ -110,6 +112,7 @@ for package,fee in [('', 'No package selected'),('package1','$1,250/month'),('pa
     assert fields['submission_type']=='proposal_discussion'
     assert fields['no_commitment']=='Discussion only; this is not proposal acceptance.'
     assert fields['monthly_fee']==fee
+    assert fields['setup_fee']=='$400'
     assert fields['package_id']==(package or 'undecided')
     assert fields['_subject'].startswith('Sasquatch proposal discussion')
     assert 'consent' not in fields and 'acceptance_record' not in fields
@@ -123,7 +126,7 @@ for package,fee in [('', 'No package selected'),('package1','$1,250/month'),('pa
     assert 'respond by email' in status and 'haven’t committed' in status
     submit();assert js('window.__requests.length')==1
     report.append({'package':package or 'undecided','fee_context':fee,'discussion_payload_success_and_duplicate_guard':'passed'})
-# Either typed question answer can be sent without requiring an unrelated message.
+# Any working-terms comment can be sent without requiring an unrelated message.
 for field,key in [('referral-answer','referral_answer'),('invoice-payment-answer','invoice_payment_answer'),('platform-adaptation-answer','platform_adaptation_answer'),('two-month-checkin-answer','two_month_checkin_answer')]:
     load();fill('')
     js("document.getElementById('message').value='';document.getElementById(%s).value='TEST ONLY answer without a message'" % json.dumps(field))
@@ -155,9 +158,9 @@ assert js("document.getElementById('company-website').tabIndex")==-1
 assert not js("document.body.innerText.includes('Leave this field empty')")
 assert not js("document.body.innerText.includes('---')")
 assert js("document.querySelectorAll('#questions-for-you details').length")==4
-assert js("Array.from(document.querySelectorAll('#questions-for-you summary')).map(e=>e.textContent)")==['Who adapts assets for each platform?','When are my invoices paid?','How should we handle referrals?','Does a two-month check-in work for you?']
-assert js("Array.from(document.querySelectorAll('summary')).filter(e=>e.textContent==='How should we handle referrals?').length")==1
-assert js("Array.from(document.querySelectorAll('summary')).filter(e=>e.textContent==='When are my invoices paid?').length")==1
+assert js("Array.from(document.querySelectorAll('#questions-for-you summary')).map(e=>e.textContent)")==['Platform adaptation','Invoice terms','Future direct work','Two-month check-in']
+assert js("Array.from(document.querySelectorAll('summary')).filter(e=>e.textContent==='Future direct work').length")==1
+assert js("Array.from(document.querySelectorAll('summary')).filter(e=>e.textContent==='Invoice terms').length")==1
 for width,height in [(1440,1000),(390,844)]:
     cdp('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':width<500});pause()
     assert js('document.documentElement.scrollWidth<=innerWidth')
@@ -176,13 +179,13 @@ js("document.getElementById('proposal-details').open=false")
 pdf=cdp('Page.printToPDF',{'printBackground':False,'preferCSSPageSize':True,'paperWidth':8.5,'paperHeight':11})
 (out/'sasquatch-inquiry-print.pdf').write_bytes(base64.b64decode(pdf['data']))
 text=' '.join(' '.join(p.extract_text().split()) for p in PdfReader(out/'sasquatch-inquiry-print.pdf').pages)
-assert '$1,250/month' in text and '$1,700/month' in text and '25 days' in text
+assert '$1,250/month' in text and '$2,050/month' in text and '$400' in text and '25 days' in text
 assert 'test@example.invalid' not in text and 'TEST ONLY:' not in text
 assert 'TEST ONLY referral print value' not in text and 'TEST ONLY invoice print value' not in text
 assert 'TEST ONLY platform print value' not in text and 'TEST ONLY checkin print value' not in text
-assert text.count('Your answer:')==4
-assert 'kickoff workshop (up to 3 hours)' in text
-assert 'Proposed start date: December 1, 2026.' in text
+assert text.count('Comments (optional)')==4
+assert 'kickoff workshop of up to three hours' in text
+assert 'December 1, 2026 start' in text
 assert '49.5k' not in text  # The sample stays closed for default proposal printing.
 assert 'Leave this field empty' not in text and '---' not in text
 assert not js("document.getElementById('proposal-details').open")
