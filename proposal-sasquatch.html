@@ -487,6 +487,56 @@ html.is-opening{overflow:hidden}
   #proposal-details summary{color:var(--ink)}
   .eyebrow{break-after:avoid}
 }
+
+/* Self-contained illustrative dashboard; all rules are scoped to this preview. */
+.sample-dashboard-disclosure{margin:24px 0;border:1px solid var(--line);border-radius:12px;min-width:0}
+.sample-dashboard-disclosure>summary{padding:16px;cursor:pointer;font-size:14px;font-weight:600;line-height:1.5}
+.sample-dashboard-disclosure>summary:focus-visible{outline:2px solid #F2A541;outline-offset:3px;border-radius:12px}
+#investment .reader-dashboard{--rd-bg:#0F1115;--rd-panel:#171A21;--rd-border:#262A33;--rd-text:#ECEDEF;--rd-muted:#A3A8B3;--rd-accent:#F2A541;--rd-tiktok:#7FB3E6;--rd-youtube:#5E6573;background:var(--rd-bg);color:var(--rd-text);border-radius:0 0 12px 12px;padding:16px;min-width:0;font:400 13px/1.6 var(--sans);overflow-wrap:break-word;color-scheme:dark}
+#investment .reader-dashboard *{box-sizing:border-box;min-width:0}
+#investment .reader-dashboard p{font:inherit;color:var(--rd-text);margin:0}
+#investment .reader-dashboard strong{color:var(--rd-text);font-weight:600}
+#investment .reader-dashboard .rd-muted{color:var(--rd-muted)}
+#investment .reader-dashboard .rd-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+#investment .reader-dashboard .rd-kicker{font-size:11px;letter-spacing:.04em;color:var(--rd-muted);margin-bottom:6px}
+#investment .reader-dashboard .rd-title{font:600 21px/1.25 var(--sans);letter-spacing:-.02em;margin:0;color:var(--rd-text)}
+#investment .reader-dashboard .rd-countdown{padding:7px 10px;border:1px solid var(--rd-border);border-radius:12px;background:var(--rd-panel);font-size:11px;color:var(--rd-accent);max-width:100%}
+#investment .reader-dashboard .rd-summary{margin-bottom:18px}
+#investment .reader-dashboard .rd-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;margin-bottom:12px}
+#investment .reader-dashboard .rd-stat,#investment .reader-dashboard .rd-panel{background:var(--rd-panel);border:1px solid var(--rd-border);border-radius:14px;padding:14px}
+#investment .reader-dashboard .rd-stat-label{font-size:12px;color:var(--rd-muted);margin-bottom:8px}
+#investment .reader-dashboard .rd-stat-number{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+#investment .reader-dashboard .rd-stat-number strong{font-size:28px;line-height:1.15;letter-spacing:-.03em}
+#investment .reader-dashboard .rd-change{font-size:12px;color:var(--rd-accent)}
+#investment .reader-dashboard .rd-stat-note{font-size:12px}
+#investment .reader-dashboard .rd-panels,#investment .reader-dashboard .rd-insights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+#investment .reader-dashboard h5{font:600 14px/1.4 var(--sans);letter-spacing:0;text-transform:none;color:var(--rd-text);margin:0 0 12px}
+#investment .reader-dashboard .rd-legend{display:flex;flex-wrap:wrap;gap:5px 10px;font-size:11px;margin-bottom:10px}
+#investment .reader-dashboard .rd-legend span{display:inline-flex;align-items:center;gap:5px}
+#investment .reader-dashboard .rd-dot{width:8px;height:8px;border-radius:2px;flex:0 0 8px;background:var(--rd-accent)}
+#investment .reader-dashboard .rd-dot-tiktok{background:var(--rd-tiktok)}
+#investment .reader-dashboard .rd-dot-youtube{background:var(--rd-youtube);border:1px solid var(--rd-muted)}
+#investment .reader-dashboard .rd-chart-unit{font-size:11px;color:var(--rd-muted);margin-bottom:5px}
+#investment .reader-dashboard .rd-chart{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+#investment .reader-dashboard .rd-week-bars{height:140px;display:flex;align-items:flex-end;justify-content:center;gap:3px;border-bottom:1px solid var(--rd-muted);background:repeating-linear-gradient(to top,transparent 0,transparent 34px,var(--rd-border) 34px,var(--rd-border) 35px)}
+#investment .reader-dashboard .rd-bar{height:var(--bar-height);width:22%;max-width:18px;background:var(--rd-accent);border-radius:3px 3px 0 0}
+#investment .reader-dashboard .rd-bar-tiktok{background:var(--rd-tiktok)}
+#investment .reader-dashboard .rd-bar-youtube{background:var(--rd-youtube);border:1px solid var(--rd-muted);border-bottom:0}
+#investment .reader-dashboard .rd-week-label{text-align:center;font-size:10px;color:var(--rd-muted);padding-top:5px;white-space:nowrap}
+#investment .reader-dashboard .rd-review-total{font-size:16px;margin-bottom:8px}
+#investment .reader-dashboard .rd-review-total strong{font-size:24px}
+#investment .reader-dashboard .rd-progress,#investment .reader-dashboard .rd-funnel-track{height:8px;background:var(--rd-border);border-radius:8px;overflow:hidden}
+#investment .reader-dashboard .rd-progress-fill{height:100%;width:34%;background:var(--rd-accent);border-radius:8px}
+#investment .reader-dashboard .rd-funnel{display:grid;gap:9px;margin-top:18px}
+#investment .reader-dashboard .rd-funnel-label{display:flex;justify-content:space-between;gap:8px;font-size:11px;margin-bottom:4px}
+#investment .reader-dashboard .rd-funnel-fill{height:100%;width:var(--funnel-width);background:var(--rd-tiktok);border-radius:8px}
+#investment .reader-dashboard .rd-takeaways{padding-left:18px;margin:0;font-size:12px}
+#investment .reader-dashboard .rd-takeaways li{margin:0;color:var(--rd-text);line-height:1.6}
+#investment .reader-dashboard .rd-takeaways li+li{margin-top:10px}
+#investment .reader-dashboard .rd-test{background:var(--rd-panel);border:1px dashed var(--rd-accent);border-radius:14px;padding:14px;align-self:start;font-size:12px}
+#investment .reader-dashboard .rd-footer{font-size:11px;color:var(--rd-muted);margin-top:18px;padding-top:14px;border-top:1px solid var(--rd-border)}
+@media(max-width:600px){#investment .reader-dashboard .rd-panels,#investment .reader-dashboard .rd-insights{grid-template-columns:1fr}}
+@media print{#investment .reader-dashboard{print-color-adjust:exact;-webkit-print-color-adjust:exact}#investment .reader-dashboard .rd-panel,#investment .reader-dashboard .rd-stat{break-inside:avoid}}
 </style>
 </head>
 <body>
@@ -539,7 +589,7 @@ html.is-opening{overflow:hidden}
           <li>At kickoff, I’ll ask Bailey to share a couple of posts she’d be excited to put her name on. We’ll use those to agree on a creative direction before editing the first batch. One idea to explore is a short video about how her legal background shaped a rule or conflict in the Unblind world. One kickoff workshop is included in the first month’s fee. Additional strategy sessions can be scoped separately.</li>
           <li>After the first filming session, I’ll try two or three styles on one sample clip. Once Bailey chooses a direction, I’ll use it for the rest of the batch.</li>
           <li>Turn each month's filming session with Bailey into up to 12 original short videos, with 1 consolidated revision round per batch. I’ll write captions and adapt and schedule those edits in Buffer for up to 12 publishing placements each on Instagram, TikTok, and YouTube Shorts. Facebook mirrors approved Instagram posts. The 12 core videos become about 36 platform-specific pieces. These monthly caps also apply in 5-week months.</li>
-          <li>I’ll check comments, messages, and mentions every business day, plus once each weekend. I’ll handle routine replies and pass sensitive questions to Sasquatch. I can provide 7-day coverage for an additional $100/month.</li>
+          <li>I’ll check comments, messages, and mentions every business day, plus once each weekend. I’ll handle routine replies and pass sensitive questions to Sasquatch. 7-day coverage is available for +$100/month.</li>
           <li>With Package 2, I’ll shape the outreach plan with Sasquatch from its influencer list, then carry out personalized pitches, follow-ups, and requests for honest Book 2 reviews supporting Sasquatch’s 50-review campaign goal. Includes up to 20 new reviewers per month, up to 2 follow-ups each, a shared tracker, and monthly results.</li>
           <li>Each month, I’ll send you a short recap of what went live, social reach, engagement, audience growth, and what readers responded to. I’ll include a recommendation for what to post or boost next. With Package 2, I’ll also share who I contacted, who replied, and who’s interested in a review copy, plus a plain-English dashboard and monthly insight note.</li>
         </ul>
@@ -582,8 +632,53 @@ html.is-opening{overflow:hidden}
                 <li>I’ll update the dashboard monthly with the social and outreach results. Once your website tracking is live, I’ll add the website visits and email sign-up figures your team shares so you can fold them into Bailey’s report.</li>
                 <li>A monthly insight note: three takeaways about what readers responded to, and one thing to try next month (for example, a new content format or hook).</li>
                 <li>Reviewer outreach prioritizes smaller, highly engaged BookTok accounts (generally under 20k followers), where a new author's book gets more attention and readers trust the recommendation.</li>
-                <li>Built for Sasquatch to use in its report to Bailey. It can be shared with Bailey under Sasquatch's name.</li>
+                <li>Built for Sasquatch to use in its report to Bailey. Shared with Bailey under Sasquatch's name, unless you'd rather keep it internal.</li>
               </ul>
+              <details class="sample-dashboard-disclosure" data-preview-only>
+                <summary>See a sample dashboard</summary>
+                <div class="reader-dashboard" aria-label="Illustrative reader dashboard with sample data">
+                  <div class="rd-header">
+                    <div><p class="rd-kicker">Reader dashboard · Sample data</p><h4 class="rd-title">Unblind · January 2027</h4></div>
+                    <p class="rd-countdown">18 days until Book 2 launches</p>
+                  </div>
+                  <p class="rd-summary">Readers are discovering Unblind through TikTok character quizzes, and sticking around on Instagram, where Bailey's behind-the-scenes clips get the most comments.</p>
+                  <div class="rd-stats">
+                    <div class="rd-stat"><p class="rd-stat-label">People reached</p><div class="rd-stat-number"><strong>49.5k</strong><span class="rd-change">(+31%)</span></div><p class="rd-stat-note">More people saw Bailey's videos than in any month so far.</p></div>
+                    <div class="rd-stat"><p class="rd-stat-label">New followers</p><div class="rd-stat-number"><strong>+612</strong><span class="rd-change">(+24%)</span></div><p class="rd-stat-note">TikTok brought in half of them.</p></div>
+                    <div class="rd-stat"><p class="rd-stat-label">Engagement rate</p><div class="rd-stat-number"><strong>6.8%</strong><span class="rd-change">(+1.2 pts)</span></div><p class="rd-stat-note">About 7 in every 100 viewers liked, commented, saved or shared.</p></div>
+                    <div class="rd-stat"><p class="rd-stat-label">Comments and DMs answered</p><div class="rd-stat-number"><strong>214</strong><span class="rd-change">(100%)</span></div><p class="rd-stat-note">Every reader who reached out heard back.</p></div>
+                  </div>
+                  <div class="rd-panels">
+                    <div class="rd-panel">
+                      <h5>Weekly views by platform</h5>
+                      <div class="rd-legend"><span><i class="rd-dot" aria-hidden="true"></i>Instagram</span><span><i class="rd-dot rd-dot-tiktok" aria-hidden="true"></i>TikTok</span><span><i class="rd-dot rd-dot-youtube" aria-hidden="true"></i>YouTube Shorts</span></div>
+                      <p class="rd-chart-unit">Views in thousands · scale 0–10k</p>
+                      <div class="rd-chart" role="img" aria-label="Weekly views in thousands: Instagram rises from 3.1 to 3.8, 4.2 and 5.0. TikTok leads with 5.2, 6.9, 8.4 and 7.6. YouTube Shorts grows from 0.9 to 1.2, 1.4 and 1.8.">
+                        <div aria-hidden="true"><div class="rd-week-bars"><div class="rd-bar" style="--bar-height:31%" title="Instagram: 3.1k views"></div><div class="rd-bar rd-bar-tiktok" style="--bar-height:52%" title="TikTok: 5.2k views"></div><div class="rd-bar rd-bar-youtube" style="--bar-height:9%" title="YouTube Shorts: 0.9k views"></div></div><div class="rd-week-label">Week 1</div></div>
+                        <div aria-hidden="true"><div class="rd-week-bars"><div class="rd-bar" style="--bar-height:38%" title="Instagram: 3.8k views"></div><div class="rd-bar rd-bar-tiktok" style="--bar-height:69%" title="TikTok: 6.9k views"></div><div class="rd-bar rd-bar-youtube" style="--bar-height:12%" title="YouTube Shorts: 1.2k views"></div></div><div class="rd-week-label">Week 2</div></div>
+                        <div aria-hidden="true"><div class="rd-week-bars"><div class="rd-bar" style="--bar-height:42%" title="Instagram: 4.2k views"></div><div class="rd-bar rd-bar-tiktok" style="--bar-height:84%" title="TikTok: 8.4k views"></div><div class="rd-bar rd-bar-youtube" style="--bar-height:14%" title="YouTube Shorts: 1.4k views"></div></div><div class="rd-week-label">Week 3</div></div>
+                        <div aria-hidden="true"><div class="rd-week-bars"><div class="rd-bar" style="--bar-height:50%" title="Instagram: 5.0k views"></div><div class="rd-bar rd-bar-tiktok" style="--bar-height:76%" title="TikTok: 7.6k views"></div><div class="rd-bar rd-bar-youtube" style="--bar-height:18%" title="YouTube Shorts: 1.8k views"></div></div><div class="rd-week-label">Week 4</div></div>
+                      </div>
+                    </div>
+                    <div class="rd-panel">
+                      <h5>Book 2 reviews</h5>
+                      <p class="rd-review-total"><strong>17</strong> of 50 goal</p>
+                      <div class="rd-progress" role="progressbar" aria-label="Book 2 reviews" aria-valuemin="0" aria-valuemax="50" aria-valuenow="17" aria-valuetext="17 of 50 reviews, 34 percent"><div class="rd-progress-fill"></div></div>
+                      <div class="rd-funnel">
+                        <div><div class="rd-funnel-label"><span>Pitched</span><strong>20</strong></div><div class="rd-funnel-track" aria-hidden="true"><div class="rd-funnel-fill" style="--funnel-width:100%"></div></div></div>
+                        <div><div class="rd-funnel-label"><span>Replied</span><strong>11</strong></div><div class="rd-funnel-track" aria-hidden="true"><div class="rd-funnel-fill" style="--funnel-width:55%"></div></div></div>
+                        <div><div class="rd-funnel-label"><span>Agreed to read</span><strong>7</strong></div><div class="rd-funnel-track" aria-hidden="true"><div class="rd-funnel-fill" style="--funnel-width:35%"></div></div></div>
+                        <div><div class="rd-funnel-label"><span>Posted</span><strong>4</strong></div><div class="rd-funnel-track" aria-hidden="true"><div class="rd-funnel-fill" style="--funnel-width:20%"></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="rd-insights">
+                    <div class="rd-panel"><h5>Three takeaways</h5><ol class="rd-takeaways"><li>Interactive posts win on TikTok. The quiz got 3× the comments of a standard clip.</li><li>Readers want Bailey herself. Clips with her on camera averaged twice the watch time.</li><li>Smaller reviewers deliver. All four reviews came from accounts under 15k followers.</li></ol></div>
+                    <div class="rd-test">One test for February: a daily launch-week countdown clip, filmed in one session.</div>
+                  </div>
+                  <p class="rd-footer">Illustrative sample, not Bailey's real numbers. The live version pulls from Instagram, TikTok, YouTube Studio, the outreach tracker, and website analytics once it's set up.</p>
+                </div>
+              </details>
               <p>Phase 3 ARC-list growth and hype-team coordination are not included in either package and can be scoped separately in June 2027.</p>
             </div>
             <p class="best"><strong>Best for:</strong><br>Keeping that same rhythm while I help Sasquatch reach potential Book 2 reviewers and turn the results into clear next steps.</p>
@@ -615,18 +710,11 @@ html.is-opening{overflow:hidden}
       <hr class="rule">
       <section id="questions-for-you"><div class="wrap">
         <p class="eyebrow">Before we finalize</p><h2>Questions for you</h2>
-        <p>A few details to confirm so we're aligned before Bailey sees the package. My proposed answer is under each one. Tell me what you'd change.</p>
-        <details class="question"><summary>Does the price reflect the full monthly volume?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Each month, I’ll adapt up to 12 original videos into up to 36 publishing placements across Instagram, TikTok, and YouTube Shorts. Facebook mirrors approved Instagram posts.</p></div></details>
-        <details class="question"><summary>Daily or business-day engagement checks?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I’ll check comments, messages, and mentions every business day, plus once each weekend. I’ll handle routine replies and pass sensitive questions to Sasquatch. If you'd like true 7-day coverage, it's +$100 / month.</p></div></details>
-        <details class="question"><summary>What's the approval turnaround?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I'm proposing that Sasquatch approves or comments within 1 business day of receiving a batch. If an approval comes in later, the publishing schedule shifts to match.</p></div></details>
-        <details class="question"><summary>Is the kickoff workshop included?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>One kickoff workshop is included in the first month’s fee. Additional strategy sessions can be scoped separately.</p></div></details>
-        <details class="question"><summary>How much outreach does Package 2 include?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Package 2 includes outreach to up to 20 new reviewers per month, with up to two follow-ups each. We can agree on a separate scope if you’d like to contact more.</p></div></details>
-        <details class="question"><summary>What happens if we add Pinterest?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Pinterest is a scope change, so it gets its own monthly price. I'll quote it once approved character art is ready.</p></div></details>
-        <details class="question"><summary>Who adapts assets for each platform?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Your scope lists adapting assets under Sasquatch's filming role. I've assumed I handle the platform adaptation (about 36 pieces a month) as part of editing, and the fee reflects that. Can you confirm?</p></div></details>
-        <details class="question"><summary>Would a plain-English dashboard help your reporting to Bailey?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I’ll update the dashboard monthly with the social and outreach results. Once your website tracking is live, I’ll add the website visits and email sign-up figures your team shares so you can fold them into Bailey’s report. It uses the data available each month and supports your final report. Would you rather it stay internal, or be shared with Bailey under Sasquatch’s name?</p></div></details>
-        <details class="question"><summary>How should we handle referrals?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">I have no plans to work with Bailey outside of Sasquatch. If Bailey ever approaches me about other work, I'll tell Sasquatch first. I'd like to settle this now while it's simple: I'm proposing a 10% referral fee to Sasquatch on any direct retainer for 6 months from the start of any direct work.</p><label class="answer-label" for="referral-answer">Your answer:</label><textarea id="referral-answer" name="referral_answer" form="reply" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea><div class="answer-space typed-answer-print" aria-hidden="true"></div></div></details>
+        <p>4 things I'd like your answer on before we finalize.</p>
+        <details class="question"><summary>Who adapts assets for each platform?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">Your scope lists adapting assets under Sasquatch's filming role. I've assumed I handle the platform adaptation (about 36 pieces a month) as part of editing, and the fee reflects that. Can you confirm?</p><label class="answer-label" for="platform-adaptation-answer">Your answer:</label><textarea id="platform-adaptation-answer" name="platform_adaptation_answer" form="reply" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea><div class="answer-space typed-answer-print" aria-hidden="true"></div></div></details>
         <details class="question"><summary>When are my invoices paid?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">I'm proposing payment within 25 days of my invoice date, whether or not Bailey has paid Sasquatch yet. If her payment is ever late, how would you like to handle my invoices?</p><label class="answer-label" for="invoice-payment-answer">Your answer:</label><textarea id="invoice-payment-answer" name="invoice_payment_answer" form="reply" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea><div class="answer-space typed-answer-print" aria-hidden="true"></div></div></details>
-        <details class="question"><summary>Does a two-month check-in work for you?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">I'd like to review workload against scope around the end of January, before the initial term ends. Nothing changes during the first 3 months; anything we adjust would start in month 4.</p><p class="answer-label">Your answer:</p><div class="answer-space" aria-hidden="true"></div></div></details>
+        <details class="question"><summary>How should we handle referrals?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">I have no plans to work with Bailey outside of Sasquatch. If Bailey ever approaches me about other work, I'll tell Sasquatch first. I'd like to settle this now while it's simple: I'm proposing a 10% referral fee to Sasquatch on any direct retainer for 6 months from the start of any direct work.</p><label class="answer-label" for="referral-answer">Your answer:</label><textarea id="referral-answer" name="referral_answer" form="reply" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea><div class="answer-space typed-answer-print" aria-hidden="true"></div></div></details>
+        <details class="question"><summary>Does a two-month check-in work for you?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">I'd like to review workload against scope around the end of January, before the initial term ends. Nothing changes during the first 3 months; anything we adjust would start in month 4.</p><label class="answer-label" for="two-month-checkin-answer">Your answer:</label><textarea id="two-month-checkin-answer" name="two_month_checkin_answer" form="reply" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea><div class="answer-space typed-answer-print" aria-hidden="true"></div></div></details>
       </div></section>
       <hr class="rule">
       <section id="next-step"><div class="wrap">
@@ -653,7 +741,7 @@ html.is-opening{overflow:hidden}
               <h4>Term</h4><p>I propose a 3-month initial commitment, subject to Bailey’s matching commitment, then month to month. Proposed start date: December 1, 2026. Before finalizing, I’ll review the start date and notice terms.</p>
               <p><strong>Two-month check-in:</strong> around the end of January, we'll review how the actual workload compares with this scope, using my tracked hours. Fees stay the same through the initial 3 months. If the work is running well over or under scope, we'll agree together whether to keep things as they are, adjust the scope, or adjust the fee starting in month 4.</p>
               <h4>Payment</h4><p>I’ll invoice Sasquatch on the first of each month. I’m proposing payment within 25 days of the invoice date, regardless of when Bailey pays Sasquatch. See Questions for you.</p>
-              <h4>Content</h4><p>I propose up to 12 original short-video edits per month from footage Sasquatch supplies, with 1 consolidated revision round per batch. I’ll use those edits for up to 12 publishing placements each on Instagram, TikTok, and YouTube Shorts per month. Facebook mirrors approved Instagram posts. The 12 core videos become about 36 platform-specific pieces. These caps apply in 5-week months. I’ll check comments, messages, and mentions every business day, plus once each weekend. I’ll handle routine replies and pass sensitive questions to Sasquatch. I can provide 7-day coverage for an additional $100/month. YouTube coverage is Shorts. Long-form YouTube videos are not included. Approved character art can be used in posts once available; creating art or graphics is not included. I propose approval or comments within 1 business day of receiving a batch; later approvals shift the publishing schedule. One kickoff workshop is included in the first month’s fee. Additional strategy sessions can be scoped separately at an agreed rate.</p>
+              <h4>Content</h4><p>I propose up to 12 original short-video edits per month from footage Sasquatch supplies, with 1 consolidated revision round per batch. I’ll use those edits for up to 12 publishing placements each on Instagram, TikTok, and YouTube Shorts per month. Facebook mirrors approved Instagram posts. The 12 core videos become about 36 platform-specific pieces. These caps apply in 5-week months. I’ll check comments, messages, and mentions every business day, plus once each weekend. I’ll handle routine replies and pass sensitive questions to Sasquatch. I can provide 7-day coverage for an additional $100/month. YouTube coverage is Shorts. Long-form YouTube videos are not included. Approved character art can be used in posts once available; creating art or graphics is not included. Sasquatch approves or comments within 1 business day of receiving a batch; later approvals shift the schedule. One kickoff workshop is included in the first month’s fee. Additional strategy sessions can be scoped separately at an agreed rate.</p>
               <h4>Outreach and boosts</h4><p>For Package 2, I’ll work with Sasquatch to shape the outreach plan from its influencer list, then carry out personalized pitches, follow-ups, and requests for honest Book 2 reviews supporting Sasquatch’s 50-review campaign goal. Includes up to 20 new reviewers per month, up to 2 follow-ups each, a shared tracker, and monthly results. Phase 3 ARC-list growth and hype-team coordination are not included in either package and can be scoped separately in June 2027. Review counts are not guaranteed. The working ad budget is about $150/month, separate from both fees. I’ll suggest boosts and handle setup after Sasquatch approves the posts and spending. I’ll confirm with Chris the final budget, who pays for ads, monitors boosts, supplies boost results, and sends review copies.</p>
               <h4>Analytics and insight · Package 2</h4><p>I’ll set up a plain-English dashboard with a short explanation for each chart and a monthly note with 3 takeaways and 1 test for next month. I’ll use the data available each month. It covers per-platform reach, views, engagement and follower growth, top posts, link clicks and boost results, reviewer outreach from pitched to posted, and progress toward Sasquatch’s 50-review campaign goal. I’ll update the dashboard monthly with the social and outreach results. Once your website tracking is live, I’ll add the website visits and email sign-up figures your team shares so you can fold them into Bailey’s report. I’ll prioritize smaller, highly engaged BookTok accounts, generally under 20k followers. Sasquatch can use the dashboard in its report to Bailey or share it under its own name. Dashboard setup is included; I keep the underlying template, and Sasquatch and Bailey keep access to their own data. The dashboard supports Sasquatch’s reporting and does not replace it.</p>
               <h4>Portfolio and future work</h4><p>Both teams can show the content they create in their portfolios. If Bailey ever approaches me about other work, I'll tell Sasquatch first. Referral terms: see Questions for you.</p>
@@ -670,7 +758,7 @@ html.is-opening{overflow:hidden}
     </div>
   </div>
 </main>
-<script src="proposals/sasquatch/inquiry.js?v=2" defer></script>
+<script src="proposals/sasquatch/inquiry.js?v=4" defer></script>
 <script>
 /* Include the closed proposal details and FAQ answers in print, then restore them. */
 (() => {
