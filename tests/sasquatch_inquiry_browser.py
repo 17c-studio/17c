@@ -118,6 +118,8 @@ for package,fee in [('', 'No package selected'),('package1','$750/month'),('pack
     if package:
         assert '12 original short-video' in fields['scope_preview']
         assert ('20 new reviewers' in fields['scope_preview'])==(package=='package2')
+        assert ('check comments, messages, and mentions' in fields['scope_preview'])==(package=='package2')
+        assert ('short monthly summary' in fields['scope_preview'])==(package=='package2')
         assert 'dashboard' not in fields['scope_preview'].lower()
     status=js("document.getElementById('reply-status').textContent")
     assert 'respond by email' in status and 'haven’t committed' in status
