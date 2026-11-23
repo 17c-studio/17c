@@ -527,15 +527,22 @@ html.is-opening{overflow:hidden}
 #investment .reader-dashboard .rd-review-total strong{font-size:24px}
 #investment .reader-dashboard .rd-progress,#investment .reader-dashboard .rd-funnel-track{height:8px;background:var(--rd-border);border-radius:8px;overflow:hidden}
 #investment .reader-dashboard .rd-progress-fill{height:100%;width:34%;background:var(--rd-accent);border-radius:8px}
-#investment .reader-dashboard .rd-funnel{display:grid;gap:9px;margin-top:18px}
+#investment .reader-dashboard .rd-funnel-heading{margin:18px 0 0}
+#investment .reader-dashboard .rd-funnel{display:grid;gap:9px;margin-top:10px}
 #investment .reader-dashboard .rd-funnel-label{display:flex;justify-content:space-between;gap:8px;font-size:11px;margin-bottom:4px}
 #investment .reader-dashboard .rd-funnel-fill{height:100%;width:var(--funnel-width);background:var(--rd-tiktok);border-radius:8px}
+#investment .reader-dashboard .rd-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+#investment .reader-dashboard .rd-highlights .rd-panel{padding:12px}
+#investment .reader-dashboard .rd-highlights h5{font-size:12px;margin-bottom:8px}
+#investment .reader-dashboard .rd-highlight-number{font-size:22px;font-weight:600;line-height:1.25}
+#investment .reader-dashboard .rd-highlight-note{font-size:11px;margin-top:8px}
 #investment .reader-dashboard .rd-takeaways{padding-left:18px;margin:0;font-size:12px}
 #investment .reader-dashboard .rd-takeaways li{margin:0;color:var(--rd-text);line-height:1.6}
 #investment .reader-dashboard .rd-takeaways li+li{margin-top:10px}
 #investment .reader-dashboard .rd-test{background:var(--rd-panel);border:1px dashed var(--rd-accent);border-radius:14px;padding:14px;align-self:start;font-size:12px}
 #investment .reader-dashboard .rd-footer{font-size:11px;color:var(--rd-muted);margin-top:18px;padding-top:14px;border-top:1px solid var(--rd-border)}
 @media(max-width:600px){#investment .reader-dashboard .rd-panels,#investment .reader-dashboard .rd-insights{grid-template-columns:1fr}}
+@media(max-width:600px){#investment .reader-dashboard .rd-highlights{grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}}
 @media print{#investment .reader-dashboard{print-color-adjust:exact;-webkit-print-color-adjust:exact}#investment .reader-dashboard .rd-panel,#investment .reader-dashboard .rd-stat{break-inside:avoid}}
 </style>
 </head>
@@ -643,7 +650,7 @@ html.is-opening{overflow:hidden}
                   </div>
                   <p class="rd-summary">Readers are discovering Unblind through TikTok character quizzes, and sticking around on Instagram, where Bailey's behind-the-scenes clips get the most comments.</p>
                   <div class="rd-stats">
-                    <div class="rd-stat"><p class="rd-stat-label">People reached</p><div class="rd-stat-number"><strong>49.5k</strong><span class="rd-change">(+31%)</span></div><p class="rd-stat-note">More people saw Bailey's videos than in any month so far.</p></div>
+                    <div class="rd-stat"><p class="rd-stat-label">Views</p><div class="rd-stat-number"><strong>49.5k</strong><span class="rd-change">(+31%)</span></div><p class="rd-stat-note">More views of Bailey's videos than in any month so far.</p></div>
                     <div class="rd-stat"><p class="rd-stat-label">New followers</p><div class="rd-stat-number"><strong>+612</strong><span class="rd-change">(+24%)</span></div><p class="rd-stat-note">TikTok brought in half of them.</p></div>
                     <div class="rd-stat"><p class="rd-stat-label">Engagement rate</p><div class="rd-stat-number"><strong>6.8%</strong><span class="rd-change">(+1.2 pts)</span></div><p class="rd-stat-note">About 7 in every 100 viewers liked, commented, saved or shared.</p></div>
                     <div class="rd-stat"><p class="rd-stat-label">Comments and DMs answered</p><div class="rd-stat-number"><strong>214</strong><span class="rd-change">(100%)</span></div><p class="rd-stat-note">Every reader who reached out heard back.</p></div>
@@ -662,21 +669,27 @@ html.is-opening{overflow:hidden}
                     </div>
                     <div class="rd-panel">
                       <h5>Book 2 reviews</h5>
-                      <p class="rd-review-total"><strong>17</strong> of 50 goal</p>
-                      <div class="rd-progress" role="progressbar" aria-label="Book 2 reviews" aria-valuemin="0" aria-valuemax="50" aria-valuenow="17" aria-valuetext="17 of 50 reviews, 34 percent"><div class="rd-progress-fill"></div></div>
+                      <p class="rd-review-total"><strong>17</strong> of 50 Book 2 reviews (all sources)</p>
+                      <div class="rd-progress" role="progressbar" aria-label="Book 2 reviews (all sources)" aria-valuemin="0" aria-valuemax="50" aria-valuenow="17" aria-valuetext="17 of 50 Book 2 reviews from all sources, 34 percent"><div class="rd-progress-fill"></div></div>
+                      <h5 class="rd-funnel-heading">This month's reviewer outreach</h5>
                       <div class="rd-funnel">
                         <div><div class="rd-funnel-label"><span>Pitched</span><strong>20</strong></div><div class="rd-funnel-track" aria-hidden="true"><div class="rd-funnel-fill" style="--funnel-width:100%"></div></div></div>
                         <div><div class="rd-funnel-label"><span>Replied</span><strong>11</strong></div><div class="rd-funnel-track" aria-hidden="true"><div class="rd-funnel-fill" style="--funnel-width:55%"></div></div></div>
                         <div><div class="rd-funnel-label"><span>Agreed to read</span><strong>7</strong></div><div class="rd-funnel-track" aria-hidden="true"><div class="rd-funnel-fill" style="--funnel-width:35%"></div></div></div>
-                        <div><div class="rd-funnel-label"><span>Posted</span><strong>4</strong></div><div class="rd-funnel-track" aria-hidden="true"><div class="rd-funnel-fill" style="--funnel-width:20%"></div></div></div>
+                        <div><div class="rd-funnel-label"><span>Posted a review:</span> <strong>4</strong></div><div class="rd-funnel-track" aria-hidden="true"><div class="rd-funnel-fill" style="--funnel-width:20%"></div></div></div>
                       </div>
                     </div>
+                  </div>
+                  <div class="rd-highlights">
+                    <div class="rd-panel"><h5>Top post</h5><p>Which Unnatural are you? (character quiz)</p><p class="rd-highlight-note rd-muted">TikTok · 12.4k views · 389 comments</p></div>
+                    <div class="rd-panel"><h5>Link clicks to baileyvos.com</h5><p class="rd-highlight-number">1,140</p><p class="rd-highlight-note rd-muted">186 joined Bailey's email list</p></div>
+                    <div class="rd-panel"><h5>Boosted posts</h5><p>2 boosts · $150</p><p class="rd-highlight-note rd-muted">Writing-session Reel boost brought 94 new followers</p></div>
                   </div>
                   <div class="rd-insights">
                     <div class="rd-panel"><h5>Three takeaways</h5><ol class="rd-takeaways"><li>Interactive posts win on TikTok. The quiz got 3× the comments of a standard clip.</li><li>Readers want Bailey herself. Clips with her on camera averaged twice the watch time.</li><li>Smaller reviewers deliver. All four reviews came from accounts under 15k followers.</li></ol></div>
                     <div class="rd-test">One test for February: a daily launch-week countdown clip, filmed in one session.</div>
                   </div>
-                  <p class="rd-footer">Illustrative sample, not Bailey's real numbers. The live version pulls from Instagram, TikTok, YouTube Studio, the outreach tracker, and website analytics once it's set up.</p>
+                  <p class="rd-footer">Illustrative sample, not Bailey's real numbers. Each month I compile figures from Instagram, Facebook, TikTok, YouTube Studio, and the outreach tracker, plus website numbers from Sasquatch once analytics is set up.</p>
                 </div>
               </details>
               <p>Phase 3 ARC-list growth and hype-team coordination are not included in either package and can be scoped separately in June 2027.</p>
