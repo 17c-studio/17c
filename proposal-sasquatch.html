@@ -145,7 +145,7 @@ button.go:disabled{opacity:.65;cursor:default}
 #reply[aria-busy="true"] #inquiry-submit{cursor:wait}
 #reply-status{margin:16px 0 0;font-size:14px}
 #reply-status:empty{display:none}
-.hp{position:absolute;left:-9999px}
+.hp{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}
 footer{max-width:1280px;margin:0 auto;padding:40px var(--gutter);border-top:1px solid var(--line);font-size:12px;line-height:2;color:var(--muted)}
 @media(max-width:1000px){
   .cards{gap:16px}.card{padding:24px 18px}.card h3{font-size:28px}.price{font-size:48px}
@@ -238,6 +238,8 @@ html.is-opening{overflow:hidden}
 .question-answer .answer-label{font-size:12px;font-weight:500;margin-top:16px}
 .answer-space{position:relative;height:4em;border-bottom:1px solid var(--line);break-inside:avoid}
 .answer-space::before{content:"";position:absolute;inset:50% 0 auto;border-bottom:1px solid var(--line)}
+.typed-answer-print{display:none}
+@media print{.question-answer textarea{display:none!important}.typed-answer-print{display:block}}
 @media print{.question{break-inside:avoid}.question-icon{display:none}.question summary:hover{color:var(--ink)}}
 @media print{
   .finding-card{min-height:0;background:none;color:var(--ink)}
@@ -535,7 +537,7 @@ html.is-opening{overflow:hidden}
         <p class="eyebrow">What I’ll do</p><h2>Bailey's voice and story, on every platform.</h2>
         <ul>
           <li>At kickoff, I’ll ask Bailey to share a couple of posts she’d be excited to put her name on. We’ll use those to agree on a creative direction before editing the first batch. One idea to explore is a short video about how her legal background shaped a rule or conflict in the Unblind world. One kickoff workshop is included in the first month’s fee. Additional strategy sessions can be scoped separately.</li>
-          <li>After the first filming day, I'll edit the first batch in 2–3 distinct styles so Bailey chooses the look before anything goes live, all built to match the dark, cinematic tone of Unblind.</li>
+          <li>After the first filming session, I’ll try two or three styles on one sample clip. Once Bailey chooses a direction, I’ll use it for the rest of the batch.</li>
           <li>Turn each month's filming session with Bailey into up to 12 original short videos, with 1 consolidated revision round per batch. I’ll write captions and adapt and schedule those edits in Buffer for up to 12 publishing placements each on Instagram, TikTok, and YouTube Shorts. Facebook mirrors approved Instagram posts. The 12 core videos become about 36 platform-specific pieces. These monthly caps also apply in 5-week months.</li>
           <li>I’ll check comments, messages, and mentions every business day, plus once each weekend. I’ll handle routine replies and pass sensitive questions to Sasquatch. I can provide 7-day coverage for an additional $100/month.</li>
           <li>With Package 2, I’ll shape the outreach plan with Sasquatch from its influencer list, then carry out personalized pitches, follow-ups, and requests for honest Book 2 reviews supporting Sasquatch’s 50-review campaign goal. Includes up to 20 new reviewers per month, up to 2 follow-ups each, a shared tracker, and monthly results.</li>
@@ -622,8 +624,8 @@ html.is-opening{overflow:hidden}
         <details class="question"><summary>What happens if we add Pinterest?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Pinterest is a scope change, so it gets its own monthly price. I'll quote it once approved character art is ready.</p></div></details>
         <details class="question"><summary>Who adapts assets for each platform?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>Your scope lists adapting assets under Sasquatch's filming role. I've assumed I handle the platform adaptation (about 36 pieces a month) as part of editing, and the fee reflects that. Can you confirm?</p></div></details>
         <details class="question"><summary>Would a plain-English dashboard help your reporting to Bailey?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p>I’ll update the dashboard monthly with the social and outreach results. Once your website tracking is live, I’ll add the website visits and email sign-up figures your team shares so you can fold them into Bailey’s report. It uses the data available each month and supports your final report. Would you rather it stay internal, or be shared with Bailey under Sasquatch’s name?</p></div></details>
-        <details class="question"><summary>How should we handle referrals?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">I have no plans to work with Bailey outside of Sasquatch. If she ever approaches me about other work, I'll always tell you first. I'd like to settle this now while it's simple: I'm proposing a 10% referral fee to Sasquatch on any direct retainer for 6 months.</p><p class="answer-label">Your answer:</p><div class="answer-space" aria-hidden="true"></div></div></details>
-        <details class="question"><summary>When are my invoices paid?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">I'm proposing payment within 25 days of my invoice date, whether or not Bailey has paid Sasquatch yet. If her payment is ever late, how would you like to handle my invoices?</p><p class="answer-label">Your answer:</p><div class="answer-space" aria-hidden="true"></div></div></details>
+        <details class="question"><summary>How should we handle referrals?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">I have no plans to work with Bailey outside of Sasquatch. If Bailey ever approaches me about other work, I'll tell Sasquatch first. I'd like to settle this now while it's simple: I'm proposing a 10% referral fee to Sasquatch on any direct retainer for 6 months from the start of any direct work.</p><label class="answer-label" for="referral-answer">Your answer:</label><textarea id="referral-answer" name="referral_answer" form="reply" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea><div class="answer-space typed-answer-print" aria-hidden="true"></div></div></details>
+        <details class="question"><summary>When are my invoices paid?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">I'm proposing payment within 25 days of my invoice date, whether or not Bailey has paid Sasquatch yet. If her payment is ever late, how would you like to handle my invoices?</p><label class="answer-label" for="invoice-payment-answer">Your answer:</label><textarea id="invoice-payment-answer" name="invoice_payment_answer" form="reply" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea><div class="answer-space typed-answer-print" aria-hidden="true"></div></div></details>
         <details class="question"><summary>Does a two-month check-in work for you?<span class="question-icon" aria-hidden="true"></span></summary><div class="question-answer"><p class="question-context">I'd like to review workload against scope around the end of January, before the initial term ends. Nothing changes during the first 3 months; anything we adjust would start in month 4.</p><p class="answer-label">Your answer:</p><div class="answer-space" aria-hidden="true"></div></div></details>
       </div></section>
       <hr class="rule">
@@ -648,23 +650,19 @@ html.is-opening{overflow:hidden}
             <summary>Proposal details <span class="question-icon" aria-hidden="true"></span></summary>
             <div class="question-answer">
               <div id="acceptance-summary" class="acceptance-summary" aria-live="polite">Choose a package above to see its monthly fee and scope.</div>
-              <h4>Term</h4><p>I propose a 3-month initial commitment, subject to Bailey’s matching commitment, then month to month. Before finalizing, I’ll review the start date and notice terms.</p>
+              <h4>Term</h4><p>I propose a 3-month initial commitment, subject to Bailey’s matching commitment, then month to month. Proposed start date: December 1, 2026. Before finalizing, I’ll review the start date and notice terms.</p>
               <p><strong>Two-month check-in:</strong> around the end of January, we'll review how the actual workload compares with this scope, using my tracked hours. Fees stay the same through the initial 3 months. If the work is running well over or under scope, we'll agree together whether to keep things as they are, adjust the scope, or adjust the fee starting in month 4.</p>
               <h4>Payment</h4><p>I’ll invoice Sasquatch on the first of each month. I’m proposing payment within 25 days of the invoice date, regardless of when Bailey pays Sasquatch. See Questions for you.</p>
               <h4>Content</h4><p>I propose up to 12 original short-video edits per month from footage Sasquatch supplies, with 1 consolidated revision round per batch. I’ll use those edits for up to 12 publishing placements each on Instagram, TikTok, and YouTube Shorts per month. Facebook mirrors approved Instagram posts. The 12 core videos become about 36 platform-specific pieces. These caps apply in 5-week months. I’ll check comments, messages, and mentions every business day, plus once each weekend. I’ll handle routine replies and pass sensitive questions to Sasquatch. I can provide 7-day coverage for an additional $100/month. YouTube coverage is Shorts. Long-form YouTube videos are not included. Approved character art can be used in posts once available; creating art or graphics is not included. I propose approval or comments within 1 business day of receiving a batch; later approvals shift the publishing schedule. One kickoff workshop is included in the first month’s fee. Additional strategy sessions can be scoped separately at an agreed rate.</p>
               <h4>Outreach and boosts</h4><p>For Package 2, I’ll work with Sasquatch to shape the outreach plan from its influencer list, then carry out personalized pitches, follow-ups, and requests for honest Book 2 reviews supporting Sasquatch’s 50-review campaign goal. Includes up to 20 new reviewers per month, up to 2 follow-ups each, a shared tracker, and monthly results. Phase 3 ARC-list growth and hype-team coordination are not included in either package and can be scoped separately in June 2027. Review counts are not guaranteed. The working ad budget is about $150/month, separate from both fees. I’ll suggest boosts and handle setup after Sasquatch approves the posts and spending. I’ll confirm with Chris the final budget, who pays for ads, monitors boosts, supplies boost results, and sends review copies.</p>
               <h4>Analytics and insight · Package 2</h4><p>I’ll set up a plain-English dashboard with a short explanation for each chart and a monthly note with 3 takeaways and 1 test for next month. I’ll use the data available each month. It covers per-platform reach, views, engagement and follower growth, top posts, link clicks and boost results, reviewer outreach from pitched to posted, and progress toward Sasquatch’s 50-review campaign goal. I’ll update the dashboard monthly with the social and outreach results. Once your website tracking is live, I’ll add the website visits and email sign-up figures your team shares so you can fold them into Bailey’s report. I’ll prioritize smaller, highly engaged BookTok accounts, generally under 20k followers. Sasquatch can use the dashboard in its report to Bailey or share it under its own name. Dashboard setup is included; I keep the underlying template, and Sasquatch and Bailey keep access to their own data. The dashboard supports Sasquatch’s reporting and does not replace it.</p>
-              <h4>Portfolio and future work</h4><p>Both teams can show the content they create in their portfolios. I’ll let Sasquatch know if Bailey approaches me about work outside this project. Referral terms: see Questions for you.</p>
+              <h4>Portfolio and future work</h4><p>Both teams can show the content they create in their portfolios. If Bailey ever approaches me about other work, I'll tell Sasquatch first. Referral terms: see Questions for you.</p>
             </div>
           </details>
-          <label for="referral-answer">How should we handle referrals?</label>
-          <textarea id="referral-answer" name="referral_answer" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea>
-          <label for="invoice-payment-answer">When are my invoices paid?</label>
-          <textarea id="invoice-payment-answer" name="invoice_payment_answer" rows="3" maxlength="3000" aria-describedby="inquiry-help"></textarea>
           <label for="message">Your message to me (optional)</label>
           <textarea id="message" name="message" rows="5" maxlength="5000" placeholder="Questions, changes, or what you’d like to talk through."></textarea>
-          <div class="hp" aria-hidden="true"><label for="company-website">Leave this field empty</label><input id="company-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
-          <p id="inquiry-help" class="acceptance-help">Answer either question, add a message, or both. I’ll respond by email. Sending this message doesn’t commit you to a package or accept the proposal terms.</p>
+          <div class="hp" hidden aria-hidden="true"><label for="company-website">Leave this field empty</label><input id="company-website" name="_gotcha" type="text" aria-hidden="true" tabindex="-1" autocomplete="off"></div>
+          <p id="inquiry-help" class="acceptance-help">Your answers above will be included with this message. You can also add a message. I’ll respond by email. Sending this message doesn’t commit you to a package or accept the proposal terms.</p>
           <button class="go" id="inquiry-submit" type="submit">Send message</button>
           <p id="reply-status" role="status" aria-live="polite" tabindex="-1"></p>
         </form>
@@ -672,7 +670,7 @@ html.is-opening{overflow:hidden}
     </div>
   </div>
 </main>
-<script src="proposals/sasquatch/inquiry.js?v=1" defer></script>
+<script src="proposals/sasquatch/inquiry.js?v=2" defer></script>
 <script>
 /* Include the closed proposal details and FAQ answers in print, then restore them. */
 (() => {

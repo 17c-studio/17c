@@ -139,10 +139,26 @@ report.append({'errors':'HTTP, rejected/malformed response, network and timeout;
 load();fill('package2')
 js("document.getElementById('referral-answer').value='TEST ONLY referral print value';document.getElementById('invoice-payment-answer').value='TEST ONLY invoice print value'")
 assert js("document.querySelector('#contact-name').nextElementSibling.id")=='proposal-details'
-assert js("document.querySelectorAll('#questions-for-you input,#questions-for-you textarea').length")==0
+assert js("document.querySelectorAll('#questions-for-you textarea').length")==2
+assert js("document.getElementById('referral-answer').form.id")=='reply'
+assert js("document.getElementById('invoice-payment-answer').form.id")=='reply'
+assert js("getComputedStyle(document.querySelector('.hp')).display")=='none'
+assert js("document.querySelector('.hp').getAttribute('aria-hidden')")=='true'
+assert js("document.getElementById('company-website').tabIndex")==-1
+assert not js("document.body.innerText.includes('Leave this field empty')")
+assert not js("document.body.innerText.includes('---')")
+assert js("document.querySelectorAll('#questions-for-you details').length")==11
+assert js("Array.from(document.querySelectorAll('summary')).filter(e=>e.textContent==='How should we handle referrals?').length")==1
+assert js("Array.from(document.querySelectorAll('summary')).filter(e=>e.textContent==='When are my invoices paid?').length")==1
 for width,height in [(1440,1000),(390,844)]:
     cdp('Emulation.setDeviceMetricsOverride',{'width':width,'height':height,'deviceScaleFactor':1,'mobile':width<500});pause()
     assert js('document.documentElement.scrollWidth<=innerWidth')
+    if width==1440:
+        nav=js("Array.from(document.querySelectorAll('.service-index a')).map(a=>({display:getComputedStyle(a).display,top:a.getBoundingClientRect().top,bottom:a.getBoundingClientRect().bottom,height:a.getBoundingClientRect().height,target:!!document.querySelector(a.getAttribute('href'))}))")
+        assert len(nav)==8 and all(a['display']=='flex' and a['height']>=44 and a['target'] for a in nav)
+        assert all(nav[i]['top']>=nav[i-1]['bottom']+5 for i in range(1,len(nav)))
+    else:
+        assert js("document.querySelector('.top .nav-cta').getBoundingClientRect().width")>=44
     js("document.documentElement.style.scrollBehavior='auto';document.getElementById('reply').scrollIntoView({behavior:'instant'})");pause()
     rect=js("(()=>{let r=document.getElementById('reply').getBoundingClientRect();return {x:0,y:scrollY+r.top,width:innerWidth,height:r.height}})()")
     (out/f'form-{width}.png').write_bytes(base64.b64decode(cdp('Page.captureScreenshot',{'format':'png','captureBeyondViewport':True,'clip':dict(rect,scale=1)})['data']))
@@ -156,6 +172,8 @@ assert '$1,250/month' in text and '$1,700/month' in text and '25 days' in text
 assert 'test@example.invalid' not in text and 'TEST ONLY:' not in text
 assert 'TEST ONLY referral print value' not in text and 'TEST ONLY invoice print value' not in text
 assert 'kickoff workshop (up to 3 hours)' in text
+assert 'Proposed start date: December 1, 2026.' in text
+assert 'Leave this field empty' not in text and '---' not in text
 assert not js("document.getElementById('proposal-details').open")
 report.append({'layout':'desktop/mobile; proposal details below name; print includes terms and excludes contact/message values; noindex preserved'})
 (out/'verification.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2));ws.close()

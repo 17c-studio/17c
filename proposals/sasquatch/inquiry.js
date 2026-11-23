@@ -35,13 +35,15 @@
     const card = document.getElementById(id);
     form.querySelector(`option[value="${id}"]`).textContent = `${clean(card.querySelector('.tier').textContent)} · ${clean(card.querySelector('h3').textContent)} · ${clean(card.querySelector('[data-package-price]').textContent)}`;
   });
-  form.addEventListener('input', () => {
+  function handleInput() {
     if (pending || sent) return;
     name.setCustomValidity(''); message.setCustomValidity('');
     status.textContent = ''; status.dataset.state = '';
     cached = null;
     update();
-  });
+  }
+  form.addEventListener('input', handleInput);
+  [referralAnswer, invoiceAnswer].forEach(field => field.addEventListener('input', handleInput));
   packages.addEventListener('change', () => { if (!pending && !sent) { cached = null; update(); } });
 
   form.addEventListener('submit', async event => {
@@ -77,7 +79,7 @@
     payload.set('inquiry_id', cached.id);
     payload.set('submitted_at_browser_utc', cached.submitted_at_browser_utc);
     payload.set('_subject', `Sasquatch proposal discussion · ${details.name}`);
-    const controls = [...form.querySelectorAll('input,select,textarea,button')];
+    const controls = [...form.elements];
     pending = true;
     form.setAttribute('aria-busy', 'true');
     controls.forEach(control => control.disabled = true);
