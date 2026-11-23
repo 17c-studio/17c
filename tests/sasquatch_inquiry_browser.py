@@ -93,7 +93,7 @@ for package,fee in [('', 'No package selected'),('package1','$750/month'),('pack
     assert not js("document.getElementById('package').required")
     if package:
         preview = js("document.getElementById('acceptance-summary').textContent")
-        assert fee in preview and 'One-time setup fee on the first invoice: $400' in preview
+        assert fee in preview and 'setup fee' not in preview.lower()
     js('window.__delay=350');submit()
     assert js("document.getElementById('reply').getAttribute('aria-busy')")=='true'
     submit();pause(450)
@@ -110,7 +110,7 @@ for package,fee in [('', 'No package selected'),('package1','$750/month'),('pack
     assert fields['submission_type']=='proposal_discussion'
     assert fields['no_commitment']=='Discussion only; this is not proposal acceptance.'
     assert fields['monthly_fee']==fee
-    assert fields['setup_fee']=='$400'
+    assert 'setup_fee' not in fields
     assert fields['package_id']==(package or 'undecided')
     assert fields['_subject'].startswith('Sasquatch proposal discussion')
     assert 'consent' not in fields and 'acceptance_record' not in fields
@@ -176,13 +176,13 @@ js("document.getElementById('proposal-details').open=false")
 pdf=cdp('Page.printToPDF',{'printBackground':False,'preferCSSPageSize':True,'paperWidth':8.5,'paperHeight':11})
 (out/'sasquatch-inquiry-print.pdf').write_bytes(base64.b64decode(pdf['data']))
 text=' '.join(' '.join(p.extract_text().split()) for p in PdfReader(out/'sasquatch-inquiry-print.pdf').pages)
-assert '$750/month' in text and '$950/month' in text and '$400' in text and '25 days' in text
+assert '$750/month' in text and '$950/month' in text and '25 days' in text
 assert 'test@example.invalid' not in text and 'TEST ONLY:' not in text
 assert 'TEST ONLY referral print value' not in text and 'TEST ONLY invoice print value' not in text
 assert 'TEST ONLY platform print value' not in text and 'TEST ONLY checkin print value' not in text
 assert text.count('Comments (optional)')==4
 assert 'kickoff workshop' in text and 'hours' not in text
-assert '$1,150 for Package 1 and $1,350 for Package 2' in text
+assert '$400' not in text and 'setup fee' not in text.lower()
 assert 'reevaluate the scope and monthly fee' in text and 'will start in month four' in text
 assert 'December 1, 2026 start' in text
 assert 'dashboard' not in text.lower()
