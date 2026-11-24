@@ -3,33 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#14261e">
   <meta name="description" content="An interactive Hope College Campus Ministries concept inspired by Psalm 1.">
   <title>Rooted at Hope | Campus Ministries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&display=swap">
   <style>
+/* Hope at dusk, in the woods: deep green is the night, Hope Orange is the lamplight. */
 :root {
   color-scheme: dark;
-  --paper: #111c18;
-  --cream: #f7f3e9;
-  --ink: #f7f3e9;
-  --muted: #b8c1b7;
-  --forest: #21362b;
-  --accent: #dcc19a;
-  --line: #3e4c42;
+  --night: #0c1813;        /* deepest forest green */
+  --forest: #14261e;       /* forest green, main dark */
+  --pine: #00685b;         /* Hope secondary green */
+    --orange: #f46a1f;       /* Hope Orange, PMS 166 (accents only) */
+  --tulip: #f0ab00;        /* Tulip Orange, candle glow */
+  --brick: #91420e;        /* Veneklasen Brick, orange-family text on light */
+  --moss: #4f8a72;         /* hover green */
+  --cream: #f5efe3;
+  --ink: var(--cream);
+  --muted: #bccabf;
+  --line: #34503f;
+  --accent: var(--orange);
   --font-family-heading: "Verlag A", "Verlag B", "Verlag-Book", Helvetica, Arial, sans-serif;
   --font-family-body: "ff-tisa-web-pro", "TisaPro-Regular", Georgia, serif;
+  --font-family-scripture: "Libre Baskerville", Baskerville, "Baskerville Old Face", Georgia, serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.6 var(--font-family-body); }
+body { margin: 0; background: var(--night); color: var(--ink); font: 1rem/1.6 var(--font-family-body); }
 a { color: inherit; }
 img { display: block; width: 100%; }
 p, h1, h2, h3, figure, blockquote { margin: 0; }
 [hidden] { display: none !important; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+:focus-visible { outline: 2px solid var(--tulip); outline-offset: 6px; }
 [id] { scroll-margin-top: 2rem; }
 .container { width: min(78rem, calc(100% - 6rem)); margin-inline: auto; }
-.skip-link { position: absolute; z-index: 30; top: 1rem; left: 1rem; transform: translateY(-180%); padding: .6rem 1rem; background: var(--cream); color: var(--paper); }
+.skip-link { position: absolute; z-index: 30; top: 1rem; left: 1rem; transform: translateY(-180%); padding: .6rem 1rem; background: var(--cream); color: var(--forest); }
 .skip-link:focus { transform: none; }
 
 /* Hope College's institutional navigation. */
@@ -61,7 +72,7 @@ p, h1, h2, h3, figure, blockquote { margin: 0; }
 .hope-mobile-navigation > summary { display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 0; padding: 8px 12px; border: 1px solid #6b6b68; color: #002244; font-size: .875rem; font-weight: 600; line-height: 1.2; list-style: none; }
 .hope-mobile-navigation > summary::-webkit-details-marker { display: none; }
 .hope-mobile-navigation > summary svg { width: 18px; height: 18px; }
-.hope-mobile-panel { position: absolute; top: 100%; inset-inline: 0; max-height: calc(100svh - 86px); overflow-y: auto; overscroll-behavior: contain; padding: 20px 24px 28px; border-top: 1px solid #dce0e3; background: #fff; box-shadow: 0 12px 20px rgb(0 34 68 / .12); }
+.hope-mobile-panel { position: absolute; top: 100%; inset-inline: 0; max-height: calc(100svh - 86px); overflow-y: auto; overscroll-behavior: contain; padding: 20px 24px 28px; border-top: 1px solid #dce0e3; background: #fff; box-shadow: 0 12px 20px rgb(20 38 30 / .12); }
 .site-header .hope-mobile-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 16px; margin-top: 16px; }
 .hope-mobile-links a { display: flex; align-items: center; min-height: 44px; color: #002244; font-size: .875rem; }
 .site-header .hope-mobile-primary { padding-bottom: 16px; border-bottom: 1px solid #dce0e3; }
@@ -77,93 +88,102 @@ p, h1, h2, h3, figure, blockquote { margin: 0; }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
 .footer-inner a:hover { text-decoration: underline; text-underline-offset: .3em; }
 
-.hero { position: relative; isolation: isolate; display: flex; align-items: center; min-height: 48rem; min-height: max(48rem, 100svh); padding-block: 7rem; }
+/* 1. Dusk: the illustration, tinted deep green. */
+.hero { position: relative; isolation: isolate; display: flex; align-items: center; min-height: 48rem; min-height: max(48rem, calc(100svh - 140px)); padding-block: 7rem; overflow: hidden; }
 .hero-copy { text-align: center; }
 .hero-description { margin-inline: auto; }
-.hero .actions { justify-content: center; }
-.hero-figure { position: absolute; z-index: -2; inset: 0; overflow: hidden; }
-.hero-figure img { height: 100%; object-fit: cover; object-position: 50% 57%; filter: saturate(.65) brightness(.82); }
-.hero::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(to top, #111c18 0%, rgb(17 28 24 / .93) 12%, rgb(17 28 24 / .72) 36%, rgb(17 28 24 / .72) 72%, rgb(17 28 24 / .72) 100%); }
-.eyebrow { font-size: .68rem; font-weight: 650; letter-spacing: .19em; text-transform: uppercase; color: var(--accent); }
+.hero-figure { position: absolute; z-index: -3; inset: 0; overflow: hidden; background: var(--forest); }
+.hero-figure img { height: 100%; object-fit: cover; object-position: 50% 57%; filter: saturate(.85) brightness(.9); }
+.hero-figure::after { content: ""; position: absolute; inset: 0; background: #5f7d63; mix-blend-mode: multiply; }
+.hero::before { content: ""; position: absolute; z-index: -2; inset: 0; background: radial-gradient(60% 45% at 50% 48%, rgb(240 171 0 / .14), transparent 70%); }
+.hero::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(to top, var(--forest) 0%, rgb(20 38 30 / .9) 14%, rgb(20 38 30 / .55) 45%, rgb(12 24 19 / .45) 75%, rgb(12 24 19 / .75) 100%); }
+.eyebrow { font: 700 .72rem/1.3 var(--font-family-heading); letter-spacing: .19em; text-transform: uppercase; color: var(--orange); }
 h1, h2, h3 { font-family: var(--font-family-heading); font-weight: 400; }
-h1 { font-size: clamp(5rem, 10vw, 9.5rem); letter-spacing: -.065em; line-height: .88; margin-block: 1.3rem 1.5rem; }
-h1 em { color: var(--accent); font-weight: 400; }
-.hero-description { max-width: 32ch; font-size: clamp(1rem, 1.5vw, 1.15rem); color: #e1e3d8; }
+h1 { font-size: clamp(5rem, 10vw, 9.5rem); letter-spacing: -.055em; line-height: .88; margin-block: 1.3rem 1.5rem; text-shadow: 0 2px 30px rgb(12 24 19 / .6); }
+h1 em { font-style: normal; color: var(--orange); }
+.hero-description { max-width: 32ch; font-size: clamp(1.05rem, 1.5vw, 1.2rem); color: var(--cream); text-shadow: 0 1px 12px rgb(12 24 19 / .8); }
 .actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 1.8rem; }
-.button, .text-link { display: inline-flex; align-items: center; gap: 1.2rem; min-height: 44px; font-size: .88rem; font-weight: 600; }
-.button { padding: .8rem 1.4rem; border-radius: 3rem; text-decoration: none; }
-.button-primary { background: var(--cream); color: var(--paper); }
-.button-primary:hover { background: var(--accent); }
+.button, .text-link { display: inline-flex; align-items: center; gap: 1.2rem; min-height: 44px; font-size: .9rem; font-weight: 600; }
+.button { padding: .8rem 1.5rem; border-radius: 3rem; text-decoration: none; font-family: var(--font-family-heading); letter-spacing: .04em; }
 .text-link { text-underline-offset: .35em; text-decoration-thickness: 1px; }
-.text-link:hover { color: var(--accent); }
+.text-link:hover { color: var(--tulip); }
 
-.explore { --ink: #21362b; --muted: #405b49; --accent: #2e583c; --line: #6d796f; padding-block: 4rem 6rem; background: #f8f7f4; color: var(--ink); color-scheme: light; }
-.explore .path-panel { --ink: #f7f3e9; --muted: #b8c1b7; --accent: #dcc19a; color: var(--ink); color-scheme: dark; }
+/* 2. Night: three paths, each with one small light. */
+.explore { padding-block: 5rem 6rem; background: var(--forest); }
 .section-heading { margin-bottom: 2.8rem; }
-h2 { font-size: clamp(2.6rem, 5vw, 4.6rem); line-height: 1.05; letter-spacing: -.045em; }
+h2 { font-size: clamp(2.6rem, 5vw, 4.6rem); line-height: 1.05; letter-spacing: -.04em; }
 .path-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
-.path-links a[id] { padding-block: 1.4rem; display: flex; flex-direction: column; gap: .5rem; border-top: 1px solid var(--line); text-decoration: none; }
-.path-links a[id]:hover { border-color: var(--accent); }
-.path-links a[id][aria-selected="true"] { border-color: var(--accent); color: var(--accent); }
-.path-name { font: 400 clamp(1.35rem, 2.8vw, 2.3rem)/1.15 var(--font-family-heading); letter-spacing: -.035em; }
-.path-caption { font-size: .85rem; color: var(--muted); }
-.path-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .65fr); align-items: center; gap: 2.5rem; padding: 2.5rem; background: #192a22; margin-top: 1.5rem; }
-.path-wallpaper { position: relative; display: block; width: min(100%, 18rem); aspect-ratio: 1; justify-self: center; overflow: hidden; border-radius: .4rem; text-decoration: none; }
+.path-links a[id] { padding-block: 1.4rem; display: flex; flex-direction: column; gap: .5rem; border-top: 2px solid var(--line); text-decoration: none; transition: border-color .2s, color .2s; }
+.path-links a[id]:hover { border-color: var(--moss); }
+.path-links a[id][aria-selected="true"] { border-color: var(--orange); }
+.path-links a[id][aria-selected="true"] .path-name { color: var(--orange); }
+.path-name { font: 400 clamp(1.35rem, 2.8vw, 2.3rem)/1.15 var(--font-family-heading); letter-spacing: -.03em; }
+.path-caption { font-size: .9rem; color: var(--muted); }
+.path-panel { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .65fr); align-items: center; gap: 2.5rem; padding: 2.5rem; background: var(--night); margin-top: 1.5rem; border-radius: .4rem; box-shadow: inset 0 0 0 1px var(--line); }
+.path-wallpaper { position: relative; display: block; width: min(100%, 18rem); aspect-ratio: 1; justify-self: center; overflow: hidden; border-radius: .4rem; text-decoration: none; box-shadow: 0 0 0 1px var(--line), 0 18px 50px -20px rgb(240 171 0 / .35); }
 .path-wallpaper img { height: 100%; object-fit: cover; }
-.path-wallpaper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(12 21 17 / .95), rgb(12 21 17 / .78) 45%, rgb(12 21 17 / .1)); }
+.path-wallpaper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(12 24 19 / .95), rgb(12 24 19 / .55) 45%, rgb(12 24 19 / .05)); }
 .wallpaper-label { position: absolute; z-index: 1; inset: auto 0 0; display: flex; justify-content: center; align-items: center; gap: .6rem; padding: 1.25rem; text-align: center; color: var(--cream); font-size: .88rem; font-weight: 600; }
-.path-wallpaper:hover .wallpaper-label { color: var(--accent); }
-.path-panel h3 { font-size: clamp(1.8rem, 3.5vw, 2.7rem); letter-spacing: -.035em; line-height: 1.1; margin-bottom: .8rem; }
-.path-panel p { color: var(--muted); }
-.path-panel .text-link { margin-top: 1rem; }
+.path-wallpaper:hover .wallpaper-label { color: var(--tulip); }
+.path-panel h3 { font-size: clamp(1.8rem, 3.5vw, 2.7rem); letter-spacing: -.03em; line-height: 1.1; margin-bottom: .8rem; }
+.path-panel p { color: var(--muted); font-size: 1.05rem; }
+.path-panel .text-link { margin-top: 1rem; color: var(--cream); text-decoration-color: var(--orange); }
 
-
-.scripture { padding-block: 6rem; background: linear-gradient(to bottom, #111c18 0%, rgb(17 28 24 / .93) 12%, rgb(17 28 24 / .82) 36%, rgb(17 28 24 / .82) 65%, #0c1511 100%), url("psalm-background.jpg") center / cover no-repeat; }
+/* 3. Deepest dark: the chapel at night. */
+.scripture { position: relative; isolation: isolate; padding-block: 7rem; background: var(--night); }
+.scripture::before { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(to bottom, var(--forest) 0%, rgb(12 24 19 / .9) 14%, rgb(12 24 19 / .8) 50%, var(--night) 100%), url("psalm-background.jpg") center / cover no-repeat; background-blend-mode: normal, luminosity; }
 .scripture-inner { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; gap: clamp(2rem, 7vw, 6rem); }
 .scripture-heading { position: sticky; top: 2rem; }
 .scripture h2 { margin-top: 1rem; }
 .scripture-intro { margin-top: 1.5rem; color: var(--muted); }
 .scripture-intro p + p { margin-top: .75rem; }
 .scripture-intro p:first-child { margin-bottom: 1.5rem; }
-.scripture-intro strong { color: var(--cream); }
-blockquote { font: italic clamp(1.45rem, 2.8vw, 2rem)/1.5 var(--font-family-body); margin: 0 0 1rem; max-width: 35ch; }
-.translation { color: var(--muted); font-size: .75rem; }
-.reflection-question { margin: 2rem 0 0; max-width: 35ch; color: var(--accent); font-size: 1.1rem; }
-details { margin-top: 1.5rem; }
-summary { cursor: pointer; width: fit-content; padding-block: .65rem; font-size: .85rem; }
-.verses { padding-left: 1.4rem; text-align: left; color: var(--muted); }
-.verses li + li { margin-top: 1rem; }
-.site-footer { padding-block: 1.5rem; border-top: 1px solid var(--line); background: #0c1511; font-size: .75rem; color: var(--muted); }
-.footer-inner a { text-underline-offset: .2em; display: inline-flex; gap: .35em; align-items: center; min-height: 44px; }
+.scripture-intro strong { color: var(--tulip); font-weight: 600; }
+blockquote { font: italic clamp(1.25rem, 2.2vw, 1.6rem)/1.65 var(--font-family-scripture); margin: 0 0 1.25rem; max-width: 36ch; }
+.verses { padding-left: 2rem; text-align: left; color: var(--cream); }
+.verses li::marker { color: var(--tulip); font: 400 .8em var(--font-family-heading); }
+.verses li + li { margin-top: 1.1rem; }
+.translation { color: var(--muted); font-size: .8rem; letter-spacing: .04em; }
+
+/* 4. First light: end in hope. */
+.dawn { padding-block: 15rem 6rem; background: linear-gradient(to bottom, var(--night) 0, #1d3628 4rem, #5f7660 7.5rem, #c9a97f 10.5rem, #efdcc0 12.5rem, var(--cream) 14rem); color: var(--forest); text-align: center; }
+.dawn .eyebrow { color: var(--brick); }
+.reflection-question { margin: 1rem auto 0; max-width: 22ch; font: italic clamp(1.9rem, 4vw, 3.2rem)/1.25 var(--font-family-scripture); color: var(--forest); }
+.dawn .actions { justify-content: center; margin-top: 2.5rem; }
+.button-primary { background: var(--forest); color: var(--cream); }
+.button-primary:hover { background: var(--orange); color: var(--forest); }
+
+.site-footer { padding-block: 1.5rem; background: var(--forest); font-size: .8rem; color: var(--muted); border-top: 3px solid var(--orange); }
+.footer-inner a { text-underline-offset: .2em; display: inline-flex; gap: .35em; align-items: center; min-height: 44px; color: var(--cream); }
 
 @media (max-width: 760px) {
   .scripture-inner { grid-template-columns: 1fr; gap: 2rem; }
   .scripture-heading { position: static; }
   .container { width: calc(100% - 3rem); }
-  .hero { min-height: max(44rem, 100svh); padding-block: 6rem; }
+  .hero { min-height: max(40rem, calc(100svh - 86px)); padding-block: 6rem; }
   .hero-figure img { object-position: 58% center; }
   .path-links { gap: 1rem; }
-  .path-caption { font-size: .78rem; }
+  .path-caption { font-size: .8rem; }
   .path-panel { padding: 1.8rem; }
+  .dawn { padding-block: 15rem 4.5rem; }
   .footer-inner { flex-wrap: wrap; gap: .3rem 1rem; }
 }
 
 @media (max-width: 530px) {
   .container { width: calc(100% - 2.5rem); }
-  .hero { min-height: max(42rem, 100svh); padding-block: 6rem; }
   .hero-description { max-width: 26ch; }
-  .eyebrow { font-size: .6rem; }
+  .eyebrow { font-size: .64rem; }
   .explore, .scripture { padding-block: 3.5rem; }
   .section-heading { margin-bottom: 2rem; }
   .path-links { grid-template-columns: 1fr; gap: 0; }
   .path-links a[id] { padding-block: 1rem; }
   .path-name { font-size: 1.55rem; }
-  .path-panel { padding: 1.5rem; margin-top: 1rem; }
-  .path-panel { grid-template-columns: 1fr; gap: 2rem; }
+  .path-panel { padding: 1.5rem; margin-top: 1rem; grid-template-columns: 1fr; gap: 2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .path-links a[id] { transition: none; }
 }
   </style>
 </head>
@@ -249,7 +269,7 @@ summary { cursor: pointer; width: fit-content; padding-block: .65rem; font-size:
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy container">
-        <h1 id="hero-title">Rooted<br>at Hope.</h1>
+        <h1 id="hero-title">Rooted<br>at <em>Hope.</em></h1>
         <p class="hero-description">Explore faith in Jesus and find people to grow with.</p>
         
       </div>
@@ -348,7 +368,16 @@ summary { cursor: pointer; width: fit-content; padding-block: .65rem; font-size:
             </ol>
           </blockquote>
           <p class="translation">Psalm 1 · King James Version</p>
-          <p class="reflection-question">What could help you make room for God this week?</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="dawn" aria-labelledby="reflection-title">
+      <div class="container">
+        <p class="eyebrow">This week</p>
+        <h2 id="reflection-title" class="reflection-question">What could help you make room for God this week?</h2>
+        <div class="actions">
+          <a class="button button-primary" href="https://hope.edu/offices/campus-ministries/">Visit Campus Ministries <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
