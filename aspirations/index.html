@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#39402c">
   <meta name="description" content="An interactive Hope College Campus Ministries concept inspired by Psalm 1.">
-  <title>Rooted at Hope | Campus Ministries</title>
+  <title>Rooted at Hope | Campus Aspirations</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Marcellus&display=swap">
@@ -153,11 +153,12 @@ blockquote { font: italic clamp(1.15rem, 2vw, 1.45rem)/1.75 var(--font-body); ma
 
 /* 4. Closing: back to paper, under the sun. */
 .dawn { padding-block: 6rem; text-align: center; }
-.sun { display: block; width: 4.5rem; aspect-ratio: 1; margin: 0 auto 2rem; border-radius: 50%; background: var(--sun); }
+.dawn-artwork { display: block; width: clamp(8rem, 16vw, 12rem); height: auto; margin: 0 auto 2rem; }
 .reflection-question { margin: 1.4rem auto 0; max-width: 22ch; font: 400 clamp(1.9rem, 4vw, 3.1rem)/1.25 var(--font-display); }
 .dawn .actions { justify-content: center; }
 
-.site-footer { padding-block: 1.4rem; background: var(--pine); color: #cfd0bf; font: 400 .7rem/1.4 var(--font-display); letter-spacing: .2em; text-transform: uppercase; }
+.site-footer { background: #252422; }
+.site-footer-image { display: block; width: 100%; height: auto; }
 .footer-inner a { text-underline-offset: .3em; display: inline-flex; gap: .35em; align-items: center; min-height: 44px; color: var(--paper); }
 
 @media (max-width: 760px) {
@@ -273,7 +274,7 @@ blockquote { font: italic clamp(1.15rem, 2vw, 1.45rem)/1.75 var(--font-body); ma
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-copy">
-        <p class="kicker">Campus Ministries</p>
+        <p class="kicker">Campus Aspirations</p>
         <h1 id="hero-title">Rooted<br>at <em>Hope.</em></h1>
         <p class="hero-description">Explore faith in Jesus and find people to grow with.</p>
       </div>
@@ -285,7 +286,6 @@ blockquote { font: italic clamp(1.15rem, 2vw, 1.45rem)/1.75 var(--font-body); ma
     <section class="explore" id="explore" aria-labelledby="explore-title">
       <div class="container">
         <div class="section-heading">
-          <p class="kicker">Three ways in</p>
           <h2 id="explore-title">Find your first step.</h2>
         </div>
 
@@ -315,33 +315,33 @@ blockquote { font: italic clamp(1.15rem, 2vw, 1.45rem)/1.75 var(--font-body); ma
             <div>
               <h3>Pause for Chapel.</h3>
               <p>Pray, sing, and hear Scripture in Dimnent Chapel.</p>
-              <a class="text-link" href="https://hope.edu/offices/campus-ministries/worship/">See Chapel times <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="https://hope.edu/offices/campus-ministries/worship/">See Chapel times <span aria-hidden="true">→</span></a>
             </div>
             <a class="arch path-wallpaper wallpaper-download" href="anchor.png" download="Hope-Faithful-wallpaper.png" aria-label="Download Faithful mobile wallpaper">
               <img src="anchor.png" alt="" width="941" height="1672" loading="lazy">
-              <span class="wallpaper-label">Download wallpaper <span aria-hidden="true">↓</span></span>
+              <span class="wallpaper-label">Download wallpaper <span aria-hidden="true">→</span></span>
             </a>
           </section>
           <section class="path-panel welcoming" id="welcoming">
             <div>
               <h3>Pull up a chair.</h3>
               <p>Bring your questions to a student-led Bible study.</p>
-              <a class="text-link" href="https://hope.edu/offices/campus-ministries/discipleship/">Explore small groups <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="https://hope.edu/offices/campus-ministries/discipleship/">Explore small groups <span aria-hidden="true">→</span></a>
             </div>
             <a class="arch path-wallpaper wallpaper-download" href="welcoming-chapel.png" download="Hope-Welcoming-wallpaper.png" aria-label="Download Welcoming mobile wallpaper">
               <img src="welcoming-chapel.png" alt="" width="941" height="1672" loading="lazy">
-              <span class="wallpaper-label">Download wallpaper <span aria-hidden="true">↓</span></span>
+              <span class="wallpaper-label">Download wallpaper <span aria-hidden="true">→</span></span>
             </a>
           </section>
           <section class="path-panel transformational" id="transformational">
             <div>
               <h3>Put faith into practice.</h3>
               <p>Find a ministry team and a place to serve.</p>
-              <a class="text-link" href="https://hope.edu/offices/campus-ministries/ministry-opportunities.html">Find ministry opportunities <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="https://hope.edu/offices/campus-ministries/ministry-opportunities.html">Find ministry opportunities <span aria-hidden="true">→</span></a>
             </div>
             <a class="arch path-wallpaper wallpaper-download" href="Transformational-1.png" download="Hope-Transformational-wallpaper.png" aria-label="Download Transformational mobile wallpaper">
               <img src="Transformational-1.png" alt="" width="941" height="1672" loading="lazy">
-              <span class="wallpaper-label">Download wallpaper <span aria-hidden="true">↓</span></span>
+              <span class="wallpaper-label">Download wallpaper <span aria-hidden="true">→</span></span>
             </a>
           </section>
         </div>
@@ -378,21 +378,17 @@ blockquote { font: italic clamp(1.15rem, 2vw, 1.45rem)/1.75 var(--font-body); ma
 
     <section class="dawn" aria-labelledby="reflection-title">
       <div class="container">
-        <span class="sun" aria-hidden="true"></span>
-        <p class="kicker">This week</p>
+        <img class="dawn-artwork" src="assets/dawn-chapel.png" alt="" loading="lazy">
         <h2 id="reflection-title" class="reflection-question">What could help you make room for God this week?</h2>
         <div class="actions">
-          <a class="button button-primary" href="https://hope.edu/offices/campus-ministries/">Visit Campus Ministries <span aria-hidden="true">↗</span></a>
+          <a class="button button-primary" href="https://hope.edu/offices/campus-ministries/">Visit Campus Ministries <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>Hope College Campus Ministries <span>·</span> COMM 256 class prototype</p>
-      <a href="https://hope.edu/offices/campus-ministries/">Visit Campus Ministries <span aria-hidden="true">↗</span></a>
-    </div>
+    <img class="site-footer-image" src="assets/hope-college-footer.png" width="2834" height="910" loading="lazy" alt="Hope College footer preview (noninteractive). PO Box 9000, Holland, Michigan 49422-9000. 616.395.7000. Social media, campus resources, admissions, academics, and community navigation.">
   </footer>
   <script>
 // The native mobile disclosure also works without JavaScript.
