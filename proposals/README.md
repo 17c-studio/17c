@@ -4,6 +4,7 @@
 | --- | --- | --- |
 | Mr Rebuild | [proposal-mr-rebuild.html](../proposal-mr-rebuild.html) | `mr-rebuild/` |
 | Van Noord | [proposal-van-noord.html](../proposal-van-noord.html) | `van-noord/` |
+| Sasquatch | [proposal-sasquatch.html](../proposal-sasquatch.html) | `sasquatch/` |
 | Spring Sweet | [proposal-spring-sweet.html](../proposal-spring-sweet.html) | `spring-sweet/` |
 | Zeeland Christian School | [proposal-zcs.html](../proposal-zcs.html) | `zcs/` |
 | Estella Rose | [proposal-estella-rose.html](../proposal-estella-rose.html) | `estella-rose/` |

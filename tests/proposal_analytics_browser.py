@@ -44,9 +44,15 @@ def pause(ms=300):
 
 def load(page, query=''):
     traffic.clear()
-    cdp('Page.navigate', {'url': ROOT + page + query})
-    pause(1500)
-    assert evaluate('document.readyState') == 'complete'
+    navigation = cdp('Page.navigate', {'url': ROOT + page + query})
+    assert not navigation.get('errorText'), navigation
+    for _ in range(60):
+        pause(250)
+        if evaluate("document.readyState === 'complete' && !!document.querySelector('#investment')"):
+            break
+    else:
+        raise AssertionError('Proposal did not finish loading: ' + page)
+    pause(500)
 
 def layer():
     return evaluate("document.querySelector('iframe[title=\"Proposal analytics\"]')?.contentWindow.dataLayer?.filter(x=>typeof x[0]==='string').map(x=>Array.from(x)) || []")
@@ -74,14 +80,20 @@ def cleanup():
 atexit.register(cleanup)
 
 report = []
-query = '?utm_source=17c_studio&utm_medium=email&utm_campaign=proposal&email=PRIVATE_EMAIL&name=PRIVATE_NAME&signature=PRIVATE_SIGNATURE&utm_term=PRIVATE_TERM#PRIVATE_HASH'
-for page, ident in [('proposal-mr-rebuild.html', 'p001'), ('proposal-van-noord.html', 'p002'), ('proposal-estella-rose.html', 'p003')]:
+query = '?utm_source=17c_studio&utm_medium=email&utm_campaign=proposal&email=PRIVATE_EMAIL&name=PRIVATE_NAME&proposal_name=PRIVATE_LABEL&signature=PRIVATE_SIGNATURE&utm_term=PRIVATE_TERM#PRIVATE_HASH'
+for page, ident, name in [
+    ('proposal-mr-rebuild.html', 'p001', 'MR Rebuild'),
+    ('proposal-van-noord.html', 'p002', 'Van Noord'),
+    ('proposal-estella-rose.html', 'p003', 'Estella Rose'),
+    ('proposal-spring-sweet.html', 'p004', 'Spring Sweet'),
+    ('proposal-sasquatch.html', 'p008', 'Sasquatch'),
+]:
     load(page, query)
     assert event_names() == ['proposal_open'], (page, event_names(), evaluate('({y:scrollY,top:document.querySelector("#investment").getBoundingClientRect().top,h:innerHeight})'))
     view_options()
     assert event_names() == ['proposal_open', 'proposal_options_view'], event_names()
     # Re-entry, resize, duplicate script, and form input must not add events.
-    evaluate("window.scrollTo({top:0,behavior:'instant'});document.querySelector('input[type=email]').value='PRIVATE_FORM_VALUE';document.querySelector('input[type=email]').dispatchEvent(new Event('input',{bubbles:true}));const s=document.createElement('script');s.src='shared/js/proposal-analytics.js';s.dataset.proposalId='%s';s.dataset.enabled='true';document.body.append(s)" % ident)
+    evaluate("window.scrollTo({top:0,behavior:'instant'});document.querySelector('input[type=email]').value='PRIVATE_FORM_VALUE';document.querySelector('input[type=email]').dispatchEvent(new Event('input',{bubbles:true}));const s=document.createElement('script');s.src='shared/js/proposal-analytics.js';s.dataset.proposalId='%s';s.dataset.enabled='true';s.dataset.proposalName='%s';document.body.append(s)" % (ident, name))
     pause(); view_options()
     cdp('Emulation.setDeviceMetricsOverride', {'width': 390, 'height': 844, 'deviceScaleFactor': 1, 'mobile': True})
     pause()
@@ -89,6 +101,8 @@ for page, ident in [('proposal-mr-rebuild.html', 'p001'), ('proposal-van-noord.h
     for command in layer():
         if command[0] == 'event':
             assert command[2]['proposal_id'] == ident
+            assert command[2]['proposal_name'] == name
+            assert command[2]['send_to'] == 'G-YLJXMRYNPY'
             assert command[2]['page_title'] == '17C Studio proposal ' + ident
             assert command[2]['page_referrer'] == ''
             assert command[2]['page_location'] == 'https://17c.studio/proposals/' + ident + '?utm_source=17c_studio&utm_medium=email&utm_campaign=proposal'
@@ -97,9 +111,21 @@ for page, ident in [('proposal-mr-rebuild.html', 'p001'), ('proposal-van-noord.h
     wire = urllib.parse.unquote(json.dumps(traffic))
     for forbidden in ['PRIVATE_', page, 'Jordan', 'Kyle', 'Sara', 'Tricia', 'Annalisa', 'form_start', 'form_submit']:
         assert forbidden not in wire, forbidden
+    payloads = []
+    for request in traffic:
+        url = urllib.parse.urlsplit(request['url'])
+        for line in (request.get('postData') or '').splitlines() or ['']:
+            payloads.append(urllib.parse.parse_qs(url.query + '&' + line))
     for event in ['proposal_open', 'proposal_options_view']:
-        assert event in wire, (event, wire)
-    report.append({'page': page, 'id': ident, 'events_once': True, 'actual_requests_blocked': len(traffic), 'privacy': 'pass'})
+        matches = [payload for payload in payloads if payload.get('en') == [event]]
+        # The Google tag can retry requests that this test intentionally aborts.
+        # Once-per-load dispatch is checked in dataLayer above; validate every attempt.
+        assert matches, (event, payloads)
+        for payload in matches:
+            assert payload.get('ep.proposal_id') == [ident], payload
+            assert payload.get('ep.proposal_name') == [name], payload
+            assert payload.get('tid') == ['G-YLJXMRYNPY'], payload
+    report.append({'page': page, 'id': ident, 'name': name, 'events_once': True, 'actual_requests_blocked': len(traffic), 'privacy': 'pass'})
     # Reload resets once-per-load guards.
     cdp('Emulation.setDeviceMetricsOverride', {'width': 1280, 'height': 600, 'deviceScaleFactor': 1, 'mobile': False})
     load(page)
@@ -112,7 +138,7 @@ for query in ['?utm_source=PRIVATE_SOURCE&utm_medium=email&utm_campaign=proposal
     assert event_names() == ['proposal_open']
     assert 'utm_' not in json.dumps(layer()) and 'campaign_source' not in json.dumps(layer())
 
-for page in ['proposal-spring-sweet.html', 'proposal-zcs.html', 'proposal-erf.html', 'proposal.html', 'proposal-template-17c.html']:
+for page in ['proposal-zcs.html', 'proposal-erf.html', 'proposal.html', 'proposal-template-17c.html']:
     load(page, query)
     # Ignore the previous enabled document's unload/engagement requests.
     traffic.clear()

@@ -6,6 +6,8 @@
   const optOut = `ga-disable-${measurementId}`;
   const campaign = { utm_source: '17c_studio', utm_medium: 'email', utm_campaign: 'proposal' };
   const idPattern = /^p\d{3,}$/;
+  const validName = name => typeof name === 'string' && name.trim().length > 0 &&
+    name.length <= 100 && !/[\x00-\x1f\x7f]/.test(name);
   const events = new Set(['proposal_open', 'proposal_options_view']);
 
   // Google runs only in an empty, generic document, never beside client content.
@@ -13,7 +15,8 @@
     if (window.parent === window) return;
     const params = new URLSearchParams(location.search);
     const proposalId = params.get('id');
-    if (!idPattern.test(proposalId || '')) return;
+    const proposalName = params.get('name');
+    if (!idPattern.test(proposalId || '') || !validName(proposalName)) return;
     const attributed = params.get('campaign') === 'email';
     const debug = params.get('debug') === 'true';
     const safeURL = new URL(`/proposals/${proposalId}`, 'https://17c.studio');
@@ -22,7 +25,8 @@
       page_location: safeURL.href,
       page_title: `17C Studio proposal ${proposalId}`,
       page_referrer: '',
-      proposal_id: proposalId
+      proposal_id: proposalId,
+      proposal_name: proposalName
     };
     let configured = false;
     const sent = new Set();
@@ -74,7 +78,8 @@
     return;
   }
 
-  if (!script || script.dataset.enabled !== 'true' || !idPattern.test(script.dataset.proposalId || '')) return;
+  if (!script || script.dataset.enabled !== 'true' || !idPattern.test(script.dataset.proposalId || '') ||
+      !validName(script.dataset.proposalName)) return;
   // An accidental second include must not double-count this page load.
   if (window.studioProposalAnalyticsInitialized) return;
   window.studioProposalAnalyticsInitialized = true;
@@ -88,6 +93,8 @@
   });
   const frameURL = new URL('../proposal-analytics-frame.html', script.src);
   frameURL.searchParams.set('id', proposalId);
+  // Only the explicit source configuration supplies this label, never the page/query/form.
+  frameURL.searchParams.set('name', script.dataset.proposalName.trim());
   if (attributed) frameURL.searchParams.set('campaign', 'email');
   // A local-only switch for QA; never forward arbitrary debug parameter values.
   let debug = window.studioProposalAnalyticsDebug === true;

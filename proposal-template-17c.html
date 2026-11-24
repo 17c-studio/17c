@@ -175,8 +175,13 @@ input[type=text],input[type=email],select{border-radius:3px}
   .fill{background:none}
 }
 </style>
-  <!-- Assign a unique internal ID and enable only after final review. See proposals/ANALYTICS.md. -->
-  <script src="shared/js/proposal-analytics.js" data-proposal-id="" data-enabled="false" data-options-selector="#investment" defer></script>
+  <!-- Tracking opt-in: reserve a unique ID in proposals/ANALYTICS.md, set the business display name
+       (not a contact name), then enable only after final review. Keep all three settings together. -->
+  <script src="shared/js/proposal-analytics.js"
+          data-enabled="false"
+          data-proposal-id=""
+          data-proposal-name=""
+          data-options-selector="#investment" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
