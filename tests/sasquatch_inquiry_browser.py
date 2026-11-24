@@ -117,7 +117,7 @@ for package,fee in [('', 'No package selected'),('package1','$750/month'),('pack
     assert 'signer_name' not in fields and 'signature' not in fields
     if package:
         assert '12 original short-video' in fields['scope_preview']
-        assert ('20 new reviewers' in fields['scope_preview'])==(package=='package2')
+        assert ('10 new reviewers per month, with one or two follow-ups per reviewer as needed' in fields['scope_preview'])==(package=='package2')
         assert ('check comments, messages, and mentions' in fields['scope_preview'])==(package=='package2')
         assert ('short monthly summary' in fields['scope_preview'])==(package=='package2')
         assert 'dashboard' not in fields['scope_preview'].lower()
